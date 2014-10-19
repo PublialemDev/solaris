@@ -1,17 +1,8 @@
-<?php
-    phpinfo();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-</head>
-<body>
+
+<?php echo getHeader('Otro') ?>
 
 <div id="container">
-	
+	<p>HOLA</p>
 </div>
 
-</body>
-</html>
+<?php echo getFooter() ?>
