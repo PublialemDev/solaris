@@ -11,6 +11,7 @@ class CClientes extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
+		$this->load->model('mClientes');
 	}
 	
 	public function index()
@@ -40,7 +41,12 @@ class CClientes extends CI_Controller {
 		$idCliente=0;//Almacenara el ID generado en la insercion
 		//$this->input->post('cli_nombre'); toma los datos enviados
 		//$this->load->view('clientes/vClientesUpdate');
+		$datos = array('nombre' => $this->input->post('nombre_txt'), 
+		'rfc' => $this->input->post('rfc_txt'), 
+		'creado_en' => '9999-12-31 23:59:59', 
+		'creado_por' =>  01);
 		
+		$this->mClientes->insertarCliente($datos);
 		return $idCliente;
 	}
 	
@@ -79,3 +85,4 @@ class CClientes extends CI_Controller {
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
 ?>
+

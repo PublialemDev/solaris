@@ -1,3 +1,4 @@
+
 <?php 
 	echo getHeader('Alta de Clientes'); 
 	//cliente
@@ -68,3 +69,4 @@
 </div>
 
 <?php echo getFooter() ?>
+
