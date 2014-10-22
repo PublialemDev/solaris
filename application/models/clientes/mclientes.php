@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class MClientes extends CI_Model{
+class Mclientes extends CI_Model{
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
@@ -15,11 +15,18 @@ class MClientes extends CI_Model{
 			'creado_por' => $datosCliente['creado_por'])
 		);
 	}
-	function insertTel($datosTel){
+	function updateCliente(){
 		
+		return ;
 	}
-	function insertDir($datosDir){
-		
+	function selectClientes(){
+		$query = $this->db->get('clientes');
+		if($query->row_count()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
 	}
 	
 }

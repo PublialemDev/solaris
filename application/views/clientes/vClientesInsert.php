@@ -6,13 +6,15 @@
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>'');
 	//$cli_id=array('0','idCliente') ;//hidden
 	//direccion
-	$dir_estado =array('name'=>'dir_estado','placeholder'=>'Estado','value'=>'');//comboBox
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>'');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>'');
 	$dir_num_int =array('name'=>'dir_num_int','placeholder'=>'Num. interior','value'=>'');
 	$dir_col =array('name'=>'dir_col','placeholder'=>'Colonia','value'=>'');
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>'');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>'');
+	foreach ($estados->result() as $estado) {
+		$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
+	}
 ?>
 <div id="container">
 	<?php echo form_open('clientes/cClientes/insertCliente'); ?>
@@ -31,7 +33,7 @@
 		<!--inicio direccion-->
 		<tr>
 			<td><?php echo form_label('Estado: ','dir_estado');?></td>
-			<td><?php echo form_input($dir_estado);?></td>
+			<td><?php echo form_dropdown('dir_estado', $dir_estado,'','');?></td>
 		</tr>
 		<tr>
 			<td><?php echo form_label('Calle: ','dir_calle');?></td>
