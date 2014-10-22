@@ -16,11 +16,16 @@ class CProductos extends CI_Controller {
 	
 	public function recibirDatos(){
 		$datos = array('nombre' => $this->input->post('nombre_txt'), 
-		'rfc' => $this->input->post('rfc_txt'), 
+		'categoria' => $this->input->post('categoria'), 
+		'precio' => $this->input->post('precio_txt'), 
+		'proveedor' => $this->input->post('proveedor_txt'), 
+		'estatus' => $this->input->post('estatus'), 
+		'descripcion' => $this->input->post('descripcion_txt'), 
 		'creado_en' => '9999-12-31 23:59:59', 
 		'creado_por' =>  01);
 		
-		$this->mClientes->insertarCliente($datos);
+		$this->mProductos->insertarProducto($datos);
+
 	}
 	
 } 

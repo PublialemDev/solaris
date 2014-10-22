@@ -8,7 +8,11 @@ class MProductos extends CI_Model{
 	}
 	
 	public function insertarProducto($datos){
-		$this->db->insert();
+		$this->db->insert('productos',array('id_categoriaProducto'=> $datos['categoria'],
+		'nombre_producto'=> $datos['nombre'],'descripcion_producto'=> $datos['descripcion'],
+		'precio'=> $datos['precio'],'proveedor'=> $datos['proveedor'],
+		'estatus_producto'=> $datos['estatus'],'creado_en'=> $datos['creado_en'],
+		'creado_por'=> $datos['creado_por'],));
 	}
 	
 	public function consultarCategoria(){

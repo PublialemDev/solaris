@@ -1,6 +1,6 @@
 <?php
 echo getHeader('Productos');
-echo form_open('productos/cProductos/nuevoProducto');
+echo form_open('productos/cProductos/recibirDatos');
 
 echo form_label('Nombre: ');
 echo form_input('nombre_txt');
