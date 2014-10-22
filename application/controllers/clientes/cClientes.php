@@ -6,7 +6,7 @@ class CClientes extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('pagina');
 		$this->load->helper('form');
-		$this->load->model('mClientes');
+		$this->load->model('clientes/mClientes');
 	}
 	
 	public function nuevoCliente(){
