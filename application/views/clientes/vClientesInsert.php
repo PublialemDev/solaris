@@ -16,6 +16,12 @@
 		$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
 	}
 ?>
+<!--inicio variables JS -->
+<?php 
+echo $library_src;
+echo $script_head;
+?>
+<!--fin variables JS -->
 <div id="container">
 	<?php echo form_open('clientes/cClientes/insertCliente'); ?>
 	<?php echo form_hidden('idCliente','0');?>

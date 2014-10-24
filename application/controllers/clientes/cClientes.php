@@ -14,6 +14,9 @@ class CClientes extends CI_Controller {
 		$this->load->model('estados/mestados');
 		$this->load->model('clientes/mclientes');
 		$this->load->helper('url');
+		$this->load->library('javascript');
+		//$this->load->view('JS/clientes.js');
+		//$this->load->view('JS/jquery-2.1.1.min.js');
 	}
 	
 	public function index()

@@ -15,7 +15,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
-	<script src="../../libraries/jquery-2.1.1.min.js"></script>
+	<script src="/opt/lampp/htdocs/solaris/application/views/libraries/jquery-2.1.1.min.js"></script>
 </head>
 <body>
 			';
