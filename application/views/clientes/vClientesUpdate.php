@@ -2,7 +2,7 @@
 <?php echo getHeader('Otro') ?>
 
 <div id="container">
-	<p>HOLA</p>
+	<p><?php echo $string; ?></p>
 </div>
 
 <?php echo getFooter() ?>
