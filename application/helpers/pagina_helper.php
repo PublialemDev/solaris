@@ -15,6 +15,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
+	<script src="../../libraries/jquery-2.1.1.min.js"></script>
 </head>
 <body>
 			';
@@ -29,7 +30,7 @@
  * @param	string
  * @return	string
  */
-	function getFooter($script=''){
+	function getFooter($script =''){
 		return $script.'
 </body>
 </html>

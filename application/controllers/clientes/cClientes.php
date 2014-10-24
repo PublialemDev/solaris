@@ -11,8 +11,9 @@ class CClientes extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
-		$this->load->model('estados/mEstados');
-		$this->load->model('clientes/mClientes');
+		$this->load->model('estados/mestados');
+		$this->load->model('clientes/mclientes');
+		$this->load->helper('url');
 	}
 	
 	public function index()
@@ -24,7 +25,7 @@ class CClientes extends CI_Controller {
 	 * */
 	public function formInsertCliente(){
 		$this->load->helper('form');//carga el helper para los formularios
-		$data['estados']= $this->mEstados->selectEstados();
+		$data['estados']= $this->mestados->selectEstados();
 		$this->load->view('clientes/vClientesInsert',$data);
 	}
 	/**

@@ -70,5 +70,5 @@
 	<?php echo form_close(); ?>
 </div>
 
-<?php echo getFooter() ?>
+<?php echo getFooter('<script src="'.FCPATH.'application/views/JS/clientes.js"></script>') ?>
 
