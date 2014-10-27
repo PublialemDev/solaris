@@ -15,7 +15,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
-	<script src="/opt/lampp/htdocs/solaris/application/views/libraries/jquery-2.1.1.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script>var SERVER_URL_BASE="http://localhost/solaris/index.php/"</script>
 </head>
 <body>
 			';

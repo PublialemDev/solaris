@@ -12,20 +12,26 @@
 	$dir_col =array('name'=>'dir_col','placeholder'=>'Colonia','value'=>'');
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>'');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>'');
+	//teléfono
+	$tel_num =array('name'=>'tel_num','class'=>'telefono','placeholder'=>'Teléfono','value'=>'');
+	//correos
+	$corr_correo =array('name'=>'corr_correo','class'=>'correo','placeholder'=>'Correo','value'=>'');
+	//formularios
+	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'insertCliente(this,event)');
+	$form_dir=array('id'=>'form_dir','onSubmit'=>'insertCliente(this,event)');
+	//$form_tel=array('id'=>'form_tel','onSubmit'=>'insertCliente(this,event)','class'=>'form');
 	foreach ($estados->result() as $estado) {
 		$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
 	}
 ?>
-<!--inicio variables JS -->
-<?php 
-echo $library_src;
-echo $script_head;
-?>
-<!--fin variables JS -->
-<div id="container">
-	<?php echo form_open('clientes/cClientes/insertCliente'); ?>
-	<?php echo form_hidden('idCliente','0');?>
+
+
+<div id="container" class='container'>
+	
 	<table>
+		<tbody>
+	<?php echo form_open('#',$form_cliente); ?>
+	<?php echo form_hidden('idCliente','0');?>
 		<!--inicio Datos del Cliente -->
 		<tr>
 			<td><?php echo form_label('Nombre: ','nombre');?></td>
@@ -36,6 +42,10 @@ echo $script_head;
 			<td><?php echo form_input($cli_rfc);?></td>
 		</tr>
 		<!--fin Datos del Cliente -->
+	
+	<?php echo form_close(); ?>
+	<?php echo form_open('#',$form_dir); ?>
+	
 		<!--inicio direccion-->
 		<tr>
 			<td><?php echo form_label('Estado: ','dir_estado');?></td>
@@ -65,16 +75,41 @@ echo $script_head;
 			<td><?php echo form_label('Codigo Postal: ','dir_cp');?></td>
 			<td><?php echo form_input($dir_cp);?></td>
 		</tr>
-		<!--fin direccion-->
+	<?php echo form_close(); ?>
+	<!--fin direccion-->
+	<!--inicio telefono-->
+	<tr>
+		<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono"');?></td>
+	</tr>
+
 		<tr>
-			<td><?php echo form_button('tel','Teléfono','class="addTelefono"');?></td>
+			<td><?php echo form_label('Teléfono: ','tel_num');?></td>
+			<td><?php echo form_input($tel_num);?></td>
 		</tr>
+	<!--fin telefono-->
+	<!--inicio correo-->
+	<tr>
+		<td><?php echo form_button('corr','Agregar correo','class="addCorreo"');?></td>
+	</tr>
+	
 		<tr>
-			<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton"');?></td>
+			<td><?php echo form_label('Correo: ','corr_correo');?></td>
+			<td><?php echo form_input($corr_correo);?></td>
+		</tr>
+	<!--fin correo-->
+	</tbody>
+	</table>
+	
+	<table>
+		<tr>
+			<td><?php echo form_button('enviar','ENVIAR','class="enviarButton"');?></td>
 		</tr>
 	</table>
-	<?php echo form_close(); ?>
+	
 </div>
 
-<?php echo getFooter('<script src="'.FCPATH.'application/views/JS/clientes.js"></script>') ?>
+<?php
+echo getJsClientes(); 
+echo getFooter() ;
+?>
 

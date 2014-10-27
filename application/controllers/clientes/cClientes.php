@@ -11,12 +11,15 @@ class CClientes extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
+		$this->load->helper('jsClientes');//carga el helper bsico para las view
 		$this->load->model('estados/mestados');
 		$this->load->model('clientes/mclientes');
-		$this->load->helper('url');
-		$this->load->library('javascript');
+		$this->load->model('direcciones/mdirecciones');
+		$this->load->model('telefonos/mtelefonos');
+		$this->load->model('correos/mcorreos');
+		//$this->load->helper('url');
+		//$this->load->library('javascript');
 		//$this->load->view('JS/clientes.js');
-		//$this->load->view('JS/jquery-2.1.1.min.js');
 	}
 	
 	public function index()
@@ -42,18 +45,72 @@ class CClientes extends CI_Controller {
 	 * @param	array los datos de la direccion del cliente
 	 * @return	int
 	 */
-	public function insertCliente($datosCliente,$telCliente,$dirCliente)
+	public function insertCliente()
 	{
-		$idCliente=0;//Almacenara el ID generado en la insercion
-		//$this->input->post('cli_nombre'); toma los datos enviados
-		//$this->load->view('clientes/vClientesUpdate');
-		$datos = array('nombre' => $this->input->post('nombre_txt'), 
-		'rfc' => $this->input->post('rfc_txt'), 
-		'creado_en' => '9999-12-31 23:59:59', 
-		'creado_por' =>  01);
+		$cli_id=0;//Almacenara el ID generado en la insercion
+		$cli_data;//Almacenara el array de datos del cliente para la insercion
+		$dir_data;//Almacenara el array de datos de la direccion para la insercion
 		
-		$this->mClientes->insertarCliente($datos);
-		return $idCliente;
+		//establece los datos del cliente para la insercion
+		$cli_data=array(
+		'nombre'=>$this->input->post('nombre'),
+		'rfc'=>$this->input->post('rfc')
+		);
+		//inserta y recibe el id generado en la insercion
+		$cli_id= $this->mclientes->insertCliente($cli_data);
+		
+		//inserta la direccion para le cliente
+		if($cli_id>0 and $cli_id!= null){
+			//establece los datos del cliente para la insercion
+			$dir_data=array(
+			'cli_id'=>$cli_id,
+			'dir_estado'=>$this->input->post('dir_estado'),
+			'dir_calle'=>$this->input->post('dir_calle'),
+			'dir_num_ext'=>$this->input->post('dir_num_ext'),
+			'dir_num_int'=>$this->input->post('dir_num_int'),
+			'dir_col'=>$this->input->post('dir_col'),
+			'dir_muni'=>$this->input->post('dir_muni'),
+			'dir_cp'=>$this->input->post('dir_cp')
+			);
+			
+			//inserta y recibe el id generado en la insercion
+			$dir_id= $this->mdirecciones->insertDireccion($dir_data);
+		}
+		
+		//inserta los telefonos para el cliente
+		if($cli_id>0 and $cli_id!= null){
+			//genera el array de los numeros de telefono
+			$tel_numeros = explode('#',$this->input->post('tel_num'));
+			$tel_data;
+			foreach ($tel_numeros as $tel_num) {
+				if($tel_num>0 and $tel_num!= null){
+					$tel_data=array(
+						'cli_id'=>$cli_id,
+						'tel_numero'=>$tel_num
+					);
+					
+					$this->mtelefonos->insertTelefono($tel_data);
+				}
+			}
+		}
+		
+		//inserta los correos para el cliente
+		if($cli_id>0 and $cli_id!= null){
+			//genera el array de los correos
+			$corr_correos = explode('#',$this->input->post('corr_correo'));
+			$corr_data;
+			foreach ($corr_correos as $corr_correo) {
+				if($corr_correo !='' and $corr_correo!= null){
+					$corr_data=array(
+						'cli_id'=>$cli_id,
+						'corr_correo'=>$corr_correo
+					);
+					$this->mcorreos->insertCorreo($corr_data);
+				}
+			}
+		}
+		
+		echo $cli_id .'-'.$dir_id;
 	}
 	
 	/**
