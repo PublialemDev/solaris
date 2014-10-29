@@ -24,4 +24,16 @@ class MProductos extends CI_Model{
 			return false;
 		}
 	}
+	
+	public function consultarProductos(){			
+		$consulta = $this->db->query("SELECT productos.id_producto, productos.nombre_producto, 
+		categoriaproductos.nombre_categoriaProducto, productos.descripcion_producto, productos.precio,	
+		productos.proveedor, productos.estatus_producto, productos.creado_en, productos.creado_por, 
+		productos.modificado_en, productos.modificado_por FROM productos JOIN categoriaproductos
+		ON productos.id_categoriaProducto = categoriaproductos.id_categoriaProducto");
+		
+			
+		return $consulta;
+	}
+	
 }

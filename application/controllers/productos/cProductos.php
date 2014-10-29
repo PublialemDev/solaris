@@ -7,14 +7,15 @@ class CProductos extends CI_Controller {
 		$this->load->helper('pagina');
 		$this->load->helper('form');
 		$this->load->model('productos/mProductos');
+		$this->load->library('table');
 	}
 	
-	public function nuevoProducto(){
+	public function insertProducto(){
 		$datos['categorias'] = $this->mProductos->consultarCategoria();
 		$this->load->view('productos/vProductosInsert',$datos);
 	}
 	
-	public function recibirDatos(){
+	public function getValues(){
 		$datos = array('nombre' => $this->input->post('nombre_txt'), 
 		'categoria' => $this->input->post('categoria'), 
 		'precio' => $this->input->post('precio_txt'), 
@@ -28,5 +29,10 @@ class CProductos extends CI_Controller {
 
 	}
 	
+	public function selectProducto(){
+		$consulta['query'] = $this->mProductos->consultarProductos();
+		$this->load->view('productos/vProductosSelect',$consulta);
+	}
+			
 } 
 ?>
