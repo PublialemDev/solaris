@@ -7,7 +7,7 @@ class MProductos extends CI_Model{
 		$this->load->database();
 	}
 	
-	public function insertarProducto($datos){
+	public function insertProducto($datos){
 		$this->db->insert('productos',array('id_categoriaProducto'=> $datos['categoria'],
 		'nombre_producto'=> $datos['nombre'],'descripcion_producto'=> $datos['descripcion'],
 		'precio'=> $datos['precio'],'proveedor'=> $datos['proveedor'],
@@ -15,7 +15,7 @@ class MProductos extends CI_Model{
 		'creado_por'=> $datos['creado_por'],));
 	}
 	
-	public function consultarCategoria(){
+	public function selectCategorias(){
 		$query = $this->db->get('categoriaproductos');
 		
 		if($query->num_rows >0) 
@@ -25,7 +25,7 @@ class MProductos extends CI_Model{
 		}
 	}
 	
-	public function consultarProductos(){			
+	public function selectProductos(){			
 		$consulta = $this->db->query("SELECT productos.id_producto, productos.nombre_producto, 
 		categoriaproductos.nombre_categoriaProducto, productos.descripcion_producto, productos.precio,	
 		productos.proveedor, productos.estatus_producto, productos.creado_en, productos.creado_por, 

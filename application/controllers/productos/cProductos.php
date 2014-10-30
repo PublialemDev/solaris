@@ -11,26 +11,28 @@ class CProductos extends CI_Controller {
 	}
 	
 	public function insertProducto(){
-		$datos['categorias'] = $this->mProductos->consultarCategoria();
+		$datos['categorias'] = $this->mProductos->selectCategorias();
 		$this->load->view('productos/vProductosInsert',$datos);
 	}
 	
 	public function getValues(){
+		$sysdate=new DateTime();
+		
 		$datos = array('nombre' => $this->input->post('nombre_txt'), 
 		'categoria' => $this->input->post('categoria'), 
 		'precio' => $this->input->post('precio_txt'), 
 		'proveedor' => $this->input->post('proveedor_txt'), 
 		'estatus' => $this->input->post('estatus'), 
 		'descripcion' => $this->input->post('descripcion_txt'), 
-		'creado_en' => '9999-12-31 23:59:59', 
+		'creado_en' => $sysdate->format('Y-m-d H:i:s'), 
 		'creado_por' =>  01);
 		
-		$this->mProductos->insertarProducto($datos);
+		$this->mProductos->insertProducto($datos);
 
 	}
 	
-	public function selectProducto(){
-		$consulta['query'] = $this->mProductos->consultarProductos();
+	public function selectProductos(){
+		$consulta['query'] = $this->mProductos->selectProductos();
 		$this->load->view('productos/vProductosSelect',$consulta);
 	}
 			
