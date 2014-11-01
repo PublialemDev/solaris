@@ -25,9 +25,10 @@ class Mclientes extends CI_Model{
 		
 		return ;
 	}
+	
 	function selectClientes(){
 		$query = $this->db->get('clientes');
-		if($query->row_count()>0){
+		if($query->num_rows()>0){
 			return $query;
 		}
 		else{

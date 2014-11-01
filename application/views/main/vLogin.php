@@ -4,7 +4,7 @@ echo getHeader('Accesso');
 $usr_nombre =array('name'=>'usr_nombre','placeholder'=>'Usuario','value'=>'','required'=>'required');
 $usr_passw =array('name'=>'usr_passw','placeholder'=>'Contraseña', 'value'=>'','required'=>'required');
 //form
-$form_login=array('id'=>'form_login','onSubmit'=>'validaLogin(this,event)');
+$form_login=array('id'=>'form_login');
 
 echo form_open('main/cLogin/login',$form_login);
 ?>

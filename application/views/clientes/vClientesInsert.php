@@ -1,5 +1,6 @@
 
 <?php 
+if (isset($_SESSION['USUARIO']) and $_SESSION['USUARIO']!=null ){
 	echo getHeader('Alta de Clientes'); 
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>'');
@@ -109,7 +110,10 @@
 </div>
 
 <?php
-echo getJsClientes(); 
+echo getJsClientes_insert(); 
 echo getFooter() ;
+}else{
+	header('Location: /solaris/index.php/main/cLogin/');
+}
 ?>
 

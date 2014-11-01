@@ -3,7 +3,7 @@
 class CClientes extends CI_Controller {
 
 	/**
-	 * Controlador para actualizar la información de los clientes.
+	 * Controlador para actualizar y consultar la información de los clientes.
 	 *
 	 * @author Luis Briseño
 	 */
@@ -26,9 +26,14 @@ class CClientes extends CI_Controller {
 	{
 		$this->load->view('clientes/vClientesUpdate');
 	}
-	/*
-	 * crear el formulario para insertar el cliente
-	 * */
+	 /* Form Insert Cliente
+	 *
+	 * Crea el formulario para insertar un cliente
+	 * 
+	 * @author Luis Briseño
+	 * @access	public
+	 * 
+	 */
 	public function formInsertCliente(){
 		$this->load->helper('form');//carga el helper para los formularios
 		$data['estados']= $this->mestados->selectEstados();
@@ -113,6 +118,68 @@ class CClientes extends CI_Controller {
 		echo $cli_id .'-'.$dir_id;
 	}
 	
+	/* Form Select/Update Cliente
+	 *
+	 * Crea el formulario para seleccionar/actualizar un cliente
+	 * 
+	 * @author Luis Briseño
+	 * @access	public
+	 * 
+	 */
+	public function formSelectCliente(){
+		$this->load->helper('form');//carga el helper para los formularios
+		$data['estados']= $this->mestados->selectEstados();
+		$this->load->view('clientes/vClientesSelect',$data);
+	}
+	/**
+	 * Insertar Cliente
+	 *
+	 * Inserta un cliente, recibe los datos en tres arreglos.
+	 *
+	 * @access	public
+	 * @param	array los datos del cliente
+	 * @param	array los datos de los telefonos del cliente
+	 * @param	array los datos de la direccion del cliente
+	 * @return	int
+	 */
+	public function selectCliente()
+	{	$json='[';
+		$res=$this->mclientes->selectClientes();
+		if($res!=false){
+			$last=$res->last_row();
+			foreach ( $res->result() as $cliente) {
+				$json.='{';
+				$json.='"id":'.'"'.$cliente->id_cliente.'",';
+				$json.='"nombre":'.'"'.$cliente->nombre_cliente.'",';
+				$json.='"rfc":'.'"'.$cliente->rfc.'"';
+				$json.='}';
+				if($cliente->id_cliente!=$last->id_cliente){
+					$json.=',';
+				}
+			}
+			$json.=']';
+					
+			echo $json;
+		}else{
+			echo "no data found";
+		}
+	}
+	
+	/* Form Select/Update Cliente
+	 *
+	 * Crea el formulario para seleccionar/actualizar un cliente
+	 * 
+	 * @author Luis Briseño
+	 * @access	public
+	 * 
+	 */
+	public function formUpdateCliente(){
+		$this->load->helper('form');//carga el helper para los formularios
+		$data['estados']= $this->mestados->selectEstados();
+		$data['id_cliente']=$this->input->get('id_cliente');
+		$this->load->view('clientes/vClientesUpdate',$data);
+	}
+	
 	/**
 	 * Actualiza Cliente
 	 *
@@ -129,23 +196,9 @@ class CClientes extends CI_Controller {
 		$data['string']= 'Hola mundo 22';
 		$this->load->view('clientes/vClientesUpdate',$data);
 	}
-	/**
-	 * Insertar Cliente
-	 *
-	 * Inserta un cliente, recibe los datos en tres arreglos.
-	 *
-	 * @access	public
-	 * @param	array los datos del cliente
-	 * @param	array los datos de los telefonos del cliente
-	 * @param	array los datos de la direccion del cliente
-	 * @return	int
-	 */
-	public function selectCliente()
-	{
-		$this->load->view('clientes/vClientesUpdate');
-	}
+	
 }
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file cClientes.php */
+/* Location: ./application/controllers/clientes/cClientes.php */
 ?>
 

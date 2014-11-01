@@ -11,11 +11,11 @@ class CLogin extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
 		$this->load->helper('jsClientes');//carga el helper bsico para las view
-		$this->load->model('estados/mestados');
-		$this->load->model('clientes/mclientes');
-		$this->load->model('direcciones/mdirecciones');
-		$this->load->model('telefonos/mtelefonos');
-		$this->load->model('correos/mcorreos');
+		//$this->load->model('estados/mestados');
+		//$this->load->model('clientes/mclientes');
+		//$this->load->model('direcciones/mdirecciones');
+		//$this->load->model('telefonos/mtelefonos');
+		//$this->load->model('correos/mcorreos');
 	}
 	public function index(){
 		session_start();
@@ -28,7 +28,7 @@ class CLogin extends CI_Controller {
 		$usr=$this->input->post('usr_nombre');
 		if($usr != null){
 			session_start();
-			$_SESSION['USER']=$this->input->post('usr_nombre');
+			$_SESSION['USUARIO']= $this->input->post('usr_nombre');
 			$this->load->view('main/vMain');
 		}else{
 			//$this->load->view('main/vMain');
