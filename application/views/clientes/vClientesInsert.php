@@ -1,5 +1,6 @@
 
 <?php 
+session_start();
 if (isset($_SESSION['USUARIO']) and $_SESSION['USUARIO']!=null ){
 	echo getHeader('Alta de Clientes'); 
 	//cliente

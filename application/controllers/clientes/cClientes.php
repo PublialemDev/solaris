@@ -142,7 +142,7 @@ class CClientes extends CI_Controller {
 	 * @param	array los datos de la direccion del cliente
 	 * @return	int
 	 */
-	public function selectCliente()
+	public function selectClienteJson()
 	{	$json='[';
 		$res=$this->mclientes->selectClientes();
 		if($res!=false){
@@ -164,7 +164,10 @@ class CClientes extends CI_Controller {
 			echo "no data found";
 		}
 	}
-	
+	public function selectClienteById(){
+		
+		
+	}
 	/* Form Select/Update Cliente
 	 *
 	 * Crea el formulario para seleccionar/actualizar un cliente
@@ -175,8 +178,12 @@ class CClientes extends CI_Controller {
 	 */
 	public function formUpdateCliente(){
 		$this->load->helper('form');//carga el helper para los formularios
+		$id_cliente=$this->input->get('id_cliente');
 		$data['estados']= $this->mestados->selectEstados();
-		$data['id_cliente']=$this->input->get('id_cliente');
+		$data['cliente']=$this->mclientes->selectClienteById($id_cliente);
+		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_cliente);
+		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_cliente);
+		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_cliente);
 		$this->load->view('clientes/vClientesUpdate',$data);
 	}
 	

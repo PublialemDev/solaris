@@ -32,5 +32,21 @@
 				return false;
 			}
 		}
+		/*
+		 * Regresa los registros de los telefonos para el id del cliente o false si no se encuentra
+		 * @author Luis Briseño
+		 * @param int
+		 * @return array 
+		 * */
+		function selectTelefonosByCliId($id_cliente){
+			$where_clause=array('id_perfil'=>$id_cliente);
+			$query = $this->db->get_where('telefonos',$where_clause);
+			if($query->num_rows()>0){
+				return $query;
+			}
+			else{
+				return false;
+			}
+		}
 	}
 ?>

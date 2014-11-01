@@ -30,5 +30,21 @@
 				return false;
 			}
 		}
+		/*
+		 * Regresa los registros de los correos para el id del cliente o false si no se encuentra
+		 * @author Luis Briseño
+		 * @param int
+		 * @return array 
+		 * */
+		function selectCorreosByCliId($id_cliente){
+			$where_clause=array('id_perfil'=>$id_cliente);
+			$query = $this->db->get_where('correos',$where_clause);
+			if($query->num_rows()>0){
+				return $query;
+			}
+			else{
+				return false;
+			}
+		}
 	}
 ?>

@@ -129,7 +129,7 @@
 			
 			$.ajax({
 				data:formSer,
-				url:SERVER_URL_BASE+"clientes/cClientes/selectCliente",
+				url:SERVER_URL_BASE+"clientes/cClientes/selectClienteJson",
 				method:"POST",
 				beforeSend:function(){/*alert("Enviando...");*/},
 				success: function(msg){

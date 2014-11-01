@@ -36,5 +36,16 @@ class Mclientes extends CI_Model{
 		}
 	}
 	
+	function selectClienteById($id_cliente){
+		$where_clause=array('id_cliente'=>$id_cliente);
+		$query = $this->db->get_where('clientes',$where_clause);
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+	}
+	
 }
 ?>
