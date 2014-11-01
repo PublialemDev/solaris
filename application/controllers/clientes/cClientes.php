@@ -164,10 +164,7 @@ class CClientes extends CI_Controller {
 			echo "no data found";
 		}
 	}
-	public function selectClienteById(){
-		
-		
-	}
+	
 	/* Form Select/Update Cliente
 	 *
 	 * Crea el formulario para seleccionar/actualizar un cliente
@@ -200,8 +197,74 @@ class CClientes extends CI_Controller {
 	 */
 	public function updateCliente()
 	{
-		$data['string']= 'Hola mundo 22';
-		$this->load->view('clientes/vClientesUpdate',$data);
+		$cli_id=$this->input->post('cli_id');//Almacenara el ID generado en la actualizacion
+		$cli_data;//Almacenara el array de datos del cliente para la actualizacion
+		$dir_data;//Almacenara el array de datos de la direccion para la actualizacion
+		$response;
+		
+		//establece los datos del cliente para la actualizacion
+		$cli_data=array(
+		'cli_id'=>$cli_id,
+		'nombre'=>$this->input->post('nombre'),
+		'rfc'=>$this->input->post('rfc')
+		);
+		//inserta y recibe el id generado en la actualizacion
+		$response = $this->mclientes->updateCliente($cli_data);
+		
+		//inserta la direccion para le cliente
+		if($cli_id>0 and $cli_id!= null){
+			//establece los datos del cliente para la actualizacion
+			$dir_data=array(
+			'cli_id'=>$cli_id,
+			'dir_estado'=>$this->input->post('dir_estado'),
+			'dir_calle'=>$this->input->post('dir_calle'),
+			'dir_num_ext'=>$this->input->post('dir_num_ext'),
+			'dir_num_int'=>$this->input->post('dir_num_int'),
+			'dir_col'=>$this->input->post('dir_col'),
+			'dir_muni'=>$this->input->post('dir_muni'),
+			'dir_cp'=>$this->input->post('dir_cp')
+			);
+			
+			//inserta y recibe el id generado en la actualizacion
+			$response.='-/-'.$this->mdirecciones->updateDireccion($dir_data);
+		}
+		
+		//actualiza los telefonos para el cliente
+		if($cli_id>0 and $cli_id!= null){
+			//genera el array de los numeros de telefono
+			$tel_numeros = explode('#',$this->input->post('tel_num'));
+			$response.='//'.$this->mtelefonos->deleteTelefonosAll($cli_id);
+			$tel_data;
+			foreach ($tel_numeros as $tel_num) {
+				if($tel_num>0 and $tel_num!= null){
+					$tel_data=array(
+						'cli_id'=>$cli_id,
+						'tel_numero'=>$tel_num
+					);
+					
+					$response.='-/-'.$this->mtelefonos->insertTelefono($tel_data);
+				}
+			}
+		}
+		
+		//actualiza los correos para el cliente
+		if($cli_id>0 and $cli_id!= null){
+			//genera el array de los correos
+			$corr_correos = explode('#',$this->input->post('corr_correo'));
+			$response.='//'.$this->mcorreos->deleteCorreosAll($cli_id);
+			$corr_data;
+			foreach ($corr_correos as $corr_correo) {
+				if($corr_correo !='' and $corr_correo!= null){
+					$corr_data=array(
+						'cli_id'=>$cli_id,
+						'corr_correo'=>$corr_correo
+					);
+					$response.='-/-'.$this->mcorreos->insertCorreo($corr_data);
+				}
+			}
+		}
+		
+		echo $response;
 	}
 	
 }

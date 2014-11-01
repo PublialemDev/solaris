@@ -7,23 +7,32 @@ class Mclientes extends CI_Model{
 		$this->load->database();
 	}
 	function insertCliente($datosCliente){
-		//$this->db->insert('Clientes',array('nombre'=>'Luis','RFC'=>'bifl900410'));
+		session_start();
 		$sysdate=new DateTime();
 		$this->db->insert('clientes',
 		array(
 			'nombre_cliente' => $datosCliente['nombre'],
 			'rfc' => $datosCliente['rfc'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'creado_por' => '1')
+			'creado_por' => $_SESSION['USUARIO'])
 		);
 		$returned=$this->db->insert_id();
 		
 		return $returned;
 	}
 	
-	function updateCliente(){
+	function updateCliente($cli_data_form){
 		
-		return ;
+		session_start();
+		$sysdate=new DateTime();
+		$cli_data=array(
+			'nombre_cliente' => $cli_data_form['nombre'],
+			'rfc' => $cli_data_form['rfc'],
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => $_SESSION['USUARIO']
+		);
+		$returned=$this->db->update('clientes',$cli_data,array('id_cliente'=>$cli_data_form['cli_id']));
+		return $returned;
 	}
 	
 	function selectClientes(){

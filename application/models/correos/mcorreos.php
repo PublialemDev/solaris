@@ -15,9 +15,14 @@
 				'id_perfil' => $datosCorreo['cli_id'],
 				'nombre_correo' => $datosCorreo['corr_correo'],
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-				'creado_por' => '1')
+				'creado_por' => $_SESSION['USUARIO'])
 			);
 			
+			return $returned;
+		}
+		
+		function deleteCorreosAll($perfil_id){
+			$returned=$this->db->delete('correos',array('id_perfil'=>$perfil_id));
 			return $returned;
 		}
 		

@@ -10,16 +10,21 @@
 		function insertTelefono($datosTel){
 			$sysdate=new DateTime();//obtener el sysdate
 			
-			$this->db->insert('telefonos',
+			$returned=$this->db->insert('telefonos',
 			array(
 				'id_perfil' => $datosTel['cli_id'],
 				'numero_telefono' => $datosTel['tel_numero'],
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-				'creado_por' => '1')
+				'creado_por' => $_SESSION['USUARIO']
+				)
 			);
-			
-			$returned=$this->db->insert_id();
-			
+			//$datos_log=array('tipo_log'=>'insert_telefonos','descripcion'=>'para el perfil: ')
+			//insertLog($datos_log);
+			return $returned;
+		}
+		
+		function deleteTelefonosAll($perfil_id){
+			$returned=$this->db->delete('telefonos',array('id_perfil'=>$perfil_id));
 			return $returned;
 		}
 		

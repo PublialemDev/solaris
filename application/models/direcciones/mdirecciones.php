@@ -19,9 +19,34 @@ class Mdirecciones extends CI_Model{
 			'municipio' => $datosDir['dir_muni'],
 			'cp' => $datosDir['dir_cp'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'creado_por' => '1')
+			'creado_por' => $_SESSION['USUARIO'])
 		);
 		$returned=$this->db->insert_id();
+		
+		return $returned;
+	}
+	/*
+	 * Actualiza la direccion para el id de perfil
+	 * @author Luis Briseño
+	 * @param array
+	 * @return string 
+	 * */
+	function updateDireccion($datosDir){
+		$sysdate=new DateTime();//obtener el sysdate
+		$returned=$this->db->update('direcciones',
+		array(
+			'id_perfil' => $datosDir['cli_id'],
+			'id_estado' => $datosDir['dir_estado'],
+			'calle' => $datosDir['dir_calle'],
+			'numero_ext' => $datosDir['dir_num_ext'],
+			'numero_int' => $datosDir['dir_num_int'],
+			'colonia' => $datosDir['dir_col'],
+			'municipio' => $datosDir['dir_muni'],
+			'cp' => $datosDir['dir_cp'],
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => $_SESSION['USUARIO']),
+			array('id_perfil'=>$datosDir['cli_id'])
+		);
 		
 		return $returned;
 	}
