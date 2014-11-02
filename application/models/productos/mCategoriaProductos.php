@@ -15,7 +15,7 @@ class MCategoriaProductos extends CI_Model{
 		'creado_en'=> $datos['creado_en'], 
 		'creado_por'=> $_SESSION['USUARIO']));
 		
-		$this->mLogs->insertLog(array($_SESSION['USUARIO'],'INSERT_CATEGORIAPRODUCTO','SE INSERTO UN REGISTRO',$datos['creado_en']));
+		$this->mLogs->insertLog(array('tipo_log'=>'INSERT_CATEGORIAPRODUCTO','descripcion_log'=>'SE INSERTO UN REGISTRO'));
 	}
 	
 	public function selectCategorias(){
