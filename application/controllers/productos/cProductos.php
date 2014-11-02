@@ -24,8 +24,7 @@ class CProductos extends CI_Controller {
 		'proveedor' => $this->input->post('proveedor_txt'), 
 		'estatus' => $this->input->post('estatus'), 
 		'descripcion' => $this->input->post('descripcion_txt'), 
-		'creado_en' => $sysdate->format('Y-m-d H:i:s'), 
-		'creado_por' =>  01);
+		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
 		$this->mProductos->insertProducto($datos);
 

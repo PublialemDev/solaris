@@ -9,13 +9,14 @@ class MCategoriaSeguimiento extends CI_Model{
 	}
 
 	public function insertCategoriaSeguimiento($datos){
-			$this->db->insert('categoriaseguimientoclientes',array('nombre_categoriaSeguimiento'=> $datos['nombre'],
-			'descripcion_categoriaSeguimiento'=> $datos['descripcion'],
-			'creado_en'=> $datos['creado_en'], 
-			'creado_por'=> $datos['creado_por'],));
-			
-			$this->mLogs->insertLog(array($_SESSION['USUARIO'],'INSERT_CATEGORIASEGUIMIENTO','SE INSERTO UN REGISTRO',$datos['creado_en']));
-		}
+		session_start();
+		$this->db->insert('categoriaseguimientoclientes',array('nombre_categoriaSeguimiento'=> $datos['nombre'],
+		'descripcion_categoriaSeguimiento'=> $datos['descripcion'],
+		'creado_en'=> $datos['creado_en'], 
+		'creado_por'=> $_SESSION['USUARIO']));
+		
+		$this->mLogs->insertLog(array($_SESSION['USUARIO'],'INSERT_CATEGORIASEGUIMIENTO','SE INSERTO UN REGISTRO',$datos['creado_en']));
+	}
 	
 	public function selectCategoriaSeguimiento(){
 		$query = $this->db->query("SELECT * FROM categoriaseguimientoclientes");
