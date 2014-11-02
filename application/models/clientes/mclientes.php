@@ -16,7 +16,7 @@ class Mclientes extends CI_Model{
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => $_SESSION['USUARIO'])
 		);
-		
+		//insertar log para auditoria
 		if($returned==1){
 			$returned=$this->db->insert_id();
 			$this->mlogs->insertLog(array('tipo_log'=>'insert_clientes','descripcion_log'=>'alta del cliente: '.$returned));
@@ -35,6 +35,12 @@ class Mclientes extends CI_Model{
 			'modificado_por' => $_SESSION['USUARIO']
 		);
 		$returned=$this->db->update('clientes',$cli_data,array('id_cliente'=>$cli_data_form['cli_id']));
+		
+		//insertar log para auditoria
+		if($returned==1){
+			$this->mlogs->insertLog(array('tipo_log'=>'update_clientes','descripcion_log'=>'update del cliente: '.$cli_data_form['cli_id']));
+		}
+		
 		return $returned;
 	}
 	

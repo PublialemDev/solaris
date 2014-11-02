@@ -1,14 +1,8 @@
 <?php 
-if (isset($_SESSION['USUARIO']) and $_SESSION['USUARIO']!=null ){
+if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
 getHeader('Accesso'); 
-//cliente
-echo $_SESSION['USUARIO'];
-$usr_nombre =array('name'=>'usr_nombre','placeholder'=>'Usuario','value'=>'','required'=>'required');
-$usr_passw =array('name'=>'usr_passw','placeholder'=>'Contraseña', 'value'=>'','required'=>'required');
-//form
-$form_login=array('id'=>'form_login','onSubmit'=>'validaLogin(this,event)');
-
+//echo base64_decode($_SESSION['USUARIO_ID']);
 
 ?>
 <!-- funge como pagina principal por el momento-->

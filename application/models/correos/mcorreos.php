@@ -17,12 +17,15 @@
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 				'creado_por' => $_SESSION['USUARIO'])
 			);
-			
 			return $returned;
 		}
 		
 		function deleteCorreosAll($perfil_id){
 			$returned=$this->db->delete('correos',array('id_perfil'=>$perfil_id));
+			//insertar log para auditoria
+			if($returned==1){
+				$this->mlogs->insertLog(array('tipo_log'=>'delete_correos','descripcion_log'=>'borrado de correos para el perfil: '.$perfil_id));
+			}
 			return $returned;
 		}
 		

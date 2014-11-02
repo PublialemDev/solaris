@@ -88,6 +88,7 @@ class CClientes extends CI_Controller {
 			//genera el array de los numeros de telefono
 			$tel_numeros = explode('#',$this->input->post('tel_num'));
 			$tel_data;
+			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
 				if($tel_num>0 and $tel_num!= null){
 					$tel_data=array(
@@ -95,8 +96,15 @@ class CClientes extends CI_Controller {
 						'tel_numero'=>$tel_num
 					);
 					
-					$this->mtelefonos->insertTelefono($tel_data);
+					$returned=$this->mtelefonos->insertTelefono($tel_data);
+					if($returned==1){
+						$total_telefonos+=1;
+					}
 				}
+			}
+			//inserta log para auditoria
+			if($total_telefonos>0){
+				$this->mlogs->insertLog(array('tipo_log'=>'insert_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$cli_id));
 			}
 		}
 		
@@ -105,14 +113,22 @@ class CClientes extends CI_Controller {
 			//genera el array de los correos
 			$corr_correos = explode('#',$this->input->post('corr_correo'));
 			$corr_data;
+			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
 				if($corr_correo !='' and $corr_correo!= null){
 					$corr_data=array(
 						'cli_id'=>$cli_id,
 						'corr_correo'=>$corr_correo
 					);
-					$this->mcorreos->insertCorreo($corr_data);
+					$returned=$this->mcorreos->insertCorreo($corr_data);
+					if($returned==1){
+						$total_correos+=1;
+					}
 				}
+			}
+			//inserta log para auditoria
+			if($total_correos>0){
+				$this->mlogs->insertLog(array('tipo_log'=>'insert_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$cli_id));
 			}
 		}
 		
@@ -236,6 +252,7 @@ class CClientes extends CI_Controller {
 			$tel_numeros = explode('#',$this->input->post('tel_num'));
 			$response.='//'.$this->mtelefonos->deleteTelefonosAll($cli_id);
 			$tel_data;
+			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
 				if($tel_num>0 and $tel_num!= null){
 					$tel_data=array(
@@ -243,8 +260,15 @@ class CClientes extends CI_Controller {
 						'tel_numero'=>$tel_num
 					);
 					
-					$response.='-/-'.$this->mtelefonos->insertTelefono($tel_data);
+					$returned=$this->mtelefonos->insertTelefono($tel_data);
+					if($returned==1){
+						$total_telefonos+=1;
+					}
 				}
+			}
+			//inserta log para auditoria
+			if($total_telefonos>0){
+				$this->mlogs->insertLog(array('tipo_log'=>'update_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$cli_id));
 			}
 		}
 		
@@ -254,14 +278,22 @@ class CClientes extends CI_Controller {
 			$corr_correos = explode('#',$this->input->post('corr_correo'));
 			$response.='//'.$this->mcorreos->deleteCorreosAll($cli_id);
 			$corr_data;
+			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
 				if($corr_correo !='' and $corr_correo!= null){
 					$corr_data=array(
 						'cli_id'=>$cli_id,
 						'corr_correo'=>$corr_correo
 					);
-					$response.='-/-'.$this->mcorreos->insertCorreo($corr_data);
+					$returned=$this->mcorreos->insertCorreo($corr_data);
+					if($returned==1){
+						$total_correos+=1;
+					}
 				}
+			}
+			//inserta log para auditoria
+			if($total_correos>0){
+				$this->mlogs->insertLog(array('tipo_log'=>'update_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$cli_id));
 			}
 		}
 		

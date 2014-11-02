@@ -8,7 +8,7 @@ class Mdirecciones extends CI_Model{
 	}
 	function insertDireccion($datosDir){
 		$sysdate=new DateTime();//obtener el sysdate
-		$this->db->insert('direcciones',
+		$returned=$this->db->insert('direcciones',
 		array(
 			'id_perfil' => $datosDir['cli_id'],
 			'id_estado' => $datosDir['dir_estado'],
@@ -21,8 +21,11 @@ class Mdirecciones extends CI_Model{
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => $_SESSION['USUARIO'])
 		);
-		$returned=$this->db->insert_id();
-		
+		//insertar log para auditoria
+		if($returned==1){
+			$returned=$this->db->insert_id();
+			$this->mlogs->insertLog(array('tipo_log'=>'insert_direcciones','descripcion_log'=>'alta de direccion para el perfil: '.$returned));
+		}
 		return $returned;
 	}
 	/*
@@ -48,6 +51,10 @@ class Mdirecciones extends CI_Model{
 			array('id_perfil'=>$datosDir['cli_id'])
 		);
 		
+		//insertar log para auditoria
+		if($returned==1){
+			$this->mlogs->insertLog(array('tipo_log'=>'update_direcciones','descripcion_log'=>'actualizacion de direccion del perfil : '.$datosDir['cli_id']));
+		}
 		return $returned;
 	}
 	/*

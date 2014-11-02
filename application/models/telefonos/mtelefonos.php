@@ -25,6 +25,10 @@
 		
 		function deleteTelefonosAll($perfil_id){
 			$returned=$this->db->delete('telefonos',array('id_perfil'=>$perfil_id));
+			//insertar log para auditoria
+			if($returned==1){
+				$this->mlogs->insertLog(array('tipo_log'=>'delete_telefonoss','descripcion_log'=>'borrado de telefonos para el perfil: '.$perfil_id));
+			}
 			return $returned;
 		}
 		
