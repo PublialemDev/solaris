@@ -19,10 +19,15 @@ class MLogs extends CI_Model{
 	 * @param	array los datos del log	
 	 */
 	public function insertLog($datos = array()){
-		session_start();
-		$sysdate=new DateTime();
-		$this->db->insert('logs',array('id_usuario'=>$_SESSION['USUARIO'],'tipo_log'=>$datos['tipo_log'],
-			'descripcion_log'=>$datos['descripcion_log'],'fecha_hora'=>$sysdate));
+		//session_start();
+		$sysdate = new DateTime();
+		$log_data=array(
+			'id_usuario'=>$_SESSION['USUARIO'],
+			'tipo_log'=>$datos['tipo_log'],
+			'descripcion_log'=>$datos['descripcion_log'],
+			'fecha_hora'=>	$sysdate->format('Y-m-d H:i:s')
+			);
+		$this->db->insert('logs',$log_data);
 	}
 }
 ?>
