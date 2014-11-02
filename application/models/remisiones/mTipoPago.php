@@ -15,7 +15,7 @@ class MTipoPago extends CI_Model{
 		'creado_en'=> $datos['creado_en'], 
 		'creado_por'=> $datos['creado_por'],));
 		
-		$this->mLogs->insertLog(array($_SESSION['USUARIO'],'INSERT_TIPOPAGO','SE INSERTO UN REGISTRO',$datos['creado_en']));
+		$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOPAGO','descripcion_log'=>'SE INSERTO UN REGISTRO'));
 	}
 	
 	public function selectTipoPago(){
