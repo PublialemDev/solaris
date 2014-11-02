@@ -14,12 +14,15 @@ class MLogs extends CI_Model{
 	 * recibe un arreglo como parametro, 
 	 * con los argumentos(id_usuario, tipo_log, descripcion_log, fecha_hora).
 	 *
+	 * @author  Jorge Amador
 	 * @access	public
 	 * @param	array los datos del log	
 	 */
 	public function insertLog($datos = array()){
-		$this->db->insert('logs',array('id_usuario'=>$datos[0],'tipo_log'=>$datos[1],
-			'descripcion_log'=>$datos[2],'fecha_hora'=>$datos[3]));
+		session_start();
+		$sysdate=new DateTime();
+		$this->db->insert('logs',array('id_usuario'=>$_SESSION['USUARIO'],'tipo_log'=>$datos['tipo_log'],
+			'descripcion_log'=>$datos['descripcion_log'],'fecha_hora'=>$sysdate));
 	}
 }
 ?>

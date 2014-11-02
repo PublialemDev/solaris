@@ -17,6 +17,7 @@ class CClientes extends CI_Controller {
 		$this->load->model('direcciones/mdirecciones');
 		$this->load->model('telefonos/mtelefonos');
 		$this->load->model('correos/mcorreos');
+		$this->load->model('logs/mLogs');
 		//$this->load->helper('url');
 		//$this->load->library('javascript');
 		//$this->load->view('JS/clientes.js');
