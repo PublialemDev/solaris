@@ -10,12 +10,15 @@ class MTipoPago extends CI_Model{
 
 	public function insertTipoPago($datos){
 		session_start();
-		$this->db->insert('tipoPagos',array('nombre_tipoPago'=> $datos['nombre'],
+		$returned = $this->db->insert('tipoPagos',array('nombre_tipoPago'=> $datos['nombre'],
 		'descripcion_tipoPago'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
-		'creado_por'=> $datos['creado_por'],));
+		'creado_por'=> base64_decode($_SESSION['USUARIO_ID'])));
 		
-		$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOPAGO','descripcion_log'=>'SE INSERTO UN REGISTRO'));
+		if($returned==1){
+			$returned=$this->db->insert_id();
+			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOPAGO','descripcion_log'=>'SE INSERTO TIPO DE PAGO: '.$returned));
+		}
 	}
 	
 	public function selectTipoPago(){

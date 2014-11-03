@@ -13,9 +13,12 @@ class MTipoUsuarios extends CI_Model{
 		$this->db->insert('tipoUsuarios',array('nombre_tipoUsuario'=> $datos['nombre'],
 		'descripcion_tipoUsuario'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
-		'creado_por'=> $datos['creado_por'],));
+		'creado_por'=> base64_decode($_SESSION['USUARIO_ID'])));
 		
-		$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOUSUARIOS','descripcion_log'=>'SE INSERTO UN REGISTRO'));
+		if($returned==1){
+			$returned=$this->db->insert_id();
+			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOUSUARIOS','descripcion_log'=>'SE INSERTO TIPO DE USUARIO: '.$returned));
+		}
 	}
 	
 	public function selectTipoUsuarios(){

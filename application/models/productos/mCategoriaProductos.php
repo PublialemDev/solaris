@@ -10,12 +10,15 @@ class MCategoriaProductos extends CI_Model{
 
 	public function insertCategoria($datos){
 		session_start();
-		$this->db->insert('categoriaproductos',array('nombre_categoriaProducto'=> $datos['nombre'],
+		$returned = $this->db->insert('categoriaproductos',array('nombre_categoriaProducto'=> $datos['nombre'],
 		'descripcion_categoriaProducto'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
-		'creado_por'=> $_SESSION['USUARIO']));
+		'creado_por'=> base64_decode($_SESSION['USUARIO_ID'])));
 		
-		$this->mLogs->insertLog(array('tipo_log'=>'INSERT_CATEGORIAPRODUCTO','descripcion_log'=>'SE INSERTO UN REGISTRO'));
+		if($returned==1){
+			$returned=$this->db->insert_id();
+			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_CATEGORIAPRODUCTO','descripcion_log'=>'SE INSERTO UN REGISTRO: '.$returned));
+		}
 	}
 	
 	public function selectCategorias(){

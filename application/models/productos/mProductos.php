@@ -10,13 +10,16 @@ class MProductos extends CI_Model{
 	
 	public function insertProducto($datos){
 		session_start();
-		$this->db->insert('productos',array('id_categoriaProducto'=> $datos['categoria'],
+		$returned = $this->db->insert('productos',array('id_categoriaProducto'=> $datos['categoria'],
 		'nombre_producto'=> $datos['nombre'],'descripcion_producto'=> $datos['descripcion'],
 		'precio'=> $datos['precio'],'proveedor'=> $datos['proveedor'],
 		'estatus_producto'=> $datos['estatus'],'creado_en'=> $datos['creado_en'],
-		'creado_por'=>$_SESSION['USUARIO']));
+		'creado_por'=>base64_decode($_SESSION['USUARIO_ID'])));
 		
-		$this->mLogs->insertLog(array('tipo_log'=>'INSERT_PRODUCTOS','descripcion_log'=>'SE INSERTO UN REGISTRO'));
+		if($returned==1){
+			$returned=$this->db->insert_id();			
+			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_PRODUCTOS','descripcion_log'=>'SE INSERTO PRODUCTO'.$returned));
+		}
 	}
 	
 	public function selectCategorias(){
