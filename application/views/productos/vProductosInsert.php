@@ -1,42 +1,65 @@
 <?php
 echo getHeader('Productos');
-echo form_open('productos/cProductos/getValues');
 
-echo form_label('Nombre: ');
-echo form_input('nombre_txt');
-echo "<br>";
+//Propiedades del form
+$form_producto = array('id'=>'form_producto','onSubmit'=>'getValues(this,event)');
 
-echo form_label('Categoria: ');
-echo '<select name="categoria">' ;
-echo '<option value="0"></option>';
-foreach ($categorias->result() as $categoria) {
-	echo '<option value="'.$categoria->id_categoriaProducto.'">'.$categoria->nombre_categoriaProducto.'</option>';
-}  
-echo '</select>'; 
-echo "<br>";
+//Propiedades de los input 
+$producto_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>'');
+$producto_proveedor =array('name'=>'proveedor_txt','placeholder'=>'Proveedor','value'=>'');
+$producto_precio =array('name'=>'precio_txt','placeholder'=>'Precio','value'=>'');
 
-echo form_label('Precio: ');
-echo form_input('precio_txt');
-echo "<br>";
+//Propiedades del TextArea
+$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30);
 
-echo form_label('Proveedor: ');
-echo form_input('proveedor_txt');
-echo "<br>";
+//Propiedades del combobox
+$producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
+?>
 
-$opc = array('A' => 'ACTIVO', 'I' => 'INACTIVO'); 
-echo form_label('Estatus: ');
-echo form_dropdown('estatus',$opc,'A');
-echo "<br>";
+<div id="container" class='container'>
+	
+	<table>
+		<tbody>
+			<?php echo form_open('#',$form_producto); ?>
+			<?php echo form_hidden('idSeguimiento','0');?>
+			<tr>
+				<td><?php echo form_label('Nombre: ','nombre');?></td>
+				<td><?php echo form_input($producto_nombre);?></td>
+			</tr>
+			<tr>
+				<td><?php echo form_label('Categoria: ','categoria');?></td>
+				<td><select name="categoria"> 
+					<option value="0"></option>
+					<?php foreach ($categorias->result() as $categoria) {
+						echo '<option value="'.$categoria->id_categoriaProducto.'">'.$categoria->nombre_categoriaProducto.'</option>';
+					}?> 
+				</select></td>
+			</tr>
+			<tr>
+				<td><?php echo form_label('Precio: ','precio');?></td>
+				<td><?php echo form_input($producto_precio);?></td>
+			</tr>
+			<tr>
+				<td><?php echo form_label('Proveedor: ','proveedor');?></td>
+				<td><?php echo form_input($producto_proveedor);?></td>
+			</tr>
+			<tr>
+				<td><?php echo form_label('Estatus: ','estatus');?></td>
+				<td><?php echo form_dropdown('estatus',$producto_estatus,'A');?></td>
+			</tr>
+			<tr>
+				<td><?php echo form_label('Descripcion:','descripcion');?></td>
+				<td><?php echo form_textarea($datos);?></td>
+			</tr>
+			
+			<tr>
+				<td><?php echo form_button('enviar','ENVIAR','class="enviarButton"');?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-$tamano = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30);
-echo form_label('Descripcion:');
-echo "<br>";
-echo form_textarea($tamano);
-echo "<br>";
-
-
-echo form_submit('','GUARDAR');
-
+<?php 
 echo form_close();
 echo getFooter();
 ?>

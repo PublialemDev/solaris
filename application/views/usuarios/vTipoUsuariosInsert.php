@@ -1,20 +1,39 @@
 <?php
 echo getHeader('Tipos de Usuario');
-echo form_open('usuarios/cTipoUsuarios/getValues');
 
-echo form_label('Nombre: ');
-echo form_input('nombre_txt');
-echo "<br>";
+//Propiedades del form
+$form_tipousuario = array('id'=>'$form_tipousuario','onSubmit'=>'getValues(this,event)');
 
-$tamano = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30);
-echo form_label('Descripcion:');
-echo "<br>";
+//Propiedades del input 
+$tipousuario_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>'');
 
-echo form_textarea($tamano);
-echo "<br>";
+//Propiedades del TextArea
+$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30);
+?>
 
-echo form_submit('','GUARDAR');
+<div id="container" class='container'>
+	
+	<table>
+		<tbody>
+			<?php echo form_open('#',$form_tipousuario); ?>
+			<?php echo form_hidden('idTipoUsuario','0');?>
+			<tr>
+				<td><?php echo form_label('Nombre: ','nombre');?></td>
+				<td><?php echo form_input($tipousuario_nombre);?></td>
+			</tr>
+			<tr>
+				<td><?php echo form_label('Descripcion:','descripcion');?></td>
+				<td><?php echo form_textarea($datos);?></td>
+			</tr>
+			
+			<tr>
+				<td><?php echo form_button('enviar','ENVIAR','class="enviarButton"');?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
+<?php 
 echo form_close();
 echo getFooter();
 ?>
