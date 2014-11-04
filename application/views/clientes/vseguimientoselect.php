@@ -1,7 +1,7 @@
 <?php echo getHeader('Categorias de Seguimiento a Clientes');?>
 
 <?php
-echo form_open('clientes/CCategoriaSeguimiento/insertCategoriaSeguimiento');
+echo form_open('clientes/CSeguimiento/insertSeguimiento');
 echo form_submit('','NUEVO');
 echo form_close();
 echo "<br>";

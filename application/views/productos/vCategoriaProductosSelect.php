@@ -1,7 +1,7 @@
 <?php echo getHeader('Productos');?>
 
 <?php
-echo form_open('productos/cCategoriaProductos/insertCategoria');
+echo form_open('productos/CCategoriaProductos/insertCategoria');
 echo form_submit('','NUEVO');
 echo form_close();
 echo "<br>";

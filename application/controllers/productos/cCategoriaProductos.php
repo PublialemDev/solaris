@@ -27,7 +27,7 @@ class CCategoriaProductos extends CI_Controller {
 	
 	public function selectCategorias(){
 		$consulta['query'] = $this->mCategoriaProductos->selectCategorias();
-		$this->load->view('categoriaproductos/vCategoriaProductosSelect',$consulta);
+		$this->load->view('productos/vCategoriaProductosSelect',$consulta);
 	}
 }
 ?>
