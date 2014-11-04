@@ -22,7 +22,7 @@ class MLogs extends CI_Model{
 		//session_start();
 		$sysdate = new DateTime();
 		$log_data=array(
-			'id_usuario'=>$_SESSION['USUARIO'],
+			'id_usuario'=>base64_decode($_SESSION['USUARIO_ID']),
 			'tipo_log'=>$datos['tipo_log'],
 			'descripcion_log'=>$datos['descripcion_log'],
 			'fecha_hora'=>	$sysdate->format('Y-m-d H:i:s')

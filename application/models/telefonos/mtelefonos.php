@@ -15,7 +15,7 @@
 				'id_perfil' => $datosTel['cli_id'],
 				'numero_telefono' => $datosTel['tel_numero'],
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-				'creado_por' => $_SESSION['USUARIO']
+				'creado_por' => base64_decode($_SESSION['USUARIO_ID'])
 				)
 			);
 			//$datos_log=array('tipo_log'=>'insert_telefonos','descripcion'=>'para el perfil: ')

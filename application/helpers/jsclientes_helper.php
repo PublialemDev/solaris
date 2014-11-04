@@ -33,6 +33,7 @@
 				method:"POST",
 				beforesend:function(){alert(formSer);},
 				success: function(msg){
+					$("input").attr("disabled","disabled");
 					alert(msg);
 				}
 
@@ -151,21 +152,34 @@
 
 			formSer+=telSer+corrSer;
 				$.ajax({
-				data:formSer,
-				url:SERVER_URL_BASE+"clientes/cClientes/updateCliente",
-				method:"POST",
-				beforesend:function(){alert(formSer);},
-				success: function(msg){
-					alert(msg);
-					$(".updateButton").html("Editar");
-					$(".updateButton").removeClass("updateButton").addClass("enableButton");
-					$("input").attr("disabled","disabled");
-					$(".addCorreo").attr("disabled","disabled");
-					$(".addTelefono").attr("disabled","disabled");
-					$("select").attr("disabled","disabled");
-				}
+					data:formSer,
+					url:SERVER_URL_BASE+"clientes/cClientes/updateCliente",
+					method:"POST",
+					beforesend:function(){alert(formSer);},
+					success: function(msg){
+						alert(msg);
+						$(".updateButton").html("Editar");
+						$(".updateButton").removeClass("updateButton").addClass("enableButton");
+						$("input").attr("disabled","disabled");
+						$(".addCorreo").attr("disabled","disabled");
+						$(".addTelefono").attr("disabled","disabled");
+						$("select").attr("disabled","disabled");
+					}
 
-			});
+				});
+		});
+		
+		$(".deleteButton").click(function(){
+			if(confirm("seguro que deseas eliminar el usuario?")){
+				$.ajax({
+					data:"cli_id="+$("input[name=\'cli_id\']").val(),
+					url:SERVER_URL_BASE+"clientes/cClientes/deleteCliente",
+					method:"POST",
+					success: function(msg){
+						alert(msg);
+					}
+				});
+			}
 		});
 		
 		function addTelefono(){

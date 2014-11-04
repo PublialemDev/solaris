@@ -19,7 +19,7 @@ class Mdirecciones extends CI_Model{
 			'municipio' => $datosDir['dir_muni'],
 			'cp' => $datosDir['dir_cp'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'creado_por' => $_SESSION['USUARIO'])
+			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
 		//insertar log para auditoria
 		if($returned==1){
@@ -47,7 +47,7 @@ class Mdirecciones extends CI_Model{
 			'municipio' => $datosDir['dir_muni'],
 			'cp' => $datosDir['dir_cp'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'modificado_por' => $_SESSION['USUARIO']),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])),
 			array('id_perfil'=>$datosDir['cli_id'])
 		);
 		
@@ -57,6 +57,18 @@ class Mdirecciones extends CI_Model{
 		}
 		return $returned;
 	}
+	/*
+	 * Elimina un registro 
+	 * @author Luis Briseño
+	 * @param int
+	 * @return int 
+	 * */
+	function deleteDireccion($cli_id){
+		//session_start();
+		$returned=$this->db->delete('direcciones',array('id_perfil'=>$cli_id));
+		return $returned;
+	}
+	
 	/*
 	 * Regresa el requistro de la direccion para el id del cliente o false si no se encuentra
 	 * @author Luis Briseño

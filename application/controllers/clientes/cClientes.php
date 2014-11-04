@@ -300,6 +300,31 @@ class CClientes extends CI_Controller {
 		echo $response;
 	}
 	
+	/* Form Insert Cliente
+	 *
+	 * Crea el formulario para insertar un cliente
+	 * 
+	 * @author Luis Briseño
+	 * @access	public
+	 * 
+	 */
+	public function deleteCliente(){
+		$cli_id=$this->input->post('cli_id');
+		
+		$returned=$this->mclientes->deleteCliente($cli_id);
+		if($returned>0)
+		$returned=$this->mdirecciones->deleteDireccion($cli_id);
+		if($returned>0)
+		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id);
+		if($returned>0)
+		$returned=$this->mcorreos->deleteCorreosAll($cli_id);
+		
+		if($returned>0){
+			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
+		}
+		return $returned;
+	}
+	
 }
 /* End of file cClientes.php */
 /* Location: ./application/controllers/clientes/cClientes.php */

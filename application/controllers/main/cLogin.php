@@ -12,6 +12,7 @@ class CLogin extends CI_Controller {
 		$this->load->helper('pagina');//carga el helper bsico para las view
 		$this->load->helper('jsClientes');//carga el helper bsico para las view
 		$this->load->model('usuarios/musuarios');
+		$this->load->model('logs/mlogs');
 	}
 	public function index(){
 		session_start();
@@ -44,9 +45,13 @@ class CLogin extends CI_Controller {
 					$_SESSION['USUARIO_TIPO']= base64_encode($usr_data_db->id_tipoUsuario);
 					$_SESSION['USUARIO_NOMBRE']= base64_encode($usr_data_db->nombre_usuario);
 					
+					$this->mlogs->insertLog(array('tipo_log'=>'login_exitoso','descripcion_log'=>'login exitoso usuario: '.base64_decode($_SESSION['USUARIO_ID'])));
+					
 					$this->load->view('main/vMain');
 					
 				}else{
+					$this->mlogs->insertLog(array('tipo_log'=>'login_fallido','descripcion_log'=>'login fallido usuario: '.$usr_data_db->id_usuario));
+					
 					echo 'BAD_PASSW';
 				}
 			}else{

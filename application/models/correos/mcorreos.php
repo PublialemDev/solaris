@@ -15,7 +15,7 @@
 				'id_perfil' => $datosCorreo['cli_id'],
 				'nombre_correo' => $datosCorreo['corr_correo'],
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-				'creado_por' => $_SESSION['USUARIO'])
+				'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 			);
 			return $returned;
 		}

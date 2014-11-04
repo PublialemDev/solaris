@@ -14,7 +14,7 @@ class Mclientes extends CI_Model{
 			'nombre_cliente' => $datosCliente['nombre'],
 			'rfc' => $datosCliente['rfc'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'creado_por' => $_SESSION['USUARIO'])
+			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
 		//insertar log para auditoria
 		if($returned==1){
@@ -32,7 +32,7 @@ class Mclientes extends CI_Model{
 			'nombre_cliente' => $cli_data_form['nombre'],
 			'rfc' => $cli_data_form['rfc'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'modificado_por' => $_SESSION['USUARIO']
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
 		$returned=$this->db->update('clientes',$cli_data,array('id_cliente'=>$cli_data_form['cli_id']));
 		
@@ -43,6 +43,16 @@ class Mclientes extends CI_Model{
 		
 		return $returned;
 	}
+	
+	function deleteCliente($cli_id){
+		
+		session_start();
+		$sysdate=new DateTime();
+		
+		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
+		return $returned;
+	}
+	
 	
 	function selectClientes(){
 		$query = $this->db->get('clientes');

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['USUARIO']) and $_SESSION['USUARIO']!=null ){
+if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Clientes'); 
 	if($cliente==false){
 		echo "cliente no data found ; ";
@@ -116,7 +116,8 @@ if (isset($_SESSION['USUARIO']) and $_SESSION['USUARIO']!=null ){
 	
 	<table>
 		<tr>
-			<td><?php echo form_button('editar','Editar','class="enableButton"');?></td>
+			<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
+			<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
 		</tr>
 	</table>
 	
