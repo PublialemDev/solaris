@@ -21,12 +21,12 @@ class CSeguimiento extends CI_Controller {
 		'descripcion' => $this->input->post('descripcion_txt'), 
 		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
-		$this->mCategoriaSeguimiento->insertSeguimiento($datos);
+		$this->mseguimiento->insertSeguimiento($datos);
 
 	}
 	
-	public function selectCategoriaSeguimiento(){
-		$consulta['query'] = $this->mCategoriaSeguimiento->selectSeguimiento();
+	public function selectSeguimiento(){
+		$consulta['query'] = $this->mseguimiento->selectSeguimiento();
 		$this->load->view('clientes/vseguimientoselect',$consulta);
 	}
 }
