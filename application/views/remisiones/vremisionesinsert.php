@@ -1,12 +1,12 @@
 <?php
-echo getHeader('Productos');
+echo getHeader('Remisiones');
 
 //Propiedades del form
 //$form_remision = array('id'=>'form_remision','onSubmit'=>'getValues(this,event)');
 
 //Propiedades de los input 
 $remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>'');
-$remision_fecha =array('name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'');
+$remision_fecha =array('id' => 'fecha', 'name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'');
 $remision_total =array('name'=>'total_txt','placeholder'=>'Total','value'=>'');
 $remision_iva =array('name'=>'iva_txt','placeholder'=>'IVA','value'=>'');
 
@@ -73,5 +73,6 @@ $remision_instalacion = array('N' => 'NO', 'S' => 'SI');
 
 <?php 
 echo form_close();
+echo obtenerFecha(); 
 echo getFooter();
 ?>

@@ -6,6 +6,7 @@ class CRemisiones extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('pagina');
 		$this->load->helper('form');
+		$this->load->helper('jsremisiones');
 		$this->load->model('remisiones/mremisiones');
 		$this->load->library('table');
 	}
