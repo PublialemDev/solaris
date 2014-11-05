@@ -25,7 +25,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<tbody>
 			<tr>
 				<td><?php echo form_label('Número de Cliente: ','cli_id');?></td>
-				<td><?php echo form_input($cli_nombre);?></td>
+				<td><?php echo form_input($cli_id);?></td>
 			</tr>
 			<tr>
 				<td><?php echo form_label('Nombre: ','cli_nombre');?></td>
@@ -36,13 +36,24 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 				<td><?php echo form_input($cli_rfc);?></td>
 			</tr>
 			<tr>
-				<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton"');?></td>
+				<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
 			</tr>
 		</tbody>
 	</table>
 	<?php echo form_close(); ?>
 	
-	<div id='target'></div>
+	<div id='target'>
+		<table class='table table-hover datos'>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>RFC</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		
+	</div>
 	
 </div>
 

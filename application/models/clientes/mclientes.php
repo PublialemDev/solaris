@@ -54,7 +54,18 @@ class Mclientes extends CI_Model{
 	}
 	
 	
-	function selectClientes(){
+	function selectClientes($where_clause){
+		
+		if(isset($where_clause['cli_id'])){
+			$this->db->where('id_cliente',$where_clause['cli_id']);
+		}
+		if(isset($where_clause['cli_nombre'])){
+			$this->db->like('nombre_cliente',$where_clause['cli_nombre']);
+		}
+		if(isset($where_clause['cli_rfc'])){
+			$this->db->where('rfc',$where_clause['cli_rfc']);
+		}
+		
 		$query = $this->db->get('clientes');
 		if($query->num_rows()>0){
 			return $query;

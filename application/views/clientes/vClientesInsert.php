@@ -81,7 +81,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	<!--fin direccion-->
 	<!--inicio telefono-->
 	<tr>
-		<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono"');?></td>
+		<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-primary"');?></td>
 	</tr>
 
 		<tr>
@@ -91,7 +91,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	<!--fin telefono-->
 	<!--inicio correo-->
 	<tr>
-		<td><?php echo form_button('corr','Agregar correo','class="addCorreo"');?></td>
+		<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-primary"');?></td>
 	</tr>
 	
 		<tr>
@@ -104,7 +104,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
 	<table>
 		<tr>
-			<td><?php echo form_button('enviar','ENVIAR','class="enviarButton"');?></td>
+			<td><?php echo form_button('enviar','ENVIAR','class="enviarButton  btn btn-primary"');?></td>
 		</tr>
 	</table>
 	

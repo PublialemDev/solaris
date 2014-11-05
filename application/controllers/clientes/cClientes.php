@@ -160,9 +160,24 @@ class CClientes extends CI_Controller {
 	 * @return	int
 	 */
 	public function selectClienteJson()
-	{	$json='[';
-		$res=$this->mclientes->selectClientes();
+	{
+		$cli_id=$this->input->post('cli_id');
+		$cli_nombre=$this->input->post('cli_nombre');
+		$cli_rfc=$this->input->post('cli_rfc');
+		$where_clause=array();
+		if($cli_id!= null and $cli_id!=''){
+			$where_clause['cli_id']=$cli_id;
+		}
+		if($cli_nombre!= null and $cli_nombre!=''){
+			$where_clause['cli_nombre']=$cli_nombre;
+		}
+		if($cli_rfc!= null and $cli_rfc!=''){
+			$where_clause['cli_rfc']=$cli_rfc;
+		}
+		
+		$res=$this->mclientes->selectClientes($where_clause);
 		if($res!=false){
+			$json='[';
 			$last=$res->last_row();
 			foreach ( $res->result() as $cliente) {
 				$json.='{';
@@ -178,7 +193,7 @@ class CClientes extends CI_Controller {
 					
 			echo $json;
 		}else{
-			echo "no data found";
+			echo "NO_DATA_FOUND";
 		}
 	}
 	
@@ -322,7 +337,7 @@ class CClientes extends CI_Controller {
 		if($returned>0){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
 		}
-		return $returned;
+		return 'Mensage: '.$returned;
 	}
 	
 }
