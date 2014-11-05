@@ -43,8 +43,8 @@ class MRemisiones extends CI_Model{
 	}
 	
 	public function selectRemisiones(){			
-		$consulta = $this->db->query("SELECT sucursales.nombre_sucursal, tipopagos.nombre_tipopago, clientes.nombre_cliente,
-		remisiones.fecha, remisiones.total, remisiones.iva, remisiones.creado_en, remisiones.creado_por, remisiones.modificado_en,
+		$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
+		remisiones.fecha, remisiones.instalacion, remisiones.total, remisiones.iva, remisiones.creado_en, remisiones.creado_por, remisiones.modificado_en,
 		remisiones.modificado_por FROM remisiones 
 		JOIN sucursales ON sucursales.id_sucursal = remisiones.id_sucursal
 		JOIN tipopagos ON tipopagos.id_tipoPago = remisiones.id_tipoPago
