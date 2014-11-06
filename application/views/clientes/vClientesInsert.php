@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Alta de Clientes'); 
-	echo getMenu(); 
+	//echo getMenu(); 
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>'');
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>'');
