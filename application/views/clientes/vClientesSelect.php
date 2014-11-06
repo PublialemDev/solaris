@@ -12,9 +12,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//formularios
 	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'selectCliente(this,event)');
 	//$form_tel=array('id'=>'form_tel','onSubmit'=>'insertCliente(this,event)','class'=>'form');
-	foreach ($estados->result() as $estado) {
+	/*foreach ($estados->result() as $estado) {
 		$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
-	}
+	}*/
 ?>
 
 
