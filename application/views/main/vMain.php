@@ -10,7 +10,7 @@ getHeader('Accesso');
 	<!-- lync para Alta de clientes-->
 <a href='/solaris/index.php/clientes/cClientes/formInsertCliente'>Alta clientes</a><br>
 	<!-- lync para Select/Update de clientes-->
-<a href='/solaris/index.php/clientes/cClientes/formSelectCliente'>Select/Update de clientes</a>
+<a href='/solaris/index.php/clientes/cClientes/formSelectCliente'>Select/Update de clientes</a><br>
 
 <!-- lync para Alta Seguimiento Clientes-->
 <a href='/solaris/index.php/clientes/cseguimiento/insertSeguimiento'>Alta Seguimiento Clientes</a><br>
