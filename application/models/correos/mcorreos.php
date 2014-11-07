@@ -7,12 +7,13 @@
 			$this->load->database();
 		}
 		
-		function insertCorreo($datosCorreo){
+		function insertCorreo($datosCorreo,$tipo_perfil){
 			$sysdate=new DateTime();//obtener el sysdate
 			
 			$returned=$this->db->insert('correos',
 			array(
 				'id_perfil' => $datosCorreo['cli_id'],
+				'perfil_tipo'=>$tipo_perfil,
 				'nombre_correo' => $datosCorreo['corr_correo'],
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 				'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
@@ -20,8 +21,8 @@
 			return $returned;
 		}
 		
-		function deleteCorreosAll($perfil_id){
-			$returned=$this->db->delete('correos',array('id_perfil'=>$perfil_id));
+		function deleteCorreosAll($perfil_id,$tipo_perfil){
+			$returned=$this->db->delete('correos',array('id_perfil'=>$perfil_id,'perfil_tipo'=>$tipo_perfil));
 			//insertar log para auditoria
 			if($returned==1){
 				$this->mlogs->insertLog(array('tipo_log'=>'delete_correos','descripcion_log'=>'borrado de correos para el perfil: '.$perfil_id));
@@ -29,8 +30,9 @@
 			return $returned;
 		}
 		
-		function selectCorreos($id_perfil){
-			$query = $this->db->query('SELECT * FROM correos WHERE id_perfil=?',array($id_perfil));
+		function selectCorreos($id_perfil,$tipo_perfil){
+			$where_clause=array('id_perfil'=>$id_perfil,'perfil_tipo'=>$tipo_perfil);
+			$query = $this->db->get_where('correos',$where_clause);
 			if($query->num_rows()>0){
 				return $query;
 			}
@@ -44,8 +46,8 @@
 		 * @param int
 		 * @return array 
 		 * */
-		function selectCorreosByCliId($id_cliente){
-			$where_clause=array('id_perfil'=>$id_cliente);
+		function selectCorreosByCliId($id_perfil,$tipo_perfil){
+			$where_clause=array('id_perfil'=>$id_perfil,'perfil_tipo'=>$tipo_perfil);
 			$query = $this->db->get_where('correos',$where_clause);
 			if($query->num_rows()>0){
 				return $query;

@@ -20,6 +20,7 @@
 	<!-- Boostrap-->
 	<script src="http://localhost/solaris/resources/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="http://localhost/solaris/resources/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 	<!-- JS basicos-->
 	<script src="http://localhost/solaris/resources/JS/clientes.js"></script>
 	<!-- CSS basicos-->
@@ -48,11 +49,9 @@
  */
 	function getMenu(){
 		return '
-<div class="row-fluid">
-	<div class="span12">
-		<div id="menuPrinc" class="navbar navbar-default navbar-fixed-top" role="navigation">
-	  		<!--div class="navbar-inner" -->
-		  		<div class="container-fluid">
+		<!--nav id="menuPrinc" class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  		<!--div class="navbar-inner" >
+		  		<div class="container container-fluid">
 			  		<a href="#" class="brand">
 			  			<p class="text-info"><strong><?php echo $text?></strong></p>
 			  		</a>
@@ -87,10 +86,15 @@
 			  			<li> <a href="PHP/logout.php">salir </a></li>
 			  		</ul>
 		  		</div>
-	  		<!--/div-->
-	  	</div>
-	</div>
-</div>
+	  		</div-->
+	  	</nav-->
+	  	<div class="container">
+	  	<nav class="navbar navbar-default" role="navigation">
+		  <div class="container">
+		    <div class="collapse navbar-collapse"><p class="navbar-text">Signed in as Mark Otto</p></div>
+		  </div>
+		</nav>
+		</div>
 			';
 	}
 	

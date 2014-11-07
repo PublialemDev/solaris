@@ -80,7 +80,7 @@ class CClientes extends CI_Controller {
 			);
 			
 			//inserta y recibe el id generado en la insercion
-			$dir_id= $this->mdirecciones->insertDireccion($dir_data);
+			$dir_id= $this->mdirecciones->insertDireccion($dir_data,'cli');
 		}
 		
 		//inserta los telefonos para el cliente
@@ -96,7 +96,7 @@ class CClientes extends CI_Controller {
 						'tel_numero'=>$tel_num
 					);
 					
-					$returned=$this->mtelefonos->insertTelefono($tel_data);
+					$returned=$this->mtelefonos->insertTelefono($tel_data,'cli');
 					if($returned==1){
 						$total_telefonos+=1;
 					}
@@ -120,7 +120,7 @@ class CClientes extends CI_Controller {
 						'cli_id'=>$cli_id,
 						'corr_correo'=>$corr_correo
 					);
-					$returned=$this->mcorreos->insertCorreo($corr_data);
+					$returned=$this->mcorreos->insertCorreo($corr_data,'cli');
 					if($returned==1){
 						$total_correos+=1;
 					}
@@ -210,9 +210,9 @@ class CClientes extends CI_Controller {
 		$id_cliente=$this->input->get('id_cliente');
 		$data['estados']= $this->mestados->selectEstados();
 		$data['cliente']=$this->mclientes->selectClienteById($id_cliente);
-		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_cliente);
-		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_cliente);
-		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_cliente);
+		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_cliente,'cli');
+		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_cliente,'cli');
+		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_cliente,'cli');
 		$this->load->view('clientes/vClientesUpdate',$data);
 	}
 	
@@ -258,14 +258,14 @@ class CClientes extends CI_Controller {
 			);
 			
 			//inserta y recibe el id generado en la actualizacion
-			$response.='-/-'.$this->mdirecciones->updateDireccion($dir_data);
+			$response.='-/-'.$this->mdirecciones->updateDireccion($dir_data,'cli');
 		}
 		
 		//actualiza los telefonos para el cliente
 		if($cli_id>0 and $cli_id!= null){
 			//genera el array de los numeros de telefono
 			$tel_numeros = explode('#',$this->input->post('tel_num'));
-			$response.='//'.$this->mtelefonos->deleteTelefonosAll($cli_id);
+			$response.='//'.$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
 			$tel_data;
 			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
@@ -275,7 +275,7 @@ class CClientes extends CI_Controller {
 						'tel_numero'=>$tel_num
 					);
 					
-					$returned=$this->mtelefonos->insertTelefono($tel_data);
+					$returned=$this->mtelefonos->insertTelefono($tel_data,'cli');
 					if($returned==1){
 						$total_telefonos+=1;
 					}
@@ -291,7 +291,7 @@ class CClientes extends CI_Controller {
 		if($cli_id>0 and $cli_id!= null){
 			//genera el array de los correos
 			$corr_correos = explode('#',$this->input->post('corr_correo'));
-			$response.='//'.$this->mcorreos->deleteCorreosAll($cli_id);
+			$response.='//'.$this->mcorreos->deleteCorreosAll($cli_id,'cli');
 			$corr_data;
 			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
@@ -300,7 +300,7 @@ class CClientes extends CI_Controller {
 						'cli_id'=>$cli_id,
 						'corr_correo'=>$corr_correo
 					);
-					$returned=$this->mcorreos->insertCorreo($corr_data);
+					$returned=$this->mcorreos->insertCorreo($corr_data,'cli');
 					if($returned==1){
 						$total_correos+=1;
 					}
@@ -328,11 +328,11 @@ class CClientes extends CI_Controller {
 		
 		$returned=$this->mclientes->deleteCliente($cli_id);
 		if($returned>0)
-		$returned=$this->mdirecciones->deleteDireccion($cli_id);
+		$returned=$this->mdirecciones->deleteDireccion($cli_id,'cli');
 		if($returned>0)
-		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id);
+		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
 		if($returned>0)
-		$returned=$this->mcorreos->deleteCorreosAll($cli_id);
+		$returned=$this->mcorreos->deleteCorreosAll($cli_id,'cli');
 		
 		if($returned>0){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));

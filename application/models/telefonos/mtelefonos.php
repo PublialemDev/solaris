@@ -7,12 +7,13 @@
 			$this->load->database();
 		}
 		
-		function insertTelefono($datosTel){
+		function insertTelefono($datosTel,$tipo_perfil){
 			$sysdate=new DateTime();//obtener el sysdate
 			
 			$returned=$this->db->insert('telefonos',
 			array(
 				'id_perfil' => $datosTel['cli_id'],
+				'perfil_tipo'=>$tipo_perfil,
 				'numero_telefono' => $datosTel['tel_numero'],
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 				'creado_por' => base64_decode($_SESSION['USUARIO_ID'])
@@ -23,8 +24,8 @@
 			return $returned;
 		}
 		
-		function deleteTelefonosAll($perfil_id){
-			$returned=$this->db->delete('telefonos',array('id_perfil'=>$perfil_id));
+		function deleteTelefonosAll($perfil_id,$tipo_perfil){
+			$returned=$this->db->delete('telefonos',array('id_perfil'=>$perfil_id,'perfil_tipo'=>$tipo_perfil));
 			//insertar log para auditoria
 			if($returned==1){
 				$this->mlogs->insertLog(array('tipo_log'=>'delete_telefonoss','descripcion_log'=>'borrado de telefonos para el perfil: '.$perfil_id));
@@ -47,8 +48,8 @@
 		 * @param int
 		 * @return array 
 		 * */
-		function selectTelefonosByCliId($id_cliente){
-			$where_clause=array('id_perfil'=>$id_cliente);
+		function selectTelefonosByCliId($id_cliente,$tipo_perfil){
+			$where_clause=array('id_perfil'=>$id_cliente,'perfil_tipo'=>$tipo_perfil);
 			$query = $this->db->get_where('telefonos',$where_clause);
 			if($query->num_rows()>0){
 				return $query;

@@ -4,12 +4,15 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Clientes'); 
 	$cli_nombre_data='';$cli_rfc_data='';
 	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';
-	
+	$estado_id='';
 	if($cliente!=false){
 		$cli_data=$cliente->first_row();
 		$cli_nombre_data=$cli_data->nombre_cliente;
 		$cli_rfc_data=$cli_data->rfc;
-	}else if($direccion==false){
+	}
+	if($direccion!=false){
+		$dir_data=$direccion->first_row();
+		$estado_id=$dir_data->id_estado;
 		$dir_calle_data=$dir_data->calle;
 		$dir_num_ext_data=$dir_data->numero_ext;
 		$dir_num_int_data=$dir_data->numero_int;
@@ -21,7 +24,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	}else if($correo==false){
 		echo "correo no data found;";
 	}
-	$dir_data=$direccion->first_row();
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$cli_nombre_data, 'disabled'=>'disabled');
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>$cli_rfc_data, 'disabled'=>'disabled');
@@ -64,7 +66,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<!--inicio direccion-->
 		<tr>
 			<td><?php echo form_label('Estado: ','dir_estado');?></td>
-			<td><?php echo form_dropdown('dir_estado', $dir_estado,$dir_data->id_estado,'disabled="disabled"');?></td>
+			<td><?php echo form_dropdown('dir_estado', $dir_estado,$estado_id,'disabled="disabled"');?></td>
 		</tr>
 		<tr>
 			<td><?php echo form_label('Calle: ','dir_calle');?></td>
