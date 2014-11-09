@@ -56,6 +56,7 @@ class CClientes extends CI_Controller {
 		$cli_id=0;//Almacenara el ID generado en la insercion
 		$cli_data;//Almacenara el array de datos del cliente para la insercion
 		$dir_data;//Almacenara el array de datos de la direccion para la insercion
+		$returned;
 		
 		//establece los datos del cliente para la insercion
 		$cli_data=array(
@@ -80,11 +81,11 @@ class CClientes extends CI_Controller {
 			);
 			
 			//inserta y recibe el id generado en la insercion
-			$dir_id= $this->mdirecciones->insertDireccion($dir_data,'cli');
+			$returned= $this->mdirecciones->insertDireccion($dir_data,'cli');
 		}
 		
 		//inserta los telefonos para el cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($cli_id>0 and $cli_id!= null and $returned>0){
 			//genera el array de los numeros de telefono
 			$tel_numeros = explode('#',$this->input->post('tel_num'));
 			$tel_data;
@@ -109,7 +110,7 @@ class CClientes extends CI_Controller {
 		}
 		
 		//inserta los correos para el cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($cli_id>0 and $cli_id!= null  and $returned>0){
 			//genera el array de los correos
 			$corr_correos = explode('#',$this->input->post('corr_correo'));
 			$corr_data;
@@ -132,7 +133,7 @@ class CClientes extends CI_Controller {
 			}
 		}
 		
-		echo $cli_id .'-'.$dir_id;
+		echo 'SUCCESS;'.$cli_id;
 	}
 	
 	/* Form Select/Update Cliente

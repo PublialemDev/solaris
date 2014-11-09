@@ -22,8 +22,9 @@
 	<link rel="stylesheet" href="http://localhost/solaris/resources/bootstrap-3.2.0-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 	<!-- JS basicos-->
-	<script src="http://localhost/solaris/resources/JS/clientes.js"></script>
+	<!-- script src="http://localhost/solaris/resources/JS/clientes.js"></script-->
 	<!-- CSS basicos-->
+	<script src="http://localhost/solaris/resources/JS/validaciones_form.js"></script>
 	<link href="http://solarisdemexico.com/css/styles.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/screen.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
@@ -34,6 +35,8 @@
 	<script>var SERVER_URL_BASE="http://localhost/solaris/index.php/"</script>
 </head>
 <body>
+			
+			
 			';
 	}
 	
@@ -88,13 +91,32 @@
 		  		</div>
 	  		</div-->
 	  	</nav-->
-	  	<div class="container">
-	  	<nav class="navbar navbar-default" role="navigation">
-		  <div class="container">
-		    <div class="collapse navbar-collapse"><p class="navbar-text">Signed in as Mark Otto</p></div>
-		  </div>
-		</nav>
-		</div>
+	  	<header class="navbar navbar-static-top bs-docs-nav" role="banner">
+		  	<div class="container-fluid">
+		  		<div class="row">
+		  			<div class="col-xs-12 col-sm-12 col-md-12">
+					  	<nav class="navbar navbar-default  navbar-static-top" role="navigation" >
+						  <div class="container">
+						    <ul class="nav navbar-nav">
+						        <li class="dropdown">
+						          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						          <ul class="dropdown-menu" role="menu">
+						            <li><a href="#">Action</a></li>
+						            <li><a href="#">Another action</a></li>
+						            <li><a href="#">Something else here</a></li>
+						            <li class="divider"></li>
+						            <li><a href="#">Separated link</a></li>
+						            <li class="divider"></li>
+						            <li><a href="#">One more separated link</a></li>
+						          </ul>
+						        </li>
+						      </ul>
+						  </div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
 			';
 	}
 	

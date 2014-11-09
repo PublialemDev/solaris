@@ -1,12 +1,10 @@
 <?php 
 echo getHeader('Accesso'); 
 //cliente
-$usr_nombre =array('name'=>'usr_nombre','placeholder'=>'Usuario','value'=>'','required'=>'required');
-$usr_passw =array('name'=>'usr_passw','placeholder'=>'Contraseña', 'value'=>'','required'=>'required');
+$usr_nombre =array('name'=>'usr_nombre','placeholder'=>'Usuario','value'=>'','required'=>'required','class'=>'form-control');
+$usr_passw =array('name'=>'usr_passw','placeholder'=>'Contraseña', 'value'=>'','required'=>'required','class'=>'form-control');
 //form
-$form_login=array('id'=>'form_login');
-
-echo form_open('main/cLogin/login',$form_login);
+$form_login=array('id'=>'form_login','role'=>'form');
 ?>
 
 <div class="container">
@@ -26,13 +24,21 @@ echo form_open('main/cLogin/login',$form_login);
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<div class="jumbotron">
-				<!--inicio Datos del Cliente -->
-					<p><?php echo form_label('Usuario: ','usr_nombre');?></p>
-					<p><?php echo form_input($usr_nombre);?></p>
-					<p><?php echo form_label('Contraseña: ','usr_passw');?></p>
-					<p><?php echo form_password($usr_passw);?></p>
-				<!--fin Datos del Cliente -->
-				<center><div class="btn btn-default"><?php echo form_submit('login','Entrar','class="enviarButton"');?></div></center>
+					<!--inicio Datos del Cliente -->
+					<?php echo form_open('main/cLogin/login',$form_login);?>
+						<div class="form-group">
+							<?php echo form_label('Usuario: ','usr_nombre');?>
+							<?php echo form_input($usr_nombre);?>
+						</div>
+						<div class="form-group">
+							<?php echo form_label('Contraseña: ','usr_passw');?>
+							<?php echo form_password($usr_passw);?>
+						</div>
+					<!--fin Datos del Cliente -->
+						<center>
+							<br><?php echo form_submit('login','Entrar','class="enviarButton btn btn-primary"');?>
+						</center>
+					<?php echo form_close();?>
 				</div>
 			<div class="col-md-4"></div>
 		</div>
@@ -42,6 +48,6 @@ echo form_open('main/cLogin/login',$form_login);
 	
 </div>
 <?php
-echo form_close();
+
 echo getFooter() ;
 ?>
