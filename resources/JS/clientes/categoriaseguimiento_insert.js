@@ -12,14 +12,13 @@ function validarForm(){
 }
 		
 		
-$(".enviarButton").click(function(){
-	if(validarForm()){
-				
+$(document).on("click",".enviarButton",function(){
+	if(validarForm()){		
 		var formSer=$("#form_catseguimiento").serialize();
 					
 		$.ajax({
 		data:formSer,
-		url:SERVER_URL_BASE+"clientes/cCategoriaSeguimiento/getValues",
+		url:SERVER_URL_BASE+"clientes/ccategoriaseguimiento/getValues",
 		method:"POST",
 		beforesend:function(){alert(formSer);},
 		success: function(msg){
@@ -29,7 +28,8 @@ $(".enviarButton").click(function(){
 				$("textarea").attr("disabled","disabled");
 				$("input[name='idCatSeguimiento']").val(resp[1]);
 				$("button[name='enviar']").html("Editar");
-				$("button[name='enviar']").removeClass("enviarButton").addClass("enableButton");					
+				$("button[name='enviar']").removeClass("enviarButton").addClass("enableButton");
+				alert("La categoria se creo correctamente.");					
 			}else{
 				alert(msg);
 			}
@@ -45,17 +45,18 @@ $(".enviarButton").click(function(){
 $(document).on("click",".enableButton",function(e){
 	$("[disabled=\'disabled\']").removeAttr("disabled");
 	$(this).html("Guardar");
-	$(this).removeClass("enableButton").addClass("updateButton");
+	$(this).removeClass("enableButton");
+	$(this).addClass("updateButton");
 });
 
 //actualiza el registro
-/*$(document).on("click",".updateButton",function(){
+$(document).on("click",".updateButton",function(){
 	if(validarForm()){
 	var formSer=$("#form_catseguimiento").serialize();
 	
 		$.ajax({
 			data:formSer,
-			url:SERVER_URL_BASE+"clientes/cCategoriaSeguimiento/updateCliente",
+			url:SERVER_URL_BASE+"clientes/ccategoriaseguimiento/updateCategoriaSeguimiento",
 			method:"POST",
 			beforesend:function(){alert(formSer);},
 			success: function(msg){
@@ -70,7 +71,7 @@ $(document).on("click",".enableButton",function(e){
 	}else{
 		alert("Hay un error en los datos, Favor de validarlos");
 	}
-});*/
+});
 
 function getValues(form,evt){
 	evt.preventDefault();
