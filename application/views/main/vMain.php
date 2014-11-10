@@ -13,9 +13,9 @@ getHeader('Accesso');
 <a href='/solaris/index.php/clientes/cClientes/formSelectCliente'>Select/Update de clientes</a><br>
 
 <!-- lync para Alta Seguimiento Clientes-->
-<a href='/solaris/index.php/clientes/cseguimiento/insertSeguimiento'>Alta Seguimiento Clientes</a><br>
+<a href='/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento'>Alta Categoria Seguimiento Clientes</a><br>
 <!-- lync para Select Seguimiento Clientes-->
-<a href='/solaris/index.php/clientes/cseguimiento/selectSeguimiento'>Select Seguimiento Clientes</a><br>
+<a href='/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento'>Select Categoria Seguimiento Clientes</a><br>
 
 <!-- lync para Alta de Categoria Productos-->
 <a href='/solaris/index.php/productos/ccategoriaproductos/insertCategoria'>Alta Categoria Productos</a><br>
