@@ -33,4 +33,4 @@ function selectCategoriaSeguimiento(form,evt){
 					window.location.href = SERVER_URL_BASE+"clientes/cCategoriaSeguimiento/formUpdateCategoriaSeguimiento?id_categoriaSeguimiento="+$(this).attr("id");
 				}
 			}
-		});*/
+		});
