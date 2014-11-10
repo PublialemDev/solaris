@@ -12,7 +12,7 @@ function validarForm(){
 }
 		
 		
-$(".enviarButton").click(function(){
+$(document).on("click",".enviarButton",function(){
 	if(validarForm()){
 				
 		var formSer=$("#form_catseguimiento").serialize();
