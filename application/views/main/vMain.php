@@ -49,3 +49,24 @@ echo getFooter() ;
 	header('Location: /solaris/index.php/main/cLogin/');
 }
 ?>
+
+<div class="clear"></div>
+ <img class="lines_bg" src="http://solarisdemexico.com/images/lines_bg.png">
+<footer>
+    <div id="footer_cont1">
+          <div class="footer_info">
+          	<p class="bold">Tel:(55)21571957 / (55)56412732<br> </p>
+          	<div class="direccion">
+             
+             	<p  class="copy">email: ventas@solarisdemexico.com</p>
+             
+          	</div>
+        	<div class="logo2"> <img src="http://solarisdemexico.com/images/logo2.png" alt="logo">
+              <p class="copy">Todos los derechos reservados</p>
+        	</div>
+      	</div>
+          <!--end of footer_info--> 
+          
+    </div>
+    <!--End of footer_cont--> 
+</footer>
