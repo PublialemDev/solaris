@@ -9,12 +9,17 @@ class Cproductos extends CI_Controller {
 		$this->load->model('productos/mProductos');
 		$this->load->library('table');
 	}
-	
-	public function insertProducto(){
+	//muestra la vista para crear un producto
+	public function insertProductoForm(){
 		$datos['categorias'] = $this->mProductos->selectCategorias();
 		$this->load->view('productos/vProductosInsert',$datos);
 	}
+	//inserta el producto
+	public function insertProducto(){
+		echo 'SUCCESS;datos recibidos';
+	}
 	
+	//regresa todos los productos
 	public function getValues(){
 		$sysdate=new DateTime();
 		
@@ -30,7 +35,8 @@ class Cproductos extends CI_Controller {
 
 	}
 	
-	public function selectProductos(){
+	//muestra el form para consultar los productos
+	public function selectProductosForm(){
 		$consulta['query'] = $this->mProductos->selectProductos();
 		$this->load->view('productos/vProductosSelect',$consulta);
 	}

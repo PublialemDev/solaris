@@ -23,9 +23,9 @@ getHeader('Accesso');
 <a href='/solaris/index.php/productos/ccategoriaproductos/selectCategorias'>Select Categoria Productos</a><br>
 
 <!-- lync para Alta de Productos-->
-<a href='/solaris/index.php/productos/cproductos/insertProducto'>Alta Productos</a><br>
+<a href='/solaris/index.php/productos/cproductos/insertProductoForm'>Alta Productos</a><br>
 <!-- lync para select de productos-->
-<a href='/solaris/index.php/productos/cproductos/selectProductos'>Select Productos</a><br>
+<a href='/solaris/index.php/productos/cproductos/selectProductosForm'>Select Productos</a><br>
 
 <!-- lync para Alta de remisiones-->
 <a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a><br>
