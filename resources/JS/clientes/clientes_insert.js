@@ -19,7 +19,9 @@ $(".addTelefono").click(function(){
 			}
 			
 			//valida el rfc
-			if(isRfc($("input[name='rfc']").val())){
+			if(isVacio($("input[name='rfc']").val())){
+				$("input[name='rfc']").parent().removeClass("has-error");
+			}else if(isRfc($("input[name='rfc']").val())){
 				$("input[name='rfc']").parent().removeClass("has-error");
 			}else{
 				$("input[name='rfc']").parent().addClass("has-error");
@@ -78,7 +80,6 @@ $(".addTelefono").click(function(){
 			
 			$(".telefono").each(function (index){
 				//valida .telefono
-				alert($(this).val()+"-"+index);
 				if(isNumero($(this).val())){
 					$(this).parent().removeClass("has-error");
 				}else{
@@ -101,7 +102,7 @@ $(".addTelefono").click(function(){
 		}
 		
 		
-		$(".enviarButton").click(function(){
+		$(document).on("click",".enviarButton",function(){
 			if(validarForm()){
 				
 				var formSer=$("#form_cliente").serialize();
@@ -119,7 +120,7 @@ $(".addTelefono").click(function(){
 				
 				formSer+=telSer+corrSer;
 					$.ajax({
-					data:formSer,
+					data:formSer.toUpperCase(),
 					url:SERVER_URL_BASE+"clientes/cClientes/insertCliente",
 					method:"POST",
 					beforesend:function(){alert(formSer);},
@@ -127,15 +128,16 @@ $(".addTelefono").click(function(){
 						var resp=msg.split(";");
 						if(resp[0].trim()=="SUCCESS"){
 							$("input").attr("disabled","disabled");	
-							$("input[name='idCliente']").val(resp[1]);
+							$("input[name='cli_id']").val(resp[1]);
 							$("button[name='enviar']").html("Editar");
 							$("button[name='enviar']").removeClass("enviarButton").addClass("enableButton");
 							$("input").attr("disabled","disabled");
 							$(".addCorreo").attr("disabled","disabled");
 							$(".addTelefono").attr("disabled","disabled");
 							$("select").attr("disabled","disabled");
+							alert("El cliente se creo correctamente");
 						}else{
-							alert(msg);
+							alert("Ocurrio un error: "+msg);
 						}
 					}
 	
@@ -170,20 +172,24 @@ $(".addTelefono").click(function(){
 
 			formSer+=telSer+corrSer;
 				$.ajax({
-					data:formSer,
+					data:formSer.toUpperCase(),
 					url:SERVER_URL_BASE+"clientes/cClientes/updateCliente",
 					method:"POST",
 					beforesend:function(){alert(formSer);},
 					success: function(msg){
-						alert(msg);
-						$(".updateButton").html("Editar");
-						$(".updateButton").removeClass("updateButton").addClass("enableButton");
-						$("input").attr("disabled","disabled");
-						$(".addCorreo").attr("disabled","disabled");
-						$(".addTelefono").attr("disabled","disabled");
-						$("select").attr("disabled","disabled");
+						var resp=msg.split(";");
+						if(resp[0].trim()=="SUCCESS"){
+							$(".updateButton").html("Editar");
+							$(".updateButton").removeClass("updateButton").addClass("enableButton");
+							$("input").attr("disabled","disabled");
+							$(".addCorreo").attr("disabled","disabled");
+							$(".addTelefono").attr("disabled","disabled");
+							$("select").attr("disabled","disabled");
+							alert("El cliente se actualizó correctamente");
+						}else{
+								alert("Ocurrio un error: "+msg);
+						}
 					}
-
 				});
 			}else{
 				alert("Hay un error en los datos, Favor de validarlos");

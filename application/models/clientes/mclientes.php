@@ -25,9 +25,9 @@ class Mclientes extends CI_Model{
 	}
 	
 	function updateCliente($cli_data_form){
-		
 		session_start();
 		$sysdate=new DateTime();
+		$returned=0;
 		$cli_data=array(
 			'nombre_cliente' => $cli_data_form['nombre'],
 			'rfc' => $cli_data_form['rfc'],
@@ -40,7 +40,6 @@ class Mclientes extends CI_Model{
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'update_clientes','descripcion_log'=>'update del cliente: '.$cli_data_form['cli_id']));
 		}
-		
 		return $returned;
 	}
 	
@@ -50,6 +49,9 @@ class Mclientes extends CI_Model{
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
+		if($returned>0){
+			$returned='SUCCESS;'+$returned;
+		}
 		return $returned;
 	}
 	

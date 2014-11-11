@@ -60,8 +60,8 @@ class CClientes extends CI_Controller {
 		
 		//establece los datos del cliente para la insercion
 		$cli_data=array(
-		'nombre'=>$this->input->post('nombre'),
-		'rfc'=>$this->input->post('rfc')
+		'nombre'=>$this->input->post('NOMBRE'),
+		'rfc'=>$this->input->post('RFC')
 		);
 		//inserta y recibe el id generado en la insercion
 		$cli_id= $this->mclientes->insertCliente($cli_data);
@@ -71,23 +71,26 @@ class CClientes extends CI_Controller {
 			//establece los datos del cliente para la insercion
 			$dir_data=array(
 			'cli_id'=>$cli_id,
-			'dir_estado'=>$this->input->post('dir_estado'),
-			'dir_calle'=>$this->input->post('dir_calle'),
-			'dir_num_ext'=>$this->input->post('dir_num_ext'),
-			'dir_num_int'=>$this->input->post('dir_num_int'),
-			'dir_col'=>$this->input->post('dir_col'),
-			'dir_muni'=>$this->input->post('dir_muni'),
-			'dir_cp'=>$this->input->post('dir_cp')
+			'dir_estado'=>$this->input->post('DIR_ESTADO'),
+			'dir_calle'=>$this->input->post('DIR_CALLE'),
+			'dir_num_ext'=>$this->input->post('DIR_NUM_EXT'),
+			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
+			'dir_col'=>$this->input->post('DIR_COL'),
+			'dir_muni'=>$this->input->post('DIR_MUNI'),
+			'dir_cp'=>$this->input->post('DIR_CP')
 			);
 			
 			//inserta y recibe el id generado en la insercion
 			$returned= $this->mdirecciones->insertDireccion($dir_data,'cli');
 		}
+		else{
+			echo $returned;
+		}
 		
 		//inserta los telefonos para el cliente
 		if($cli_id>0 and $cli_id!= null and $returned>0){
 			//genera el array de los numeros de telefono
-			$tel_numeros = explode('#',$this->input->post('tel_num'));
+			$tel_numeros = explode('#',$this->input->post('TEL_NUM'));
 			$tel_data;
 			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
@@ -107,12 +110,14 @@ class CClientes extends CI_Controller {
 			if($total_telefonos>0){
 				$this->mlogs->insertLog(array('tipo_log'=>'insert_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$cli_id));
 			}
+		}else{
+			echo $returned;
 		}
 		
 		//inserta los correos para el cliente
 		if($cli_id>0 and $cli_id!= null  and $returned>0){
 			//genera el array de los correos
-			$corr_correos = explode('#',$this->input->post('corr_correo'));
+			$corr_correos = explode('#',$this->input->post('CORR_CORREO'));
 			$corr_data;
 			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
@@ -131,6 +136,8 @@ class CClientes extends CI_Controller {
 			if($total_correos>0){
 				$this->mlogs->insertLog(array('tipo_log'=>'insert_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$cli_id));
 			}
+		}else{
+			echo $returned;
 		}
 		
 		echo 'SUCCESS;'.$cli_id;
@@ -230,43 +237,45 @@ class CClientes extends CI_Controller {
 	 */
 	public function updateCliente()
 	{
-		$cli_id=$this->input->post('cli_id');//Almacenara el ID generado en la actualizacion
+		$cli_id=$this->input->post('CLI_ID');//Almacenara el ID generado en la actualizacion
 		$cli_data;//Almacenara el array de datos del cliente para la actualizacion
 		$dir_data;//Almacenara el array de datos de la direccion para la actualizacion
-		$response;
+		$response=0;
 		
 		//establece los datos del cliente para la actualizacion
 		$cli_data=array(
 		'cli_id'=>$cli_id,
-		'nombre'=>$this->input->post('nombre'),
-		'rfc'=>$this->input->post('rfc')
+		'nombre'=>$this->input->post('NOMBRE'),
+		'rfc'=>$this->input->post('RFC')
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mclientes->updateCliente($cli_data);
 		
 		//inserta la direccion para le cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($cli_id>0 and $cli_id!= null and $response>0){
 			//establece los datos del cliente para la actualizacion
 			$dir_data=array(
 			'cli_id'=>$cli_id,
-			'dir_estado'=>$this->input->post('dir_estado'),
-			'dir_calle'=>$this->input->post('dir_calle'),
-			'dir_num_ext'=>$this->input->post('dir_num_ext'),
-			'dir_num_int'=>$this->input->post('dir_num_int'),
-			'dir_col'=>$this->input->post('dir_col'),
-			'dir_muni'=>$this->input->post('dir_muni'),
-			'dir_cp'=>$this->input->post('dir_cp')
+			'dir_estado'=>$this->input->post('DIR_ESTADO'),
+			'dir_calle'=>$this->input->post('DIR_CALLE'),
+			'dir_num_ext'=>$this->input->post('DIR_NUM_EXT'),
+			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
+			'dir_col'=>$this->input->post('DIR_COL'),
+			'dir_muni'=>$this->input->post('DIR_MUNI'),
+			'dir_cp'=>$this->input->post('DIR_CP')
 			);
 			
 			//inserta y recibe el id generado en la actualizacion
-			$response.='-/-'.$this->mdirecciones->updateDireccion($dir_data,'cli');
+			$response=$this->mdirecciones->updateDireccion($dir_data,'cli');
+		}else{
+			echo $response;
 		}
 		
 		//actualiza los telefonos para el cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($cli_id>0 and $cli_id!= null and $response>0){
 			//genera el array de los numeros de telefono
-			$tel_numeros = explode('#',$this->input->post('tel_num'));
-			$response.='//'.$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
+			$tel_numeros = explode('#',$this->input->post('TEL_NUM'));
+			$response=$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
 			$tel_data;
 			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
@@ -276,8 +285,8 @@ class CClientes extends CI_Controller {
 						'tel_numero'=>$tel_num
 					);
 					
-					$returned=$this->mtelefonos->insertTelefono($tel_data,'cli');
-					if($returned==1){
+					$response=$this->mtelefonos->insertTelefono($tel_data,'cli');
+					if($response==1){
 						$total_telefonos+=1;
 					}
 				}
@@ -286,13 +295,15 @@ class CClientes extends CI_Controller {
 			if($total_telefonos>0){
 				$this->mlogs->insertLog(array('tipo_log'=>'update_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$cli_id));
 			}
+		}else{
+			echo $response;
 		}
 		
 		//actualiza los correos para el cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($cli_id>0 and $cli_id!= null and $response>0){
 			//genera el array de los correos
-			$corr_correos = explode('#',$this->input->post('corr_correo'));
-			$response.='//'.$this->mcorreos->deleteCorreosAll($cli_id,'cli');
+			$corr_correos = explode('#',$this->input->post('CORR_CORREO'));
+			$response=$this->mcorreos->deleteCorreosAll($cli_id,'cli');
 			$corr_data;
 			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
@@ -301,8 +312,8 @@ class CClientes extends CI_Controller {
 						'cli_id'=>$cli_id,
 						'corr_correo'=>$corr_correo
 					);
-					$returned=$this->mcorreos->insertCorreo($corr_data,'cli');
-					if($returned==1){
+					$response=$this->mcorreos->insertCorreo($corr_data,'cli');
+					if($response==1){
 						$total_correos+=1;
 					}
 				}
@@ -311,9 +322,11 @@ class CClientes extends CI_Controller {
 			if($total_correos>0){
 				$this->mlogs->insertLog(array('tipo_log'=>'update_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$cli_id));
 			}
+		}else{
+			echo $response;
 		}
 		
-		echo $response;
+		echo 'SUCCESS;'.$response;
 	}
 	
 	/* Form Insert Cliente
@@ -325,7 +338,7 @@ class CClientes extends CI_Controller {
 	 * 
 	 */
 	public function deleteCliente(){
-		$cli_id=$this->input->post('cli_id');
+		$cli_id=$this->input->post('CLI_ID');
 		
 		$returned=$this->mclientes->deleteCliente($cli_id);
 		if($returned>0)
@@ -338,7 +351,7 @@ class CClientes extends CI_Controller {
 		if($returned>0){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
 		}
-		return 'Mensage: '.$returned;
+		echo 'Mensage: '.$returned;
 	}
 	
 }
