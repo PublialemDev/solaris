@@ -24,7 +24,6 @@ class Mdirecciones extends CI_Model{
 		);
 		//insertar log para auditoria
 		if($returned==1){
-			$returned=$this->db->insert_id();
 			$this->mlogs->insertLog(array('tipo_log'=>'insert_direcciones','descripcion_log'=>'alta de direccion para el perfil: '.$returned));
 		}
 		return $returned;
@@ -40,6 +39,7 @@ class Mdirecciones extends CI_Model{
 		$returned=$this->db->update('direcciones',
 		array(
 			'id_perfil' => $datosDir['cli_id'],
+			'perfil_tipo'=>$tipo_perfil,
 			'id_estado' => $datosDir['dir_estado'],
 			'calle' => $datosDir['dir_calle'],
 			'numero_ext' => $datosDir['dir_num_ext'],

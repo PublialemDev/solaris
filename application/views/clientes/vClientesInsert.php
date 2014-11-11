@@ -18,9 +18,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>'','class'=>'form-control');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>'','class'=>'form-control');
 	//teléfono
-	$tel_num =array('name'=>'tel_num','class'=>'telefono','placeholder'=>'Teléfono','value'=>'','class'=>'form-control');
+	$tel_num =array('name'=>'tel_num','class'=>'telefono form-control','placeholder'=>'Teléfono','value'=>'');
 	//correos
-	$corr_correo =array('name'=>'corr_correo','class'=>'correo','placeholder'=>'Correo','value'=>'','class'=>'form-control');
+	$corr_correo =array('name'=>'corr_correo','class'=>'correo form-control','placeholder'=>'Correo','value'=>'');
 	//formularios
 	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'insertCliente(this,event)','role'=>'form');
 	$form_dir=array('id'=>'form_dir','onSubmit'=>'insertCliente(this,event)','role'=>'form');
@@ -42,7 +42,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<table>
 							<tbody>
 						<?php echo form_open('#',$form_cliente); ?>
-						<?php echo form_hidden('idCliente','0');?>
+						<?php echo form_hidden('cli_id','0');?>
 							<!--inicio Datos del Cliente -->
 							
 								<tr>
@@ -167,12 +167,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 							<table>
 								<tr>
 									<td><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
-								</tr>
-								
-								<tr>
-									<td>
-										<?php echo form_button('editar','Editar','class="editButton  btn btn-primary" style="display:none"');?>
-									</td>
 								</tr>
 								
 							</table>
