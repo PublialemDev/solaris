@@ -27,25 +27,25 @@ class MCategoriaSeguimiento extends CI_Model{
 	function updateCategoriaSeguimiento($segui_data_form){		
 		session_start();
 		$sysdate = new DateTime();
-		$segui_data = array('nombre_categoriaSeguimiento'=> $datos['nombre'],
-			'descripcion_categoriaSeguimiento'=> $datos['descripcion'],
+		$segui_data = array('nombre_categoriaSeguimiento'=> $segui_data_form['nombre'],
+			'descripcion_categoriaSeguimiento'=> $segui_data_form['descripcion'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned = $this->db->update('categoriaseguimientoclientes',$segui_data,array('id_categoriaSeguimiento'=>$segui_data_form['catseguimiento_id']));
+		$returned = $this->db->update('categoriaseguimientoclientes',$segui_data,array('id_categoriaSeguimiento'=>$segui_data_form['idCatSeguimiento']));
 		
 		//insertar log para auditoria
 		if($returned == 1){
-			$this->mlogs->insertLog(array('tipo_log'=>'update_seguimiento','descripcion_log'=>'update de la categoria de seguimiento: '.$segui_data_form['catseguimiento_id']));
+			$this->mLogs->insertLog(array('tipo_log'=>'update_seguimiento','descripcion_log'=>'update de la categoria de seguimiento: '.$segui_data_form['idCatSeguimiento']));
 		}
 		
 		return $returned;
 	}
 
-	function deleteCategoriaSeguimiento($segui_id){
+	function deleteCategoriaSeguimiento($catsegui_id){
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('categoriaseguimientoclientes',array('id_categoriaSeguimiento'=>$segui_id));
+		$returned=$this->db->delete('categoriaseguimientoclientes',array('id_categoriaSeguimiento'=>$catsegui_id));
 		return $returned;
 	}
 

@@ -7,6 +7,7 @@ class CCategoriaSeguimiento extends CI_Controller {
 		$this->load->helper('pagina');
 		$this->load->helper('form');
 		$this->load->model('clientes/mcategoriaseguimiento');
+		$this->load->model('logs/mLogs');
 	}
 	
 	public function insertCategoriaSeguimiento(){		
@@ -66,19 +67,22 @@ class CCategoriaSeguimiento extends CI_Controller {
 	}
 
 	public function updateCategoriaSeguimiento(){
-		$segui_id=$this->input->post('catseguimiento_id');//Almacenara el ID(hidden) generado en la actualizacion
-		$segui_data;
+		$catsegui_id=$this->input->post('idCatSeguimiento');//Almacenara el ID(hidden) generado en la actualizacion
+		$catsegui_data;
 		$response;
 		
-		//establece los datos del cliente para la actualizacion
-		$segui_data=array(
-		'catseguimiento_id'=>$segui_id,
-		'nombre'=>$this->input->post('nombre'),
-		'descripcion'=>$this->input->post('descripcion')
+		//establece los datos de la categoria para la actualizacion
+		$catsegui_data = array(
+		'idCatSeguimiento'=>$catsegui_id,
+		'nombre'=>$this->input->post('nombre_txt'),
+		'descripcion'=>$this->input->post('descripcion_txt')
 		);
 		//inserta y recibe el id generado en la actualizacion
-		$response = $this->mcategoriaseguimiento->updateCategoriaSeguimiento($segui_data);
-		echo $response;
+		$response = $this->mcategoriaseguimiento->updateCategoriaSeguimiento($catsegui_data);
+		if($response == 1){
+			echo "El registro se actualizo correctamente";
+		}
+		
 	}
 	
 	public function formUpdateCategoriaSeguimiento(){
@@ -88,11 +92,11 @@ class CCategoriaSeguimiento extends CI_Controller {
 	}
 	
 	public function deleteCategoriaSeguimiento(){
-		$segui_id=$this->input->post('segui_id');		
-		$returned=$this->mclientes->deleteCliente($cli_id);
+		$id_catseguimiento = $this->input->post('idCatSeguimiento');		
+		$returned = $this->mcategoriaseguimiento->deleteCategoriaSeguimiento($id_catseguimiento);
 		
 		if($returned>0){
-			$this->mlogs->insertLog(array('tipo_log'=>'delete_categoriaseguimiento','descripcion_log'=>'se elimino la categoria de seguimiento: '.$segui_id));
+			$this->mLogs->insertLog(array('tipo_log'=>'delete_categoriaseguimiento','descripcion_log'=>'se elimino la categoria de seguimiento: '.$id_catseguimiento));
 		}
 		return 'Mensage: '.$returned;
 	}

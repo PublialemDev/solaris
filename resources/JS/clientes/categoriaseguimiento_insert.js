@@ -13,12 +13,7 @@ function validarForm(){
 		
 		
 $(document).on("click",".enviarButton",function(){
-<<<<<<< HEAD
-	if(validarForm()){
-				
-=======
 	if(validarForm()){		
->>>>>>> 92028022148f3277e7c76151aa78da52242f98ac
 		var formSer=$("#form_catseguimiento").serialize();
 					
 		$.ajax({
