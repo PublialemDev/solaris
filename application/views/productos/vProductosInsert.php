@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Alta de Productos');
+echo getMenu();
 //labels
  $label=array('class'=>'control-label');
 	 

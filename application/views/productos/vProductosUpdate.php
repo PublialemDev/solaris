@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Alta de Productos');
+echo getMenu();
 	$prod_id_data='';
 	$prod_nombre_data='';
 	$prod_cat_data='';

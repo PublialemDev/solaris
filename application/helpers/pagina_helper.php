@@ -43,85 +43,7 @@
 			';
 	}
 	
-	/**
- * Menu Base
- *
- * Genera el menu base segun los permisos del usuario loggeado, 
- * recibe como parametro un String para agregar un titulo a la pestaña.
- *
- * @access	public
- * @param	string
- * @return	string
- */
-	function getMenu(){
-		return '
-		<!--nav id="menuPrinc" class="navbar navbar-default navbar-fixed-top" role="navigation">
-	  		<!--div class="navbar-inner" >
-		  		<div class="container container-fluid">
-			  		<a href="#" class="brand">
-			  			<p class="text-info"><strong><?php echo $text?></strong></p>
-			  		</a>
-			  		<ul id="menu" class="nav navbar-nav">
-			  			<li class=""><a href="menu.php" >inicio</a></li>
-			  			
-			  			<li class="dropdown ">
-			  				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				  				Altas <span class="caret"></span>
-			  				</a>
-			  				<ul class="dropdown-menu" role="menu">
-			  				<li><a href="altaSucursales.php">Sucursales </a> </li>
-			  				<li><a href="altaEmpleados.php">Empleados </a></li>
-			  				<li><a href="altaProveedores.php">Proveedores </a></li>
-			  				<li><a href="altaClientes.php">Clientes </a></li>
-			  				<li><a href="altaProductos.php">Productos </a></li>
-			  				<li><a href="altaCotizacion.php">Cotizacion </a></li>
-			  				</ul>
-			  			</li>
-			  			<li class="dropdown">
-			  				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			  					Consultas <span class="caret"></span>
-			  				</a>
-			  				<ul class="dropdown-menu" role="menu">
-			  				<li><a href="consultaSucursales.php">Sucursales </a> </li>
-			  				<li><a href="consultaEmpleados.php">Empleados </a></li>
-			  				<li><a href="consultaProveedores.php">Proveedores </a></li>
-			  				<li><a href="consultaClientes.php">Clientes </a></li>
-			  				<li><a href="consultaProductos.php">Productos </a></li>
-			  				</ul>
-			  			</li>
-			  			<li> <a href="PHP/logout.php">salir </a></li>
-			  		</ul>
-		  		</div>
-	  		</div-->
-	  	</nav-->
-	  	<header class="navbar navbar-static-top bs-docs-nav" role="banner">
-		  	<div class="container-fluid">
-		  		<div class="row">
-		  			<div class="col-xs-12 col-sm-12 col-md-12">
-					  	<nav class="navbar navbar-default  navbar-static-top" role="navigation" >
-						  <div class="container">
-						    <ul class="nav navbar-nav">
-						        <li class="dropdown">
-						          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-						          <ul class="dropdown-menu" role="menu">
-						            <li><a href="#">Action</a></li>
-						            <li><a href="#">Another action</a></li>
-						            <li><a href="#">Something else here</a></li>
-						            <li class="divider"></li>
-						            <li><a href="#">Separated link</a></li>
-						            <li class="divider"></li>
-						            <li><a href="#">One more separated link</a></li>
-						          </ul>
-						        </li>
-						      </ul>
-						  </div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</header>
-			';
-	}
+	
 	
 /**
  * Footer Base
@@ -134,28 +56,120 @@
  */
 	function getFooter($script =''){
 		return $script.'
-		<div class="clear"></div>
-		 	<img class="lines_bg" src="http://solarisdemexico.com/images/lines_bg.png">
-			<footer>
-			    <div id="footer_cont1">
-			          <div class="footer_info">
-			          	<p class="bold">Tel:(55)21571957 / (55)56412732<br> </p>
-			          	<div class="direccion">
-			             
-			             	<p  class="copy">email: ventas@solarisdemexico.com</p>
-			             
-			          	</div>
-			        	<div class="logo2"> <img src="http://solarisdemexico.com/images/logo2.png" alt="logo">
-			              <p class="copy">Todos los derechos reservados</p>
-			        	</div>
-			      	</div>
-			          <!--end of footer_info--> 
-			          
-			    </div>
-			    <!--End of footer_cont--> 
-			</footer>
+		<footer>
+		    <div id="footer_cont1">
+		          <div class="footer_info">
+		          	<p class="bold">Tel:(55)21571957 / (55)56412732<br> </p>
+		          	<div class="direccion">
+		             
+		             	<p  class="copy">email: ventas@solarisdemexico.com</p>
+		             
+		          	</div>
+		        	<div class="logo2"> <img src="http://solarisdemexico.com/images/logo2.png" alt="logo">
+		              <p class="copy">Todos los derechos reservados</p>
+		        	</div>
+		      	</div>
+		          <!--end of footer_info--> 
+		          
+		    </div>
+		    <!--End of footer_cont--> 
+		</footer>
 		</body>
 		</html>
 			';
 	}
+
+/**
+ * Menu Base
+ *
+ * Genera el menu base segun los permisos del usuario loggeado, 
+ * recibe como parametro un String para agregar un titulo a la pestaña.
+ *
+ * @access	public
+ * @param	string
+ * @return	string
+ */
+	
+function getMenu(){
+	return $script='
+	<!--Inicia menu--> 
+<div class="navbar-wrapper">
+  <div class="container">    
+    <div class="navbar navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="nav">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <div class="central_header">
+          <a class="transicion" href="index.html"><div id="logo"></div></a>
+          
+          <div class="navbar-collapse collapse">
+          	<ul class="nav navbar-nav">
+          		<li><a href="/solaris/index.php/main/cLogin/login">Inicio </a></li>
+          		<li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Clientes
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta clientes</a></li>
+        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Select/Update de clientes</a></li>
+        	    		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento">Alta Categoria Seguimiento Clientes</a></li>
+	            		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento">Select Categoria Seguimiento Clientes</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Productos
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos">Alta Categoria Productos</a></li>
+						<li><a href="/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos">Select Categoria Productos</a></li>
+						<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta Productos</a></li>
+						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Select Productos</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Remisiones
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemision">Alta Remisiones</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Select Remisiones</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Pagos
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/remisiones/ctipopago/insertTipoPago">Alta tipo de pago</a></li>
+						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">select tipo de pago</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Usuarios
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario">Alta tipo de usuario</a></li>
+						<li><a href="/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios">select tipo de usuario</a></li>
+	            	</ul>
+	            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Termina menu--> 
+	';
+}
 ?>
