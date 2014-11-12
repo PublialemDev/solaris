@@ -11,7 +11,7 @@ echo getHeader('Accesso');
   <div class="container">    
     <div class="navbar navbar-static-top" role="navigation">
       <div class="container">
-        <div class="navbar-header">
+        <div class="nav">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
