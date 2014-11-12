@@ -55,12 +55,11 @@ $(document).on("click",".enviarButton",function(){
 			var resp=msg.split(";");
 			if(resp[0].trim()=="SUCCESS"){
 				$("input").attr("disabled","disabled");	
-				$("input[name='cli_id']").val(resp[1]);
+				$("input[name='prod_id']").val(resp[1]);
 				$("button[name='enviar']").html("Editar");
 				$("button[name='enviar']").removeClass("enviarButton").addClass("enableButton");
 				$("input").attr("disabled","disabled");
-				$(".addCorreo").attr("disabled","disabled");
-				$(".addTelefono").attr("disabled","disabled");
+				$("textarea").attr("disabled","disabled");
 				$("select").attr("disabled","disabled");
 				alert("El cliente se creo correctamente");
 			}else{
@@ -74,7 +73,7 @@ $(document).on("click",".enviarButton",function(){
 	}
 });
 
-/*
+
 //habilitara el formulario
 $(document).on("click",".enableButton",function(e){
 	$("[disabled=\'disabled\']").removeAttr("disabled");
@@ -85,23 +84,11 @@ $(document).on("click",".enableButton",function(e){
 //actualiza el registro
 $(document).on("click",".updateButton",function(){
 	if(validarForm()){
-	var formSer=$("#form_cliente").serialize();
-	formSer+="&"+$("#form_dir").serialize();
-
-	var telSer="&tel_num=";
-	$(".telefono").each(function (index){
-		telSer+=$(this).val()+"#";
-	});
-
-	var corrSer="&corr_correo=";
-	$(".correo").each(function (index){
-		corrSer+=$(this).val()+"#";
-	});
-
-	formSer+=telSer+corrSer;
+		var formSer=$("#form_producto").serialize();
+	
 		$.ajax({
 			data:formSer.toUpperCase(),
-			url:SERVER_URL_BASE+"clientes/cClientes/updateCliente",
+			url:SERVER_URL_BASE+"productos/cproductos/updateProducto",
 			method:"POST",
 			beforesend:function(){alert(formSer);},
 			success: function(msg){
@@ -110,8 +97,7 @@ $(document).on("click",".updateButton",function(){
 					$(".updateButton").html("Editar");
 					$(".updateButton").removeClass("updateButton").addClass("enableButton");
 					$("input").attr("disabled","disabled");
-					$(".addCorreo").attr("disabled","disabled");
-					$(".addTelefono").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
 					alert("El cliente se actualizó correctamente");
 				}else{
@@ -122,4 +108,4 @@ $(document).on("click",".updateButton",function(){
 	}else{
 		alert("Hay un error en los datos, Favor de validarlos");
 	}
-});*/
+});
