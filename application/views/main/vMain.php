@@ -18,9 +18,9 @@ echo getMenu();
 <a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a><br>
 
 <!-- lync para Alta de tipo de usuario-->
-<a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a><br>
+<a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios'>Alta tipo de usuario</a><br>
 <!-- lync para select de tipo de usuario-->
-<a href='/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios'>select tipo de usuario</a><br>
+<a href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>select tipo de usuario</a><br>
 
      <br>   
         <div class="row">
@@ -68,8 +68,8 @@ echo getMenu();
 			<div class="col-md-4">
 				<div class="jumbotron">      
 						<center><h4>- Usuarios -</h4></center><br>
-						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a></button>
-						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios'>select tipo de usuario</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios'>Alta tipo de usuario</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>select tipo de usuario</a></button>
 				</div>
 			</div>
 			<div class="col-md-4"></div>
