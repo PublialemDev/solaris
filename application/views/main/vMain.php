@@ -7,7 +7,6 @@ echo getMenu();
 ?>
 
 
-<<<<<<< HEAD
 <!-- lync para Alta de remisiones-->
 <a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a><br>
 <!-- lync para select de remisioens-->
@@ -22,7 +21,7 @@ echo getMenu();
 <a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a><br>
 <!-- lync para select de tipo de usuario-->
 <a href='/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios'>select tipo de usuario</a><br>
-=======
+
      <br>   
         <div class="row">
 			<div class="col-md-2"></div>
@@ -78,8 +77,6 @@ echo getMenu();
 		</div>
 		<div class="row"><br><br><br><br></div>
 	</div>
-
->>>>>>> e21a4f2a63feb2cb5817ec45240caffaf58785da
 </div>
 </div></div>
 <?php
