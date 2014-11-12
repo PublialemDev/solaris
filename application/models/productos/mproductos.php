@@ -95,4 +95,15 @@ class MProductos extends CI_Model{
 		return $consulta;*/
 	}
 	
+	function selectProductoById($id_prod){
+		$where_clause=array('id_producto'=>$id_prod);
+		$query = $this->db->get_where('productos',$where_clause);
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+	}
+	
 }

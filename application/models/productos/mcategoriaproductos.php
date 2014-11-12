@@ -49,7 +49,7 @@ class MCategoriaProductos extends CI_Model{
 		return $returned;
 	}
 
-	function selectCategoriaProductos($where_clause){
+	function selectCategoriaProductos($where_clause=array()){
 		
 		if(isset($where_clause['catprodu_id'])){
 			$this->db->where('id_categoriaProducto',$where_clause['catprodu_id']);

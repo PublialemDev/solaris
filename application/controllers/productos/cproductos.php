@@ -7,6 +7,7 @@ class Cproductos extends CI_Controller {
 		$this->load->helper('pagina');
 		$this->load->helper('form');
 		$this->load->model('productos/mproductos');
+		$this->load->model('productos/mcategoriaproductos');
 		$this->load->library('table');
 	}
 	//muestra la vista para crear un producto
@@ -140,11 +141,26 @@ class Cproductos extends CI_Controller {
 		}
 	}
 	
-	
 	//muestra el form para consultar los productos
 	public function selectProductosForm(){
 		$this->load->view('productos/vProductosSelect');
 	}
+	
+	/* Form Select/Update Producto
+	 *
+	 * Crea el formulario para seleccionar/actualizar un Producto
+	 * 
+	 * @author Luis Briseño
+	 * @access	public
+	 * 
+	 */
+	public function formUpdateProducto(){
+		$id_producto=$this->input->get('prod_id');
+		$data['producto']=$this->mproductos->selectProductoById($id_producto);
+		$data['categorias']=$this->mcategoriaproductos->selectCategoriaProductos();
+		$this->load->view('productos/vProductosUpdate',$data);
+	}
+	
 			
 } 
 ?>
