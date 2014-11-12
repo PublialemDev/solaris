@@ -3,30 +3,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
 echo getHeader('Accesso'); 
 //echo base64_decode($_SESSION['USUARIO_ID']);
-
+echo getMenu();
 ?>
-<!-- funge como pagina principal por el momento-->
-<div class='container'>
-	<!-- lync para Alta de clientes-->
-<a href='/solaris/index.php/clientes/cClientes/formInsertCliente'>Alta clientes</a><br>
-	<!-- lync para Select/Update de clientes-->
-<a href='/solaris/index.php/clientes/cClientes/formSelectCliente'>Select/Update de clientes</a><br>
 
-<!-- lync para Alta Seguimiento Clientes-->
-<a href='/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento'>Alta Categoria Seguimiento Clientes</a><br>
-<!-- lync para Select Seguimiento Clientes-->
-<a href='/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento'>Select Categoria Seguimiento Clientes</a><br>
 
-<!-- lync para Alta de Categoria Productos-->
-<a href='/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos'>Alta Categoria Productos</a><br>
-<!-- lync para select de Categoria Productos-->
-<a href='/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos'>Select Categoria Productos</a><br>
-
-<!-- lync para Alta de Productos-->
-<a href='/solaris/index.php/productos/cproductos/insertProductoForm'>Alta Productos</a><br>
-<!-- lync para select de productos-->
-<a href='/solaris/index.php/productos/cproductos/selectProductosForm'>Select Productos</a><br>
-
+<<<<<<< HEAD
 <!-- lync para Alta de remisiones-->
 <a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a><br>
 <!-- lync para select de remisioens-->
@@ -41,8 +22,66 @@ echo getHeader('Accesso');
 <a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a><br>
 <!-- lync para select de tipo de usuario-->
 <a href='/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios'>select tipo de usuario</a><br>
-</div>
+=======
+     <br>   
+        <div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<div class="jumbotron">      
+						<center><h4>- Clientes -</h4></center><br>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/clientes/cClientes/formInsertCliente'>Alta clientes</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/clientes/cClientes/formSelectCliente'>Select/Update de clientes</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento'>Alta Categoria Seguimiento Clientes</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento'>Select Categoria Seguimiento Clientes</a></button>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="jumbotron">      
+						<center><h4>- Productos -</h4></center><br>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos'>Alta Categoria Productos</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos'>Select Categoria Productos</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/productos/cproductos/insertProductoForm'>Alta Productos</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/productos/cproductos/selectProductosForm'>Select Productos</a><br></button>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<div class="jumbotron">      
+						<center><h4>- Remisiones -</h4></center><br>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/cremisiones/selectRemisiones'>Select Remisiones</a></button>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="jumbotron">      
+						<center><h4>- Pagos -</h4></center><br>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a></button>	
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<div class="jumbotron">      
+						<center><h4>- Usuarios -</h4></center><br>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios'>select tipo de usuario</a></button>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row"><br><br><br><br></div>
+	</div>
 
+>>>>>>> e21a4f2a63feb2cb5817ec45240caffaf58785da
+</div>
+</div></div>
 <?php
 echo getFooter() ;
 }else{
