@@ -21,7 +21,7 @@ class CTipoUsuarios extends CI_Controller {
 		'descripcion' => $this->input->post('descripcion_txt'), 
 		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
-		$tipousuarios_id = $this->mtipopago->insertTipoUsuarios($datos);
+		$tipousuarios_id = $this->mtipousuarios->insertTipoUsuarios($datos);
 		
 		echo 'SUCCESS;'.$tipousuarios_id;
 

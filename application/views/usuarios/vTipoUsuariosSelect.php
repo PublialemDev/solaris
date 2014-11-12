@@ -1,28 +1,28 @@
 <?php 
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Tipos de Pago');
+	echo getHeader('Tipos de Usuario');
 	//categoria seguimiento
-	$tipopago_nombre =array('name'=>'tipopago_nombre','placeholder'=>'Nombre','value'=>'');
-	$tipopago_id =array('name'=>'tipopago_id','placeholder'=>'Número de categoria', 'value'=>'');
+	$tipousuarios_nombre =array('name'=>'tipousuarios_nombre','placeholder'=>'Nombre','value'=>'');
+	$tipousuarios_id =array('name'=>'tipousuarios_id','placeholder'=>'Número de categoria', 'value'=>'');
 	
 	//formularios
-	$form_tipopago=array('id'=>'form_tipopago','onSubmit'=>'selectTipoPago(this,event)');
+	$form_tipousuarios=array('id'=>'form_tipousuarios','onSubmit'=>'selectTipoUsuarios(this,event)');
 ?>
 
 
 <div id="container" class='container'>
 	
-	<?php echo form_open('#',$form_tipopago); ?>
+	<?php echo form_open('#',$form_tipousuarios); ?>
 	<table >
 		<tbody>
 			<tr>
-				<td><?php echo form_label('Número de Categoria: ','tipopago_id');?></td>
-				<td><?php echo form_input($tipopago_id);?></td>
+				<td><?php echo form_label('Número de Categoria: ','tipousuarios_id');?></td>
+				<td><?php echo form_input($tipousuarios_id);?></td>
 			</tr>
 			<tr>
-				<td><?php echo form_label('Nombre: ','tipopago_nombre');?></td>
-				<td><?php echo form_input($tipopago_nombre);?></td>
+				<td><?php echo form_label('Nombre: ','tipousuarios_nombre');?></td>
+				<td><?php echo form_input($tipousuarios_nombre);?></td>
 			</tr>			
 			<tr>
 				<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
@@ -47,7 +47,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 </div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/remisiones/tipopago_select.js"></script>') ;
+echo getFooter('<script src="http://localhost/solaris/resources/JS/usuarios/tipousuarios_select.js"></script>') ;
 
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');

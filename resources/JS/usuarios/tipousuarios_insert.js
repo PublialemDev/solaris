@@ -18,7 +18,7 @@ $(document).on("click",".enviarButton",function(){
 					
 		$.ajax({
 		data:formSer,
-		url:SERVER_URL_BASE+"usaurios/ctipousuarios/getValues",
+		url:SERVER_URL_BASE+"usuarios/ctipousuarios/getValues",
 		method:"POST",
 		beforesend:function(){alert(formSer);},
 		success: function(msg){
@@ -26,7 +26,7 @@ $(document).on("click",".enviarButton",function(){
 			if(resp[0].trim()=="SUCCESS"){
 				$("input").attr("disabled","disabled");	
 				$("textarea").attr("disabled","disabled");
-				$("input[name='idTipoPago']").val(resp[1]);
+				$("input[name='idTipoUsuario']").val(resp[1]);
 				$("button[name='enviar']").html("Editar");
 				$("button[name='enviar']").removeClass("enviarButton").addClass("enableButton");
 				alert("La categoria se creo correctamente.");					

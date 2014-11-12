@@ -27,7 +27,7 @@ $label=array('class'=>'control-label');
 						<table>
 							<tbody>
 								<?php echo form_open('#',$form_tipousuarios); ?>
-								<?php echo form_hidden('idTipoPago','0');?>
+								<?php echo form_hidden('idTipoUsuario','0');?>
 								<tr>
 									<td>
 										<div class="form-group">

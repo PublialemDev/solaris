@@ -32,11 +32,11 @@ class MTipoUsuarios extends CI_Model{
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned = $this->db->update('tipousuarios',$tipousuarios_data,array('id_tipoUsuario'=>$tipopago_data_form['idTipoUsuario']));
+		$returned = $this->db->update('tipousuarios',$tipousuarios_data,array('id_tipoUsuario'=>$tipousuarios_data_form['idTipoUsuario']));
 		
 		//insertar log para auditoria
 		if($returned == 1){
-			$this->mLogs->insertLog(array('tipo_log'=>'UPDATE_TIPOUSAURIOS','descripcion_log'=>'update del tipo de usuario: '.$tipousuarios_data_form['idTipoUsuario']));
+			$this->mLogs->insertLog(array('tipo_log'=>'UPDATE_TIPOUSUARIOS','descripcion_log'=>'update del tipo de usuario: '.$tipousuarios_data_form['idTipoUsuario']));
 		}
 		
 		return $returned;
@@ -51,8 +51,8 @@ class MTipoUsuarios extends CI_Model{
 
 function selectTipoUsuarios($where_clause){
 		
-		if(isset($where_clause['tipousaurios_id'])){
-			$this->db->where('id_tipoUsuario',$where_clause['tipousaurios_id']);
+		if(isset($where_clause['tipousuarios_id'])){
+			$this->db->where('id_tipoUsuario',$where_clause['tipousuarios_id']);
 		}
 		if(isset($where_clause['tipousuarios_nombre'])){
 			$this->db->like('nombre_tipoUsuario',$where_clause['tipousuarios_nombre']);
