@@ -10,7 +10,6 @@ class CLogin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
-		$this->load->helper('jsClientes');//carga el helper bsico para las view
 		$this->load->model('usuarios/musuarios');
 		$this->load->model('logs/mlogs');
 	}

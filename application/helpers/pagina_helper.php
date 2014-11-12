@@ -91,6 +91,8 @@
  */
 	
 function getMenu(){
+	
+	if(base64_decode($_SESSION['USUARIO_TIPO'])=='1'){
 	return $script='
 	<!--Inicia menu--> 
 <div class="navbar-wrapper">
@@ -171,5 +173,75 @@ function getMenu(){
   </div>
 <!--Termina menu--> 
 	';
+	}else if(base64_decode($_SESSION['USUARIO_TIPO'])=='2'){
+		return $script='
+	<!--Inicia menu--> 
+<div class="navbar-wrapper">
+  <div class="container">    
+    <div class="navbar navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="nav">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <div class="central_header">
+          <a class="transicion" href="index.html"><div id="logo"></div></a>
+          
+          <div class="navbar-collapse collapse">
+          	<ul class="nav navbar-nav">
+          		<li><a href="/solaris/index.php/main/cLogin/login">Inicio </a></li>
+          		<li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Clientes
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta clientes</a></li>
+        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Select/Update de clientes</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Productos
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+						<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta Productos</a></li>
+						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Select Productos</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Remisiones
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemision">Alta Remisiones</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Select Remisiones</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Pagos
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/remisiones/ctipopago/insertTipoPago">Alta tipo de pago</a></li>
+						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">select tipo de pago</a></li>
+	            	</ul>
+	            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Termina menu--> 
+	';
+	}else{
+		return base64_decode($_SESSION['USUARIO_TIPO']);
+	}
 }
 ?>

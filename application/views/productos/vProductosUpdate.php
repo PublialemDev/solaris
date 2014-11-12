@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Alta de Productos');
 echo getMenu();
-	$prod_id_data='';
+	$prod_id_data='0';
 	$prod_nombre_data='';
 	$prod_cat_data='';
 	$prod_precio_data='';
@@ -13,6 +13,7 @@ echo getMenu();
 	
 	if($producto!=false){
 		$prod_data=$producto->first_row();
+		$prod_id_data=$prod_data->id_producto;
 		$prod_nombre_data=$prod_data->nombre_producto;//
 		$prod_cat_data=$prod_data->id_categoriaProducto;
 		$prod_precio_data=$prod_data->precio;//
@@ -56,7 +57,7 @@ foreach ($categorias->result() as $categoria) {
 								<table>
 								<tbody>
 									<?php echo form_open('#',$form_producto); ?>
-									<?php echo form_hidden('prod_id','0');?>
+									<?php echo form_hidden('prod_id',$prod_id_data);?>
 									<tr>
 										<td>
 											<div class="form-group">
@@ -98,6 +99,12 @@ foreach ($categorias->result() as $categoria) {
 											</div>
 										</td>
 									</tr>
+									</tbody>
+							</table>
+						</div>
+						<div class='col-md-6'>
+								<table>
+								<tbody>
 									<tr>
 										<td>
 											<div class="form-group">
@@ -109,7 +116,10 @@ foreach ($categorias->result() as $categoria) {
 									</tr>
 									
 									<tr>
-										<td><?php echo form_button('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+										<td>
+											<?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?>
+											<?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?>
+										</td>
 									</tr>
 								</tbody>
 							</table>

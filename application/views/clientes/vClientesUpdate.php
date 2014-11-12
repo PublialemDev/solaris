@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Clientes'); 
+	echo getMenu();
 	$cli_nombre_data='';$cli_rfc_data='';
 	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';
 	$estado_id='';

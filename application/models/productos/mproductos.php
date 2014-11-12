@@ -67,15 +67,15 @@ class MProductos extends CI_Model{
 	
 	public function selectProductos($where_clause){
 		
-		/*if(isset($where_clause['cli_id'])){
-			$this->db->where('id_cliente',$where_clause['cli_id']);
+		if(isset($where_clause['prod_id'])){
+			$this->db->where('id_producto',$where_clause['prod_id']);
 		}
-		if(isset($where_clause['cli_nombre'])){
-			$this->db->like('nombre_cliente',$where_clause['cli_nombre']);
+		if(isset($where_clause['prod_nombre'])){
+			$this->db->like('nombre_producto',$where_clause['prod_nombre']);
 		}
-		if(isset($where_clause['cli_rfc'])){
-			$this->db->where('rfc',$where_clause['cli_rfc']);
-		}*/
+		if(isset($where_clause['prod_desc'])){
+			$this->db->like('descripcion_producto',$where_clause['prod_desc']);
+		}
 		
 		$query = $this->db->get('productos');
 		if($query->num_rows()>0){
@@ -104,6 +104,18 @@ class MProductos extends CI_Model{
 		else{
 			return false;
 		}
+	}
+	
+	function deleteProducto($prod_id){
+		
+		session_start();
+		$sysdate=new DateTime();
+		
+		$returned=$this->db->delete('productos',array('id_producto'=>$prod_id));
+		if($returned>0){
+			return true;
+		}
+		return false;
 	}
 	
 }

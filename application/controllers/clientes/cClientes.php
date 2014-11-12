@@ -325,9 +325,9 @@ class CClientes extends CI_Controller {
 		echo 'SUCCESS;'.$response;
 	}
 	
-	/* Form Insert Cliente
+	/* Delete Cliente
 	 *
-	 * Crea el formulario para insertar un cliente
+	 * Elimina el Cliente de la Base de datos
 	 * 
 	 * @author Luis Briseño
 	 * @access	public
@@ -337,14 +337,14 @@ class CClientes extends CI_Controller {
 		$cli_id=$this->input->post('CLI_ID');
 		
 		$returned=$this->mclientes->deleteCliente($cli_id);
-		if($returned>0)
+		if($returned)
 		$returned=$this->mdirecciones->deleteDireccion($cli_id,'cli');
-		if($returned>0)
+		if($returned)
 		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
-		if($returned>0)
+		if($returned)
 		$returned=$this->mcorreos->deleteCorreosAll($cli_id,'cli');
 		
-		if($returned>0){
+		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
 		}
 		echo 'Mensage: '.$returned;

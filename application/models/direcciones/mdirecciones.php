@@ -67,7 +67,10 @@ class Mdirecciones extends CI_Model{
 	function deleteDireccion($cli_id,$tipo_perfil){
 		//session_start();
 		$returned=$this->db->delete('direcciones',array('id_perfil'=>$cli_id,'perfil_tipo'=>$tipo_perfil));
-		return $returned;
+		if($returned>0){
+			return true;
+		}
+		return false;
 	}
 	
 	/*

@@ -77,6 +77,12 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 											</div>
 										</td>
 									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class='col-md-6'>
+							<table>
+								<tbody>
 									<tr>
 										<td>
 											<div class="form-group">
@@ -88,7 +94,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									</tr>
 									
 									<tr>
-										<td><?php echo form_button('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+										<td><?php echo form_button('enviar','Guardar','class="enviarButton btn btn-primary"');?></td>
 									</tr>
 								</tbody>
 							</table>

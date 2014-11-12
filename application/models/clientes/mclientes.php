@@ -50,9 +50,9 @@ class Mclientes extends CI_Model{
 		
 		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
 		if($returned>0){
-			$returned='SUCCESS;'+$returned;
+			return true;;
 		}
-		return $returned;
+		return false;
 	}
 	
 	

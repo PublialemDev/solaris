@@ -101,19 +101,19 @@ class Cproductos extends CI_Controller {
 	 */
 	public function selectProductoJson()
 	{
-		//$prod_id=$this->input->post('PROD_ID');
-		//$cli_nombre=$this->input->post('cli_nombre');
-		//$cli_rfc=$this->input->post('cli_rfc');
+		$prod_id=$this->input->post('PROD_ID');
+		$prod_nombre=$this->input->post('PROD_NOMBRE');
+		$prod_desc=$this->input->post('PROD_DESC');
 		$where_clause=array();
-		/*if($cli_id!= null and $cli_id!=''){
-			$where_clause['cli_id']=$cli_id;
+		if($prod_id!= null and $prod_id!=''){
+			$where_clause['prod_id']=$prod_id;
 		}
-		if($cli_nombre!= null and $cli_nombre!=''){
-			$where_clause['cli_nombre']=$cli_nombre;
+		if($prod_nombre!= null and $prod_nombre!=''){
+			$where_clause['prod_nombre']=$prod_nombre;
 		}
-		if($cli_rfc!= null and $cli_rfc!=''){
-			$where_clause['cli_rfc']=$cli_rfc;
-		}*/
+		if($prod_desc!= null and $prod_desc!=''){
+			$where_clause['prod_desc']=$prod_desc;
+		}
 		
 		$res=$this->mproductos->selectProductos($where_clause);
 		if($res!=false){
@@ -159,6 +159,27 @@ class Cproductos extends CI_Controller {
 		$data['producto']=$this->mproductos->selectProductoById($id_producto);
 		$data['categorias']=$this->mcategoriaproductos->selectCategoriaProductos();
 		$this->load->view('productos/vProductosUpdate',$data);
+	}
+
+	/* Delete Producto
+	 *
+	 * Elimina el Producto de la Base de datos
+	 * 
+	 * @author Luis Briseño
+	 * @access	public
+	 * 
+	 */
+	public function deleteProducto(){
+		$prod_id=$this->input->post('PROD_ID');
+		
+		$returned=$this->mproductos->deleteProducto($prod_id);
+		
+		if($returned){
+			$this->mlogs->insertLog(array('tipo_log'=>'delete_producto','descripcion_log'=>'se elimino el producto: '.$prod_id));
+			echo 'SUCCESS;';
+		}else{
+			echo 'ERROR;'.$returned;
+		}
 	}
 	
 			

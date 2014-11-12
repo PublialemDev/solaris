@@ -10,15 +10,9 @@ class CMain extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
-		$this->load->helper('jsClientes');//carga el helper bsico para las view
-		$this->load->model('estados/mestados');
-		$this->load->model('clientes/mclientes');
-		$this->load->model('direcciones/mdirecciones');
-		$this->load->model('telefonos/mtelefonos');
-		$this->load->model('correos/mcorreos');
-		//$this->load->helper('url');
-		//$this->load->library('javascript');
-		//$this->load->view('JS/clientes.js');
+	}
+	public function main(){
+		$this->load->view('main/vMain');
 	}
 }
 ?>

@@ -61,7 +61,7 @@ $(document).on("click",".enviarButton",function(){
 				$("input").attr("disabled","disabled");
 				$("textarea").attr("disabled","disabled");
 				$("select").attr("disabled","disabled");
-				alert("El cliente se creo correctamente");
+				alert("El producto se creo correctamente");
 			}else{
 				alert("Ocurrio un error: "+msg);
 			}
@@ -99,7 +99,7 @@ $(document).on("click",".updateButton",function(){
 					$("input").attr("disabled","disabled");
 					$("textarea").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
-					alert("El cliente se actualizó correctamente");
+					alert("El producto se actualizó correctamente");
 				}else{
 						alert("Ocurrio un error: "+msg);
 				}

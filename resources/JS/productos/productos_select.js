@@ -3,7 +3,7 @@ function selectProductos(form,evt){
 	var formSer=$(form).serialize();
 	
 	$.ajax({
-		data:formSer,
+		data:formSer.toUpperCase(),
 		url:SERVER_URL_BASE+"productos/cproductos/selectProductoJson",
 		method:"POST",
 		beforeSend:function(){/*alert("Enviando...");*/},

@@ -2,12 +2,12 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
-	echo getHeader('Consulta de Clientes'); 
+	echo getHeader('Consulta de Productos'); 
 	echo getMenu();
 	//cliente
-	$cli_nombre =array('name'=>'cli_nombre','placeholder'=>'Nombre','value'=>'');
-	$cli_rfc =array('name'=>'cli_rfc','placeholder'=>'RFC', 'value'=>'');
-	$cli_id =array('name'=>'cli_id','placeholder'=>'Número de cliente', 'value'=>'');
+	$prod_id =array('name'=>'prod_id','placeholder'=>'Numero de Producto','value'=>'');
+	$prod_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre', 'value'=>'');
+	$prod_desc =array('name'=>'prod_desc','placeholder'=>'Descripción', 'value'=>'');
 	
 	//formularios
 	$form_producto=array('id'=>'form_producto','onSubmit'=>'selectProductos(this,event)');
@@ -23,16 +23,16 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			<table >
 				<tbody>
 					<tr>
-						<td><?php echo form_label('Número de Cliente: ','cli_id');?></td>
-						<td><?php echo form_input($cli_id);?></td>
+						<td><?php echo form_label('Número de Producto: ','prod_id');?></td>
+						<td><?php echo form_input($prod_id);?></td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('Nombre: ','cli_nombre');?></td>
-						<td><?php echo form_input($cli_nombre);?></td>
+						<td><?php echo form_label('Nombre: ','prod_nombre');?></td>
+						<td><?php echo form_input($prod_nombre);?></td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('RFC: ','cli_rfc');?></td>
-						<td><?php echo form_input($cli_rfc);?></td>
+						<td><?php echo form_label('Descripción: ','prod_desc');?></td>
+						<td><?php echo form_input($prod_desc);?></td>
 					</tr>
 					<tr>
 						<td><?php echo form_submit('enviar','Enviar','class="enviarButton btn btn-primary"');?></td>

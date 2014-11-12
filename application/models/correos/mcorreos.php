@@ -24,10 +24,11 @@
 		function deleteCorreosAll($perfil_id,$tipo_perfil){
 			$returned=$this->db->delete('correos',array('id_perfil'=>$perfil_id,'perfil_tipo'=>$tipo_perfil));
 			//insertar log para auditoria
-			if($returned==1){
+			if($returned>0){
 				$this->mlogs->insertLog(array('tipo_log'=>'delete_correos','descripcion_log'=>'borrado de correos para el perfil: '.$perfil_id));
+				return true;
 			}
-			return $returned;
+			return false;
 		}
 		
 		function selectCorreos($id_perfil,$tipo_perfil){

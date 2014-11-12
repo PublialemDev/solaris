@@ -29,8 +29,9 @@
 			//insertar log para auditoria
 			if($returned==1){
 				$this->mlogs->insertLog(array('tipo_log'=>'delete_telefonoss','descripcion_log'=>'borrado de telefonos para el perfil: '.$perfil_id));
+				return true;
 			}
-			return $returned;
+			return false;
 		}
 		
 		function selectTelefonos(){
