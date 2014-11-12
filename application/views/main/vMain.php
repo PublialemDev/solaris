@@ -6,6 +6,7 @@ echo getHeader('Accesso');
 
 ?>
 
+<<<<<<< HEAD
 <!--Inicia menu--> 
 <div class="navbar-wrapper">
   <div class="container">    
@@ -139,6 +140,37 @@ echo getHeader('Accesso');
 		</div>
 		<div class="row"><br><br><br><br></div>
 	</div>
+=======
+<!-- lync para Alta Seguimiento Clientes-->
+<a href='/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento'>Alta Categoria Seguimiento Clientes</a><br>
+<!-- lync para Select Seguimiento Clientes-->
+<a href='/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento'>Select Categoria Seguimiento Clientes</a><br>
+
+<!-- lync para Alta de Categoria Productos-->
+<a href='/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos'>Alta Categoria Productos</a><br>
+<!-- lync para select de Categoria Productos-->
+<a href='/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos'>Select Categoria Productos</a><br>
+
+<!-- lync para Alta de Productos-->
+<a href='/solaris/index.php/productos/cproductos/insertProductoForm'>Alta Productos</a><br>
+<!-- lync para select de productos-->
+<a href='/solaris/index.php/productos/cproductos/selectProductosForm'>Select Productos</a><br>
+
+<!-- lync para Alta de remisiones-->
+<a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a>
+<!-- lync para select de remisioens-->
+<a href='/solaris/index.php/remisiones/cremisiones/selectRemisiones'>Select Remisiones</a>
+
+<!-- lync para Alta de tipo de pago-->
+<a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a>
+<!-- lync para select de tipo de pago-->
+<a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a>
+
+<!-- lync para Alta de tipo de usuario-->
+<a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a><br>
+<!-- lync para select de tipo de usuario-->
+<a href='/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios'>select tipo de usuario</a><br>
+>>>>>>> ab6f16b323dffdb5c635f8a16ae23dd014507633
 </div>
 </div></div>
 <?php
