@@ -23,13 +23,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 	<!-- JS basicos-->
 	<!-- script src="http://localhost/solaris/resources/JS/clientes.js"></script-->
+	
 	<!-- CSS basicos-->
 	<script src="http://localhost/solaris/resources/JS/validaciones_form.js"></script>
 	<link href="http://solarisdemexico.com/css/styles.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/screen.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
-    <link href="http://solarisdemexico.com/css/css" rel="stylesheet" type="text/css">
-	<link href="http://solarisdemexico.com/css/adjust.js" rel="stylesheet" type="text/css">
+    <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
+	<script src="http://solarisdemexico.com/css/adjust.js"></script>
+	<link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.woff" rel="stylesheet" type="text/css">
+	<link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.ttf" rel="stylesheet" type="text/css">
 	
 	<!-- Variable de accesso al server-->
 	<script>var SERVER_URL_BASE="http://localhost/solaris/index.php/"</script>
@@ -131,8 +134,28 @@
  */
 	function getFooter($script =''){
 		return $script.'
-</body>
-</html>
+		<div class="clear"></div>
+		 	<img class="lines_bg" src="http://solarisdemexico.com/images/lines_bg.png">
+			<footer>
+			    <div id="footer_cont1">
+			          <div class="footer_info">
+			          	<p class="bold">Tel:(55)21571957 / (55)56412732<br> </p>
+			          	<div class="direccion">
+			             
+			             	<p  class="copy">email: ventas@solarisdemexico.com</p>
+			             
+			          	</div>
+			        	<div class="logo2"> <img src="http://solarisdemexico.com/images/logo2.png" alt="logo">
+			              <p class="copy">Todos los derechos reservados</p>
+			        	</div>
+			      	</div>
+			          <!--end of footer_info--> 
+			          
+			    </div>
+			    <!--End of footer_cont--> 
+			</footer>
+		</body>
+		</html>
 			';
 	}
 ?>

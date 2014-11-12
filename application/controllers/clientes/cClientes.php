@@ -11,7 +11,6 @@ class CClientes extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
-		$this->load->helper('jsClientes');//carga el helper bsico para las view
 		$this->load->model('estados/mestados');
 		$this->load->model('clientes/mclientes');
 		$this->load->model('direcciones/mdirecciones');
@@ -157,15 +156,12 @@ class CClientes extends CI_Controller {
 		$this->load->view('clientes/vClientesSelect',$data);
 	}
 	/**
-	 * Insertar Cliente
+	 * Select cliente Json
 	 *
-	 * Inserta un cliente, recibe los datos en tres arreglos.
-	 *
+	 * regresa los clientes que coinciden con las condiciones en formato json.
+	 * @author Luis Briseño
 	 * @access	public
-	 * @param	array los datos del cliente
-	 * @param	array los datos de los telefonos del cliente
-	 * @param	array los datos de la direccion del cliente
-	 * @return	int
+	 * @return	string
 	 */
 	public function selectClienteJson()
 	{

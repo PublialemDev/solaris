@@ -101,7 +101,9 @@ function validarForm(){
 	return continuar;
 }
 
-
+/*
+ *Guarda los datos al hacer clic en el boton
+ * */
 $(document).on("click",".enviarButton",function(){
 	if(validarForm()){
 		

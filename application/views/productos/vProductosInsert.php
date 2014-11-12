@@ -14,7 +14,7 @@ $producto_proveedor =array('name'=>'prod_proveedor','placeholder'=>'Proveedor','
 $producto_precio =array('name'=>'prod_precio','placeholder'=>'Precio','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
-$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30,'class'=>'form-control');
+$datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>30,'class'=>'form-control');
 
 //Propiedades del combobox
 $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
@@ -31,11 +31,11 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 								<table>
 								<tbody>
 									<?php echo form_open('#',$form_producto); ?>
-									<?php echo form_hidden('idSeguimiento','0');?>
+									<?php echo form_hidden('prod_id','0');?>
 									<tr>
 										<td>
 											<div class="form-group">
-											<?php echo form_label('Nombre: ','nombre',$label);?>
+											<?php echo form_label('Nombre: ','prod_nombre',$label);?>
 											<?php echo form_input($producto_nombre);?>
 											</div>
 											</td>
@@ -43,9 +43,8 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Categoria: ','categoria',$label);?>
+												<?php echo form_label('Categoria: ','prod_categoria',$label);?>
 												<select name="prod_categoria" class="form-control"> 
-												<option value="0"></option>
 												<?php foreach ($categorias->result() as $categoria) {
 													echo '<option value="'.$categoria->id_categoriaProducto.'">'.$categoria->nombre_categoriaProducto.'</option>';
 												}?> 
@@ -56,7 +55,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Precio: ','precio',$label);?>
+												<?php echo form_label('Precio: ','prod_precio',$label);?>
 												<?php echo form_input($producto_precio);?>
 											</div>
 										</td>
@@ -64,7 +63,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Proveedor: ','proveedor',$label);?>
+												<?php echo form_label('Proveedor: ','prod_proveedor',$label);?>
 												<?php echo form_input($producto_proveedor);?>
 											</div>
 										</td>
@@ -72,7 +71,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Estatus: ','estatus',$label);?>
+												<?php echo form_label('Estatus: ','prod_estatus',$label);?>
 												<?php echo form_dropdown('prod_estatus',$producto_estatus,'A', 'class="form-control"');?>
 											</div>
 										</td>
@@ -80,7 +79,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Descripcion:','descripcion',$label);?>
+												<?php echo form_label('Descripcion:','prod_desc',$label);?>
 												<?php echo form_textarea($datos);?>
 											
 											</div>
