@@ -1,39 +1,68 @@
 <?php
-echo getHeader('Tipos de Usuario');
+session_start();
+if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
+echo getHeader('Tipos de usuarios');
 
 //Propiedades del form
-$form_tipousuario = array('id'=>'$form_tipousuario','onSubmit'=>'getValues(this,event)');
+$form_tipousuarios = array('id'=>'form_tipousuarios','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
-$tipousuario_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>'');
+$tipousuarios_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
-$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30);
+$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30,'class'=>'form-control');
+
+$label=array('class'=>'control-label');
 ?>
 
 <div id="container" class='container'>
+	<div class="panel panel-info">
+		<div class="panel-heading">Registro de Tipos de Usuarios</div>
+		<div class="panel-body">
+			<center>
+				<div class='container-fluid'>
+					<div class="row">
+						<div class='col-md-3'>
 	
-	<table>
-		<tbody>
-			<?php echo form_open('#',$form_tipousuario); ?>
-			<?php echo form_hidden('idTipoUsuario','0');?>
-			<tr>
-				<td><?php echo form_label('Nombre: ','nombre');?></td>
-				<td><?php echo form_input($tipousuario_nombre);?></td>
-			</tr>
-			<tr>
-				<td><?php echo form_label('Descripcion:','descripcion');?></td>
-				<td><?php echo form_textarea($datos);?></td>
-			</tr>
-			
-			<tr>
-				<td><?php echo form_button('enviar','ENVIAR','class="enviarButton"');?></td>
-			</tr>
-		</tbody>
-	</table>
+						<table>
+							<tbody>
+								<?php echo form_open('#',$form_tipousuarios); ?>
+								<?php echo form_hidden('idTipoPago','0');?>
+								<tr>
+									<td>
+										<div class="form-group">
+										<?php echo form_label('Nombre: ','nombre',$label);?>
+										<?php echo form_input($tipousuarios_nombre);?>
+										</div>	
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="form-group">
+										<?php echo form_label('Descripcion:','descripcion',$label);?>
+										<?php echo form_textarea($datos);?>
+										</div>										
+									</td>
+								</tr>
+								<?php echo form_close();?>																
+							</tbody>
+						</table>
+						<table>
+							<tr>
+								<td><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
+							</tr>
+						</table>
+						</div>
+					</div>
+				</div>
+			</center>
+		</div>								
+	</div> 
 </div>
 
 <?php 
-echo form_close();
-echo getFooter();
+echo getFooter('<script src="http://localhost/solaris/resources/JS/usuarios/tipousuarios_insert.js"></script>');
+}else{
+	header('Location: /solaris/index.php/main/cLogin/');
+}
 ?>
