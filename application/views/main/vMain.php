@@ -5,6 +5,7 @@ echo getHeader('Accesso');
 //echo base64_decode($_SESSION['USUARIO_ID']);
 
 ?>
+
 <!--Inicia menu--> 
 <div class="navbar-wrapper">
   <div class="container">    
@@ -139,7 +140,7 @@ echo getHeader('Accesso');
 		<div class="row"><br><br><br><br></div>
 	</div>
 </div>
-
+</div></div>
 <?php
 echo getFooter() ;
 }else{
