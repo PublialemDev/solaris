@@ -6,12 +6,12 @@ class CTipoPago extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('pagina');
 		$this->load->helper('form');
-		$this->load->model('remisiones/mTipoPago');
-		$this->load->library('table');
+		$this->load->model('remisiones/mtipopago');
+		$this->load->model('logs/mLogs');
 	}
 	
 	public function insertTipoPago(){		
-		$this->load->view('remisiones/vTipoPagoInsert');
+		$this->load->view('remisiones/vtipopagoinsert');
 	}
 	
 	public function getValues(){
@@ -19,16 +19,86 @@ class CTipoPago extends CI_Controller {
 		
 		$datos = array('nombre' => $this->input->post('nombre_txt'), 
 		'descripcion' => $this->input->post('descripcion_txt'), 
-		'creado_en' => $sysdate->format('Y-m-d H:i:s'), 
-		'creado_por' =>  1);
+		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
-		$this->mTipoPago->insertTipoPago($datos);
+		$tipopago_id = $this->mtipopago->insertTipoPago($datos);
+		
+		echo 'SUCCESS;'.$tipopago_id;
 
 	}
 	
-	public function selectTipoPago(){
-		$consulta['query'] = $this->mTipoPago->selectTipoPago();
-		$this->load->view('remisiones/vTipoPagoSelect',$consulta);
+	
+	public function formSelectTipoPago(){		
+		$this->load->view('remisiones/vtipopagoselect');
 	}
+	
+	public function selectTipoPago(){		
+		$tipopago_id=$this->input->post('tipopago_id');
+		$tipopago_nombre=$this->input->post('tipopago_nombre');
+		$where_clause=array();
+		
+		if($tipopago_id!= null and $tipopago_id!=''){
+			$where_clause['tipopago_id']=$tipopago_id;
+		}
+		if($tipopago_nombre!= null and $tipopago_nombre!=''){
+			$where_clause['tipopago_nombre']=$tipopago_nombre;
+		}
+		
+		$res=$this->mtipopago->selectTipoPago($where_clause);
+		if($res!=false){
+			$json='[';
+			$last=$res->last_row();
+			foreach ( $res->result() as $tipopago) {
+				$json.='{';
+				$json.='"id":'.'"'.$tipopago->id_tipoPago.'",';
+				$json.='"nombre":'.'"'.$tipopago->nombre_tipoPago.'",';
+				$json.='"descripcion":'.'"'.$tipopago->descripcion_tipoPago.'"';
+				$json.='}';
+				if($tipopago->id_tipoPago!=$last->id_tipoPago){
+					$json.=',';
+				}
+			}
+			$json.=']';
+					
+			echo $json;
+		}else{
+			echo "NO_DATA_FOUND";
+		}		
+	}
+
+	public function updateTipoPago(){
+		$tipopago_id=$this->input->post('idTipoPago');//Almacenara el ID(hidden) generado en la actualizacion
+		$tipopago_data;
+		$response;
+		
+		//establece los datos de la categoria para la actualizacion
+		$tipopago_data = array(
+		'idTipoPago'=>$tipopago_id,
+		'nombre'=>$this->input->post('nombre_txt'),
+		'descripcion'=>$this->input->post('descripcion_txt')
+		);
+		//inserta y recibe el id generado en la actualizacion
+		$response = $this->mtipopago->updateTipoPago($tipopago_data);
+		if($response == 1){
+			echo "El registro se actualizo correctamente";
+		}
+		
+	}
+	/*
+	public function formUpdateCategoriaProductos(){
+		$id_catproducto=$this->input->get('id_categoriaProducto');
+		$data['catproducto']=$this->mcategoriaproductos->selectCategoriaProductosById($id_catproducto);
+		$this->load->view('productos/vcategoriaproductosupdate',$data);
+	}
+	
+	public function deleteCategoriaProductos(){
+		$id_catprodu = $this->input->post('idCatProducto');		
+		$returned = $this->mcategoriaproductos->deleteCategoriaProductos($id_catprodu);
+		
+		if($returned>0){
+			$this->mLogs->insertLog(array('tipo_log'=>'delete_categoriaproducto','descripcion_log'=>'se elimino la categoria de productos: '.$id_catprodu));
+		}
+		return 'Mensage: '.$returned;
+	}*/
 }
 ?>

@@ -35,7 +35,7 @@ getHeader('Accesso');
 <!-- lync para Alta de tipo de pago-->
 <a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a><br>
 <!-- lync para select de tipo de pago-->
-<a href='/solaris/index.php/remisiones/ctipopago/selectTipoPago'>select tipo de pago</a><br>
+<a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a><br>
 
 <!-- lync para Alta de tipo de usuario-->
 <a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a><br>
