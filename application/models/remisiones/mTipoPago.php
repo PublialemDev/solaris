@@ -41,15 +41,15 @@ class MTipoPago extends CI_Model{
 		
 		return $returned;
 	}
-/*
-	function deleteCategoriaProductos($catprodu_id){
+
+	function deleteTipoPago($tipopago_id){
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('categoriaproductos',array('id_categoriaProducto'=>$catprodu_id));
+		$returned=$this->db->delete('tipopagos',array('id_tipoPago'=>$tipopago_id));
 		return $returned;
 	}
-*/
-	function selectTipoPago($where_clause){
+
+function selectTipoPago($where_clause){
 		
 		if(isset($where_clause['tipopago_id'])){
 			$this->db->where('id_tipoPago',$where_clause['tipopago_id']);

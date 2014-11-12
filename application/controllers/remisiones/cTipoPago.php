@@ -84,21 +84,21 @@ class CTipoPago extends CI_Controller {
 		}
 		
 	}
-	/*
-	public function formUpdateCategoriaProductos(){
-		$id_catproducto=$this->input->get('id_categoriaProducto');
-		$data['catproducto']=$this->mcategoriaproductos->selectCategoriaProductosById($id_catproducto);
-		$this->load->view('productos/vcategoriaproductosupdate',$data);
+
+	public function formUpdateTipoPago(){
+		$id_tipopago=$this->input->get('id_tipoPago');
+		$data['tipopago']=$this->mtipopago->selectTipoPagoById($id_tipopago);
+		$this->load->view('remisiones/vtipopagoupdate',$data);
 	}
 	
-	public function deleteCategoriaProductos(){
-		$id_catprodu = $this->input->post('idCatProducto');		
-		$returned = $this->mcategoriaproductos->deleteCategoriaProductos($id_catprodu);
+	public function deleteTipoPago(){
+		$id_tipopago = $this->input->post('idTipoPago');		
+		$returned = $this->mtipopago->deleteTipoPago($id_tipopago);
 		
 		if($returned>0){
-			$this->mLogs->insertLog(array('tipo_log'=>'delete_categoriaproducto','descripcion_log'=>'se elimino la categoria de productos: '.$id_catprodu));
+			$this->mLogs->insertLog(array('tipo_log'=>'delete_tipopago','descripcion_log'=>'se elimino el tipo de pago: '.$id_tipopago));
 		}
 		return 'Mensage: '.$returned;
-	}*/
+	}
 }
 ?>

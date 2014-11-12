@@ -1,10 +1,10 @@
 <?php 
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Tipos de pago');
-	//tipo pago
+	echo getHeader('Tipos de Pago');
+	//categoria seguimiento
 	$tipopago_nombre =array('name'=>'tipopago_nombre','placeholder'=>'Nombre','value'=>'');
-	$tipopago_id =array('name'=>'$tipopago_id','placeholder'=>'Número de categoria', 'value'=>'');
+	$tipopago_id =array('name'=>'tipopago_id','placeholder'=>'Número de categoria', 'value'=>'');
 	
 	//formularios
 	$form_tipopago=array('id'=>'form_tipopago','onSubmit'=>'selectTipoPago(this,event)');

@@ -28,14 +28,14 @@ echo getHeader('Accesso');
 <a href='/solaris/index.php/productos/cproductos/selectProductosForm'>Select Productos</a><br>
 
 <!-- lync para Alta de remisiones-->
-<a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a>
+<a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a><br>
 <!-- lync para select de remisioens-->
-<a href='/solaris/index.php/remisiones/cremisiones/selectRemisiones'>Select Remisiones</a>
+<a href='/solaris/index.php/remisiones/cremisiones/selectRemisiones'>Select Remisiones</a><br>
 
 <!-- lync para Alta de tipo de pago-->
-<a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a>
+<a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a><br>
 <!-- lync para select de tipo de pago-->
-<a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a>
+<a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a><br>
 
 <!-- lync para Alta de tipo de usuario-->
 <a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario'>Alta tipo de usuario</a><br>
