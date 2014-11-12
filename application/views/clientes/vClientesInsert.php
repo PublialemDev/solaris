@@ -33,7 +33,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <div id="container" class='container'>
 	<div class="panel panel-info">
-		<div class="panel-heading">Registro de Clientes</div>
+		<div class="panel-heading"><b>Registro de Clientes<b></div>
 		<div class="panel-body">
 			<center>
 				<div class='container-fluid'>
@@ -134,10 +134,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 							<table>
 							<tbody>
 							<!--inicio telefono-->
-							<tr>
-								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-primary"');?></td>
-							</tr>
-						
+													
 							<tr>
 								<td>
 									<div class="form-group">
@@ -146,12 +143,12 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 									</div>
 								</td>
 							</tr>
+							<tr>
+								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-xs btn-default"');?></td>
+							</tr>
 							<!--fin telefono-->
 							<!--inicio correo-->
-							<tr>
-								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-primary"');?></td>
-							</tr>
-							
+													
 							<tr>
 								<td>
 									<div class="form-group">
@@ -159,6 +156,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 										<?php echo form_input($corr_correo);?>
 									</div>
 								</td>
+							</tr>
+							<tr>
+								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-xs btn-default"');?></td>
 							</tr>
 							<!--fin correo-->
 							</tbody>
@@ -178,6 +178,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			</center>
 		</div> 
 	</div>
+</div>
 </div>
 
 <?php
