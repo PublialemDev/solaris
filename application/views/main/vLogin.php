@@ -18,7 +18,7 @@ $form_login=array('id'=>'form_login','role'=>'form');
 		</div>
 		<div class="col-md-4"></div>
 	</div>
-	
+
 	
 		<div class="row">
 			<div class="col-md-4"></div>
@@ -45,14 +45,11 @@ $form_login=array('id'=>'form_login','role'=>'form');
 	</div>
 </div>
 
-
 <?php
 
 echo getFooter() ;
 ?>
-
-<div class="clear"></div>
- <img class="lines_bg" src="http://solarisdemexico.com/images/lines_bg.png">
+ 
 <footer>
     <div id="footer_cont1">
           <div class="footer_info">
@@ -71,4 +68,3 @@ echo getFooter() ;
     </div>
     <!--End of footer_cont--> 
 </footer>
- 
