@@ -26,7 +26,7 @@ echo getMenu();
 <!-- lync para Alta de sucursales-->
 <a href='/solaris/index.php/sucursales/csucursales/forminsertSucursales'>Alta Sucursales</a><br>
 <!-- lync para select de sucursales-->
-<a href='/solaris/index.php/sucursales/csucursales/formSelectTipoUsuarios'>select Sucursales</a><br>
+<a href='/solaris/index.php/sucursales/csucursales/formSelectSucursales'>select Sucursales</a><br>
 
      <br>   
         <div class="row">
