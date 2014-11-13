@@ -111,7 +111,7 @@ function getMenu(){
           
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
-          		<li><a href="/solaris/index.php/main/cLogin/login">Inicio </a></li>
+          		<li><a href="/solaris/index.php/main/cMain/main">Inicio </a></li>
           		<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Clientes
@@ -192,7 +192,7 @@ function getMenu(){
           
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
-          		<li><a href="/solaris/index.php/main/cLogin/login">Inicio </a></li>
+          		<li><a href="/solaris/index.php/main/cMain/main">Inicio </a></li>
           		<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Clientes

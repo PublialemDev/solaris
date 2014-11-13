@@ -29,8 +29,6 @@ class CLogin extends CI_Controller {
 		if($usr_nombre != null and $usr_nombre!='' and $usr_passw!='' and $usr_passw!=null){
 			$usr_data=$this->musuarios->selectClienteByName($usr_nombre);
 			
-			//base64_encode($str);
-			//base64_decode($str);
 			if($usr_data!=false){//valida que el usuario exista
 			
 				$usr_data_db=$usr_data->next_row();
@@ -44,12 +42,13 @@ class CLogin extends CI_Controller {
 					$_SESSION['USUARIO_TIPO']= base64_encode($usr_data_db->id_tipoUsuario);
 					$_SESSION['USUARIO_NOMBRE']= base64_encode($usr_data_db->nombre_usuario);
 					
-					$this->mlogs->insertLog(array('tipo_log'=>'login_exitoso','descripcion_log'=>'login exitoso usuario: '.base64_decode($_SESSION['USUARIO_ID'])));
+					//$this->mlogs->insertLog(array('tipo_log'=>'login_exitoso','descripcion_log'=>'login exitoso usuario: '.base64_decode($_SESSION['USUARIO_ID'])));
 					
-					$this->load->view('main/vMain');
+					//$this->load->view('main/vMain');
+					echo 'SUCCESS';
 					
 				}else{
-					$this->mlogs->insertLog(array('tipo_log'=>'login_fallido','descripcion_log'=>'login fallido usuario: '.$usr_data_db->id_usuario));
+					//$this->mlogs->insertLog(array('tipo_log'=>'login_fallido','descripcion_log'=>'login fallido usuario: '.$usr_data_db->id_usuario));
 					
 					echo 'BAD_PASSW';
 				}

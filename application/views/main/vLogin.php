@@ -36,7 +36,7 @@ $form_login=array('id'=>'form_login','role'=>'form');
 						</div>
 					<!--fin Datos del Cliente -->
 						<center>
-							<br><?php echo form_submit('login','Entrar','class="enviarButton btn btn-primary"');?>
+							<br><?php echo form_button('login','Entrar','class="enviarButton btn btn-primary"');?>
 						</center>
 					<?php echo form_close();?>
 				</div>
@@ -47,6 +47,6 @@ $form_login=array('id'=>'form_login','role'=>'form');
 
 <?php
 
-echo getFooter() ;
+echo getFooter('<script src="http://localhost/solaris/resources/JS/main/main.js"></script>') ;
 ?>
  
