@@ -119,40 +119,40 @@ class CSucursales extends CI_Controller {
 		echo 'SUCCESS;'.$sucu_id;
 	}
 	
-/*
-	public function formSelectCliente(){
+
+	public function formSelectSucursales(){
 		$this->load->helper('form');//carga el helper para los formularios
 		$data['estados']= $this->mestados->selectEstados();
-		$this->load->view('clientes/vClientesSelect',$data);
+		$this->load->view('sucursales/vsucursalesselect',$data);
 	}
 
-	public function selectClienteJson()
+	public function selectSucursalesJson()
 	{
-		$cli_id=$this->input->post('cli_id');
-		$cli_nombre=$this->input->post('cli_nombre');
-		$cli_rfc=$this->input->post('cli_rfc');
+		$sucu_id=$this->input->post('sucu_id');
+		$sucu_nombre=$this->input->post('sucu_nombre');
+		$sucu_paginaweb=$this->input->post('sucu_paginaweb');
 		$where_clause=array();
-		if($cli_id!= null and $cli_id!=''){
-			$where_clause['cli_id']=$cli_id;
+		if($sucu_id!= null and $sucu_id!=''){
+			$where_clause['sucu_id']=$sucu_id;
 		}
-		if($cli_nombre!= null and $cli_nombre!=''){
-			$where_clause['cli_nombre']=$cli_nombre;
+		if($sucu_nombre!= null and $sucu_nombre!=''){
+			$where_clause['sucu_nombre']=$cli_nombre;
 		}
-		if($cli_rfc!= null and $cli_rfc!=''){
-			$where_clause['cli_rfc']=$cli_rfc;
+		if($sucu_paginaweb!= null and $sucu_paginaweb!=''){
+			$where_clause['sucu_paginaweb']=$sucu_paginaweb;
 		}
 		
-		$res=$this->mclientes->selectClientes($where_clause);
+		$res=$this->msucursales->selectSucursales($where_clause);
 		if($res!=false){
 			$json='[';
 			$last=$res->last_row();
-			foreach ( $res->result() as $cliente) {
+			foreach ( $res->result() as $sucursal) {
 				$json.='{';
-				$json.='"id":'.'"'.$cliente->id_cliente.'",';
-				$json.='"nombre":'.'"'.$cliente->nombre_cliente.'",';
-				$json.='"rfc":'.'"'.$cliente->rfc.'"';
+				$json.='"id":'.'"'.$sucursal->id_sucursal.'",';
+				$json.='"nombre":'.'"'.$sucursal->nombre_sucursal.'",';
+				$json.='"paginaweb":'.'"'.$sucursal->pagina_web.'"';
 				$json.='}';
-				if($cliente->id_cliente!=$last->id_cliente){
+				if($sucursal->id_sucursal!=$last->id_sucursal){
 					$json.=',';
 				}
 			}
@@ -165,17 +165,17 @@ class CSucursales extends CI_Controller {
 	}
 	
 
-	public function formUpdateCliente(){
+	public function formUpdateSucursales(){
 		$this->load->helper('form');//carga el helper para los formularios
-		$id_cliente=$this->input->get('id_cliente');
+		$id_sucursal=$this->input->get('id_sucursal');
 		$data['estados']= $this->mestados->selectEstados();
-		$data['cliente']=$this->mclientes->selectClienteById($id_cliente);
-		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_cliente,'cli');
-		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_cliente,'cli');
-		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_cliente,'cli');
-		$this->load->view('clientes/vClientesUpdate',$data);
+		$data['sucursal']=$this->msucursales->selectSucursalesById($id_sucursal);
+		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_sucursal,'suc');
+		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_sucursal,'suc');
+		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_sucursal,'suc');
+		$this->load->view('sucursales/vsucursalesupdate',$data);
 	}
-	*/
+
 
 	public function updateSucursales()
 	{
@@ -272,23 +272,23 @@ class CSucursales extends CI_Controller {
 		echo 'SUCCESS;'.$response;
 	}
 	
-/*
-	public function deleteCliente(){
-		$cli_id=$this->input->post('CLI_ID');
+
+	public function deleteSucursales(){
+		$sucu_id=$this->input->post('SUCU_ID');
 		
-		$returned=$this->mclientes->deleteCliente($cli_id);
+		$returned=$this->msucursales->deleteSucursales($sucu_id);
 		if($returned)
-		$returned=$this->mdirecciones->deleteDireccion($cli_id,'cli');
+		$returned=$this->mdirecciones->deleteDireccion($sucu_id,'suc');
 		if($returned)
-		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
+		$returned=$this->mtelefonos->deleteTelefonosAll($sucu_id,'suc');
 		if($returned)
-		$returned=$this->mcorreos->deleteCorreosAll($cli_id,'cli');
+		$returned=$this->mcorreos->deleteCorreosAll($sucu_id,'suc');
 		
 		if($returned){
-			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
+			$this->mlogs->insertLog(array('tipo_log'=>'delete_sucursal','descripcion_log'=>'se elimino la sucursal: '.$sucu_id));
 		}
 		echo 'Mensage: '.$returned;
-	}*/
+	}
 	
 }
 
