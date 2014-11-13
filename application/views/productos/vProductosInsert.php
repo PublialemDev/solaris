@@ -105,7 +105,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 		</div>
 	</div>
 </div>
-
+</div>
 <?php echo form_close();?>
 
 <?php

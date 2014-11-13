@@ -8,26 +8,6 @@ echo getMenu();
 ?>
 
 
-<!-- lync para Alta de remisiones-->
-<a href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a><br>
-<!-- lync para select de remisioens-->
-<a href='/solaris/index.php/remisiones/cremisiones/selectRemisiones'>Select Remisiones</a><br>
-
-<!-- lync para Alta de tipo de pago-->
-<a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a><br>
-<!-- lync para select de tipo de pago-->
-<a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a><br>
-
-<!-- lync para Alta de tipo de usuario-->
-<a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios'>Alta tipo de usuario</a><br>
-<!-- lync para select de tipo de usuario-->
-<a href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>select tipo de usuario</a><br>
-
-<!-- lync para Alta de sucursales-->
-<a href='/solaris/index.php/sucursales/csucursales/forminsertSucursales'>Alta Sucursales</a><br>
-<!-- lync para select de sucursales-->
-<a href='/solaris/index.php/sucursales/csucursales/formSelectSucursales'>select Sucursales</a><br>
-
      <br>   
         <div class="row">
 			<div class="col-md-2"></div>
@@ -64,7 +44,7 @@ echo getMenu();
 				<div class="jumbotron">      
 						<center><h4>- Pagos -</h4></center><br>
 						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a></button>
-						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>select tipo de pago</a></button>	
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>Select tipo de pago</a></button>	
 				</div>
 			</div>
 			<div class="col-md-2"></div>
@@ -75,10 +55,16 @@ echo getMenu();
 				<div class="jumbotron">      
 						<center><h4>- Usuarios -</h4></center><br>
 						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios'>Alta tipo de usuario</a></button>
-						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>select tipo de usuario</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>Select tipo de usuario</a></button>
 				</div>
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="jumbotron">      
+						<center><h4>- Sucursales -</h4></center><br>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/sucursales/csucursales/forminsertSucursales'>Alta Sucursales</a></button>
+						<button type="button" class="btn btn-primary btn-xs btn-block"><a href='/solaris/index.php/sucursales/csucursales/formSelectSucursales'>Select Sucursales</a></button>
+				</div>
+			</div>
 			<div class="col-md-2"></div>
 		</div>
 		<div class="row"><br><br><br><br></div>

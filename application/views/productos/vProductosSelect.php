@@ -64,7 +64,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		
 	</div>
 	
-</div>
+</div></div>
 
 <?php
 echo getFooter('<script src="http://localhost/solaris/resources/JS/productos/productos_select.js"></script>') ;
