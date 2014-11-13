@@ -2,13 +2,12 @@
 
 class CSucursales extends CI_Controller {
 
-
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->helper('pagina');//carga el helper bsico para las view
 		$this->load->model('estados/mestados');
-		//$this->load->model('sucursales/msucursales');
+		$this->load->model('sucursales/msucursales');
 		$this->load->model('direcciones/mdirecciones');
 		$this->load->model('telefonos/mtelefonos');
 		$this->load->model('correos/mcorreos');
@@ -18,64 +17,66 @@ class CSucursales extends CI_Controller {
 	
 	public function index()
 	{
-		//$this->load->view('clientes/vClientesUpdate');
+		//$this->load->view('sucursales/vClientesUpdate');
 	}
 
-	public function formInsertSucursal(){
+	public function formInsertSucursales(){
 		$this->load->helper('form');//carga el helper para los formularios
 		$data['estados']= $this->mestados->selectEstados();
 		$this->load->view('sucursales/vsucursalesinsert',$data);
 	}
 
-
-	public function insertSucursal()
+	public function insertSucursales()
 	{
-		$suc_id=0;//Almacenara el ID generado en la insercion
-		$suc_data;//Almacenara el array de datos de la sucursal para la insercion
+		$sucu_id=0;//Almacenara el ID generado en la insercion
+		$sucu_data;
 		$dir_data;//Almacenara el array de datos de la direccion para la insercion
+		$returned;
 		
-		
-		$suc_data=array(
-		'nombre'=>$this->input->post('nombre'),
-		'paginaweb'=>$this->input->post('paginaweb'),
-		'estatus'=>$this->input->post('estatus')
+		//establece los datos del cliente para la insercion
+		$sucu_data=array(
+		'nombre'=>$this->input->post('NOMBRE'),
+		'paginaweb'=>$this->input->post('PAGINAWEB'),
+		'estatus'=>$this->input->post('SUCU_ESTATUS')
 		);
-		
 		//inserta y recibe el id generado en la insercion
-		$suc_id= $this->msucursales->insertSucursal($suc_data);
+		$sucu_id= $this->msucursales->insertSucursales($sucu_data);
 		
 		//inserta la direccion para le cliente
-		if($suc_id>0 and $suc_id!= null){
+		if($sucu_id>0 and $sucu_id!= null){
 			//establece los datos del cliente para la insercion
 			$dir_data=array(
-			'cli_id'=>$suc_id,
-			'dir_estado'=>$this->input->post('dir_estado'),
-			'dir_calle'=>$this->input->post('dir_calle'),
-			'dir_num_ext'=>$this->input->post('dir_num_ext'),
-			'dir_num_int'=>$this->input->post('dir_num_int'),
-			'dir_col'=>$this->input->post('dir_col'),
-			'dir_muni'=>$this->input->post('dir_muni'),
-			'dir_cp'=>$this->input->post('dir_cp')
+			'cli_id'=>$sucu_id,
+			'dir_estado'=>$this->input->post('DIR_ESTADO'),
+			'dir_calle'=>$this->input->post('DIR_CALLE'),
+			'dir_num_ext'=>$this->input->post('DIR_NUM_EXT'),
+			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
+			'dir_col'=>$this->input->post('DIR_COL'),
+			'dir_muni'=>$this->input->post('DIR_MUNI'),
+			'dir_cp'=>$this->input->post('DIR_CP')
 			);
 			
 			//inserta y recibe el id generado en la insercion
-			$dir_id= $this->mdirecciones->insertDireccion($dir_data);
+			$returned= $this->mdirecciones->insertDireccion($dir_data,'suc');
+		}
+		else{
+			echo $returned;
 		}
 		
 		//inserta los telefonos para el cliente
-		if($suc_id>0 and $suc_id!= null){
+		if($sucu_id>0 and $sucu_id!= null and $returned>0){
 			//genera el array de los numeros de telefono
-			$tel_numeros = explode('#',$this->input->post('tel_num'));
+			$tel_numeros = explode('#',$this->input->post('TEL_NUM'));
 			$tel_data;
 			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
 				if($tel_num>0 and $tel_num!= null){
 					$tel_data=array(
-						'cli_id'=>$suc_id,
+						'cli_id'=>$sucu_id,
 						'tel_numero'=>$tel_num
 					);
 					
-					$returned=$this->mtelefonos->insertTelefono($tel_data);
+					$returned=$this->mtelefonos->insertTelefono($tel_data,'suc');
 					if($returned==1){
 						$total_telefonos+=1;
 					}
@@ -83,23 +84,25 @@ class CSucursales extends CI_Controller {
 			}
 			//inserta log para auditoria
 			if($total_telefonos>0){
-				$this->mlogs->insertLog(array('tipo_log'=>'insert_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$suc_id));
+				$this->mlogs->insertLog(array('tipo_log'=>'insert_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$sucu_id));
 			}
+		}else{
+			echo $returned;
 		}
 		
 		//inserta los correos para el cliente
-		if($suc_id>0 and $suc_id!= null){
+		if($sucu_id>0 and $sucu_id!= null  and $returned>0){
 			//genera el array de los correos
-			$corr_correos = explode('#',$this->input->post('corr_correo'));
+			$corr_correos = explode('#',$this->input->post('CORR_CORREO'));
 			$corr_data;
 			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
 				if($corr_correo !='' and $corr_correo!= null){
 					$corr_data=array(
-						'cli_id'=>$suc_id,
+						'cli_id'=>$sucu_id,
 						'corr_correo'=>$corr_correo
 					);
-					$returned=$this->mcorreos->insertCorreo($corr_data);
+					$returned=$this->mcorreos->insertCorreo($corr_data,'suc');
 					if($returned==1){
 						$total_correos+=1;
 					}
@@ -107,38 +110,23 @@ class CSucursales extends CI_Controller {
 			}
 			//inserta log para auditoria
 			if($total_correos>0){
-				$this->mlogs->insertLog(array('tipo_log'=>'insert_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$suc_id));
+				$this->mlogs->insertLog(array('tipo_log'=>'insert_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$sucu_id));
 			}
+		}else{
+			echo $returned;
 		}
 		
-		echo $suc_id .'-'.$dir_id;
+		echo 'SUCCESS;'.$sucu_id;
 	}
 	
-	/* Form Select/Update Cliente
-	 *
-	 * Crea el formulario para seleccionar/actualizar un cliente
-	 * 
-	 * @author Luis Briseño
-	 * @access	public
-	 * 
-	 */
-	/*public function formSelectCliente(){
+/*
+	public function formSelectCliente(){
 		$this->load->helper('form');//carga el helper para los formularios
 		$data['estados']= $this->mestados->selectEstados();
 		$this->load->view('clientes/vClientesSelect',$data);
 	}
-	/**
-	 * Insertar Cliente
-	 *
-	 * Inserta un cliente, recibe los datos en tres arreglos.
-	 *
-	 * @access	public
-	 * @param	array los datos del cliente
-	 * @param	array los datos de los telefonos del cliente
-	 * @param	array los datos de la direccion del cliente
-	 * @return	int
-	 */
-	/*public function selectClienteJson()
+
+	public function selectClienteJson()
 	{
 		$cli_id=$this->input->post('cli_id');
 		$cli_nombre=$this->input->post('cli_nombre');
@@ -174,149 +162,132 @@ class CSucursales extends CI_Controller {
 		}else{
 			echo "NO_DATA_FOUND";
 		}
-	}*/
+	}
 	
-	/* Form Select/Update Cliente
-	 *
-	 * Crea el formulario para seleccionar/actualizar un cliente
-	 * 
-	 * @author Luis Briseño
-	 * @access	public
-	 * 
-	
+
 	public function formUpdateCliente(){
 		$this->load->helper('form');//carga el helper para los formularios
 		$id_cliente=$this->input->get('id_cliente');
 		$data['estados']= $this->mestados->selectEstados();
 		$data['cliente']=$this->mclientes->selectClienteById($id_cliente);
-		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_cliente);
-		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_cliente);
-		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_cliente);
+		$data['direccion']=$this->mdirecciones->selectDireccionByCliId($id_cliente,'cli');
+		$data['telefono']=$this->mtelefonos->selectTelefonosByCliId($id_cliente,'cli');
+		$data['correo']=$this->mcorreos->selectCorreosByCliId($id_cliente,'cli');
 		$this->load->view('clientes/vClientesUpdate',$data);
-	}*/
-	
-	/**
-	 * Actualiza Cliente
-	 *
-	 * Actualiza un cliente, recibe los datos en tres arreglos.
-	 *
-	 * @access	public
-	 * @param	array los datos del cliente
-	 * @param	array los datos de los telefonos del cliente
-	 * @param	array los datos de la direccion del cliente
-	 * @return	int
-	
-	public function updateCliente()
+	}
+	*/
+
+	public function updateSucursales()
 	{
-		$cli_id=$this->input->post('cli_id');//Almacenara el ID generado en la actualizacion
-		$cli_data;//Almacenara el array de datos del cliente para la actualizacion
+		$sucu_id=$this->input->post('SUCU_ID');//Almacenara el ID generado en la actualizacion
+		$sucu_data;//Almacenara el array de datos del cliente para la actualizacion
 		$dir_data;//Almacenara el array de datos de la direccion para la actualizacion
-		$response;
+		$response=0;
 		
 		//establece los datos del cliente para la actualizacion
-		$cli_data=array(
-		'cli_id'=>$cli_id,
-		'nombre'=>$this->input->post('nombre'),
-		'rfc'=>$this->input->post('rfc')
+		$sucu_data=array(
+		'sucu_id'=>$sucu_id,
+		'nombre'=>$this->input->post('NOMBRE'),
+		'paginaweb'=>$this->input->post('PAGINAWEB'),
+		'estatus'=>$this->input->post('SUCU_ESTATUS')
 		);
 		//inserta y recibe el id generado en la actualizacion
-		$response = $this->mclientes->updateCliente($cli_data);
+		$response = $this->msucursales->updateSucursales($sucu_data);
 		
 		//inserta la direccion para le cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($sucu_id>0 and $sucu_id!= null and $response>0){
 			//establece los datos del cliente para la actualizacion
 			$dir_data=array(
-			'cli_id'=>$cli_id,
-			'dir_estado'=>$this->input->post('dir_estado'),
-			'dir_calle'=>$this->input->post('dir_calle'),
-			'dir_num_ext'=>$this->input->post('dir_num_ext'),
-			'dir_num_int'=>$this->input->post('dir_num_int'),
-			'dir_col'=>$this->input->post('dir_col'),
-			'dir_muni'=>$this->input->post('dir_muni'),
-			'dir_cp'=>$this->input->post('dir_cp')
+			'cli_id'=>$sucu_id,
+			'dir_estado'=>$this->input->post('DIR_ESTADO'),
+			'dir_calle'=>$this->input->post('DIR_CALLE'),
+			'dir_num_ext'=>$this->input->post('DIR_NUM_EXT'),
+			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
+			'dir_col'=>$this->input->post('DIR_COL'),
+			'dir_muni'=>$this->input->post('DIR_MUNI'),
+			'dir_cp'=>$this->input->post('DIR_CP')
 			);
 			
 			//inserta y recibe el id generado en la actualizacion
-			$response.='-/-'.$this->mdirecciones->updateDireccion($dir_data);
+			$response=$this->mdirecciones->updateDireccion($dir_data,'suc');
+		}else{
+			echo $response;
 		}
 		
 		//actualiza los telefonos para el cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($sucu_id>0 and $sucu_id!= null and $response>0){
 			//genera el array de los numeros de telefono
-			$tel_numeros = explode('#',$this->input->post('tel_num'));
-			$response.='//'.$this->mtelefonos->deleteTelefonosAll($cli_id);
+			$tel_numeros = explode('#',$this->input->post('TEL_NUM'));
+			$response=$this->mtelefonos->deleteTelefonosAll($sucu_id,'suc');
 			$tel_data;
 			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
 				if($tel_num>0 and $tel_num!= null){
 					$tel_data=array(
-						'cli_id'=>$cli_id,
+						'cli_id'=>$sucu_id,
 						'tel_numero'=>$tel_num
 					);
 					
-					$returned=$this->mtelefonos->insertTelefono($tel_data);
-					if($returned==1){
+					$response=$this->mtelefonos->insertTelefono($tel_data,'suc');
+					if($response==1){
 						$total_telefonos+=1;
 					}
 				}
 			}
 			//inserta log para auditoria
 			if($total_telefonos>0){
-				$this->mlogs->insertLog(array('tipo_log'=>'update_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$cli_id));
+				$this->mlogs->insertLog(array('tipo_log'=>'update_telefonos','descripcion_log'=>$total_telefonos.' telefonos para el perfil: '.$sucu_id));
 			}
+		}else{
+			echo $response;
 		}
 		
 		//actualiza los correos para el cliente
-		if($cli_id>0 and $cli_id!= null){
+		if($sucu_id>0 and $sucu_id!= null and $response>0){
 			//genera el array de los correos
-			$corr_correos = explode('#',$this->input->post('corr_correo'));
-			$response.='//'.$this->mcorreos->deleteCorreosAll($cli_id);
+			$corr_correos = explode('#',$this->input->post('CORR_CORREO'));
+			$response=$this->mcorreos->deleteCorreosAll($sucu_id,'suc');
 			$corr_data;
 			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
 				if($corr_correo !='' and $corr_correo!= null){
 					$corr_data=array(
-						'cli_id'=>$cli_id,
+						'cli_id'=>$sucu_id,
 						'corr_correo'=>$corr_correo
 					);
-					$returned=$this->mcorreos->insertCorreo($corr_data);
-					if($returned==1){
+					$response=$this->mcorreos->insertCorreo($corr_data,'suc');
+					if($response==1){
 						$total_correos+=1;
 					}
 				}
 			}
 			//inserta log para auditoria
 			if($total_correos>0){
-				$this->mlogs->insertLog(array('tipo_log'=>'update_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$cli_id));
+				$this->mlogs->insertLog(array('tipo_log'=>'update_correos','descripcion_log'=>$total_correos.' correos para el perfil: '.$sucu_id));
 			}
+		}else{
+			echo $response;
 		}
 		
-		echo $response;
-	}*/
+		echo 'SUCCESS;'.$response;
+	}
 	
-	/* Form Insert Cliente
-	 *
-	 * Crea el formulario para insertar un cliente
-	 * 
-	 * @author Luis Briseño
-	 * @access	public
-	 * 
-	 
+/*
 	public function deleteCliente(){
-		$cli_id=$this->input->post('cli_id');
+		$cli_id=$this->input->post('CLI_ID');
 		
 		$returned=$this->mclientes->deleteCliente($cli_id);
-		if($returned>0)
-		$returned=$this->mdirecciones->deleteDireccion($cli_id);
-		if($returned>0)
-		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id);
-		if($returned>0)
-		$returned=$this->mcorreos->deleteCorreosAll($cli_id);
+		if($returned)
+		$returned=$this->mdirecciones->deleteDireccion($cli_id,'cli');
+		if($returned)
+		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
+		if($returned)
+		$returned=$this->mcorreos->deleteCorreosAll($cli_id,'cli');
 		
-		if($returned>0){
+		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
 		}
-		return 'Mensage: '.$returned;
+		echo 'Mensage: '.$returned;
 	}*/
 	
 }

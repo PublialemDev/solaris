@@ -6,51 +6,55 @@ class MSucursales extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-	function insertSucursal($datosSucursal){
+	function insertSucursales($datosSucursales){
 		session_start();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('sucursales',
 		array(
-			'nombre_cliente' => $datosCliente['nombre'],
-			'rfc' => $datosCliente['rfc'],
+			'nombre_sucursal' => $datosSucursales['nombre'],
+			'pagina_web' => $datosSucursales['paginaweb'],
+			'estatus_sucursal' => $datosSucursales['estatus'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
 		//insertar log para auditoria
 		if($returned==1){
 			$returned=$this->db->insert_id();
-			$this->mlogs->insertLog(array('tipo_log'=>'insert_sucursales','descripcion_log'=>'alta de la sucursal: '.$returned));
+			$this->mlogs->insertLog(array('tipo_log'=>'insert_sucursal','descripcion_log'=>'alta de la sucursal: '.$returned));
 		}
 		return $returned;
 	}
 	
-	/*function updateCliente($cli_data_form){
-		
+	function updateSucursales($sucu_data_form){
 		session_start();
 		$sysdate=new DateTime();
-		$cli_data=array(
-			'nombre_cliente' => $cli_data_form['nombre'],
-			'rfc' => $cli_data_form['rfc'],
+		$returned=0;
+		$sucu_data=array(
+			'nombre_sucursal' => $sucu_data_form['nombre'],
+			'pagina_web' => $sucu_data_form['paginaweb'],
+			'estatus_sucursal' => $sucu_data_form['estatus'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned=$this->db->update('clientes',$cli_data,array('id_cliente'=>$cli_data_form['cli_id']));
+		$returned=$this->db->update('sucursales',$sucu_data,array('id_sucursal'=>$sucu_data_form['sucu_id']));
 		
 		//insertar log para auditoria
 		if($returned==1){
-			$this->mlogs->insertLog(array('tipo_log'=>'update_clientes','descripcion_log'=>'update del cliente: '.$cli_data_form['cli_id']));
+			$this->mlogs->insertLog(array('tipo_log'=>'update_sucursales','descripcion_log'=>'update de la sucursal: '.$sucu_data_form['sucu_id']));
 		}
-		
 		return $returned;
 	}
-	
+	/*
 	function deleteCliente($cli_id){
 		
 		session_start();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
-		return $returned;
+		if($returned>0){
+			return true;;
+		}
+		return false;
 	}
 	
 	
@@ -84,7 +88,7 @@ class MSucursales extends CI_Model{
 		else{
 			return false;
 		}
-	}*/
-	
+	}
+	*/
 }
 ?>

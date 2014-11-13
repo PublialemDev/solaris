@@ -23,6 +23,11 @@ echo getMenu();
 <!-- lync para select de tipo de usuario-->
 <a href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>select tipo de usuario</a><br>
 
+<!-- lync para Alta de sucursales-->
+<a href='/solaris/index.php/sucursales/csucursales/forminsertSucursales'>Alta Sucursales</a><br>
+<!-- lync para select de sucursales-->
+<a href='/solaris/index.php/sucursales/csucursales/formSelectTipoUsuarios'>select Sucursales</a><br>
+
      <br>   
         <div class="row">
 			<div class="col-md-2"></div>
