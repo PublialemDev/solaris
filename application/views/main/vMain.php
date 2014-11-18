@@ -7,7 +7,8 @@ echo getHeader('Accesso');
 echo getMenu();
 ?>
 
-
+<a href='/solaris/index.php/usuarios/cusuarios/formInsertUsuarios'>Alta usuarios</a>
+<a href='/solaris/index.php/usuarios/cusuarios/formSelectUsuarios'>select usuarios</a>
      <br>   
         <div class="row">
 			<div class="col-md-2"></div>

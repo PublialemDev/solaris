@@ -32,7 +32,7 @@ $(".deleteButton").click(function(){
 			method:"POST",
 			success: function(msg){
 				alert("Categoria eliminada correctamente: "+msg);
-				window.locationf=SERVER_URL_BASE+"productos/ccategoriaproductos/formSelectCategoriaProductos";
+				window.location=SERVER_URL_BASE+"productos/ccategoriaproductos/formSelectCategoriaProductos";
 			}
 		});
 	}
