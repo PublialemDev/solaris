@@ -67,7 +67,7 @@ class MSucursales extends CI_Model{
 			$this->db->like('nombre_sucursal',$where_clause['sucu_nombre']);
 		}
 		if(isset($where_clause['sucu_paginaweb'])){
-			$this->db->where('pagina_web',$where_clause['sucu_paginaweb']);
+			$this->db->like('pagina_web',$where_clause['sucu_paginaweb']);
 		}
 		
 		$query = $this->db->get('sucursales');
