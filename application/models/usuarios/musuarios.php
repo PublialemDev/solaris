@@ -10,9 +10,9 @@ class MUsuarios extends CI_Model{
 		session_start();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('usuarios',
-		array(
-			'id_sucursal' => $datosUsuarios['id_sucursal'],
+		array(			
 			'id_tipousuario' => $datosUsuarios['id_tipousuario'],
+			'id_sucursal' => $datosUsuarios['id_sucursal'],
 			'nombre_usuario' => $datosUsuarios['nombre'],
 			'contraseña' => $datosUsuarios['password'],
 			'estatus_usuario' => $datosUsuarios['estatus'],						
@@ -31,16 +31,16 @@ class MUsuarios extends CI_Model{
 		session_start();
 		$sysdate=new DateTime();
 		$returned=0;
-		$usr_data=array(
-			'id_sucursal' => $usr_data_form['id_sucursal'],
+		$usr_data=array(			
 			'id_tipousuario' => $usr_data_form['id_tipousuario'],
+			'id_sucursal' => $usr_data_form['id_sucursal'],
 			'nombre_usuario' => $usr_data_form['nombre'],
 			'contraseña' => $usr_data_form['password'],	
-			'estatus_sucursal' => $usr_data_form['estatus'],
+			'estatus_usuario' => $usr_data_form['estatus'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned=$this->db->update('usuarios',$sucu_data,array('id_usuario'=>$usr_data_form['usr_id']));
+		$returned=$this->db->update('usuarios',$usr_data,array('id_usuario'=>$usr_data_form['usr_id']));
 		
 		//insertar log para auditoria
 		if($returned==1){

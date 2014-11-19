@@ -6,11 +6,13 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$usr_nombre_data='';$usr_password_data='';
 	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';
 	$estado_id='';
-	if($sucursal!=false){
-		$sucu_data=$sucursal->first_row();
-		$sucu_nombre_data=$sucu_data->nombre_sucursal;
-		$sucu_paginaweb_data=$sucu_data->pagina_web;
-		$sucu_estatus_data = $sucu_data->estatus_sucursal;
+	if($usuarios!=false){
+		$usr_data=$usuarios->first_row();
+		$usr_nombre_data=$usr_data->nombre_usuario;
+		$usr_password_data=$usr_data->contraseña;
+		$usr_estatus_data = $usr_data->estatus_usuario;
+		$id_sucursal = $usr_data->id_sucursal;
+		$id_tipousuario = $usr_data->id_tipoUsuario;
 	}
 	if($direccion!=false){
 		$dir_data=$direccion->first_row();
@@ -28,10 +30,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	}
 	//labels
 	 $label=array('class'=>'control-label');
-	//sucursal
-	$sucu_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$sucu_nombre_data, 'disabled'=>'disabled','class'=>'form-control');
-	$sucu_paginaweb =array('name'=>'paginaweb','placeholder'=>'Pagina WEB', 'value'=>$sucu_paginaweb_data, 'disabled'=>'disabled','class'=>'form-control');
-	$sucu_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
+	///usuarios
+	$usr_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$usr_nombre_data, 'disabled'=>'disabled','class'=>'form-control');
+	$usr_password =array('name'=>'password','placeholder'=>'Contraseña', 'value'=>$usr_password_data, 'disabled'=>'disabled','class'=>'form-control');
+	$usr_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>$dir_calle_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>$dir_num_ext_data, 'disabled'=>'disabled','class'=>'form-control');
@@ -40,17 +42,25 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>$dir_muni_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>$dir_cp_data, 'disabled'=>'disabled','class'=>'form-control');
 	//formularios
-	$form_sucu=array('id'=>'form_sucu','onSubmit'=>'insertSucursales(this,event)','role'=>'form');
-	$form_dir=array('id'=>'form_dir','onSubmit'=>'insertSucursales(this,event)','role'=>'form');
+	$form_usr=array('id'=>'form_usr','onSubmit'=>'insertUsuarios(this,event)','role'=>'form');
+	$form_dir=array('id'=>'form_dir','onSubmit'=>'insertUsuarios(this,event)','role'=>'form');
 	foreach ($estados->result() as $estado) {
 		$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
+	}
+	//Tipo usuarios
+	foreach ($tipousuarios->result() as $tipousuario) {
+		$usr_tipousuario[(string)$tipousuario->id_tipoUsuario] = (string)$tipousuario->nombre_tipoUsuario;
+	}
+	//Sucursales
+	foreach ($sucursales->result() as $sucursal) {
+		$usr_sucursal[(string)$sucursal->id_sucursal]= (string)$sucursal->nombre_sucursal;
 	}
 ?>
 
 
 <div id="container" class='container'>
 	<div class="panel panel-info">
-	<div class="panel-heading">Actualización de Sucursales</div>
+	<div class="panel-heading">Actualización de Usuarios</div>
 	<div class="panel-body">
 		<center>
 				<div class='container-fluid'>
@@ -58,34 +68,51 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<div class='col-md-6'>
 		<table>
 			<tbody>
-		<?php echo form_open('#',$form_sucu); ?>
-		<?php echo form_hidden('sucu_id',$sucu_data->id_sucursal);?>
-			<!--inicio Datos de la sucursal -->
+		<?php echo form_open('#',$form_usr); ?>
+		<?php echo form_hidden('usr_id',$usr_data->id_usuario);?>
+			<!--inicio Datos del usuario -->
 			<tr>
 				<td>
 					<div class="form-group">
-						<?php echo form_label('Nombre: ','nombre',$label);?>
-						<?php echo form_input($sucu_nombre);?>
+					<?php echo form_label('Nombre: ','nombre',$label);?>
+					<?php echo form_input($usr_nombre);?>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div class="form-group">
+						<?php echo form_label('Contraseña: ','password',$label);?>
+						<?php echo form_password($usr_password);?>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div class="form-group">
-						<?php echo form_label('Pagina WEB: ','paginaweb',$label);?>
-						<?php echo form_input($sucu_paginaweb);?>
+						<?php echo form_label('Estatus: ','usr_estatus',$label);?>
+						<?php echo form_dropdown('usr_estatus',$usr_estatus,$usr_estatus_data, 'disabled="disabled" class="form-control"');?>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div class="form-group">
-						<?php echo form_label('Estatus: ','sucu_estatus',$label);?>
-						<?php echo form_dropdown('sucu_estatus',$sucu_estatus,$sucu_estatus_data,'disabled="disabled" class="form-control"');?>
+						<?php echo form_label('Tipo de Usuario: ','usr_tipousuario',$label);?>
+						<?php echo form_dropdown('usr_tipousuario', $usr_tipousuario,$id_tipousuario,'disabled="disabled" class="form-control"');?>
 					</div>
 				</td>
 			</tr>
-			<!--fin Datos de la sucursal -->
+			<tr>
+				<td>
+					<div class="form-group">
+						<?php echo form_label('Sucursal: ','usr_sucursal',$label);?>
+						<?php echo form_dropdown('usr_sucursal', $usr_sucursal,$id_sucursal,'disabled="disabled" class="form-control"');?>
+					</div>
+				</td>
+			</tr>
+			<!--fin Datos del usuario -->
 		
 		<?php echo form_close(); ?>
 		<?php echo form_open('#',$form_dir); ?>
