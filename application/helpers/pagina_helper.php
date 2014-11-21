@@ -122,6 +122,8 @@ function getMenu(){
         	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Consulta/Actualización de clientes</a></li>
         	    		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento">Alta Categoria Seguimiento Clientes</a></li>
 	            		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento">Consulta/Actualización Categoria Seguimiento Clientes</a></li>
+	            		<li><a href="/solaris/index.php/clientes/cseguimiento/insertSeguimiento">Alta Seguimiento Clientes</a></li>
+	            		<li><a href="/solaris/index.php/clientes/cseguimiento/formSelectSeguimiento">Consulta/Actualización Seguimiento Clientes</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -136,7 +138,7 @@ function getMenu(){
 						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Consulta/Actualización Productos</a></li>
 	            	</ul>
 	            </li>
-	            <!--li class="dropdown">
+	            <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Remisiones
                 		<sapan class="caret"></sapan>
@@ -145,7 +147,7 @@ function getMenu(){
       	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemision">Alta Remisiones</a></li>
 						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Consulta/Actualización Remisiones</a></li>
 	            	</ul>
-	            </li-->
+	            </li>
 	            <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Pagos
@@ -166,7 +168,7 @@ function getMenu(){
 						<li><a href="/solaris/index.php/sucursales/csucursales/formSelectSucursales">Consulta/Actualización de Sucursales</a></li>
 	            	</ul>
 	            </li>
-	            <!--li class="dropdown">
+	            <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Usuarios
                 		<sapan class="caret"></sapan>
@@ -174,8 +176,10 @@ function getMenu(){
                 	<ul class="dropdown-menu">
       	    	    	<li><a href="/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios">Alta tipo de usuario</a></li>
 						<li><a href="/solaris/index.php/usuarios/ctipousuarios/formselectTipoUsuarios">Consulta/Actualización tipo de usuario</a></li>
+						<li><a href="/solaris/index.php/usuarios/cusuarios/forminsertUsuarios">Alta usuario</a></li>
+						<li><a href="/solaris/index.php/usuarios/cusuarios/formselectUsuarios">Consulta/Actualización usuario</a></li>
 	            	</ul>
-	            </li-->
+	            </li>
           </div>
         </div>
       </div>
