@@ -7,8 +7,10 @@ echo getHeader('Accesso');
 echo getMenu();
 ?>
 
-<a href='/solaris/index.php/usuarios/cusuarios/formInsertUsuarios'>Alta usuarios</a>
-<a href='/solaris/index.php/usuarios/cusuarios/formSelectUsuarios'>select usuarios</a>
+<a href='/solaris/index.php/usuarios/cusuarios/formInsertUsuarios'>Alta usuarios</a><br />
+<a href='/solaris/index.php/usuarios/cusuarios/formSelectUsuarios'>select usuarios</a><br />
+<a href='/solaris/index.php/clientes/cseguimiento/InsertSeguimiento'>Alta Seguimiento</a><br />
+<a href='/solaris/index.php/clientes/cseguimiento/formSelectSeguimiento'>Select/Update Seguimiento</a><br />
      <br>   
         <div class="row">
 			<div class="col-md-2"></div>

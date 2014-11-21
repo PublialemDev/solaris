@@ -15,6 +15,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
+	<!-- JQuery_UI-->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	
 	<!-- JQuery-->
 	<script src="http://localhost/solaris/resources/JS/jquery-2.1.1.min.js"></script>
 	<!-- Boostrap-->
