@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de tipos de usuario'); 
+	echo getMenu();
 	$tipousuarios_nombre_data='';$tipousuarios_descripcion_data='';
 
 	if($tipousuario!=false){

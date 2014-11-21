@@ -30,7 +30,7 @@ function selectCategoriaSeguimiento(form,evt){
 		$("#target").on("dblclick",".datos tbody tr", function(){
 			if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
 				if (confirm("¿Seguro que desea editar la Categoria de Seguimiento?")){
-					window.location.href = SERVER_URL_BASE+"clientes/cCategoriaSeguimiento/formUpdateCategoriaSeguimiento?id_categoriaSeguimiento="+$(this).attr("id");
+					window.location.href = SERVER_URL_BASE+"clientes/ccategoriaseguimiento/formUpdateCategoriaSeguimiento?id_categoriaSeguimiento="+$(this).attr("id");
 				}
 			}
 		});

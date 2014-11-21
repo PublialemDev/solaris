@@ -30,7 +30,7 @@ function selectCategoriaProductos(form,evt){
 		$("#target").on("dblclick",".datos tbody tr", function(){
 			if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
 				if (confirm("¿Seguro que desea editar la Categoria de Productos?")){
-					window.location.href = SERVER_URL_BASE+"productos/ccategoriaproductos/formUpdateCategoriaProductos?id_categoriaProducto="+$(this).attr("id");
+					window.location = SERVER_URL_BASE+"productos/ccategoriaproductos/formUpdateCategoriaProductos?id_categoriaProducto="+$(this).attr("id");
 				}
 			}
 		});

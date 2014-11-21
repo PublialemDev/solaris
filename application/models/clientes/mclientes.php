@@ -1,13 +1,17 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+//
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 class Mclientes extends CI_Model{
+
 	function __construct(){
+	
 		parent::__construct();
 		$this->load->database();
 	}
 	function insertCliente($datosCliente){
-		session_start();
+		//session_start();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('clientes',
 		array(
@@ -25,7 +29,7 @@ class Mclientes extends CI_Model{
 	}
 	
 	function updateCliente($cli_data_form){
-		session_start();
+		//session_start();
 		$sysdate=new DateTime();
 		$returned=0;
 		$cli_data=array(
@@ -45,7 +49,7 @@ class Mclientes extends CI_Model{
 	
 	function deleteCliente($cli_id){
 		
-		session_start();
+		//session_start();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));

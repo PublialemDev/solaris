@@ -9,7 +9,7 @@ class MCategoriaSeguimiento extends CI_Model{
 	}
 
 	public function insertCategoriaSeguimiento($datos){
-		session_start();
+		//session_start();
 		$returned = $this->db->insert('categoriaseguimientoclientes',array('nombre_categoriaSeguimiento'=> $datos['nombre'],
 		'descripcion_categoriaSeguimiento'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -25,7 +25,7 @@ class MCategoriaSeguimiento extends CI_Model{
 	
 	
 	function updateCategoriaSeguimiento($segui_data_form){		
-		session_start();
+		//session_start();
 		$sysdate = new DateTime();
 		$segui_data = array('nombre_categoriaSeguimiento'=> $segui_data_form['nombre'],
 			'descripcion_categoriaSeguimiento'=> $segui_data_form['descripcion'],

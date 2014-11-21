@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+session_start();
+ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CSucursales extends CI_Controller {
 
@@ -287,10 +289,9 @@ class CSucursales extends CI_Controller {
 		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_sucursal','descripcion_log'=>'se elimino la sucursal: '.$sucu_id));
 		}
-		echo 'Mensage: '.$returned;
+		echo 'SUCCESS;'.$returned;
 	}
 	
 }
 
 ?>
-

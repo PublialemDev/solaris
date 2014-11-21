@@ -1,7 +1,8 @@
 <?php 
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de tipos de pago'); 
+	echo getMenu();
 	$tipopago_nombre_data='';$tipopago_descripcion_data='';
 
 	if($tipopago!=false){

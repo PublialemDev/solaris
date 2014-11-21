@@ -1,7 +1,8 @@
 <?php 
-session_start();
+
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Categoria de Seguimiento'); 
+	echo getMenu();
 	$catsegui_nombre_data='';$catsegui_descripcion_data='';
 
 	if($catseguimiento!=false){
@@ -53,7 +54,7 @@ $label=array('class'=>'control-label');
 </div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/clientes/categoriaseguimiento_update.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/clientes/categoriaseguimiento_update.js"></script>') ;
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

@@ -1,6 +1,5 @@
-
 $(document).on("click",".enableButton",function(e){
-	$("[disabled=\'disabled\']").removeAttr("disabled");
+	$("[disabled='disabled']").removeAttr("disabled");
 	$(this).html("Guardar");
 	$(this).removeClass("enableButton").addClass("updateButton");
 });
@@ -27,12 +26,12 @@ $(document).on("click",".updateButton",function(){
 $(".deleteButton").click(function(){
 	if(confirm("seguro que deseas eliminar este tipo de pago ?")){
 		$.ajax({
-			data:"idTipoPago="+$("input[name=\'idTipoPago\']").val(),
+			data:"idTipoPago="+$("input[name='idTipoPago']").val(),
 			url:SERVER_URL_BASE+"remisiones/ctipopago/deleteTipoPago",
 			method:"POST",
 			success: function(msg){
 				alert("Categoria eliminada correctamente: "+msg);
-				window.locationf=SERVER_URL_BASE+"remisiones/ctipopago/formSelectTipoPago";
+				window.location=SERVER_URL_BASE+"remisiones/ctipopago/formSelectTipoPago";
 			}
 		});
 	}

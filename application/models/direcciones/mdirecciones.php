@@ -7,6 +7,7 @@ class Mdirecciones extends CI_Model{
 		$this->load->database();
 	}
 	function insertDireccion($datosDir,$tipo_perfil){
+		//session_start();
 		$sysdate=new DateTime();//obtener el sysdate
 		$returned=$this->db->insert('direcciones',
 		array(
@@ -35,6 +36,7 @@ class Mdirecciones extends CI_Model{
 	 * @return string 
 	 * */
 	function updateDireccion($datosDir,$tipo_perfil){
+		//session_start();
 		$sysdate=new DateTime();//obtener el sysdate
 		$returned=$this->db->update('direcciones',
 		array(

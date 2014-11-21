@@ -1,4 +1,5 @@
 <?php 
+//session_start();
 echo getHeader('Accesso'); 
 //cliente
 $usr_nombre =array('name'=>'usr_nombre','placeholder'=>'Usuario','value'=>'','required'=>'required','class'=>'form-control');
@@ -14,7 +15,7 @@ $form_login=array('id'=>'form_login','role'=>'form');
 		<div class="col-md-4">
 			<center><img src="http://www.solarisdemexico.com/images/logo.png" />
 			<br><br>
-			<h2>Sistema Administrativo</h2></center>
+			<h2>Sistema de Seguimiento a Clientes</h2></center>
 		</div>
 		<div class="col-md-4"></div>
 	</div>
@@ -25,7 +26,7 @@ $form_login=array('id'=>'form_login','role'=>'form');
 			<div class="col-md-4">
 				<div class="jumbotron">
 					<!--inicio Datos del Cliente -->
-					<?php echo form_open('main/cLogin/login',$form_login);?>
+					<?php echo form_open('#',$form_login);?>
 						<div class="form-group">
 							<?php echo form_label('Usuario: ','usr_nombre');?>
 							<?php echo form_input($usr_nombre);?>
@@ -47,6 +48,6 @@ $form_login=array('id'=>'form_login','role'=>'form');
 
 <?php
 
-echo getFooter('<script src="http://localhost/solaris/resources/JS/main/main.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/main/main.js"></script>') ;
 ?>
  

@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+session_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CLogin extends CI_Controller {
 	/**
@@ -14,8 +16,8 @@ class CLogin extends CI_Controller {
 		$this->load->model('logs/mlogs');
 	}
 	public function index(){
-		session_start();
-		session_destroy();
+		//session_start();
+		//session_destroy();
 		$this->load->helper('form');
 		$this->load->view('main/vLogin');
 	}
@@ -33,11 +35,11 @@ class CLogin extends CI_Controller {
 			
 				$usr_data_db=$usr_data->next_row();
 				//temporal hasta que se encripte password en la BD
-				$usr_passw_bd=password_hash($usr_data_db->contraseña,PASSWORD_DEFAULT);
+				//$usr_passw_bd=password_hash($usr_data_db->contraseña,PASSWORD_DEFAULT);
+				$usr_passw_bd=$usr_data_db->contraseña;
+				if($usr_passw_bd==$usr_passw/*password_verify($usr_passw,$usr_passw_bd)*/){//valida que los passw coincidan
 				
-				if(password_verify($usr_passw,$usr_passw_bd)){//valida que los passw coincidan
-				
-					session_start();
+					//session_start();
 					$_SESSION['USUARIO_ID']= base64_encode($usr_data_db->id_usuario);
 					$_SESSION['USUARIO_TIPO']= base64_encode($usr_data_db->id_tipoUsuario);
 					$_SESSION['USUARIO_NOMBRE']= base64_encode($usr_data_db->nombre_usuario);

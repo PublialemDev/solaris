@@ -1,6 +1,8 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+session_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class CCategoriaProductos extends CI_Controller {
+class Ccategoriaproductos extends CI_Controller {
 	
 	public function __construct(){
 		parent::__construct();
@@ -80,7 +82,7 @@ class CCategoriaProductos extends CI_Controller {
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mcategoriaproductos->updateCategoriaProductos($catprodu_data);
 		if($response == 1){
-			echo "El registro se actualizo correctamente";
+			echo "SUCCESS;".$response;
 		}
 		
 	}
@@ -98,7 +100,7 @@ class CCategoriaProductos extends CI_Controller {
 		if($returned>0){
 			$this->mLogs->insertLog(array('tipo_log'=>'delete_categoriaproducto','descripcion_log'=>'se elimino la categoria de productos: '.$id_catprodu));
 		}
-		return 'Mensage: '.$returned;
+		return 'SUCCESS;'.$returned;
 	}
 }
 ?>

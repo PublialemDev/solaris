@@ -1,6 +1,5 @@
-
 $(document).on("click",".enableButton",function(e){
-	$("[disabled=\'disabled\']").removeAttr("disabled");
+	$("[disabled='disabled']").removeAttr("disabled");
 	$(this).html("Guardar");
 	$(this).removeClass("enableButton").addClass("updateButton");
 });
@@ -11,7 +10,7 @@ $(document).on("click",".updateButton",function(){
 	
 	$.ajax({
 		data:formSer,
-		url:SERVER_URL_BASE+"clientes/cCategoriaSeguimiento/updateCategoriaSeguimiento",
+		url:SERVER_URL_BASE+"clientes/ccategoriaseguimiento/updateCategoriaSeguimiento",
 		method:"POST",
 		beforesend:function(){alert(formSer);},
 		success: function(msg){
@@ -27,12 +26,12 @@ $(document).on("click",".updateButton",function(){
 $(".deleteButton").click(function(){
 	if(confirm("seguro que deseas eliminar esta categoria?")){
 		$.ajax({
-			data:"idCatSeguimiento="+$("input[name=\'idCatSeguimiento\']").val(),
+			data:"idCatSeguimiento="+$("input[name='idCatSeguimiento']").val(),
 			url:SERVER_URL_BASE+"clientes/ccategoriaseguimiento/deleteCategoriaSeguimiento",
 			method:"POST",
 			success: function(msg){
 				alert("Categoria eliminada correctamente: "+msg);
-				window.location=SERVER_URL_BASE+"clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento";
+				window.location =SERVER_URL_BASE+"clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento";
 			}
 		});
 	}

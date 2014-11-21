@@ -47,7 +47,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 												<?php echo form_label('Categoria: ','prod_categoria',$label);?>
 												<select name="prod_categoria" class="form-control"> 
 												<?php foreach ($categorias->result() as $categoria) {
-													echo '<option value="'.$categoria->id_categoriaProducto.'">'.$categoria->nombre_categoriaProducto.'</option>';
+						echo '<option value="'.$categoria->id_categoriaProducto.'">'.$categoria->nombre_categoriaProducto.'</option>';
 												}?> 
 												</select>
 											</div>
@@ -109,7 +109,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 <?php echo form_close();?>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/productos/productos_insert.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/productos/productos_insert.js"></script>') ;
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

@@ -1,13 +1,13 @@
 <?php
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-echo getHeader('Tipos de Pago');
-
+echo getHeader('Categorias de Seguimiento a Clientes');
+echo getMenu();
 //Propiedades del form
-$form_tipopago = array('id'=>'form_tipopago','onSubmit'=>'getValues(this,event)');
+$form_catproductos = array('id'=>'form_catproductos','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
-$tipopago_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
+$catproductos_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
 $datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30,'class'=>'form-control');
@@ -17,7 +17,7 @@ $label=array('class'=>'control-label');
 
 <div id="container" class='container'>
 	<div class="panel panel-info">
-		<div class="panel-heading">Registro de Tipos de Pago</div>
+		<div class="panel-heading">Registro de Categoria de Productos</div>
 		<div class="panel-body">
 			<center>
 				<div class='container-fluid'>
@@ -26,13 +26,13 @@ $label=array('class'=>'control-label');
 	
 						<table>
 							<tbody>
-								<?php echo form_open('#',$form_tipopago); ?>
-								<?php echo form_hidden('idTipoPago','0');?>
+								<?php echo form_open('#',$form_catproductos); ?>
+								<?php echo form_hidden('idCatProducto','0');?>
 								<tr>
 									<td>
 										<div class="form-group">
 										<?php echo form_label('Nombre: ','nombre',$label);?>
-										<?php echo form_input($tipopago_nombre);?>
+										<?php echo form_input($catproductos_nombre);?>
 										</div>	
 									</td>
 								</tr>
@@ -61,7 +61,7 @@ $label=array('class'=>'control-label');
 </div>
 
 <?php 
-echo getFooter('<script src="http://localhost/solaris/resources/JS/remisiones/tipopago_insert.js"></script>');
+echo getFooter('<script src="/solaris/resources/JS/productos/categoriaproductos_insert.js"></script>');
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

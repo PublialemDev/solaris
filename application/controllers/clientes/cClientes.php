@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+session_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CClientes extends CI_Controller {
 
@@ -346,12 +348,12 @@ class CClientes extends CI_Controller {
 		
 		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));
+			echo 'SUCCESS;';
 		}
-		echo 'Mensage: '.$returned;
+		echo 'ERROR;'.$returned;
 	}
 	
 }
 /* End of file cClientes.php */
 /* Location: ./application/controllers/clientes/cClientes.php */
 ?>
-

@@ -1,7 +1,8 @@
 <?php 
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
 	echo getHeader('Categorias de Productos');
+	echo getMenu();
 	//categoria seguimiento
 	$catprodu_nombre =array('name'=>'catprodu_nombre','placeholder'=>'Nombre','value'=>'');
 	$catprodu_id =array('name'=>'catprodu_id','placeholder'=>'Número de categoria', 'value'=>'');
@@ -12,7 +13,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 
 <div id="container" class='container'>
-	
+	<div class="panel panel-info">
+		<div class="panel-heading">Consulta de categoria de Productos</div>
+		<div class="panel-body">
+			<center>
 	<?php echo form_open('#',$form_catprodu); ?>
 	<table >
 		<tbody>
@@ -30,8 +34,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</tbody>
 	</table>
 	<?php echo form_close(); ?>
+	</center>
+		</div>
+	</div>
 	
-	<div id='target'>
+	<div id='target' class='well'>
 		<table class='table table-hover datos'>
 			<thead>
 				<tr>
@@ -47,7 +54,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 </div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/productos/categoriaproductos_select.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/productos/categoriaproductos_select.js"></script>') ;
 
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');

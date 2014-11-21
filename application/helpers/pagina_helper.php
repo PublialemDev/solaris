@@ -8,30 +8,24 @@
  * @param	string
  * @return	string
  */
-	function getHeader($titulo='Solaris system'){
+	function getHeader($titulo='Sistema de Seguimiento a Clientes'){
 		return '
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
-	<!-- JQuery_UI-->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	<link rel="stylesheet" href="/resources/demos/style.css">
-	
 	<!-- JQuery-->
-	<script src="http://localhost/solaris/resources/JS/jquery-2.1.1.min.js"></script>
+	<script src="http://datos.alem.com.mx/solaris/resources/JS/jquery-2.1.1.min.js"></script>
 	<!-- Boostrap-->
-	<script src="http://localhost/solaris/resources/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="http://localhost/solaris/resources/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+	<script src="http://datos.alem.com.mx/solaris/resources/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://datos.alem.com.mx/solaris/resources/bootstrap-3.2.0-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 	<!-- JS basicos-->
 	<!-- script src="http://localhost/solaris/resources/JS/clientes.js"></script-->
 	
 	<!-- CSS basicos-->
-	<script src="http://localhost/solaris/resources/JS/validaciones_form.js"></script>
+	<script src="http://datos.alem.com.mx/solaris/resources/JS/validaciones_form.js"></script>
 	<link href="http://solarisdemexico.com/css/styles.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/screen.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
@@ -41,7 +35,7 @@
 	<link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.ttf" rel="stylesheet" type="text/css">
 	
 	<!-- Variable de accesso al server-->
-	<script>var SERVER_URL_BASE="http://localhost/solaris/index.php/"</script>
+	<script>var SERVER_URL_BASE="/solaris/index.php/"</script>
 </head>
 <body>
 			
@@ -113,7 +107,7 @@ function getMenu(){
             <span class="icon-bar"></span>
           </button>
         <div class="central_header">
-          <a class="transicion" href="index.html"><div id="logo"></div></a>
+          <a class="transicion" href="/solaris/index.php/main/cMain/main"><div id="logo"></div></a>
           
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
@@ -125,9 +119,9 @@ function getMenu(){
                 	</a>
                 	<ul class="dropdown-menu">
       	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta clientes</a></li>
-        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Select/Update de clientes</a></li>
+        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Consulta/Actualización de clientes</a></li>
         	    		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento">Alta Categoria Seguimiento Clientes</a></li>
-	            		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento">Select Categoria Seguimiento Clientes</a></li>
+	            		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento">Consulta/Actualización Categoria Seguimiento Clientes</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -137,21 +131,21 @@ function getMenu(){
                 	</a>
                 	<ul class="dropdown-menu">
       	    	    	<li><a href="/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos">Alta Categoria Productos</a></li>
-						<li><a href="/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos">Select Categoria Productos</a></li>
+						<li><a href="/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos">Consulta/Actualización  Categoria Productos</a></li>
 						<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta Productos</a></li>
-						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Select Productos</a></li>
+						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Consulta/Actualización Productos</a></li>
 	            	</ul>
 	            </li>
-	            <li class="dropdown">
+	            <!--li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Remisiones
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
       	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemision">Alta Remisiones</a></li>
-						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Select Remisiones</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Consulta/Actualización Remisiones</a></li>
 	            	</ul>
-	            </li>
+	            </li-->
 	            <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Pagos
@@ -159,23 +153,34 @@ function getMenu(){
                 	</a>
                 	<ul class="dropdown-menu">
       	    	    	<li><a href="/solaris/index.php/remisiones/ctipopago/insertTipoPago">Alta tipo de pago</a></li>
-						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">select tipo de pago</a></li>
+						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">Consulta/Actualización tipo de pago</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Sucursales
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/sucursales/csucursales/forminsertSucursales">Alta de Sucursales</a></li>
+						<li><a href="/solaris/index.php/sucursales/csucursales/formSelectSucursales">Consulta/Actualización de Sucursales</a></li>
+	            	</ul>
+	            </li>
+	            <!--li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Usuarios
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuario">Alta tipo de usuario</a></li>
-						<li><a href="/solaris/index.php/usuarios/ctipousuarios/selectTipoUsuarios">select tipo de usuario</a></li>
+      	    	    	<li><a href="/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios">Alta tipo de usuario</a></li>
+						<li><a href="/solaris/index.php/usuarios/ctipousuarios/formselectTipoUsuarios">Consulta/Actualización tipo de usuario</a></li>
 	            	</ul>
-	            </li>
+	            </li-->
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 <!--Termina menu--> 
 	';
@@ -243,6 +248,7 @@ function getMenu(){
         </div>
       </div>
     </div>
+  </div>
   </div>
 <!--Termina menu--> 
 	';

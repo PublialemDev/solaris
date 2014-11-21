@@ -29,6 +29,19 @@ function isNumero(string){
 }
 
 /*
+ evalua si la cadena es un numero flotante, regresa true si es numero y false si no 
+ @param string
+ @return boolean
+ * */
+function isNumeroFlotante(string){
+	if(isVacio(string)){
+		return false;
+	}
+	var patt=new RegExp('[^0-9.]');
+	return !patt.test(string.trim());
+}
+
+/*
  recibe la cadena a evaluar, regresa true si es numero y false si no 
  @param string
  @return boolean
@@ -86,5 +99,4 @@ function isVacio(string) {
     	return false;
     }
 }
-
 

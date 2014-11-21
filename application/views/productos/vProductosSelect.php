@@ -44,7 +44,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</div>
 	</div>
 	
-	<div id='target' class='well container'>
+	<div id='target' class='well'>
 		<table class='table table-hover datos'>
 			<thead>
 				<tr>
@@ -67,7 +67,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 </div></div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/productos/productos_select.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/productos/productos_select.js"></script>') ;
 
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');

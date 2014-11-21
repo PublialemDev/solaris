@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class MProductos extends CI_Model{
 	
@@ -77,22 +79,18 @@ class MProductos extends CI_Model{
 			$this->db->like('descripcion_producto',$where_clause['prod_desc']);
 		}
 		
-		$query = $this->db->get('productos');
+		$this->db->select('productos.*,categoriaproductos.nombre_categoriaProducto as id_categoriaProducto');
+		$this->db->from('productos');
+		$this->db->join('categoriaproductos', 'productos.id_categoriaProducto = categoriaproductos.id_categoriaProducto');
+		
+		$query = $this->db->get();
 		if($query->num_rows()>0){
 			return $query;
 		}
 		else{
 			return false;
 		}
-					
-		/*$consulta = $this->db->query("SELECT productos.id_producto, productos.nombre_producto, 
-		categoriaproductos.nombre_categoriaProducto, productos.descripcion_producto, productos.precio,	
-		productos.proveedor, productos.estatus_producto, productos.creado_en, productos.creado_por, 
-		productos.modificado_en, productos.modificado_por FROM productos JOIN categoriaproductos
-		ON productos.id_categoriaProducto = categoriaproductos.id_categoriaProducto");
 		
-			
-		return $consulta;*/
 	}
 	
 	function selectProductoById($id_prod){

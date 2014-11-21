@@ -1,5 +1,5 @@
 <?php 
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Sucursales'); 
 	echo getMenu();
@@ -213,7 +213,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 </div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/sucursales/sucursales_update.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/sucursales/sucursales_update.js"></script>') ;
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

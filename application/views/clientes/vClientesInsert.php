@@ -1,6 +1,5 @@
-
 <?php 
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Alta de Clientes'); 
 	echo getMenu();
@@ -144,7 +143,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-xs btn-default"');?></td>
+								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-primary"');?></td>
 							</tr>
 							<!--fin telefono-->
 							<!--inicio correo-->
@@ -158,7 +157,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-xs btn-default"');?></td>
+								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn  btn-primary"');?></td>
 							</tr>
 							<!--fin correo-->
 							</tbody>
@@ -179,13 +178,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</div> 
 	</div>
 </div>
-</div>
-</div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/clientes/clientes_insert.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/clientes/clientes_insert.js"></script>') ;
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }
 ?>
-

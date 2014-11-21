@@ -12,7 +12,7 @@ function validarForm(){
 	}
 	
 	//valida el prod_precio
-	if(isNumero($("input[name='prod_precio']").val())){
+	if(isNumeroFlotante($("input[name='prod_precio']").val())){
 		$("input[name='prod_precio']").parent().removeClass("has-error");
 	}else{
 		$("input[name='prod_precio']").parent().addClass("has-error");

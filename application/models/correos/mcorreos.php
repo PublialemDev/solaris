@@ -8,6 +8,7 @@
 		}
 		
 		function insertCorreo($datosCorreo,$tipo_perfil){
+			//session_start();
 			$sysdate=new DateTime();//obtener el sysdate
 			
 			$returned=$this->db->insert('correos',

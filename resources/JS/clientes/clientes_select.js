@@ -13,9 +13,10 @@ function selectCliente(form,evt){
 				var table=$.parseJSON(msg);
 				tableStructure="";
 				$.each(table,function(index){
-					tableStructure+="<tr id=\'"+table[index].id+"\'>"
-					tableStructure+="<td>"+table[index].nombre+"</td>"
-					tableStructure+="<td>"+table[index].rfc+"</td>"
+					tableStructure+="<tr id=\'"+table[index].id+"\'>";
+					tableStructure+="<td>"+table[index].id+"</td>";
+					tableStructure+="<td>"+table[index].nombre+"</td>";
+					tableStructure+="<td>"+table[index].rfc+"</td>";
 					tableStructure+="</tr>";
 				});
 				//$("#target").children("table").addClass(".datos");
@@ -33,7 +34,7 @@ function selectCliente(form,evt){
 $("#target").on("dblclick",".datos tbody tr", function(){
 	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
 		if (confirm("¿seguro que desea editar el Cliente?")){
-			window.location.href = SERVER_URL_BASE+"clientes/cClientes/formUpdateCliente?id_cliente="+$(this).attr("id");
+			window.location = SERVER_URL_BASE+"clientes/cClientes/formUpdateCliente?id_cliente="+$(this).attr("id");
 		}
 	}
 });

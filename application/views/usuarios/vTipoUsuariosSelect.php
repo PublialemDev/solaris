@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
 	echo getHeader('Tipos de Usuario');
+	echo getMenu();
 	//categoria seguimiento
 	$tipousuarios_nombre =array('name'=>'tipousuarios_nombre','placeholder'=>'Nombre','value'=>'');
 	$tipousuarios_id =array('name'=>'tipousuarios_id','placeholder'=>'Número de categoria', 'value'=>'');

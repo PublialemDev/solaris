@@ -1,4 +1,3 @@
-
 $(document).on("click",".enableButton",function(e){
 	$("[disabled=\'disabled\']").removeAttr("disabled");
 	$(this).html("Guardar");
@@ -11,7 +10,7 @@ $(document).on("click",".updateButton",function(){
 	
 	$.ajax({
 		data:formSer,
-		url:SERVER_URL_BASE+"productos/cCategoriaProductos/updateCategoriaProductos",
+		url:SERVER_URL_BASE+"productos/ccategoriaproductos/updateCategoriaProductos",
 		method:"POST",
 		beforesend:function(){alert(formSer);},
 		success: function(msg){

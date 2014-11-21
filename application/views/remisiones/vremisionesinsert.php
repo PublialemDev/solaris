@@ -1,6 +1,6 @@
 <?php
 echo getHeader('Remisiones');
-
+echo getMenu();
 //Propiedades del form
 //$form_remision = array('id'=>'form_remision','onSubmit'=>'getValues(this,event)');
 

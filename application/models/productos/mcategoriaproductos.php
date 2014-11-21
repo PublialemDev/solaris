@@ -9,7 +9,7 @@ class MCategoriaProductos extends CI_Model{
 	}
 
 	public function insertCategoriaProductos($datos){
-		session_start();
+		//session_start();
 		$returned = $this->db->insert('categoriaproductos',array('nombre_categoriaProducto'=> $datos['nombre'],
 		'descripcion_categoriaProducto'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -25,7 +25,7 @@ class MCategoriaProductos extends CI_Model{
 	
 	
 	function updateCategoriaProductos($catprodu_data_form){		
-		session_start();
+		//session_start();
 		$sysdate = new DateTime();
 		$catprodu_data = array('nombre_categoriaProducto'=> $catprodu_data_form['nombre'],
 			'descripcion_categoriaProducto'=> $catprodu_data_form['descripcion'],

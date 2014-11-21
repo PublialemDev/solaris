@@ -9,7 +9,7 @@ class MTipoPago extends CI_Model{
 	}
 
 	public function insertTipoPago($datos){
-		session_start();
+		//session_start();
 		$returned = $this->db->insert('tipopagos',array('nombre_tipoPago'=> $datos['nombre'],
 		'descripcion_tipoPago'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -25,7 +25,7 @@ class MTipoPago extends CI_Model{
 	
 	
 	function updateTipoPago($tipopago_data_form){		
-		session_start();
+		//session_start();
 		$sysdate = new DateTime();
 		$tipopago_data = array('nombre_tipoPago'=> $tipopago_data_form['nombre'],
 			'descripcion_tipoPago'=> $tipopago_data_form['descripcion'],

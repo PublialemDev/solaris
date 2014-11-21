@@ -1,8 +1,8 @@
 <?php
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Categorias de Seguimiento a Clientes');
-
+echo getMenu();
 //Propiedades del form
 $form_catseguimiento = array('id'=>'form_catseguimiento','onSubmit'=>'getValues(this,event)');
 
@@ -61,7 +61,7 @@ $label=array('class'=>'control-label');
 </div>
 
 <?php 
-echo getFooter('<script src="http://localhost/solaris/resources/JS/clientes/categoriaseguimiento_insert.js"></script>');
+echo getFooter('<script src="/solaris/resources/JS/clientes/categoriaseguimiento_insert.js"></script>');
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

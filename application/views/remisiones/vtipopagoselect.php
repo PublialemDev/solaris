@@ -1,7 +1,8 @@
 <?php 
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
 	echo getHeader('Tipos de Pago');
+	echo getMenu();
 	//categoria seguimiento
 	$tipopago_nombre =array('name'=>'tipopago_nombre','placeholder'=>'Nombre','value'=>'');
 	$tipopago_id =array('name'=>'tipopago_id','placeholder'=>'Número de categoria', 'value'=>'');
@@ -12,7 +13,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 
 <div id="container" class='container'>
-	
+	<div class="panel panel-info">
+		<div class="panel-heading">Consulta de tipos de pagos</div>
+		<div class="panel-body">
+			<center>
 	<?php echo form_open('#',$form_tipopago); ?>
 	<table >
 		<tbody>
@@ -30,8 +34,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</tbody>
 	</table>
 	<?php echo form_close(); ?>
+	</center>
+		</div>
+	</div>
 	
-	<div id='target'>
+	<div id='target' class='well'>
 		<table class='table table-hover datos'>
 			<thead>
 				<tr>

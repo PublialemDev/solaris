@@ -1,6 +1,5 @@
-
 <?php 
-session_start();
+//session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
 	echo getHeader('Consulta de Clientes');
@@ -46,10 +45,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</div>
 	</div>
 	
-	<div id='target' class='well container'>
+	<div id='target' class='well'>
 		<table class='table table-hover datos'>
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nombre</th>
 					<th>RFC</th>
 				</tr>
@@ -62,10 +62,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 </div></div>
 
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/clientes/clientes_select.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/clientes/clientes_select.js"></script>') ;
 
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }
 ?>
-
