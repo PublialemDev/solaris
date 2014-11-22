@@ -5,13 +5,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getMenu();
 	$catprodu_nombre_data='';$catprodu_descripcion_data='';
 
+//Obtiene los datos para cargar el formulario lleno 
 	if($catproducto!=false){
 		$catprodu_data=$catproducto->first_row();
 		$catprodu_nombre_data=$catprodu_data->nombre_categoriaProducto;
 		$catprodu_descripcion_data=$catprodu_data->descripcion_categoriaProducto;
 	}
 	
-	//Propiedades del form
+//Propiedades del form
 $form_catproducto = array('id'=>'form_catproducto','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
@@ -25,32 +26,41 @@ $label=array('class'=>'control-label');
 
 
 <div id="container" class='container'>
+	<div class="panel panel-info">
+	<div class="panel-heading">Actualización de Seguimiento a Clientes</div>
+	<div class="panel-body">
+		<center>
+			<div class='container-fluid'>
+				<div class="row">
+					<div class='col-md-6'>	
+					<?php echo form_open('#',$form_catproducto); ?>
+					<?php echo form_hidden('idCatProducto',$catprodu_data->id_categoriaProducto);?>
+					<table>
+						<tbody>
+						<tr>
+							<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
+							<td><?php echo form_input($catproducto_nombre);?></td>
+						</tr>
+						<tr>
+							<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
+							<td><?php echo form_textarea($datos);?></td>
+						</tr>
+						</tbody>
+					</table>
+					<?php echo form_close(); ?>			
+					<table>
+						<tr>
+							<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
+							<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
+						</tr>
+					</table>
 	
-	<table>
-		<tbody>
-	<?php echo form_open('#',$form_catproducto); ?>
-	<?php echo form_hidden('idCatProducto',$catprodu_data->id_categoriaProducto);?>
-		<!--,$catsegui_data->id_categoriaSeguimiento-->
-		<tr>
-			<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
-			<td><?php echo form_input($catproducto_nombre);?></td>
-		</tr>
-		<tr>
-			<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
-			<td><?php echo form_textarea($datos);?></td>
-		</tr>
-	
-	<?php echo form_close(); ?>
-	</tbody>
-	</table>
-	
-	<table>
-		<tr>
-			<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
-			<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
-		</tr>
-	</table>
-	
+					</div>
+				</div>
+			</div>
+		</center>
+	</div>
+	</div>		
 </div>
 
 <?php

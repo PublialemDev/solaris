@@ -4,14 +4,15 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Categoria de Seguimiento'); 
 	echo getMenu();
 	$catsegui_nombre_data='';$catsegui_descripcion_data='';
-
+	
+//Obtiene los datos para cargar el formulario lleno 
 	if($catseguimiento!=false){
 		$catsegui_data=$catseguimiento->first_row();
 		$catsegui_nombre_data=$catsegui_data->nombre_categoriaSeguimiento;
 		$catsegui_descripcion_data=$catsegui_data->descripcion_categoriaSeguimiento;
 	}
 	
-	//Propiedades del form
+//Propiedades del form
 $form_catseguimiento = array('id'=>'form_catseguimiento','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
@@ -25,32 +26,40 @@ $label=array('class'=>'control-label');
 
 
 <div id="container" class='container'>
-	
-	<table>
-		<tbody>
-	<?php echo form_open('#',$form_catseguimiento); ?>
-	<?php echo form_hidden('idCatSeguimiento',$catsegui_data->id_categoriaSeguimiento);?>
-		<!--,$catsegui_data->id_categoriaSeguimiento-->
-		<tr>
-			<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
-			<td><?php echo form_input($catseguimiento_nombre);?></td>
-		</tr>
-		<tr>
-			<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
-			<td><?php echo form_textarea($datos);?></td>
-		</tr>
-	
-	<?php echo form_close(); ?>
-	</tbody>
-	</table>
-	
-	<table>
-		<tr>
-			<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
-			<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
-		</tr>
-	</table>
-	
+	<div class="panel panel-info">
+	<div class="panel-heading">Actualización de Seguimiento a Clientes</div>
+	<div class="panel-body">
+		<center>
+			<div class='container-fluid'>
+				<div class="row">
+					<div class='col-md-6'>
+					<?php echo form_open('#',$form_catseguimiento); ?>
+					<?php echo form_hidden('idCatSeguimiento',$catsegui_data->id_categoriaSeguimiento);?>
+					<table>
+						<tbody>
+						<tr>
+							<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
+							<td><?php echo form_input($catseguimiento_nombre);?></td>
+						</tr>
+						<tr>
+							<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
+							<td><?php echo form_textarea($datos);?></td>
+						</tr>
+						</tbody>
+					</table>
+					<?php echo form_close(); ?>	
+					<table>
+						<tr>
+							<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
+							<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
+						</tr>
+					</table>
+					</div>
+				</div>
+			</div>
+		</center>
+	</div>
+	</div>		
 </div>
 
 <?php

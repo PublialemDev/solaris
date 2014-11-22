@@ -1,7 +1,7 @@
 <?php
 //session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-echo getHeader('Categorias de Seguimiento a Clientes');
+echo getHeader('Alta Categoria de Productos');
 echo getMenu();
 //Propiedades del form
 $form_catproductos = array('id'=>'form_catproductos','onSubmit'=>'getValues(this,event)');

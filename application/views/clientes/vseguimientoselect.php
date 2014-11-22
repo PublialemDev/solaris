@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Categorias de Seguimiento a Clientes');
+	echo getHeader('Seguimiento a Clientes');
 	//Propiedades del form
 	$form_segui = array('id'=>'form_segui','onSubmit'=>'selectSeguimiento(this,event)');
 
@@ -15,32 +15,38 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 
 <div id="container" class='container'>
-	
-	<?php echo form_open('#',$form_segui); ?>
-	<table >
-		<tbody>
-			<tr>
-				<td><?php echo form_label('Número de Seguimiento: ','segui_id');?></td>
-				<td><?php echo form_input($segui_id);?></td>
-			</tr>
-			<tr>
-				<td><?php echo form_label('Nombre de Seguimiento: ','segui_nombre');?></td>
-				<td><?php echo form_input($segui_nombre);?></td>
-			</tr>
-			<tr>
-				<td><?php echo form_label('Cliente: ','segui_cli');?></td>
-				<td><?php echo form_input($segui_cli);?></td>
-			</tr>	
-			<tr>
-				<td><?php echo form_label('Categoria: ','segui_cat');?></td>
-				<td><?php echo form_input($segui_cat);?></td>
-			</tr>		
-			<tr>
-				<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
-			</tr>
-		</tbody>
-	</table>
-	<?php echo form_close(); ?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Consulta de Seguimiento a Clientes</div>
+		<div class="panel-body">
+			<center>
+			<?php echo form_open('#',$form_segui); ?>
+			<table >
+				<tbody>
+					<tr>
+						<td><?php echo form_label('Número de Seguimiento: ','segui_id');?></td>
+						<td><?php echo form_input($segui_id);?></td>
+					</tr>
+					<tr>
+						<td><?php echo form_label('Nombre de Seguimiento: ','segui_nombre');?></td>
+						<td><?php echo form_input($segui_nombre);?></td>
+					</tr>
+					<tr>
+						<td><?php echo form_label('Cliente: ','segui_cli');?></td>
+						<td><?php echo form_input($segui_cli);?></td>
+					</tr>	
+					<tr>
+						<td><?php echo form_label('Categoria: ','segui_cat');?></td>
+						<td><?php echo form_input($segui_cat);?></td>
+					</tr>		
+					<tr>
+						<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+					</tr>
+				</tbody>
+			</table>
+			<?php echo form_close(); ?>
+			</center>
+		</div>
+	</div>
 	
 	<div id='target'>
 		<table class='table table-hover datos'>

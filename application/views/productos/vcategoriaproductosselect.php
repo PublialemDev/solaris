@@ -1,7 +1,7 @@
 <?php 
 //session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Categorias de Productos');
+	echo getHeader('Categoria de Productos');
 	echo getMenu();
 	//categoria seguimiento
 	$catprodu_nombre =array('name'=>'catprodu_nombre','placeholder'=>'Nombre','value'=>'');
@@ -17,24 +17,24 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-heading">Consulta de categoria de Productos</div>
 		<div class="panel-body">
 			<center>
-	<?php echo form_open('#',$form_catprodu); ?>
-	<table >
-		<tbody>
-			<tr>
-				<td><?php echo form_label('Número de Categoria: ','catprodu_id');?></td>
-				<td><?php echo form_input($catprodu_id);?></td>
-			</tr>
-			<tr>
-				<td><?php echo form_label('Nombre: ','catprodu_nombre');?></td>
-				<td><?php echo form_input($catprodu_nombre);?></td>
-			</tr>			
-			<tr>
-				<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
-			</tr>
-		</tbody>
-	</table>
-	<?php echo form_close(); ?>
-	</center>
+				<?php echo form_open('#',$form_catprodu); ?>
+				<table >
+					<tbody>
+						<tr>
+							<td><?php echo form_label('Número de Categoria: ','catprodu_id');?></td>
+							<td><?php echo form_input($catprodu_id);?></td>
+						</tr>
+						<tr>
+							<td><?php echo form_label('Nombre: ','catprodu_nombre');?></td>
+							<td><?php echo form_input($catprodu_nombre);?></td>
+						</tr>			
+						<tr>
+							<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+						</tr>
+					</tbody>
+				</table>
+				<?php echo form_close(); ?>
+			</center>
 		</div>
 	</div>
 	

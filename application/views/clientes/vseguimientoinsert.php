@@ -15,6 +15,7 @@ $datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5
 
 $label=array('class'=>'control-label');
 
+//Categoria de Seguimiento
 foreach ($catseguimiento->result() as $catsegui) {
 		$segui_cate[(string)$catsegui->id_categoriaSeguimiento]= (string)$catsegui->nombre_categoriaSeguimiento;
 }
@@ -22,7 +23,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 
 <div id="container" class='container'>
 	<div class="panel panel-info">
-		<div class="panel-heading">Alta de Seguimiento</div>
+		<div class="panel-heading">Alta de Seguimiento a Clientes</div>
 		<div class="panel-body">
 			<center>
 				<div class='container-fluid'>
@@ -38,7 +39,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_input($segui_cli);?>
-										<?php //echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
+										<?php echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
 										</div>	
 									</td>
 								</tr>

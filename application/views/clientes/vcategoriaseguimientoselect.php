@@ -14,27 +14,27 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <div id="container" class='container'>
 	<div class="panel panel-info">
-		<div class="panel-heading">Consulta de categoria de Clientes</div>
+		<div class="panel-heading">Consulta de Categoria de Seguimiento a Clientes</div>
 		<div class="panel-body">
 			<center>
-	<?php echo form_open('#',$form_catseguimiento); ?>
-	<table >
-		<tbody>
-			<tr>
-				<td><?php echo form_label('Número de Categoria: ','catseguimiento_id');?></td>
-				<td><?php echo form_input($catseguimiento_id);?></td>
-			</tr>
-			<tr>
-				<td><?php echo form_label('Nombre: ','catseguimiento_nombre');?></td>
-				<td><?php echo form_input($catseguimiento_nombre);?></td>
-			</tr>			
-			<tr>
-				<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
-			</tr>
-		</tbody>
-	</table>
-	<?php echo form_close(); ?>
-	</center>
+			<?php echo form_open('#',$form_catseguimiento); ?>
+			<table >
+				<tbody>
+					<tr>
+						<td><?php echo form_label('Número de Categoria: ','catseguimiento_id');?></td>
+						<td><?php echo form_input($catseguimiento_id);?></td>
+					</tr>
+					<tr>
+						<td><?php echo form_label('Nombre: ','catseguimiento_nombre');?></td>
+						<td><?php echo form_input($catseguimiento_nombre);?></td>
+					</tr>			
+					<tr>
+						<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+					</tr>
+				</tbody>
+			</table>
+			<?php echo form_close(); ?>
+			</center>
 		</div>
 	</div>
 	
