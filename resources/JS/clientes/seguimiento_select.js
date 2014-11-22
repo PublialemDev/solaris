@@ -15,7 +15,6 @@ function selectSeguimiento(form,evt){
 						$.each(table,function(index){
 							tableStructure+="<tr id=\'"+table[index].id+"\'>";
 							tableStructure+="<td>"+table[index].id+"</td>";
-							tableStructure+="<td>"+table[index].nombre+"</td>";
 							tableStructure+="<td>"+table[index].cliente+"</td>";
 							tableStructure+="<td>"+table[index].categoria+"</td>";
 							tableStructure+="</tr>";

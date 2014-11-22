@@ -7,7 +7,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 	//Propiedades del input 
 	$segui_id =array('name'=>'segui_id','placeholder'=>'ID','value'=>'','class'=>'form-control');
-	$segui_nombre = array('name'=>'segui_nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 	$segui_cli =array('name'=>'segui_cli','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
 	$segui_cat = array('name'=>'segui_cat','placeholder'=>'Categoria','value'=>'','class'=>'form-control');
 	
@@ -25,10 +24,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					<tr>
 						<td><?php echo form_label('Número de Seguimiento: ','segui_id');?></td>
 						<td><?php echo form_input($segui_id);?></td>
-					</tr>
-					<tr>
-						<td><?php echo form_label('Nombre de Seguimiento: ','segui_nombre');?></td>
-						<td><?php echo form_input($segui_nombre);?></td>
 					</tr>
 					<tr>
 						<td><?php echo form_label('Cliente: ','segui_cli');?></td>
@@ -53,7 +48,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Nombre</th>
 					<th>Cliente</th>
 					<th>Categoria</th>
 				</tr>

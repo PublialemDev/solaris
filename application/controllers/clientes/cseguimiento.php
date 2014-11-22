@@ -38,7 +38,6 @@ class CSeguimiento extends CI_Controller {
 	
 	public function selectSeguimiento(){		
 		$segui_id=$this->input->post('segui_id');
-		$segui_nombre=$this->input->post('segui_nombre');
 		$segui_cli=$this->input->post('segui_cli');
 		$segui_cat=$this->input->post('segui_cat');
 		
@@ -46,9 +45,6 @@ class CSeguimiento extends CI_Controller {
 		
 		if($segui_id!= null and $segui_id!=''){
 			$where_clause['segui_id']=$segui_id;
-		}
-		if($segui_nombre!= null and $segui_nombre!=''){
-			$where_clause['segui_nombre']=$segui_nombre;
 		}
 		if($segui_cli!= null and $segui_cli!=''){
 			$where_clause['segui_cli']=$segui_cli;
@@ -64,7 +60,6 @@ class CSeguimiento extends CI_Controller {
 			foreach ( $res->result() as $seguimiento) {
 				$json.='{';
 				$json.='"id":'.'"'.$seguimiento->id_seguimientoCliente.'",';
-				$json.='"nombre":'.'"'.$seguimiento->nombre_seguimientoCliente.'",';
 				$json.='"cliente":'.'"'.$seguimiento->nombre_cliente.'",';
 				$json.='"categoria":'.'"'.$seguimiento->nombre_categoriaSeguimiento.'"';
 				$json.='}';
@@ -102,6 +97,7 @@ class CSeguimiento extends CI_Controller {
 	}
 	
 	public function formUpdateSeguimiento(){
+		$data['catseguimiento'] = $this->mseguimiento->selectCatSeguimiento();
 		$id_segui = $this->input->get('id_seguimiento');
 		$data['seguimiento']=$this->mseguimiento->selectSeguimientoById($id_segui);
 		$this->load->view('clientes/vseguimientoupdate',$data);

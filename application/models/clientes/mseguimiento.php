@@ -59,9 +59,6 @@ class MSeguimiento extends CI_Model{
 		if(isset($where_clause['segui_id'])){
 			$this->db->where('seguimientoclientes.id_seguimientoCliente',$where_clause['segui_id']);
 		}
-		if(isset($where_clause['segui_nombre'])){
-			$this->db->like('seguimientoclientes.nombre_seguimientoCliente',$where_clause['segui_nombre']);
-		}
 		if(isset($where_clause['segui_cliente'])){
 			$this->db->like('clientes.nombre_cliente',$where_clause['segui_cliente']);
 		}
@@ -69,8 +66,7 @@ class MSeguimiento extends CI_Model{
 			$this->db->like('categoriaseguimientoclientes.nombre_categoriaSeguimiento',$where_clause['segui_categoria']);
 		}
 		
-		$this->db->select('seguimientoclientes.id_seguimientoCliente, seguimientoclientes.nombre_seguimientoCliente,
-		clientes.nombre_cliente, categoriaseguimientoclientes.nombre_categoriaSeguimiento');
+		$this->db->select('seguimientoclientes.id_seguimientoCliente, clientes.nombre_cliente, categoriaseguimientoclientes.nombre_categoriaSeguimiento');
 		$this->db->from('seguimientoclientes');
 		$this->db->join('clientes','seguimientoclientes.id_cliente= clientes.id_cliente');
 		$this->db->join('categoriaseguimientoclientes','seguimientoclientes.id_categoriaSeguimiento = categoriaseguimientoclientes.id_categoriaSeguimiento');

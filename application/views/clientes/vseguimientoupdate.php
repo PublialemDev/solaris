@@ -17,11 +17,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 $form_segui = array('id'=>'form_segui','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
-$segui_cli =array('name'=>'cliente_txt','placeholder'=>'Nombre','value'=>$segui_cli_data,'class'=>'form-control');
-$segui_fecha = array('name'=>'fecha_txt','placeholder'=>'Fecha','value'=>$segui_fecha_data,'class'=>'form-control');
+$segui_cli =array('name'=>'cliente_txt','placeholder'=>'Nombre','value'=>$segui_cli_data, 'disabled'=>'disabled','class'=>'form-control');
+$segui_fecha = array('name'=>'fecha_txt','placeholder'=>'Fecha','value'=>$segui_fecha_data, 'disabled'=>'disabled','class'=>'form-control');
 
 //Propiedades del TextArea
-$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','value'=>$segui_descripcion_data,'rows' => 5, 'cols' =>30,'class'=>'form-control');
+$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','value'=>$segui_descripcion_data, 'disabled'=>'disabled','rows' => 5, 'cols' =>30,'class'=>'form-control');
 
 $label=array('class'=>'control-label');
 
@@ -51,7 +51,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_input($segui_cli);?>
-										<?php //echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
+										<?php echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
 										</div>	
 									</td>
 								</tr>
@@ -59,7 +59,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 									<td>
 										<div class="form-group">
 										<?php echo form_label('Categoria: ','segui_cate',$label);?>
-										<?php echo form_dropdown('segui_cate',$segui_cate,$segui_cat_data, 'class="form-control"');?>
+										<?php echo form_dropdown('segui_cate',$segui_cate,$segui_cat_data, 'disabled="disabled" class="form-control"');?>
 										</div>										
 									</td>
 								</tr>
