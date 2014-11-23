@@ -88,6 +88,8 @@ function getValues(form,evt){
 	alert(formSer);
 }
 
+
+
 $( document ).ready(function(){
-		$( "#fecha_txt" ).datepicker({ dateFormat: "yy-mm-dd" });				
+$( "#fecha_txt" ).datepicker({ dateFormat: "yy-mm-dd" });
 });

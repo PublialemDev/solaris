@@ -45,3 +45,7 @@ function getValues(form,evt){
 	var formSer=$(form).serialize();
 	alert(formSer);
 }
+
+$( document ).ready(function(){
+$( "#fecha_txt" ).datepicker({ dateFormat: "yy-mm-dd" });
+});
