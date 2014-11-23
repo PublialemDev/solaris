@@ -1,7 +1,7 @@
 <?php 
 //session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Categoria de Productos');
+	echo getHeader('Consulta de Categoria de Productos');
 	echo getMenu();
 	//categoria seguimiento
 	$catprodu_nombre =array('name'=>'catprodu_nombre','placeholder'=>'Nombre','value'=>'');

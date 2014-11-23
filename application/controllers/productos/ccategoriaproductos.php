@@ -19,8 +19,8 @@ class Ccategoriaproductos extends CI_Controller {
 	public function getValues(){
 		$sysdate=new DateTime();
 		
-		$datos = array('nombre' => $this->input->post('nombre_txt'), 
-		'descripcion' => $this->input->post('descripcion_txt'), 
+		$datos = array('nombre' => $this->input->post('NOMBRE_TXT'), 
+		'descripcion' => $this->input->post('DESCRIPCION_TXT'), 
 		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
 		$catprodu_id = $this->mcategoriaproductos->insertCategoriaProductos($datos);
@@ -76,8 +76,8 @@ class Ccategoriaproductos extends CI_Controller {
 		//establece los datos de la categoria para la actualizacion
 		$catprodu_data = array(
 		'idCatProducto'=>$catprodu_id,
-		'nombre'=>$this->input->post('nombre_txt'),
-		'descripcion'=>$this->input->post('descripcion_txt')
+		'nombre'=>$this->input->post('NOMBRE_TXT'),
+		'descripcion'=>$this->input->post('DESCRIPCION_TXT')
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mcategoriaproductos->updateCategoriaProductos($catprodu_data);

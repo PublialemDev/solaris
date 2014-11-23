@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Seguimiento a Clientes');
+	echo getHeader('Consulta de Seguimiento a Clientes');
 	//Propiedades del form
 	$form_segui = array('id'=>'form_segui','onSubmit'=>'selectSeguimiento(this,event)');
 

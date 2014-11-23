@@ -1,7 +1,7 @@
 <?php 
 //session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Tipos de Pago');
+	echo getHeader('Consulta de Tipos de Pago');
 	echo getMenu();
 	//categoria seguimiento
 	$tipopago_nombre =array('name'=>'tipopago_nombre','placeholder'=>'Nombre','value'=>'');

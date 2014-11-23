@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
-	echo getHeader('Tipos de Usuario');
+	echo getHeader('Consulta de Tipos de Usuario');
 	echo getMenu();
 	//categoria seguimiento
 	$tipousuarios_nombre =array('name'=>'tipousuarios_nombre','placeholder'=>'Nombre','value'=>'');
@@ -13,7 +13,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 
 <div id="container" class='container'>
-	
+	<div class="panel panel-info">
+		<div class="panel-heading">Consulta de tipos de usuario</div>
+		<div class="panel-body">
+			<center>
 	<?php echo form_open('#',$form_tipousuarios); ?>
 	<table >
 		<tbody>
@@ -31,6 +34,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</tbody>
 	</table>
 	<?php echo form_close(); ?>
+	</center>
+		</div>
+	</div>
 	
 	<div id='target'>
 		<table class='table table-hover datos'>

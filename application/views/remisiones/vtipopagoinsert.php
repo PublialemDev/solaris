@@ -1,7 +1,7 @@
 <?php
 //session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-echo getHeader('Tipos de Pago');
+echo getHeader('Alta Tipos de Pago');
 echo getMenu();
 //Propiedades del form
 $form_tipopago = array('id'=>'form_tipopago','onSubmit'=>'getValues(this,event)');

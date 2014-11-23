@@ -17,7 +17,7 @@ $(document).on("click",".enviarButton",function(){
 		var formSer=$("#form_tipopago").serialize();
 					
 		$.ajax({
-		data:formSer,
+		data:formSer.toUpperCase(),
 		url:SERVER_URL_BASE+"remisiones/ctipopago/getValues",
 		method:"POST",
 		beforesend:function(){alert(formSer);},

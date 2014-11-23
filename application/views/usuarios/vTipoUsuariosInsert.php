@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-echo getHeader('Tipos de usuarios');
+echo getHeader('Alta Tipos de Usuario');
 echo getMenu();
 //Propiedades del form
 $form_tipousuarios = array('id'=>'form_tipousuarios','onSubmit'=>'getValues(this,event)');

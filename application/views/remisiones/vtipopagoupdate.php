@@ -1,7 +1,7 @@
 <?php 
 //session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-	echo getHeader('Actualización de tipos de pago'); 
+	echo getHeader('Actualización de Tipos de Pago'); 
 	echo getMenu();
 	$tipopago_nombre_data='';$tipopago_descripcion_data='';
 
@@ -25,34 +25,42 @@ $label=array('class'=>'control-label');
 
 
 <div id="container" class='container'>
+	<div class="panel panel-info">
+	<div class="panel-heading">Actualización de Tipo de Pago</div>
+	<div class="panel-body">
+		<center>
+			<div class='container-fluid'>
+				<div class="row">
+					<div class='col-md-6'>	
+					<?php echo form_open('#',$form_tipopago); ?>
+					<?php echo form_hidden('idTipoPago',$tipopago_data->id_tipoPago);?>
+					<table>
+						<tbody>
+							<tr>
+								<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
+								<td><?php echo form_input($tipopago_nombre);?></td>
+							</tr>
+							<tr>
+								<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
+								<td><?php echo form_textarea($datos);?></td>
+							</tr>
+						</tbody>
+					</table>
+					<?php echo form_close(); ?>	
+					<table>
+						<tr>
+							<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
+							<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
+						</tr>
+					</table>
 	
-	<table>
-		<tbody>
-	<?php echo form_open('#',$form_tipopago); ?>
-	<?php echo form_hidden('idTipoPago',$tipopago_data->id_tipoPago);?>
-		<!--,$catsegui_data->id_categoriaSeguimiento-->
-		<tr>
-			<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
-			<td><?php echo form_input($tipopago_nombre);?></td>
-		</tr>
-		<tr>
-			<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
-			<td><?php echo form_textarea($datos);?></td>
-		</tr>
-	
-	<?php echo form_close(); ?>
-	</tbody>
-	</table>
-	
-	<table>
-		<tr>
-			<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
-			<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
-		</tr>
-	</table>
-	
+					</div>
+				</div>
+			</div>
+		</center>
+	</div>
+	</div>		
 </div>
-
 <?php
 echo getFooter('<script src="http://localhost/solaris/resources/JS/remisiones/tipopago_update.js"></script>') ;
 }else{

@@ -1,7 +1,7 @@
 <?php 
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-	echo getHeader('Actualización de Categoria de Seguimiento'); 
+	echo getHeader('Actualización de Categorias de Seguimiento a Clientes'); 
 	echo getMenu();
 	$catsegui_nombre_data='';$catsegui_descripcion_data='';
 	
