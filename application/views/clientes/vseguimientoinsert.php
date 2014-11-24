@@ -8,7 +8,7 @@ $form_segui = array('id'=>'form_segui','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
 $segui_cli =array('name'=>'cliente_txt','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
-$segui_fecha = array('name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'','class'=>'form-control');
+$segui_fecha = array('id'=>'fecha_txt','name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
 $datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','rows' => 5, 'cols' =>30,'class'=>'form-control');

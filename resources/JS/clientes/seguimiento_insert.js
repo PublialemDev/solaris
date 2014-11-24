@@ -91,5 +91,5 @@ function getValues(form,evt){
 
 
 $( document ).ready(function(){
-$( "#fecha_txt" ).datepicker({ dateFormat: "yy-mm-dd" });
+	$("#fecha_txt").datepicker({ dateFormat: "yy-mm-dd" });
 });

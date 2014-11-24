@@ -74,5 +74,8 @@ $remision_instalacion = array('N' => 'NO', 'S' => 'SI');
 <?php 
 echo form_close();
 echo obtenerFecha(); 
-echo getFooter();
+echo getFooter('
+<script src="/solaris/resources/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+<link href="/solaris/resources/jquery-ui-1.11.2/jquery-ui.min.css" rel="stylesheet" type="text/css">
+');
 ?>

@@ -15,21 +15,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
-	<!-- JQuery UI-->
-	<link rel="stylesheet" href="//solaris/resources/jquery-ui-1.11.2/jquery-ui.css" />
-	<script src="//solaris/resources/jquery-ui-1.11.2/jquery-ui.js"></script>
 	
 	<!-- JQuery-->
-	<script src="http://datos.alem.com.mx/solaris/resources/JS/jquery-2.1.1.min.js"></script>
+	<script src="/solaris/resources/JS/jquery-2.1.1.min.js"></script>
+	
+	<!-- JQuery UI-->
+	<link rel="stylesheet" href="/solaris/resources/jquery-ui-1.11.2/jquery-ui.min.css" />
+	<script src="/solaris/resources/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+	
 	<!-- Boostrap-->
-	<script src="http://datos.alem.com.mx/solaris/resources/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="http://datos.alem.com.mx/solaris/resources/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+	<script src="/solaris/resources/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/solaris/resources/bootstrap-3.2.0-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 	<!-- JS basicos-->
-	<!-- script src="http://localhost/solaris/resources/JS/clientes.js"></script-->
+	<!-- script src="/solaris/resources/JS/clientes.js"></script-->
 	
 	<!-- CSS basicos-->
-	<script src="http://datos.alem.com.mx/solaris/resources/JS/validaciones_form.js"></script>
+	<script src="/solaris/resources/JS/validaciones_form.js"></script>
 	<link href="http://solarisdemexico.com/css/styles.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/screen.css" rel="stylesheet" type="text/css">
     <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
