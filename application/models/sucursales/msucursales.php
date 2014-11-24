@@ -7,7 +7,6 @@ class MSucursales extends CI_Model{
 		$this->load->database();
 	}
 	function insertSucursales($datosSucursales){
-		//session_start();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('sucursales',
 		array(
@@ -26,7 +25,6 @@ class MSucursales extends CI_Model{
 	}
 	
 	function updateSucursales($sucu_data_form){
-		//session_start();
 		$sysdate=new DateTime();
 		$returned=0;
 		$sucu_data=array(
@@ -46,8 +44,7 @@ class MSucursales extends CI_Model{
 	}
 
 	function deleteSucursales($sucu_id){
-		
-		//session_start();
+
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('sucursales',array('id_sucursal'=>$sucu_id));

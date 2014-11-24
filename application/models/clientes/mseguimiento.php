@@ -9,7 +9,7 @@ class MSeguimiento extends CI_Model{
 	}
 
 	public function insertSeguimiento($datos){
-		session_start();
+
 		$returned = $this->db->insert('seguimientoclientes',array(
 		'id_cliente'=> $datos['id_cliente'],
 		'id_categoriaSeguimiento'=> $datos['id_catseguimiento'],
@@ -28,7 +28,7 @@ class MSeguimiento extends CI_Model{
 	
 	
 	function updateSeguimiento($segui_data_form){		
-		session_start();
+
 		$sysdate = new DateTime();
 		$segui_data = array(
 		'id_cliente'=> $segui_data_form['id_cliente'],

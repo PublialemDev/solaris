@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+session_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CSeguimiento extends CI_Controller {
 	

@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Seguimiento a Clientes'); 
 	$segui_cli_data='';$segui_descripcion_data='';$segui_cat_data='';$segui_fecha_data='';

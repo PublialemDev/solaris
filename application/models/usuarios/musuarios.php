@@ -7,7 +7,6 @@ class MUsuarios extends CI_Model{
 		$this->load->database();
 	}
 	function insertUsuarios($datosUsuarios){
-		session_start();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('usuarios',
 		array(			
@@ -28,7 +27,6 @@ class MUsuarios extends CI_Model{
 	}
 	
 	function updateUsuarios($usr_data_form){
-		session_start();
 		$sysdate=new DateTime();
 		$returned=0;
 		$usr_data=array(			
@@ -50,8 +48,6 @@ class MUsuarios extends CI_Model{
 	}
 
 	function deleteUsuarios($usr_id){
-		
-		session_start();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('usuarios',array('id_usuario'=>$usr_id));

@@ -1,5 +1,4 @@
 <?php 
-session_start();
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
 	echo getHeader('Consulta de Seguimiento a Clientes');
 	//Propiedades del form
