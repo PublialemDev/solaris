@@ -9,7 +9,6 @@ class MTipoUsuarios extends CI_Model{
 	}
 
 	public function insertTipoUsuarios($datos){
-		session_start();
 		$returned = $this->db->insert('tipousuarios',array('nombre_tipoUsuario'=> $datos['nombre'],
 		'descripcion_tipoUsuario'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -25,7 +24,6 @@ class MTipoUsuarios extends CI_Model{
 	
 	
 	function updateTipoUsuarios($tipousuarios_data_form){		
-		session_start();
 		$sysdate = new DateTime();
 		$tipousuarios_data = array('nombre_tipoUsuario'=> $tipousuarios_data_form['nombre'],
 			'descripcion_tipoUsuario'=> $tipousuarios_data_form['descripcion'],
