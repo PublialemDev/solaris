@@ -16,8 +16,9 @@
 	<meta charset="utf-8">
 	<title>'.$titulo.'</title>
 	<!-- JQuery UI-->
-	<link rel="stylesheet" href="//solaris/resources/jquery-ui-1.11.2/jquery-ui.css" />
-	<script src="//solaris/resources/jquery-ui-1.11.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/solaris/resources/jquery-ui-1.11.2/jquery-ui.min.css"/>
+	<script src="/solaris/resources/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+	<script src="/solaris/resources/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 	
 	<!-- JQuery-->
 	<script src="http://datos.alem.com.mx/solaris/resources/JS/jquery-2.1.1.min.js"></script>
