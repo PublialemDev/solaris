@@ -10,7 +10,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$cli_id =array('name'=>'cli_id','placeholder'=>'Número de cliente', 'value'=>'');
 	
 	//formularios
-	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'selectCliente(this,event)');
+	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'');
 	
 ?>
 

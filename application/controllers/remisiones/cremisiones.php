@@ -6,16 +6,20 @@ class CRemisiones extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('pagina');
 		$this->load->helper('form');
-		$this->load->helper('jsremisiones');
 		$this->load->model('remisiones/mremisiones');
 		$this->load->library('table');
 	}
 	
-	public function insertRemision(){		
+	public function insertRemisionForm(){		
 		$datos['sucursales'] = $this->mremisiones->selectSucursales();
 		$datos['tipopagos'] = $this->mremisiones->selectTipoPagos();
 
 		$this->load->view('remisiones/vremisionesinsert',$datos);
+	}
+	
+	public function modalClientes(){
+		
+		$this->load->view('clientes/vClientesSelectModal');
 	}
 	
 	public function getValues(){
@@ -31,7 +35,6 @@ class CRemisiones extends CI_Controller {
 		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
 		$this->mremisiones->insertRemision($datos);
-
 	}
 	
 	public function selectRemisiones(){
