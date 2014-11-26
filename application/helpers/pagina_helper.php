@@ -168,8 +168,8 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemision">Alta Remisiones</a></li>
-						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Consulta/Actualización Remisiones</a></li>
+      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta Remisiones</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Consulta/Actualización Remisiones</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -258,8 +258,8 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemision">Alta Remisiones</a></li>
-						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisiones">Select Remisiones</a></li>
+      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta Remisiones</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Select Remisiones</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">

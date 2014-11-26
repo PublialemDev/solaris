@@ -50,8 +50,9 @@ $remision_instalacion = array('N' => 'NO', 'S' => 'SI');
 										</div>
 									</td>
 									<!--boton para buscar un cliente -->
-									
-									<td><?php echo form_button('buscar','BUSCAR','class="btn btn-primary buscarButton" onclick="prepararModal()"');?></td>
+								</tr>
+								<tr>	
+									<td><?php echo form_button('buscar','Buscar Cliente','class="btn btn-primary buscarButton" onclick="prepararModal(\'CLIENTES\')"');?></td>
 								</tr>
 								<tr>
 									<td>
@@ -101,12 +102,14 @@ $remision_instalacion = array('N' => 'NO', 'S' => 'SI');
 								</tr>
 								
 								<tr>
-									<td><?php echo form_button('enviar','ENVIAR','class="btn btn-primary enviarButton"');?></td>
+									<td></td>
 								</tr>
 							</tbody>
 						</table>
 						</div>
 						<div id="tableTarget" class='col-md-6'>
+							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')"');?>
+							<?php echo form_button('eliminarProductos','Eliminar Producto','class="btn btn-danger" onclick="prepararModal(\'PRODUCTOS\')"');?>
 							<table class='table table-striped'>
 								<thead>
 									<th>Producto</th>

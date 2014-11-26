@@ -22,6 +22,10 @@ class CRemisiones extends CI_Controller {
 		$this->load->view('clientes/vClientesSelectModal');
 	}
 	
+	public function modalProductos(){
+		$this->load->view('productos/vProductosSelectModal');
+	}
+	
 	public function getValues(){
 		$sysdate=new DateTime();
 		
