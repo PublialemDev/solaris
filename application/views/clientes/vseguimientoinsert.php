@@ -39,7 +39,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_input($segui_cli);?>
-										<?php echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
+										<?php echo form_button('buscar','BUSCAR','class="btn btn-primary buscarButton" onclick="prepararModal()"');?>
 										</div>	
 									</td>
 								</tr>
