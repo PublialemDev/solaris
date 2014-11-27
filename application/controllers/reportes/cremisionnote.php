@@ -86,24 +86,35 @@ class CRemisionNote extends CI_Controller {
 		
 		//headers
 		$pdf->MultiCell(30, 10, 'CANTIDAD: ', 1, 'C',0,0);
-		$pdf->MultiCell(80, 10, 'ARTICULO: ', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'PRECIO: ', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'IVA: ', 1, 'C',0,0);
+		$pdf->MultiCell(90, 10, 'ARTICULO: ', 1, 'C',0,0);
+		$pdf->MultiCell(30, 10, 'PRECIO: ', 1, 'C',0,0);
 		$pdf->MultiCell(30, 10, 'IMPORTE: ', 1, 'C',0,1);
 		
 		//table
-		for($i=0;$i<19;$i++){
+		for($i=0;$i<15;$i++){
 			$pdf->MultiCell(30, 7, '', 1, 'C',0,0);
-			$pdf->MultiCell(80, 7, '', 1, 'C',0,0);
+			$pdf->MultiCell(90, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
-			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
+			$pdf->MultiCell(10, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		}
 		
-		//last line
-		$pdf->MultiCell(130, 7, '', 0, 'C',0,0);
-		$pdf->MultiCell(20, 7, 'TOTAL $', 1, 'C',0,0);
+		//subtotal
+		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
+		$pdf->MultiCell(30, 7, 'SUBTOTAL $', 1, 'C',0,0);
+		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
+		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
+		
+		//iva
+		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
+		$pdf->MultiCell(30, 7, 'I.V.A. %', 1, 'C',0,0);
+		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
+		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
+		
+		//total
+		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
+		$pdf->MultiCell(30, 7, 'TOTAL $', 1, 'C',0,0);
 		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
 		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		
