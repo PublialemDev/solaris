@@ -14,22 +14,23 @@ class CRemisionNote extends CI_Controller {
 		$this->load->view('reportes/generarpdf');
 	}
 	
+	
 	public function generarPDF(){
 		
 		$this->load->library('pdf');
 		
 		// create new PDF document
-		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf = new Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('Solaris de México');
 		$pdf->SetTitle('Remisión');
-		$pdf->SetSubject('TCPDF Tutorial');
-		$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+		$pdf->SetSubject('Remisión');
+		$pdf->SetKeywords('TCPDF, PDF, remision');
 		
 		// set default header data
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 004', PDF_HEADER_STRING);
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 		
 		// set header and footer fonts
 		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
