@@ -98,9 +98,8 @@ $(document).on("click",".modalSave", function(){
 			desc=$(this).children("td:nth-child(4)").text();
 			precio=$(this).children("td:nth-child(5)").text();
 			
-			table+='<tr>';
-			table+='<td id="'+id+'">';
-			table+=nombre+'</td>';
+			table+='<tr id="'+id+'">';
+			table+='<td>'+nombre+'</td>';
 			table+='<td>'+desc+'</td>';
 			table+='<td><input name="prod_precio" type="hidden" value="'+precio+'">';
 			table+='<input name="prod_cant" type="text" value="0"></td>';
@@ -151,6 +150,40 @@ $(document).on("click","#targetProductos .datos tbody tr", function(){
 			$(this).removeClass("info");
 		}else{
 			$(this).addClass("info");
+		}
+		
+	}
+});
+
+function eliminarProducto(){
+	alert($("tr[class='danger']").children("td:nth-child(3)").children("input[name='prod_precio']").val());
+	alert($("tr[class='danger']").attr("id"));
+}
+
+
+//agrega el total cuando se agrega una cantidad de productos
+//OJOse debe recorrer toda la tabla e ir sumando los datos para actualizar el campo
+$(document).on("blur","input[name='prod_cant']",function(){
+	var total=0;
+	$("input[name='prod_cant']").each(function(){
+		var precio=0, cantidad=0;
+		precio=$(this).siblings("input[name='prod_precio']").val();
+		cantidad=$(this).val();
+		total=parseInt(total)+parseInt((precio*cantidad));
+	});
+	$("input[name='total_txt']").val(total);
+});
+
+
+//marca el registro a eliminar de la tabla de productos
+$(document).on("click","#tableTarget table tbody tr", function(){
+	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
+		
+		if($(this).hasClass("danger")){
+			$(".danger").removeClass("danger");
+		}else{
+			$(".danger").removeClass("danger");
+			$(this).addClass("danger");
 		}
 		
 	}
