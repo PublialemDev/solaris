@@ -76,32 +76,34 @@ class CRemisionNote extends CI_Controller {
 		// test Cell stretching
 		$pdf->Cell(0, 10, 'Sr.(es):', 1, 1, 'L', 0, '', 0);
 		$pdf->Cell(0, 10, 'Dirección:', 1, 1, 'L', 0, '', 0);
-		$pdf->Cell(0, 10, 'Ciudad:', 1, 1, 'L', 0, '', 0);		
+		$pdf->Cell(0, 10, 'Ciudad:', 1, 1, 'L', 0, '', 0);	
+		$pdf->Cell(0, 10, 'Tipo de Pago:', 1, 1, 'L', 0, '', 0);	
 		$pdf->Ln(5);
 		
-		$pdf->MultiCell(110, 10, 'Condiciones: ', 1, 'L',0,0);
-		$pdf->MultiCell(70, 10, 'Conducto: ', 1, 'L',0,1);
+		$pdf->MultiCell(90, 10, 'Sucursal: ', 0, 'L',0,0);
+		$pdf->MultiCell(90, 10, 'Usuario: ', 0, 'L',0,1);
 		$pdf->Ln(5);
 		
 		//headers
 		$pdf->MultiCell(30, 10, 'CANTIDAD: ', 1, 'C',0,0);
-		$pdf->MultiCell(90, 10, 'ARTICULO: ', 1, 'C',0,0);
-		$pdf->MultiCell(30, 10, 'PRECIO: ', 1, 'C',0,0);
+		$pdf->MultiCell(80, 10, 'ARTICULO: ', 1, 'C',0,0);
+		$pdf->MultiCell(20, 10, 'PRECIO: ', 1, 'C',0,0);
+		$pdf->MultiCell(20, 10, 'IVA: ', 1, 'C',0,0);
 		$pdf->MultiCell(30, 10, 'IMPORTE: ', 1, 'C',0,1);
 		
 		//table
 		for($i=0;$i<19;$i++){
 			$pdf->MultiCell(30, 7, '', 1, 'C',0,0);
-			$pdf->MultiCell(90, 7, '', 1, 'C',0,0);
+			$pdf->MultiCell(80, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
-			$pdf->MultiCell(10, 7, '', 1, 'C',0,0);
+			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		}
 		
 		//last line
-		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
-		$pdf->MultiCell(30, 7, 'TOTAL $', 1, 'C',0,0);
+		$pdf->MultiCell(130, 7, '', 0, 'C',0,0);
+		$pdf->MultiCell(20, 7, 'TOTAL $', 1, 'C',0,0);
 		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
 		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		
