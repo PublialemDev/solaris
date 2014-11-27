@@ -12,6 +12,11 @@ class CSeguimiento extends CI_Controller {
 		$this->load->model('logs/mLogs');
 	}
 	
+	public function modalClientes(){
+		
+		$this->load->view('clientes/vClientesSelectModal');
+	}
+	
 	public function insertSeguimiento(){
 		$data['catseguimiento'] = $this->mseguimiento->selectCatSeguimiento();		
 		$this->load->view('clientes/vseguimientoinsert',$data);

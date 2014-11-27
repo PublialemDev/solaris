@@ -112,3 +112,70 @@ function getValues(form,evt){
 $( document ).ready(function(){
 	$("#fecha_txt").datepicker({ dateFormat: "yy-mm-dd" });
 });
+
+
+
+//prepara y muestra la ventana modal
+function prepararModal(){
+	var modal=$('#myModal');
+	$(".modal-title").html("Búsqueda de Clientes");
+	//-----------
+	$.ajax({
+		data:'',
+		url:SERVER_URL_BASE+"clientes/cseguimiento/modalClientes",
+		method:"POST",
+		success: function(msg){
+				$(".modal-body").html(msg);
+			}
+		});
+	//-----------
+	modal.modal("show");
+}
+
+//carga el resultado de la busqueda
+function selectClienteModal(form,evt){
+	evt.preventDefault();
+	var formSer=$(form).serialize();
+	
+	$.ajax({
+		data:formSer,
+		url:SERVER_URL_BASE+"clientes/cClientes/selectClienteJson",
+		method:"POST",
+		success: function(msg){
+			var tableStructure;
+			if(msg.trim()!="NO_DATA_FOUND"){
+				var table=$.parseJSON(msg);
+				tableStructure="";
+				$.each(table,function(index){
+					tableStructure+="<tr id=\'"+table[index].id+"\'>";
+					tableStructure+="<td>"+table[index].id+"</td>";
+					tableStructure+="<td>"+table[index].nombre+"</td>";
+					tableStructure+="<td>"+table[index].rfc+"</td>";
+					tableStructure+="</tr>";
+				});
+			}else{
+				tableStructure="<tr><td>No se encontraron coincidencias</td></tr>";
+				
+			}
+			$("#target tbody").html(tableStructure);
+		}
+
+	});
+	
+}
+
+//agrega una marca a el cliente seleccionado
+$(document).on("click"," #target .datos tbody tr", function(){
+	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
+		$("tr[class='info']").removeClass("info");
+		$(this).addClass("info");
+	}
+});
+
+//toma los datos del cliente seleccionado y los pone en el formulario
+$(document).on("click",".modalSave", function(){
+	var seleccionado=$("tr[class='info']").attr("id");
+	$("input[name='cliente_txt']").val(seleccionado);
+	$('#myModal').modal('hide');
+});
+
