@@ -100,24 +100,15 @@ class CRemisionNote extends CI_Controller {
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		}
 		
-		//subtotal
-		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
-		$pdf->MultiCell(30, 7, 'SUBTOTAL $', 1, 'C',0,0);
-		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
-		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
+		$datos = array('SUBTOTAL $','I.V.A. %','TOTAL $',);
 		
-		//iva
-		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
-		$pdf->MultiCell(30, 7, 'I.V.A. %', 1, 'C',0,0);
-		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
-		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
-		
-		//total
-		$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
-		$pdf->MultiCell(30, 7, 'TOTAL $', 1, 'C',0,0);
-		$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
-		$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
-		
+		foreach($datos as $dato){
+			$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
+			$pdf->MultiCell(30, 7, $dato, 1, 'C',0,0);
+			$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
+			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
+		}
+
 
 		//Close and output PDF document
 		$pdf->Output('nota_remision.pdf', 'I');
