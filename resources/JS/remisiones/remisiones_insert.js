@@ -1,3 +1,5 @@
+var cantidad_productos_agregados=0;
+
 $(document).ready(function(){
 	$( "#fecha" ).datepicker({ dateFormat: "yy-mm-dd" });				
 });
@@ -104,6 +106,10 @@ $(document).on("click",".modalSave", function(){
 			table+='<td><input name="prod_precio" type="hidden" value="'+precio+'">';
 			table+='<input name="prod_cant" type="text" value="0"></td>';
 			table+='</tr>';
+			cantidad_productos_agregados++;//aumenta el contador de productos agregados
+			
+			$(".form-control").attr("disabled","disabled");
+			$("button[class='buscarButton']").attr("disabled","disabled");
 		});
 		$("#tableTarget tbody").append(table);
 		$('#myModal').modal('hide');
@@ -156,14 +162,23 @@ $(document).on("click","#targetProductos .datos tbody tr", function(){
 });
 
 function eliminarProducto(){
-	alert($("tr[class='danger']").children("td:nth-child(3)").children("input[name='prod_precio']").val());
-	alert($("tr[class='danger']").attr("id"));
+	var prod_nombre=$("tr[class='danger']").children("td:nth-child(1)").text();
+	if(confirm("¿Seguro que deseas eliminar el producto "+prod_nombre+"?")){
+		$("tr[class='danger']").remove();
+		//actualiza el total
+		calcularTotal();
+		
+		cantidad_productos_agregados--;
+		if(cantidad_productos_agregados==0){
+			$(".form-control:not(input[name='total_txt'])").removeAttr("disabled");
+			$("button[class='buscarButton']").removeAttr("disabled");
+			$("button[name='eliminarProductos']").attr("disabled","disabled");
+		}
+	}
 }
 
-
-//agrega el total cuando se agrega una cantidad de productos
-//OJOse debe recorrer toda la tabla e ir sumando los datos para actualizar el campo
-$(document).on("blur","input[name='prod_cant']",function(){
+//calcula el total y se lo agrega a el campo total_txt
+function calcularTotal(){
 	var total=0;
 	$("input[name='prod_cant']").each(function(){
 		var precio=0, cantidad=0;
@@ -172,6 +187,11 @@ $(document).on("blur","input[name='prod_cant']",function(){
 		total=parseInt(total)+parseInt((precio*cantidad));
 	});
 	$("input[name='total_txt']").val(total);
+}
+
+//agrega el total cuando se agrega una cantidad de productos
+$(document).on("blur","input[name='prod_cant']",function(){
+	calcularTotal();
 });
 
 
@@ -181,9 +201,11 @@ $(document).on("click","#tableTarget table tbody tr", function(){
 		
 		if($(this).hasClass("danger")){
 			$(".danger").removeClass("danger");
+			$("button[name='eliminarProductos']").attr("disabled","disabled");
 		}else{
 			$(".danger").removeClass("danger");
 			$(this).addClass("danger");
+			$("button[name='eliminarProductos']").removeAttr("disabled");
 		}
 		
 	}
