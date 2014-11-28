@@ -2,12 +2,12 @@
 
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class CMensual extends CI_Controller {
+class CReportSeguimiento extends CI_Controller {
 
 	public function __construct(){
 	parent::__construct();
 	$this->load->helper('form');
-	$this->load->model('reportes/mmensual');
+	$this->load->model('reportes/mreportseguimiento');
 	
 	}
 	
@@ -16,14 +16,13 @@ class CMensual extends CI_Controller {
 	}
 	
 	
-	public function reporteMensual(){		
+	public function reporteSeguimiento(){		
 		$this->load->library('pdf');
 		
-		$fecha_inicial =(String) $this->input->post('fecha_ini');
-		$fecha_final = (String)$this->input->post('fecha_fin');
+		//$id_cliente =$this->input->post('id_cliente');
 		
 		//obtener resultado de la query 
-		$resul['resultado'] = $this->mmensual->getValues($fecha_inicial,$fecha_final);
+		$resul['resultado'] = $this->mreportseguimiento->getValues(2);
 		
 
 		// create new PDF document
@@ -32,8 +31,8 @@ class CMensual extends CI_Controller {
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('Solaris de México');
-		$pdf->SetTitle('Reporte Mensual');
-		$pdf->SetSubject('Reporte Mensual');
+		$pdf->SetTitle('Reporte Seguimiento Clientes');
+		$pdf->SetSubject('Reporte Seguimiento Clientes');
 		$pdf->SetKeywords('TCPDF, PDF, remision');
 		
 		// set default header data
@@ -67,25 +66,19 @@ class CMensual extends CI_Controller {
 		$pdf->AddPage();
 		
 		//headers
-		$pdf->MultiCell(25, 10, 'CANTIDAD', 1, 'C',0,0);
-		$pdf->MultiCell(25, 10, 'ARTICULO', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'PRECIO', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'IMPORTE', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'CLIENTE', 1, 'C',0,0);
-		$pdf->MultiCell(25, 10, 'SUCURSAL', 1, 'C',0,0);
-		$pdf->MultiCell(25, 10, 'USUARIO', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'FECHA', 1, 'C',0,1);
+		$pdf->MultiCell(40, 10, 'CLIENTE', 1, 'C',0,0);
+		$pdf->MultiCell(60, 10, 'COMENTARIO', 1, 'C',0,0);
+		$pdf->MultiCell(40, 10, 'FECHA', 1, 'C',0,0);
+		$pdf->MultiCell(40, 10, 'CATEGORIA', 1, 'C',0,1);
+
 		
 		//table
 		foreach($resul['resultado']->result() as $value){
-			$pdf->MultiCell(25, 7, $value->cantidad, 1, 'L',0,0);
-			$pdf->MultiCell(25, 7, $value->nombre_producto, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->precio_actual, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->importe, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->nombre_cliente, 1, 'L',0,0);
-			$pdf->MultiCell(25, 7, $value->nombre_sucursal, 1, 'L',0,0);
-			$pdf->MultiCell(25, 7, $value->nombre_usuario, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->fecha, 1, 'L',0,1);		
+			$pdf->MultiCell(40, 10, $value->nombre_cliente, 1, 'L',0,0);
+			$pdf->MultiCell(60, 10, $value->comentario, 1, 'L',0,0);
+			$pdf->MultiCell(40, 10, $value->fecha, 1, 'L',0,0);
+			$pdf->MultiCell(40, 10, $value->nombre_categoriaSeguimiento, 1, 'L',0,1);
+	
 			
 		}
 
