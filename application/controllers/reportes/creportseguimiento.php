@@ -19,10 +19,10 @@ class CReportSeguimiento extends CI_Controller {
 	public function reporteSeguimiento(){		
 		$this->load->library('pdf');
 		
-		//$id_cliente =$this->input->post('id_cliente');
+		$id_cliente =$this->input->post('id_cliente');
 		
 		//obtener resultado de la query 
-		$resul['resultado'] = $this->mreportseguimiento->getValues(2);
+		$resul['resultado'] = $this->mreportseguimiento->getValues($id_cliente);
 		
 
 		// create new PDF document
