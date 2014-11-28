@@ -92,7 +92,7 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(20, 10, $año, 1, 'C',0,1);
 		//numero de nota
 		$pdf->MultiCell(110, 10, '', 0, 'C',0,0);
-		$pdf->MultiCell(70, 10, 'No.', 1, 'L',0,1);
+		$pdf->MultiCell(70, 10, 'No. '.$id_remision, 1, 'L',0,1);
 		$pdf->Ln(5);
 		
 		// test Cell stretching
