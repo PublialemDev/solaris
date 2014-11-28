@@ -83,7 +83,7 @@ class CReportSeguimiento extends CI_Controller {
 		}
 
 		//Close and output PDF document
-		$pdf->Output('reporte_mensual.pdf', 'I');
+		$pdf->Output('reporte_seguimiento.pdf', 'I');
 		
 		//============================================================+
 		// END OF FILE
