@@ -7,6 +7,7 @@ class MUsuarios extends CI_Model{
 		$this->load->database();
 	}
 	function insertUsuarios($datosUsuarios){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('usuarios',
 		array(			
@@ -23,10 +24,20 @@ class MUsuarios extends CI_Model{
 			$returned=$this->db->insert_id();
 			$this->mlogs->insertLog(array('tipo_log'=>'insert_usuario','descripcion_log'=>'alta del Usuario: '.$returned));
 		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	function updateUsuarios($usr_data_form){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		$returned=0;
 		$usr_data=array(			
@@ -44,15 +55,34 @@ class MUsuarios extends CI_Model{
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'update_usuarios','descripcion_log'=>'update del usuarios: '.$usr_data_form['usr_id']));
 		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
 	function deleteUsuarios($usr_id){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('usuarios',array('id_usuario'=>$usr_id));
 		if($returned>0){
 			return true;;
+		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
 		}
 		return false;
 	}

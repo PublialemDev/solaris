@@ -9,7 +9,7 @@ class MSeguimiento extends CI_Model{
 	}
 
 	public function insertSeguimiento($datos){
-
+		$this->db->trans_begin();
 		$returned = $this->db->insert('seguimientoclientes',array(
 		'id_cliente'=> $datos['id_cliente'],
 		'id_categoriaSeguimiento'=> $datos['id_catseguimiento'],
@@ -22,13 +22,20 @@ class MSeguimiento extends CI_Model{
 			$returned=$this->db->insert_id();
 			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_SEGUIMIENTO','descripcion_log'=>'SE INSERTO UN SEGUIMIENTO'.$returned));			
 		}
-		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	
 	function updateSeguimiento($segui_data_form){		
-
+		$this->db->trans_begin();
 		$sysdate = new DateTime();
 		$segui_data = array(
 		'id_cliente'=> $segui_data_form['id_cliente'],
@@ -44,14 +51,30 @@ class MSeguimiento extends CI_Model{
 		if($returned == 1){
 			$this->mLogs->insertLog(array('tipo_log'=>'update_seguimiento','descripcion_log'=>'update del seguimiento: '.$segui_data_form['idSeguimiento']));
 		}
-		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
 	function deleteSeguimiento($segui_id){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('seguimientoclientes',array('id_seguimientoCliente'=>$segui_id));
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 

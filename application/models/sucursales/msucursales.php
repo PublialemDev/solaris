@@ -7,6 +7,7 @@ class MSucursales extends CI_Model{
 		$this->load->database();
 	}
 	function insertSucursales($datosSucursales){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('sucursales',
 		array(
@@ -21,10 +22,20 @@ class MSucursales extends CI_Model{
 			$returned=$this->db->insert_id();
 			$this->mlogs->insertLog(array('tipo_log'=>'insert_sucursal','descripcion_log'=>'alta de la sucursal: '.$returned));
 		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	function updateSucursales($sucu_data_form){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		$returned=0;
 		$sucu_data=array(
@@ -40,16 +51,34 @@ class MSucursales extends CI_Model{
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'update_sucursales','descripcion_log'=>'update de la sucursal: '.$sucu_data_form['sucu_id']));
 		}
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
 	function deleteSucursales($sucu_id){
+		$this->db->trans_begin();
 
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('sucursales',array('id_sucursal'=>$sucu_id));
 		if($returned>0){
 			return true;;
+		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
 		}
 		return false;
 	}

@@ -11,6 +11,7 @@ class MProductos extends CI_Model{
 	}
 	
 	public function insertProducto($datos){
+		$this->db->trans_begin();
 		session_start();
 		$sysdate=new DateTime();
 		$returned = $this->db->insert('productos',
@@ -29,12 +30,22 @@ class MProductos extends CI_Model{
 			$returned=$this->db->insert_id();			
 			$this->mlogs->insertLog(array('tipo_log'=>'INSERT_PRODUCTOS','descripcion_log'=>'SE INSERTO PRODUCTO'.$returned));
 		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	/*
 	 * Actualiza los productos
 	 * */
 	function updateProducto($prod_data_form){
+		$this->db->trans_begin();
 		session_start();
 		$sysdate=new DateTime();
 		$returned=0;
@@ -53,6 +64,15 @@ class MProductos extends CI_Model{
 		//insertar log para auditoria
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'update_productos','descripcion_log'=>'update del producto: '.$prod_data_form['prod_id']));
+		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
 		}
 		return $returned;
 	}
@@ -105,13 +125,22 @@ class MProductos extends CI_Model{
 	}
 	
 	function deleteProducto($prod_id){
-		
+		$this->db->trans_begin();
 		session_start();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('productos',array('id_producto'=>$prod_id));
 		if($returned>0){
 			return true;
+		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
 		}
 		return false;
 	}
