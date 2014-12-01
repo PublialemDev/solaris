@@ -9,12 +9,12 @@ $form_remision = array('id'=>'form_remision','role'=>'form');
 $remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
 $remision_fecha =array('id' => 'fecha', 'name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'','class'=>'form-control');
 $remision_total =array('name'=>'total_txt','placeholder'=>'Total','value'=>'','class'=>'form-control','disabled'=>'disabled');
-$remision_iva =array('name'=>'iva_txt','placeholder'=>'IVA','value'=>'','class'=>'form-control');
+$remision_iva =array('name'=>'iva_txt','placeholder'=>'IVA','value'=>'','class'=>'form-control','disabled'=>'disabled');
 
 //labels
 $label=array('class'=>'control-label');
 //Propiedades del combobox
-$remision_instalacion = array('N' => 'NO', 'S' => 'SI');
+$remision_instalacion = array('N' => 'No', 'S' => 'Si');
 ?>
 
 <div id="container" class='container'>
@@ -25,13 +25,16 @@ $remision_instalacion = array('N' => 'NO', 'S' => 'SI');
 				<div class='container-fluid'>
 					<div class="row">
 						<div class='col-md-6'>
+							<?php echo form_open('#',$form_remision); ?>
 						<table>
+							
 							<tbody>
-								<?php echo form_open('#',$form_remision); ?>
+								
 								<?php echo form_hidden('idRemision','0');?>			
 								<tr>
 									<td>
 										<div class="form-group" >
+										
 										<?php echo form_label('Sucursal: ','sucursal');?>
 										<select name="sucursal" class="form-control"> 
 										<?php 
@@ -96,16 +99,19 @@ $remision_instalacion = array('N' => 'NO', 'S' => 'SI');
 									<td>
 										<div class="form-group">
 										<?php echo form_label('IVA:','iva',$label);?>
+										<?php echo form_checkbox(array('name'=>'iva_check'),'.16');?>
 										<?php echo form_input($remision_iva);?>
 										</div>
 									</td>
 								</tr>
 								
 								<tr>
-									<td></td>
+									<td><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></td>
 								</tr>
+								
 							</tbody>
 						</table>
+						<?php echo form_close(); ?>
 						</div>
 						<div id="tableTarget" class='col-md-6'>
 							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')"');?>

@@ -253,24 +253,33 @@ function validarForm(){
 	return continuar;
 }
 
-	/*	
-$(document).on("click",".enviarButton",function(){
+function guardarProductos(){
 	if(validarForm()){		
-		/*var formSer=$("#form_tipopago").serialize();
-					
+		
+		$(".form-control").removeAttr("disabled");	
+		var formSer=$("#form_remision").serialize();
+		$(".form-control").attr("disabled","disabled");
+		
+		formSer+="&idSucursal="+$("select[name='sucursal']").val()+
+		"&idTipoPago="+$("select[name='tipopago']").val()+"&instalacion="+$("select[name='instalacion']").val();
 		$.ajax({
 		data:formSer.toUpperCase(),
-		url:SERVER_URL_BASE+"remisiones/ctipopago/getValues",
+		url:SERVER_URL_BASE+"remisiones/cremisiones/insertRemision",
 		method:"POST",
-		beforesend:function(){alert(formSer);},
 		success: function(msg){
 			var resp=msg.split(";");
 			if(resp[0].trim()=="SUCCESS"){
-				$("input").attr("disabled","disabled");	
-				$("textarea").attr("disabled","disabled");
-				$("input[name='idTipoPago']").val(resp[1]);
-				$("button[name='enviar']").html("Editar");
-				$("button[name='enviar']").removeClass("enviarButton").addClass("enableButton");
+				
+				$("input[name='idRemision']").val(resp[1]);
+				$("button[name='saveButton']").html("Editar");
+				$("button[name='saveButton']").removeClass("enviarButton").addClass("enableButton");
+				
+				$(".form-control").attr("disabled","disabled");
+				$(".input").attr("disabled","disabled");
+				$("button[name='agregarProductos']").attr("disabled","disabled");
+				$("button[name='eliminarProductos']").attr("disabled","disabled");
+				$("button[class='buscarButton']").attr("disabled","disabled");
+				
 				alert("La categoria se creo correctamente.");					
 			}else{
 				alert(msg);
@@ -278,12 +287,17 @@ $(document).on("click",".enviarButton",function(){
 		}
 
 		});
-		
-	alert("Algo");
 	}else{
 		alert("Hay un error en los datos, Favor de validarlos");
 	}
+}
+
+	/*	
+$(document).on("click",".enviarButton",function(){
+	
 });*/
+
+
 /*		
 //habilitara el formulario
 $(document).on("click",".enableButton",function(e){

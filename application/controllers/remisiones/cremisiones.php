@@ -10,12 +10,37 @@ class CRemisiones extends CI_Controller {
 		$this->load->library('table');
 	}
 	
+	/*
+	 * Muestra el formulario para generar una remision
+	 * @author Luis Briseño
+	 * 
+	 * */
 	public function insertRemisionForm(){		
 		$datos['sucursales'] = $this->mremisiones->selectSucursales();
 		$datos['tipopagos'] = $this->mremisiones->selectTipoPagos();
 
 		$this->load->view('remisiones/vremisionesinsert',$datos);
 	}
+	
+	/*
+	 * Muestra el formulario para generar una remision
+	 * @author Luis Briseño
+	 * 
+	 * */
+	public function insertRemision(){
+		$remi_data=array(
+		'idSucursal'=>$this->input->post('IDSUCURSAL'),
+		'idCliente'=>$this->input->post('CLIENTE_TXT'),
+		'idTipoPago'=>$this->input->post('IDTIPOPAGO'),
+		'fecha'=>$this->input->post('FECHA_TXT'),
+		'instalacion'=>$this->input->post('INSTALACION'),
+		'total'=>$this->input->post('TOTAL_TXT'),
+		'iva'=>$this->input->post('IVA_TXT'));		
+		$generated=$this->mremisiones->insertRemision($remi_data);
+		echo 'SUCCESS;'.$generated;
+	}
+	
+	
 	
 	public function modalClientes(){
 		
