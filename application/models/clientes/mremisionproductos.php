@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MRemisiones extends CI_Model{
+class Mremisionproductos extends CI_Model{
 	
 	public function __construct(){
 		parent::__construct();
@@ -8,7 +8,8 @@ class MRemisiones extends CI_Model{
 		$this->load->model('logs/mLogs');
 	}
 	
-	public function insertRemision($datos){
+	public function insertRemisionProductos($datos){
+		/*session_start();
 		$sysdate=new DateTime();
 		$returned = $this->db->insert('remisiones',array(
 		'id_sucursal'=> $datos['idSucursal'],
@@ -26,31 +27,31 @@ class MRemisiones extends CI_Model{
 			$returned=$this->db->insert_id();			
 			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_REMISIONES','descripcion_log'=>'SE INSERTO REMISION'.$returned));
 		}
-		return $returned;
+		return $returned;*/
 	}
 	
 	public function selectSucursales(){
-		$query = $this->db->get('sucursales');
+		/*$query = $this->db->get('sucursales');
 		
 		if($query->num_rows >0) 
 			return $query;
 		else {
 			return false;
-		}
+		}*/
 	}
 
 	public function selectTipoPagos(){
-		$query = $this->db->get('tipopagos');
+		/*$query = $this->db->get('tipopagos');
 		
 		if($query->num_rows >0) 
 			return $query;
 		else {
 			return false;
-		}
+		}*/
 	}
 	
 	public function selectRemisiones(){			
-		$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
+		/*$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
 		remisiones.fecha, remisiones.instalacion, remisiones.total, remisiones.iva, remisiones.creado_en, remisiones.creado_por, remisiones.modificado_en,
 		remisiones.modificado_por FROM remisiones 
 		JOIN sucursales ON sucursales.id_sucursal = remisiones.id_sucursal
@@ -58,7 +59,7 @@ class MRemisiones extends CI_Model{
 		JOIN clientes ON clientes.id_cliente = remisiones.id_cliente");
 		
 			
-		return $consulta;
+		return $consulta;*/
 	}
 	
 }
