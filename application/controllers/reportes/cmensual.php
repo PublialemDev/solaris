@@ -91,7 +91,7 @@ class CMensual extends CI_Controller {
 			
 		}
 		
-		$pdf->MultiCell(30, 10, 'Cantidad de ventas', 1, 'C',0,0);	
+		$pdf->MultiCell(30, 10, 'CANTIDAD DE VENTAS', 1, 'C',0,0);	
 		$pdf->MultiCell(20, 10, $cantidad_data, 1, 'C',0,1);	
 		$pdf->MultiCell(30, 10, 'TOTAL $', 1, 'C',0,0);		
 		$pdf->MultiCell(20, 10, $total_data, 1, 'C',0,1);
