@@ -9,6 +9,7 @@ class MTipoUsuarios extends CI_Model{
 	}
 
 	public function insertTipoUsuarios($datos){
+		$this->db->trans_begin();
 		$returned = $this->db->insert('tipousuarios',array('nombre_tipoUsuario'=> $datos['nombre'],
 		'descripcion_tipoUsuario'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -19,11 +20,20 @@ class MTipoUsuarios extends CI_Model{
 			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOUSUARIO','descripcion_log'=>'SE INSERTO TIPO DE USUARIO'.$returned));			
 		}
 		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	
-	function updateTipoUsuarios($tipousuarios_data_form){		
+	function updateTipoUsuarios($tipousuarios_data_form){
+		$this->db->trans_begin();		
 		$sysdate = new DateTime();
 		$tipousuarios_data = array('nombre_tipoUsuario'=> $tipousuarios_data_form['nombre'],
 			'descripcion_tipoUsuario'=> $tipousuarios_data_form['descripcion'],
@@ -36,14 +46,30 @@ class MTipoUsuarios extends CI_Model{
 		if($returned == 1){
 			$this->mLogs->insertLog(array('tipo_log'=>'UPDATE_TIPOUSUARIOS','descripcion_log'=>'update del tipo de usuario: '.$tipousuarios_data_form['idTipoUsuario']));
 		}
-		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
 	function deleteTipoUsuarios($tipousuarios_id){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('tipousuarios',array('id_tipoUsuario'=>$tipousuarios_id));
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 

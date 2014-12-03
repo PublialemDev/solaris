@@ -11,6 +11,7 @@ class Mclientes extends CI_Model{
 		$this->load->database();
 	}
 	function insertCliente($datosCliente){
+		$this->db->trans_begin();
 		//session_start();
 		$sysdate=new DateTime();
 		$returned=$this->db->insert('clientes',
@@ -25,10 +26,21 @@ class Mclientes extends CI_Model{
 			$returned=$this->db->insert_id();
 			$this->mlogs->insertLog(array('tipo_log'=>'insert_clientes','descripcion_log'=>'alta del cliente: '.$returned));
 		}
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	function updateCliente($cli_data_form){
+
+		$this->db->trans_begin();
+
 		$sysdate=new DateTime();
 		$returned=0;
 		$cli_data=array(
@@ -43,17 +55,33 @@ class Mclientes extends CI_Model{
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'update_clientes','descripcion_log'=>'update del cliente: '.$cli_data_form['cli_id']));
 		}
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	function deleteCliente($cli_id){
 		
-		//session_start();
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
 		if($returned>0){
 			return true;;
+		}
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
 		}
 		return false;
 	}

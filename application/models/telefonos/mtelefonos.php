@@ -8,6 +8,7 @@
 		}
 		
 		function insertTelefono($datosTel,$tipo_perfil){
+			$this->db->trans_begin();
 			$sysdate=new DateTime();//obtener el sysdate
 			
 			$returned=$this->db->insert('telefonos',
@@ -21,15 +22,33 @@
 			);
 			//$datos_log=array('tipo_log'=>'insert_telefonos','descripcion'=>'para el perfil: ')
 			//insertLog($datos_log);
+			
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 			return $returned;
 		}
 		
 		function deleteTelefonosAll($perfil_id,$tipo_perfil){
+			$this->db->trans_begin();
 			$returned=$this->db->delete('telefonos',array('id_perfil'=>$perfil_id,'perfil_tipo'=>$tipo_perfil));
 			//insertar log para auditoria
 			if($returned==1){
 				$this->mlogs->insertLog(array('tipo_log'=>'delete_telefonoss','descripcion_log'=>'borrado de telefonos para el perfil: '.$perfil_id));
 				return true;
+			}
+			if ($this->db->trans_status() === FALSE)
+			{
+			    $this->db->trans_rollback();
+			}
+			else
+			{
+			    $this->db->trans_commit();
 			}
 			return false;
 		}

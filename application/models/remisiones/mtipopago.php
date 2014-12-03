@@ -9,6 +9,7 @@ class MTipoPago extends CI_Model{
 	}
 
 	public function insertTipoPago($datos){
+		$this->db->trans_begin();
 		$returned = $this->db->insert('tipopagos',array('nombre_tipoPago'=> $datos['nombre'],
 		'descripcion_tipoPago'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -19,11 +20,20 @@ class MTipoPago extends CI_Model{
 			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_TIPOPAGO','descripcion_log'=>'SE INSERTO TIPO DE PAGO'.$returned));			
 		}
 		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	
-	function updateTipoPago($tipopago_data_form){		
+	function updateTipoPago($tipopago_data_form){
+		$this->db->trans_begin();		
 		$sysdate = new DateTime();
 		$tipopago_data = array('nombre_tipoPago'=> $tipopago_data_form['nombre'],
 			'descripcion_tipoPago'=> $tipopago_data_form['descripcion'],
@@ -37,18 +47,37 @@ class MTipoPago extends CI_Model{
 			$this->mLogs->insertLog(array('tipo_log'=>'UPDATE_TIPOPAGO','descripcion_log'=>'update del tipo de pago: '.$tipopago_data_form['idTipoPago']));
 		}
 		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
+		
 		return $returned;
 	}
 
 	function deleteTipoPago($tipopago_id){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('tipopagos',array('id_tipoPago'=>$tipopago_id));
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
 function selectTipoPago($where_clause){
-		
+
 		if(isset($where_clause['tipopago_id'])){
 			$this->db->where('id_tipoPago',$where_clause['tipopago_id']);
 		}
@@ -56,12 +85,15 @@ function selectTipoPago($where_clause){
 			$this->db->like('nombre_tipoPago',$where_clause['tipopago_nombre']);
 		}
 		$query = $this->db->get('tipopagos');
+
 		if($query->num_rows()>0){
 			return $query;
 		}
 		else{
 			return false;
 		}
+		
+		
 	}
 	
 	function selectTipoPagoById($id_tipopago){

@@ -8,6 +8,7 @@
 		}
 		
 		function insertCorreo($datosCorreo,$tipo_perfil){
+			$this->db->trans_begin();
 			//session_start();
 			$sysdate=new DateTime();//obtener el sysdate
 			
@@ -19,15 +20,34 @@
 				'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 				'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 			);
+			
+			if ($this->db->trans_status() === FALSE)
+			{
+			    $this->db->trans_rollback();
+			}
+			else
+			{
+			    $this->db->trans_commit();
+			}
 			return $returned;
 		}
 		
 		function deleteCorreosAll($perfil_id,$tipo_perfil){
+			$this->db->trans_begin();
 			$returned=$this->db->delete('correos',array('id_perfil'=>$perfil_id,'perfil_tipo'=>$tipo_perfil));
 			//insertar log para auditoria
 			if($returned>0){
 				$this->mlogs->insertLog(array('tipo_log'=>'delete_correos','descripcion_log'=>'borrado de correos para el perfil: '.$perfil_id));
 				return true;
+			}
+			
+			if ($this->db->trans_status() === FALSE)
+			{
+			    $this->db->trans_rollback();
+			}
+			else
+			{
+			    $this->db->trans_commit();
 			}
 			return false;
 		}

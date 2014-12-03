@@ -21,9 +21,16 @@ class CMensual extends CI_Controller {
 		
 		$fecha_inicial =(String) $this->input->get('fecha_ini');
 		$fecha_final = (String)$this->input->get('fecha_fin');
+
 		
 		//obtener resultado de la query 
 		$resul['resultado'] = $this->mmensual->getValues($fecha_inicial,$fecha_final);
+		
+		if($resul['resultado'] != null){
+			$mes_data=$resul['resultado']->first_row();
+			$cantidad_data = $mes_data->cantidad;
+			$total_data = $mes_data->total;
+		}
 		
 
 		// create new PDF document
@@ -67,27 +74,28 @@ class CMensual extends CI_Controller {
 		$pdf->AddPage();
 		
 		//headers
-		$pdf->MultiCell(25, 10, 'CANTIDAD', 1, 'C',0,0);
-		$pdf->MultiCell(25, 10, 'ARTICULO', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'PRECIO', 1, 'C',0,0);
+		$pdf->MultiCell(15, 10, '#', 1, 'C',0,0);
 		$pdf->MultiCell(20, 10, 'IMPORTE', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'CLIENTE', 1, 'C',0,0);
-		$pdf->MultiCell(25, 10, 'SUCURSAL', 1, 'C',0,0);
-		$pdf->MultiCell(25, 10, 'USUARIO', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'FECHA', 1, 'C',0,1);
+		$pdf->MultiCell(40, 10, 'CLIENTE', 1, 'C',0,0);
+		$pdf->MultiCell(35, 10, 'SUCURSAL', 1, 'C',0,0);
+		$pdf->MultiCell(35, 10, 'USUARIO', 1, 'C',0,0);
+		$pdf->MultiCell(35, 10, 'FECHA', 1, 'C',0,1);
 		
 		//table
 		foreach($resul['resultado']->result() as $value){
-			$pdf->MultiCell(25, 7, $value->cantidad, 1, 'L',0,0);
-			$pdf->MultiCell(25, 7, $value->nombre_producto, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->precio_actual, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->importe, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->nombre_cliente, 1, 'L',0,0);
-			$pdf->MultiCell(25, 7, $value->nombre_sucursal, 1, 'L',0,0);
-			$pdf->MultiCell(25, 7, $value->nombre_usuario, 1, 'L',0,0);
-			$pdf->MultiCell(20, 7, $value->fecha, 1, 'L',0,1);		
+			$pdf->MultiCell(15, 10, $value->id_remision, 1, 'L',0,0);
+			$pdf->MultiCell(20, 10, $value->total, 1, 'L',0,0);
+			$pdf->MultiCell(40, 10, $value->nombre_cliente, 1, 'L',0,0);
+			$pdf->MultiCell(35, 10, $value->nombre_sucursal, 1, 'L',0,0);
+			$pdf->MultiCell(35, 10, $value->nombre_usuario, 1, 'L',0,0);
+			$pdf->MultiCell(35, 10, $value->fecha, 1, 'L',0,1);
 			
 		}
+		
+		$pdf->MultiCell(30, 10, 'CANTIDAD DE VENTAS', 1, 'C',0,0);	
+		$pdf->MultiCell(20, 10, $cantidad_data, 1, 'C',0,1);	
+		$pdf->MultiCell(30, 10, 'TOTAL $', 1, 'C',0,0);		
+		$pdf->MultiCell(20, 10, $total_data, 1, 'C',0,1);
 
 		//Close and output PDF document
 		$pdf->Output('reporte_mensual.pdf', 'I');

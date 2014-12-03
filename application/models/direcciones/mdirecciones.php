@@ -7,7 +7,7 @@ class Mdirecciones extends CI_Model{
 		$this->load->database();
 	}
 	function insertDireccion($datosDir,$tipo_perfil){
-		//session_start();
+		$this->db->trans_begin();
 		$sysdate=new DateTime();//obtener el sysdate
 		$returned=$this->db->insert('direcciones',
 		array(
@@ -27,6 +27,15 @@ class Mdirecciones extends CI_Model{
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'insert_direcciones','descripcion_log'=>'alta de direccion para el perfil: '.$returned));
 		}
+
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	/*
@@ -36,7 +45,7 @@ class Mdirecciones extends CI_Model{
 	 * @return string 
 	 * */
 	function updateDireccion($datosDir,$tipo_perfil){
-		//session_start();
+		$this->db->trans_begin();
 		$sysdate=new DateTime();//obtener el sysdate
 		$returned=$this->db->update('direcciones',
 		array(
@@ -58,6 +67,14 @@ class Mdirecciones extends CI_Model{
 		if($returned==1){
 			$this->mlogs->insertLog(array('tipo_log'=>'update_direcciones','descripcion_log'=>'actualizacion de direccion del perfil '.$tipo_perfil.': '.$datosDir['cli_id']));
 		}
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	/*
@@ -67,10 +84,20 @@ class Mdirecciones extends CI_Model{
 	 * @return int 
 	 * */
 	function deleteDireccion($cli_id,$tipo_perfil){
+		$this->db->trans_begin();
 		//session_start();
 		$returned=$this->db->delete('direcciones',array('id_perfil'=>$cli_id,'perfil_tipo'=>$tipo_perfil));
 		if($returned>0){
 			return true;
+		}
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
 		}
 		return false;
 	}

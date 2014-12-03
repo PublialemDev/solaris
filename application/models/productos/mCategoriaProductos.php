@@ -9,6 +9,7 @@ class MCategoriaProductos extends CI_Model{
 	}
 
 	public function insertCategoriaProductos($datos){
+		$this->db->trans_begin();
 		$returned = $this->db->insert('categoriaproductos',array('nombre_categoriaProducto'=> $datos['nombre'],
 		'descripcion_categoriaProducto'=> $datos['descripcion'],
 		'creado_en'=> $datos['creado_en'], 
@@ -19,11 +20,20 @@ class MCategoriaProductos extends CI_Model{
 			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_CATEGORIAPRODUCTO','descripcion_log'=>'SE INSERTO CATEGORIA DE PRODUCTOS'.$returned));			
 		}
 		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 	
 	
-	function updateCategoriaProductos($catprodu_data_form){		
+	function updateCategoriaProductos($catprodu_data_form){
+		$this->db->trans_begin();		
 		$sysdate = new DateTime();
 		$catprodu_data = array('nombre_categoriaProducto'=> $catprodu_data_form['nombre'],
 			'descripcion_categoriaProducto'=> $catprodu_data_form['descripcion'],
@@ -37,13 +47,30 @@ class MCategoriaProductos extends CI_Model{
 			$this->mLogs->insertLog(array('tipo_log'=>'update_categoriaproducto','descripcion_log'=>'update de la categoria de producto: '.$catprodu_data_form['idCatProducto']));
 		}
 		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
 	function deleteCategoriaProductos($catprodu_id){
+		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
 		$returned=$this->db->delete('categoriaproductos',array('id_categoriaProducto'=>$catprodu_id));
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
 		return $returned;
 	}
 
