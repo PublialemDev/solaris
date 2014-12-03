@@ -8,7 +8,7 @@ function validarForm(){
 		continuar=false;
 	}			
 	
-	if(isVacio($("input[name='fecha_txt']").val())){
+	if(!isVacio($("input[name='fecha_txt']").val())){
 		$("input[name='fecha_txt']").parent().removeClass("has-error");
 	}else{
 		$("input[name='fecha_txt']").parent().addClass("has-error");
