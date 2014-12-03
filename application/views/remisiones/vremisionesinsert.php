@@ -116,7 +116,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 						<div id="tableTarget" class='col-md-6'>
 							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')"');?>
 							<?php echo form_button('eliminarProductos','Eliminar Producto','class="btn btn-danger" onclick="eliminarProducto()" disabled');?>
-							<table class='table table-striped'>
+							<table id="tableProductos" class='table table-striped'>
 								<thead>
 									<th>Producto</th>
 									<th>Descripcion</th>

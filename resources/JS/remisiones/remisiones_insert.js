@@ -198,14 +198,15 @@ $(document).on("blur","input[name='prod_cant']",function(){
 //marca el registro a eliminar de la tabla de productos
 $(document).on("click","#tableTarget table tbody tr", function(){
 	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
-		
-		if($(this).hasClass("danger")){
-			$(".danger").removeClass("danger");
-			$("button[name='eliminarProductos']").attr("disabled","disabled");
-		}else{
-			$(".danger").removeClass("danger");
-			$(this).addClass("danger");
-			$("button[name='eliminarProductos']").removeAttr("disabled");
+		if(!$("button[name='saveButton']").hasClass("enableButton")){
+			if($(this).hasClass("danger")){
+				$(".danger").removeClass("danger");
+				$("button[name='eliminarProductos']").attr("disabled","disabled");
+			}else{
+				$(".danger").removeClass("danger");
+				$(this).addClass("danger");
+				$("button[name='eliminarProductos']").removeAttr("disabled");
+			}
 		}
 		
 	}
@@ -262,6 +263,14 @@ function guardarProductos(){
 		
 		formSer+="&idSucursal="+$("select[name='sucursal']").val()+
 		"&idTipoPago="+$("select[name='tipopago']").val()+"&instalacion="+$("select[name='instalacion']").val();
+		formSer+="&productos=";
+		$("#tableProductos tbody tr").each(function(){
+			$id=$(this).attr("id");
+			$cant=$(this).children("td:nth-child(3)").children("input[name='prod_cant']").val();
+			$precio=$(this).children("td:nth-child(3)").children("input[name='prod_precio']").val();
+			$desc=0;
+			formSer+=$id+";"+$cant+";"+$precio+";"+$desc+"#";
+		});
 		$.ajax({
 		data:formSer.toUpperCase(),
 		url:SERVER_URL_BASE+"remisiones/cremisiones/insertRemision",
@@ -272,15 +281,16 @@ function guardarProductos(){
 				
 				$("input[name='idRemision']").val(resp[1]);
 				$("button[name='saveButton']").html("Editar");
+				$("button[name='saveButton']").removeAttr("onclick");
 				$("button[name='saveButton']").removeClass("enviarButton").addClass("enableButton");
 				
 				$(".form-control").attr("disabled","disabled");
-				$(".input").attr("disabled","disabled");
+				$("input").attr("disabled","disabled");
 				$("button[name='agregarProductos']").attr("disabled","disabled");
 				$("button[name='eliminarProductos']").attr("disabled","disabled");
-				$("button[class='buscarButton']").attr("disabled","disabled");
+				$(".buscarButton").attr("disabled","disabled");
 				
-				alert("La categoria se creo correctamente.");					
+				alert("La remision se creo correctamente.");					
 			}else{
 				alert(msg);
 			}
@@ -298,39 +308,66 @@ $(document).on("click",".enviarButton",function(){
 });*/
 
 
-/*		
+	
 //habilitara el formulario
 $(document).on("click",".enableButton",function(e){
-	$("[disabled=\'disabled\']").removeAttr("disabled");
+	
+	$(".buscarButton").removeAttr("disabled");
+	$("button[name='agregarProductos']").removeAttr("disabled");
+	$("input").removeAttr("disabled");
+	$(".form-control:not([name='total_txt'])").removeAttr("disabled");
+	$(this).removeClass("enableButton").addClass("updateButton");
+	
 	$(this).html("Guardar");
-	$(this).removeClass("enableButton");
-	$(this).addClass("updateButton");
 });
 
 //actualiza el registro
 $(document).on("click",".updateButton",function(){
 	if(validarForm()){
-	var formSer=$("#form_tipopago").serialize();
-	
+		$(".form-control").removeAttr("disabled");	
+		var formSer=$("#form_remision").serialize();
+		$(".form-control").attr("disabled","disabled");
+		
+		formSer+="&idSucursal="+$("select[name='sucursal']").val()+
+		"&idTipoPago="+$("select[name='tipopago']").val()+"&instalacion="+$("select[name='instalacion']").val();
+		formSer+="&productos=";
+		$("#tableProductos tbody tr").each(function(){
+			$id=$(this).attr("id");
+			$cant=$(this).children("td:nth-child(3)").children("input[name='prod_cant']").val();
+			$precio=$(this).children("td:nth-child(3)").children("input[name='prod_precio']").val();
+			$desc=0;
+			formSer+=$id+";"+$cant+";"+$precio+";"+$desc+"#";
+		});
 		$.ajax({
-			data:formSer,
-			url:SERVER_URL_BASE+"remisiones/ctipopago/updateTipoPago",
-			method:"POST",
-			beforesend:function(){alert(formSer);},
-			success: function(msg){
-				alert(msg);
-				$(".updateButton").html("Editar");
-				$(".updateButton").removeClass("updateButton").addClass("enableButton");
+		data:formSer.toUpperCase(),
+		url:SERVER_URL_BASE+"remisiones/cremisiones/updateRemision",
+		method:"POST",
+		success: function(msg){
+			var resp=msg.split(";");
+			if(resp[0].trim()=="SUCCESS"){
+				
+				$("input[name='idRemision']").val(resp[1]);
+				$("button[name='saveButton']").html("Editar");
+				$("button[name='saveButton']").removeClass("updateButton").addClass("enableButton");
+				
+				$(".form-control").attr("disabled","disabled");
 				$("input").attr("disabled","disabled");
-				$("textarea").attr("disabled","disabled");
+				$("button[name='agregarProductos']").attr("disabled","disabled");
+				$("button[name='eliminarProductos']").attr("disabled","disabled");
+				$(".buscarButton").attr("disabled","disabled");
+				
+				alert("La remision se actualizó correctamente.");					
+			}else{
+				alert(msg);
 			}
+		}
 
 		});
 	}else{
 		alert("Hay un error en los datos, Favor de validarlos");
 	}
 });
-
+/*
 function getValues(form,evt){
 	evt.preventDefault();
 	var formSer=$(form).serialize();

@@ -29,6 +29,30 @@ class MRemisiones extends CI_Model{
 		return $returned;
 	}
 	
+	//actualizacion de remision
+	public function updateRemision($datos){
+		$sysdate=new DateTime();
+		$returned=0;
+		$data_Remision=array(
+		'id_sucursal'=> $datos['idSucursal'],
+		'id_cliente'=> $datos['idCliente'],
+		'id_tipopago'=> $datos['idTipoPago'],
+		'fecha'=> $datos['fecha'],
+		'instalacion'=> $datos['instalacion'],
+		'total'=> $datos['total'],
+		'iva'=> $datos['iva'], 
+		'modificado_en'=> $sysdate->format('Y-m-d H:i:s'), 
+		'modificado_por'=>base64_decode($_SESSION['USUARIO_ID']));
+		
+		$returned=$this->db->update('remisiones',$data_Remision,array('id_remision'=>$datos['idRemision']));
+		
+		//insertar log para auditoria
+		if($returned==1){
+			$this->mLogs->insertLog(array('tipo_log'=>'update_remision','descripcion_log'=>'update de remision: '.$datos['idRemision']));
+		}
+		return $returned;
+	}
+	
 	public function selectSucursales(){
 		$query = $this->db->get('sucursales');
 		

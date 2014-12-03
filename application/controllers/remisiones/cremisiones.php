@@ -7,6 +7,7 @@ class CRemisiones extends CI_Controller {
 		$this->load->helper('pagina');
 		$this->load->helper('form');
 		$this->load->model('remisiones/mremisiones');
+		$this->load->model('remisiones/mproductoremision');
 		$this->load->library('table');
 	}
 	
@@ -37,18 +38,77 @@ class CRemisiones extends CI_Controller {
 		'total'=>$this->input->post('TOTAL_TXT'),
 		'iva'=>$this->input->post('IVA_TXT'));		
 		$generated=$this->mremisiones->insertRemision($remi_data);
+		$productos=$this->input->post('PRODUCTOS');
+		$prod_data=explode('#',$productos);
+		foreach ($prod_data as $prod) {
+			if($prod!='' && $prod != null){
+			$producto=explode(';',$prod);
+			$this->mproductoremision->insertProductoRemision(
+			array( 
+			'id_remision'=>$generated,
+			'id_producto'=>$producto[0],
+			'cantidad'=>$producto[1],
+			'precio_actual'=>$producto[2],
+			'descuento'=>$producto[3]
+			));
+			}
+		}
+		
 		echo 'SUCCESS;'.$generated;
 	}
 	
 	
-	
+	//muestra la estructura para la ventana modal de busqueda de clientes
 	public function modalClientes(){
 		
 		$this->load->view('clientes/vClientesSelectModal');
 	}
 	
+	//muestra la estructura para la ventana modal de busqueda de productos
 	public function modalProductos(){
 		$this->load->view('productos/vProductosSelectModal');
+	}
+	
+	public function updateRemision(){
+		$remi_data=array(
+		'idRemision'=>$this->input->post('IDREMISION'),
+		'idSucursal'=>$this->input->post('IDSUCURSAL'),
+		'idCliente'=>$this->input->post('CLIENTE_TXT'),
+		'idTipoPago'=>$this->input->post('IDTIPOPAGO'),
+		'fecha'=>$this->input->post('FECHA_TXT'),
+		'instalacion'=>$this->input->post('INSTALACION'),
+		'total'=>$this->input->post('TOTAL_TXT'),
+		'iva'=>$this->input->post('IVA_TXT'));		
+		$generated=$this->mremisiones->updateRemision($remi_data);
+		
+		if($generated>0){
+			$generated=$this->mproductoremision->deleteProductoRemision($remi_data['idRemision']);
+			if($generated){
+				$productos=$this->input->post('PRODUCTOS');
+				$prod_data=explode('#',$productos);
+				foreach ($prod_data as $prod) {
+					if($prod!='' && $prod != null){
+						$producto=explode(';',$prod);
+						$this->mproductoremision->insertProductoRemision(
+							array( 
+								'id_remision'=>$remi_data['idRemision'],
+								'id_producto'=>$producto[0],
+								'cantidad'=>$producto[1],
+								'precio_actual'=>$producto[2],
+								'descuento'=>$producto[3]
+							)
+						);
+					}
+				}
+				echo 'SUCCESS;'.$remi_data['idRemision'];
+			}else{
+				echo 'ERROR;'.$generated;
+			}
+		}else{
+			echo 'ERROR;'.$generated;
+		}
+		
+		
 	}
 	
 	public function getValues(){

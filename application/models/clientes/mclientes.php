@@ -29,7 +29,6 @@ class Mclientes extends CI_Model{
 	}
 	
 	function updateCliente($cli_data_form){
-		//session_start();
 		$sysdate=new DateTime();
 		$returned=0;
 		$cli_data=array(

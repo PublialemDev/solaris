@@ -19,8 +19,8 @@ class CMensual extends CI_Controller {
 	public function reporteMensual(){		
 		$this->load->library('pdf');
 		
-		$fecha_inicial =(String) $this->input->post('fecha_ini');
-		$fecha_final = (String)$this->input->post('fecha_fin');
+		$fecha_inicial =(String) $this->input->get('fecha_ini');
+		$fecha_final = (String)$this->input->get('fecha_fin');
 		
 		//obtener resultado de la query 
 		$resul['resultado'] = $this->mmensual->getValues($fecha_inicial,$fecha_final);
