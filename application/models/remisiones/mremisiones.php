@@ -62,7 +62,48 @@ class MRemisiones extends CI_Model{
 			return false;
 		}
 	}
-
+	
+	function selectRemisiones($where_clause){
+		
+		if(isset($where_clause['cli_id'])){
+			$this->db->where('id_cliente',$where_clause['cli_id']);
+		}
+		if(isset($where_clause['suc_id'])){
+			$this->db->where('id_sucursal',$where_clause['suc_id']);
+		}
+		if(isset($where_clause['tipopago_id'])){
+			$this->db->where('id_tipoPago',$where_clause['tipopago_id']);
+		}
+		if(isset($where_clause['fecha_inicio'])){
+			$this->db->where('fecha>=',$where_clause['fecha_inicio']);
+		}
+		if(isset($where_clause['fecha_fin'])){
+			$this->db->where('fecha<=',$where_clause['fecha_fin']);
+		}
+		/*if(isset($where_clause['cli_rfc'])){
+			$this->db->where('rfc',$where_clause['cli_rfc']);
+		}*/
+		
+		$query = $this->db->get('remisiones');
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	function selectRemisionById($id_remision){
+		$where_clause=array('id_remision'=>$id_remision);
+		$query = $this->db->get_where('remisiones',$where_clause);
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	public function selectTipoPagos(){
 		$query = $this->db->get('tipopagos');
 		
@@ -73,7 +114,7 @@ class MRemisiones extends CI_Model{
 		}
 	}
 	
-	public function selectRemisiones(){			
+	/*public function selectRemisiones(){			
 		$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
 		remisiones.fecha, remisiones.instalacion, remisiones.total, remisiones.iva, remisiones.creado_en, remisiones.creado_por, remisiones.modificado_en,
 		remisiones.modificado_por FROM remisiones 
@@ -83,6 +124,6 @@ class MRemisiones extends CI_Model{
 		
 			
 		return $consulta;
-	}
+	}*/
 	
 }

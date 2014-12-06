@@ -69,6 +69,15 @@ class CRemisiones extends CI_Controller {
 		$this->load->view('productos/vProductosSelectModal');
 	}
 	
+	public function formUpdateRemision(){
+		$id_remision=$this->input->get('id_Remision');
+		$datos['sucursales'] = $this->mremisiones->selectSucursales();
+		$datos['tipopagos'] = $this->mremisiones->selectTipoPagos();
+		$datos['remision'] = $this->mremisiones->selectRemisionById($id_remision);
+		$datos['remisionproducto'] = $this->mproductoremision->selectProductoRemisionById($id_remision);
+		$this->load->view('remisiones/vremisionesupdate',$datos);
+	}
+	
 	public function updateRemision(){
 		$remi_data=array(
 		'idRemision'=>$this->input->post('IDREMISION'),
@@ -126,9 +135,60 @@ class CRemisiones extends CI_Controller {
 		$this->mremisiones->insertRemision($datos);
 	}
 	
-	public function selectRemisiones(){
-		$consulta['query'] = $this->mremisiones->selectremisiones();
-		$this->load->view('remisiones/vremisionesselect',$consulta);
+	public function selectRemisionesForm(){
+		//$consulta['query'] = $this->mremisiones->selectremisiones();
+		$this->load->view('remisiones/vremisionesselect');
+	}
+
+	public function selectRemisionesJson(){
+		$cli_id=$this->input->post('cli_id');
+		$suc_id=$this->input->post('suc_id');
+		$tipopago_id=$this->input->post('tipopago_id');
+		$fecha_inicio=$this->input->post('$fecha_inicio');
+		$fecha_fin=$this->input->post('$fecha_fin');
+		
+		$where_clause=array();
+		if($cli_id!= null and $cli_id!=''){
+			$where_clause['cli_id']=$cli_id;
+		}
+		if($suc_id!= null and $suc_id!='0'){
+			$where_clause['suc_id']=$suc_id;
+		}
+		if($tipopago_id!= null and $tipopago_id!='0'){
+			$where_clause['tipopago_id']=$tipopago_id;
+		}
+		if($fecha_inicio!= null and $fecha_inicio!=''){
+			$where_clause['fecha_inicio']=$fecha_inicio;
+		}
+		if($fecha_fin!= null and $fecha_fin!=''){
+			$where_clause['fecha_fin']=$fecha_fin;
+		}
+
+		$res=$this->mremisiones->selectRemisiones($where_clause);
+		if($res!=false){
+			$json='[';
+			$last=$res->last_row();
+			foreach ( $res->result() as $remision) {
+				$json.='{';
+				$json.='"rem_id":'.'"'.$remision->id_remision.'",';
+				$json.='"suc_id":'.'"'.$remision->id_sucursal.'",';
+				$json.='"cli_id":'.'"'.$remision->id_cliente.'",';
+				$json.='"tipopago_id":'.'"'.$remision->id_tipoPago.'",';
+				$json.='"rem_fecha":'.'"'.$remision->fecha.'",';
+				$json.='"rem_instalacion":'.'"'.$remision->instalacion.'",';
+				$json.='"rem_total":'.'"'.$remision->total.'",';
+				$json.='"rem_iva":'.'"'.$remision->iva.'"';
+				$json.='}';
+				if($remision->id_remision!=$last->id_remision){
+					$json.=',';
+				}
+			}
+			$json.=']';
+					
+			echo $json;
+		}else{
+			echo "NO_DATA_FOUND";
+		}
 	}
 			
 } 

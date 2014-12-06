@@ -37,6 +37,22 @@ class Mproductoremision extends CI_Model{
 		}
 		return $returned;
 	}
+	
+	public function selectProductoRemisionById($id_remision){
+		$where_clause=array('id_remision'=>$id_remision,'estatus_productoRemision'=>'A');
+		$this->db->where($where_clause);
+		$this->db->select('id_remision,productoremision.id_producto,cantidad,precio_actual,descuento,nombre_producto,descripcion_producto');
+		$this->db->from('productoremision');
+		$this->db->join('productos','productoremision.id_producto = productos.id_producto ');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	/*
 	public function selectRemisiones(){			
 		$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
