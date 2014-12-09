@@ -3,7 +3,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Remisiones');
 echo getMenu();
 //
-$rem_id='';$rem_suc='';$rem_cli='';$rem_tipopago='';$rem_fecha='';$rem_inst='N';$rem_total='';$rem_iva='';
+$rem_id='';$rem_suc='';$rem_cli='';$rem_tipopago='';$rem_fecha='';$rem_inst='N';$rem_total=0;$rem_iva=0;$rem_cli_nom='';
 
 if(isset($remision)){
 	//
@@ -17,6 +17,7 @@ if(isset($remision)){
 	$rem_inst=$rem_data->instalacion;
 	$rem_total=$rem_data->total;
 	$rem_iva=$rem_data->iva;
+	$rem_cli_nom=$rem_data->nombre_cliente;
 }
 
 //
@@ -33,8 +34,9 @@ foreach ($tipopagos->result() as $tipopago) {
 $form_remision = array('id'=>'form_remision','role'=>'form');
 
 //Propiedades de los input 
-$remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>$rem_cli,'class'=>'form-control');
-$remision_fecha =array('id' => 'fecha', 'name'=>'fecha_txt','placeholder'=>'Fecha','value'=>$rem_fecha,'class'=>'form-control');
+//$remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>$rem_cli,'class'=>'form-control','disabled'=>'disabled');
+$remision_cliente_name =array('name'=>'cliente_name','placeholder'=>'Cliente','value'=>$rem_cli_nom,'class'=>'form-control','disabled'=>'disabled');
+$remision_fecha =array('id' => 'fecha', 'name'=>'fecha_txt','placeholder'=>'Fecha','value'=>$rem_fecha,'class'=>'form-control','disabled'=>'disabled');
 $remision_total =array('name'=>'total_txt','placeholder'=>'Total','value'=>$rem_total,'class'=>'form-control','disabled'=>'disabled');
 $remision_iva =array('name'=>'iva_txt','placeholder'=>'IVA','value'=>$rem_iva,'class'=>'form-control','disabled'=>'disabled');
 
@@ -65,7 +67,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										<div class="form-group" >
 										
 										<?php echo form_label('Sucursal: ','sucursal');?>
-										<?php echo form_dropdown('sucursal',$sucursal_data,$rem_suc,'class="form-control"');?> 
+										<?php echo form_dropdown('sucursal',$sucursal_data,$rem_suc,'class="form-control " disabled');?> 
 										
 										</div>
 									</td>
@@ -74,19 +76,20 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									<td>
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
-										<?php echo form_input($remision_cliente);?>
+										<?php echo form_hidden('cliente_txt',$rem_cli);?>
+										<?php echo form_input($remision_cliente_name);?>
 										</div>
 									</td>
 									<!--boton para buscar un cliente -->
 								</tr>
 								<tr>	
-									<td><?php echo form_button('buscar','Buscar Cliente','class="btn btn-primary buscarButton" onclick="prepararModal(\'CLIENTES\')"');?></td>
+									<td><?php echo form_button('buscar','Buscar Cliente','class="btn btn-primary buscarButton" onclick="prepararModal(\'CLIENTES\')" disabled');?></td>
 								</tr>
 								<tr>
 									<td>
 										<div class="form-group">
 										<?php echo form_label('Tipo de Pago: ','tipopago',$label);?>
-										<?php echo form_dropdown('tipopago',$tipopago_data,$rem_tipopago,'class="form-control"');?> 
+										<?php echo form_dropdown('tipopago',$tipopago_data,$rem_tipopago,'class="form-control" disabled');?> 
 										</div>
 									</td>
 								</tr>
@@ -102,7 +105,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									<td>
 										<div class="form-group">
 										<?php echo form_label('Instalacion: ','instalacion',$label);?>
-										<?php echo form_dropdown('instalacion',$remision_instalacion,$rem_inst,'class="form-control"');?>
+										<?php echo form_dropdown('instalacion',$remision_instalacion,$rem_inst,'class="form-control" disabled');?>
 										</div>
 									</td>
 								</tr>
@@ -120,14 +123,17 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										<div class="form-group">
 										<?php echo form_label('IVA:','iva',$label);?>
 										<!--Para pruebas-->
-										<?php echo form_checkbox(array('name'=>'iva_check'),'.16');?>
+										<?php 
+										$checked=false;
+										if($rem_iva>0){$checked=true;}
+										echo form_checkbox(array('name'=>'iva_check','disabled'=>'disabled'),'.16',$checked);?>
 										<?php echo form_input($remision_iva);?>
 										</div>
 									</td>
 								</tr>
 								
 								<tr>
-									<td><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></td>
+									<td><?php echo form_button('saveButton','Editar','class="btn btn-primary enableButton"');?></td>
 								</tr>
 								
 							</tbody>
@@ -135,7 +141,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 						<?php echo form_close(); ?>
 						</div>
 						<div id="tableTarget" class='col-md-6'>
-							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')"');?>
+							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')" disabled');?>
 							<?php echo form_button('eliminarProductos','Eliminar Producto','class="btn btn-danger" onclick="eliminarProducto()" disabled');?>
 							<table id="tableProductos" class='table table-striped'>
 								<thead>
@@ -151,7 +157,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										$table.='<td>'.$producto->nombre_producto.'</td>';
 										$table.='<td>'.$producto->descripcion_producto.'</td>';
 										$table.='<td><input name="prod_precio" type="hidden" value="'.$producto->precio_actual.'">';
-										$table.='<input name="prod_cant" type="text" value="'.$producto->cantidad.'"></td>';
+										$table.='<input name="prod_cant" type="text" value="'.$producto->cantidad.'" disabled></td>';
 										$table.='</tr>';
 										
 										$tipopago_data[(string)$tipopago->id_tipoPago]= (string)$tipopago->nombre_tipoPago;
@@ -172,7 +178,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 
 <?php 
 echo form_close();
-echo getFooter('<script src="/solaris/resources/JS/remisiones/remisiones_insert.js"></script>');
+echo getFooter('<script src="/solaris/resources/JS/remisiones/remisiones_update.js"></script>');
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

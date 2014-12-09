@@ -88,7 +88,9 @@ $(document).on("click"," #target .datos tbody tr", function(){
 $(document).on("click",".modalSave", function(){
 	if($(this).hasClass("addClientes")){
 		var seleccionado=$("tr[class='info']").attr("id");
+		
 		$("input[name='cliente_txt']").val(seleccionado);
+		$("input[name='cliente_name']").val($("tr[class='info']").children("td:nth-child(2)").text());
 		$('#myModal').modal('hide');
 		
 	}else if($(this).hasClass("addProductos")){
@@ -180,14 +182,30 @@ function eliminarProducto(){
 //calcula el total y se lo agrega a el campo total_txt
 function calcularTotal(){
 	var total=0;
+	var iva=0;
 	$("input[name='prod_cant']").each(function(){
 		var precio=0, cantidad=0;
 		precio=$(this).siblings("input[name='prod_precio']").val();
 		cantidad=$(this).val();
 		total=parseInt(total)+parseInt((precio*cantidad));
 	});
+	if($("input[name='iva_check']:checked").length==1){
+		iva=total * $("input[name='iva_check']:checked").val();
+	}
 	$("input[name='total_txt']").val(total);
+	$("input[name='iva_txt']").val(iva);
 }
+
+//si se habilita el iva lo aplica
+$("input[name='iva_check']").change(function(){
+	var iva=0;
+	if($("input[name='iva_check']:checked").length==1){
+		iva=$("input[name='total_txt']").val() * $("input[name='iva_check']:checked").val();
+	}else{
+		iva=0;
+	}
+	$("input[name='iva_txt']").val(iva);
+});
 
 //agrega el total cuando se agrega una cantidad de productos
 $(document).on("blur","input[name='prod_cant']",function(){
@@ -289,7 +307,7 @@ function guardarProductos(){
 				$("button[name='agregarProductos']").attr("disabled","disabled");
 				$("button[name='eliminarProductos']").attr("disabled","disabled");
 				$(".buscarButton").attr("disabled","disabled");
-				
+				$("input[name='iva_check']").attr("disabled","disabled");
 				alert("La remision se creo correctamente.");					
 			}else{
 				alert(msg);
@@ -302,16 +320,9 @@ function guardarProductos(){
 	}
 }
 
-	/*	
-$(document).on("click",".enviarButton",function(){
-	
-});*/
-
-
-	
 //habilitara el formulario
 $(document).on("click",".enableButton",function(e){
-	
+	$("input[name='iva_check']").removeAttr("disabled");
 	$(".buscarButton").removeAttr("disabled");
 	$("button[name='agregarProductos']").removeAttr("disabled");
 	$("input[name='prod_cant']").removeAttr("disabled");
@@ -355,7 +366,8 @@ $(document).on("click",".updateButton",function(){
 				$("button[name='agregarProductos']").attr("disabled","disabled");
 				$("button[name='eliminarProductos']").attr("disabled","disabled");
 				$(".buscarButton").attr("disabled","disabled");
-				
+				$("input[name='iva_check']").attr("disabled","disabled");
+				 
 				alert("La remision se actualizó correctamente.");					
 			}else{
 				alert(msg);

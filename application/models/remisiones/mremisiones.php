@@ -84,7 +84,11 @@ class MRemisiones extends CI_Model{
 			$this->db->where('rfc',$where_clause['cli_rfc']);
 		}*/
 		
-		$query = $this->db->get('remisiones');
+		$this->db->select('id_remision,id_sucursal,remisiones.id_cliente,id_tipoPago,fecha,instalacion,total,iva,nombre_cliente');
+		$this->db->from('remisiones');
+		$this->db->join('clientes','remisiones.id_cliente=clientes.id_cliente');
+		$this->db->where($where_clause);
+		$query = $this->db->get();
 		if($query->num_rows()>0){
 			return $query;
 		}
@@ -95,7 +99,11 @@ class MRemisiones extends CI_Model{
 	
 	function selectRemisionById($id_remision){
 		$where_clause=array('id_remision'=>$id_remision);
-		$query = $this->db->get_where('remisiones',$where_clause);
+		$this->db->select('id_remision,id_sucursal,remisiones.id_cliente,id_tipoPago,fecha,instalacion,total,iva,nombre_cliente');
+		$this->db->from('remisiones');
+		$this->db->join('clientes','remisiones.id_cliente=clientes.id_cliente');
+		$this->db->where($where_clause);
+		$query = $this->db->get();
 		if($query->num_rows()>0){
 			return $query;
 		}
