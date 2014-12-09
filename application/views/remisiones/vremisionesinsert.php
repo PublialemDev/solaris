@@ -6,7 +6,7 @@ echo getMenu();
 $form_remision = array('id'=>'form_remision','role'=>'form');
 
 //Propiedades de los input 
-$remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
+$remision_cliente =array('name'=>'cliente_name','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
 $remision_fecha =array('id' => 'fecha', 'name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'','class'=>'form-control');
 $remision_total =array('name'=>'total_txt','placeholder'=>'Total','value'=>'','class'=>'form-control','disabled'=>'disabled');
 $remision_iva =array('name'=>'iva_txt','placeholder'=>'IVA','value'=>'','class'=>'form-control','disabled'=>'disabled');
@@ -49,6 +49,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									<td>
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
+										<?php echo form_hidden('cliente_txt',0);?>
 										<?php echo form_input($remision_cliente);?>
 										</div>
 									</td>

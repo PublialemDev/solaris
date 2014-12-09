@@ -379,10 +379,4 @@ $(document).on("click",".updateButton",function(){
 		alert("Hay un error en los datos, Favor de validarlos");
 	}
 });
-/*
-function getValues(form,evt){
-	evt.preventDefault();
-	var formSer=$(form).serialize();
-	alert(formSer);
-}
-*/
+
