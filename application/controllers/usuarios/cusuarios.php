@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+session_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CUsuarios extends CI_Controller {
 
@@ -40,8 +42,7 @@ class CUsuarios extends CI_Controller {
 		'nombre'=>$this->input->post('NOMBRE'),
 		'password'=>$this->input->post('PASSWORD'),
 		'id_tipousuario'=>$this->input->post('USR_TIPOUSUARIO'),
-		'id_sucursal'=>$this->input->post('USR_SUCURSAL'),
-		'estatus'=>$this->input->post('USR_ESTATUS')
+		'id_sucursal'=>$this->input->post('USR_SUCURSAL')
 		);
 		//inserta y recibe el id generado en la insercion
 		$usr_id= $this->musuarios->insertUsuarios($usr_data);
@@ -195,8 +196,8 @@ class CUsuarios extends CI_Controller {
 		'nombre'=>$this->input->post('NOMBRE'),
 		'password'=>$this->input->post('PASSWORD'),
 		'id_tipousuario'=>$this->input->post('USR_TIPOUSUARIO'),
-		'id_sucursal'=>$this->input->post('USR_SUCURSAL'),
-		'estatus'=>$this->input->post('USR_ESTATUS')
+		'id_sucursal'=>$this->input->post('USR_SUCURSAL')
+		//'estatus'=>$this->input->post('USR_ESTATUS')
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->musuarios->updateUsuarios($usr_data);
@@ -284,12 +285,12 @@ class CUsuarios extends CI_Controller {
 		$usr_id=$this->input->post('USR_ID');
 		
 		$returned=$this->musuarios->deleteUsuarios($usr_id);
-		if($returned)
+		/*if($returned)
 		$returned=$this->mdirecciones->deleteDireccion($usr_id,'usr');
 		if($returned)
 		$returned=$this->mtelefonos->deleteTelefonosAll($usr_id,'usr');
 		if($returned)
-		$returned=$this->mcorreos->deleteCorreosAll($usr_id,'usr');
+		$returned=$this->mcorreos->deleteCorreosAll($usr_id,'usr');*/
 		
 		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_usuario','descripcion_log'=>'se elimino el usuario: '.$usr_id));

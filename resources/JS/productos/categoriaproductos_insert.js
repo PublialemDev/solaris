@@ -55,7 +55,7 @@ $(document).on("click",".updateButton",function(){
 	var formSer=$("#form_catproductos").serialize();
 	
 		$.ajax({
-			data:formSer,
+			data:formSer.toUpperCase(),
 			url:SERVER_URL_BASE+"productos/ccategoriaproductos/updateCategoriaProductos",
 			method:"POST",
 			beforesend:function(){alert(formSer);},

@@ -69,7 +69,7 @@ class Ccategoriaproductos extends CI_Controller {
 	}
 
 	public function updateCategoriaProductos(){
-		$catprodu_id=$this->input->post('idCatProducto');//Almacenara el ID(hidden) generado en la actualizacion
+		$catprodu_id=$this->input->post('IDCATPRODUCTO');//Almacenara el ID(hidden) generado en la actualizacion
 		$catprodu_data;
 		$response;
 		
@@ -77,7 +77,8 @@ class Ccategoriaproductos extends CI_Controller {
 		$catprodu_data = array(
 		'idCatProducto'=>$catprodu_id,
 		'nombre'=>$this->input->post('NOMBRE_TXT'),
-		'descripcion'=>$this->input->post('DESCRIPCION_TXT')
+		'descripcion'=>$this->input->post('DESCRIPCION_TXT'),
+		'estatus'=>$this->input->post('ESTATUS_TXT')
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mcategoriaproductos->updateCategoriaProductos($catprodu_data);

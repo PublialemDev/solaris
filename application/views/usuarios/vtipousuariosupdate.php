@@ -11,6 +11,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		$tipousuarios_descripcion_data=$tipousuarios_data->descripcion_tipoUsuario;
 	}
 	
+	
 	//Propiedades del form
 $form_tipousuarios = array('id'=>'form_tipousuarios','onSubmit'=>'getValues(this,event)');
 
@@ -37,12 +38,20 @@ $label=array('class'=>'control-label');
 					<table>
 						<tbody>
 							<tr>
-								<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
-								<td><?php echo form_input($tipousuarios_nombre);?></td>
-							</tr>
+								<td>
+									<div class="form-group">
+										<?php echo form_label('Nombre: ','nombre',$label);?>
+										<?php echo form_input($tipousuarios_nombre);?>
+									</div>
+								</td>
+							</tr>													
 							<tr>
-								<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
-								<td><?php echo form_textarea($datos);?></td>
+								<td>
+									<div class="form-group">
+										<?php echo form_label('Descripcion:','descripcion',$label);?>
+										<?php echo form_textarea($datos);?>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>

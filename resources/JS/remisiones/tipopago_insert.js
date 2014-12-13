@@ -55,7 +55,7 @@ $(document).on("click",".updateButton",function(){
 	var formSer=$("#form_tipopago").serialize();
 	
 		$.ajax({
-			data:formSer,
+			data:formSer.toUpperCase(),
 			url:SERVER_URL_BASE+"remisiones/ctipopago/updateTipoPago",
 			method:"POST",
 			beforesend:function(){alert(formSer);},

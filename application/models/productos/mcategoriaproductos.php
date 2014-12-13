@@ -62,7 +62,19 @@ class MCategoriaProductos extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('categoriaproductos',array('id_categoriaProducto'=>$catprodu_id));
+		
+		$produ_data = array(
+			'estatus_categoriaProducto'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('categoriaproductos',$produ_data,array('id_categoriaProducto'=>$catprodu_id));
+		
+		$produ_estatus = array('estatus_productos'=>'I');
+		if($returned == 1){
+			$returned = $this->db->update('productos',$produ_estatus,array('id_categoriaProducto'=>$catprodu_id));
+		}	
+
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();
@@ -78,10 +90,14 @@ class MCategoriaProductos extends CI_Model{
 		
 		if(isset($where_clause['catprodu_id'])){
 			$this->db->where('id_categoriaProducto',$where_clause['catprodu_id']);
+		
 		}
 		if(isset($where_clause['catprodu_nombre'])){
 			$this->db->like('nombre_categoriaProducto',$where_clause['catprodu_nombre']);
+
 		}
+		
+		$this->db->where('estatus_categoriaProducto','A');
 		$query = $this->db->get('categoriaproductos');
 		if($query->num_rows()>0){
 			return $query;

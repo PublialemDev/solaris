@@ -138,7 +138,7 @@ $(document).on("click",".updateButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
-					alert("El usuario actializó correctamente");
+					alert("El usuario actualizó correctamente");
 				}else{
 					alert("Ocurrio un error: "+msg);
 				}
@@ -149,6 +149,7 @@ $(document).on("click",".updateButton",function(){
 		alert("Hay un error en los datos, Favor de validarlos");
 	}
 });
+
 
 $(".deleteButton").click(function(){
 	if(confirm("seguro que deseas eliminar el usuario?")){

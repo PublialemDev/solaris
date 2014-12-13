@@ -55,7 +55,7 @@ $(document).on("click",".updateButton",function(){
 	var formSer=$("#form_catseguimiento").serialize();
 	
 		$.ajax({
-			data:formSer,
+			data:formSer.toUpperCase(),
 			url:SERVER_URL_BASE+"clientes/ccategoriaseguimiento/updateCategoriaSeguimiento",
 			method:"POST",
 			beforesend:function(){alert(formSer);},

@@ -36,7 +36,7 @@ class MTipoPago extends CI_Model{
 		$this->db->trans_begin();		
 		$sysdate = new DateTime();
 		$tipopago_data = array('nombre_tipoPago'=> $tipopago_data_form['nombre'],
-			'descripcion_tipoPago'=> $tipopago_data_form['descripcion'],
+			'descripcion_tipoPago'=> $tipopago_data_form['descripcion'],			
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
@@ -62,8 +62,19 @@ class MTipoPago extends CI_Model{
 	function deleteTipoPago($tipopago_id){
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
+						
+		$tipopago_data = array(
+			'estatus_tipoPagos'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('tipopagos',$tipopago_data,array('id_tipoPago'=>$tipopago_id));
 		
-		$returned=$this->db->delete('tipopagos',array('id_tipoPago'=>$tipopago_id));
+		$tipopago_estatus = array('estatus_remision'=>'I');
+		if($returned == 1){
+			$returned = $this->db->update('remisiones',$tipopago_estatus,array('id_tipoPago'=>$tipopago_id));
+		}	
+		
 		
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -84,6 +95,8 @@ function selectTipoPago($where_clause){
 		if(isset($where_clause['tipopago_nombre'])){
 			$this->db->like('nombre_tipoPago',$where_clause['tipopago_nombre']);
 		}
+
+		$this->db->where('estatus_tipoPagos','A');
 		$query = $this->db->get('tipopagos');
 
 		if($query->num_rows()>0){

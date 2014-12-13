@@ -12,8 +12,7 @@ class MSucursales extends CI_Model{
 		$returned=$this->db->insert('sucursales',
 		array(
 			'nombre_sucursal' => $datosSucursales['nombre'],
-			'pagina_web' => $datosSucursales['paginaweb'],
-			'estatus_sucursal' => $datosSucursales['estatus'],
+			'pagina_web' => $datosSucursales['paginaweb'],			
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
@@ -41,7 +40,7 @@ class MSucursales extends CI_Model{
 		$sucu_data=array(
 			'nombre_sucursal' => $sucu_data_form['nombre'],
 			'pagina_web' => $sucu_data_form['paginaweb'],
-			'estatus_sucursal' => $sucu_data_form['estatus'],
+			//'estatus_sucursal' => $sucu_data_form['estatus'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
@@ -67,7 +66,32 @@ class MSucursales extends CI_Model{
 
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('sucursales',array('id_sucursal'=>$sucu_id));
+		//$returned=$this->db->delete('sucursales',array('id_sucursal'=>$sucu_id));
+		
+		$suc_data = array(
+			'estatus_sucursal'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('sucursales',$suc_data,array('id_sucursal'=>$sucu_id));
+		
+		$dir_estatus = array('estatus_direccion'=>'I');
+		$tel_estatus = array('estatus_telefono'=>'I');
+		$correo_estatus = array('estatus_correo'=>'I');
+		$remi_estatus = array('estatus_remision'=>'I');
+		
+		if($returned == 1){
+			$returned = $this->db->update('remisiones',$remi_estatus,array('id_sucursal'=>$sucu_id));
+			if($returned == 1){
+				$returned = $this->db->update('direcciones',$dir_estatus,array('id_perfil'=>$sucu_id,'perfil_tipo' => 'suc'));
+				if($returned == 1){
+					$returned = $this->db->update('telefonos',$tel_estatus,array('id_perfil'=>$sucu_id,'perfil_tipo' => 'suc'));
+					if($returned == 1){
+						$returned = $this->db->update('correos',$correo_estatus,array('id_perfil'=>$sucu_id,'perfil_tipo' => 'suc'));								
+					}			
+				}
+			}			
+		}	
 		if($returned>0){
 			return true;;
 		}
@@ -96,6 +120,7 @@ class MSucursales extends CI_Model{
 			$this->db->like('pagina_web',$where_clause['sucu_paginaweb']);
 		}
 		
+		$this->db->where('estatus_sucursal','A');
 		$query = $this->db->get('sucursales');
 		if($query->num_rows()>0){
 			return $query;

@@ -61,7 +61,20 @@ class MTipoUsuarios extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('tipousuarios',array('id_tipoUsuario'=>$tipousuarios_id));
+		
+		
+		$tipousr_data = array(
+			'estatus_tipoUsuario'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('tipousuarios',$tipousr_data,array('id_tipoUsuario'=>$tipousuarios_id));
+		
+		$usr_estatus = array('estatus_usuario'=>'I');
+		if($returned == 1){
+			$returned = $this->db->update('usuarios',$usr_estatus,array('id_tipoUsuario'=>$tipousuarios_id));
+		}	
+		
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();
@@ -81,6 +94,8 @@ function selectTipoUsuarios($where_clause){
 		if(isset($where_clause['tipousuarios_nombre'])){
 			$this->db->like('nombre_tipoUsuario',$where_clause['tipousuarios_nombre']);
 		}
+
+		$this->db->where('estatus_tipoUsuario','A');
 		$query = $this->db->get('tipousuarios');
 		if($query->num_rows()>0){
 			return $query;

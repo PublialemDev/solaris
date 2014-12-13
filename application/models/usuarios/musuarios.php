@@ -14,8 +14,7 @@ class MUsuarios extends CI_Model{
 			'id_tipousuario' => $datosUsuarios['id_tipousuario'],
 			'id_sucursal' => $datosUsuarios['id_sucursal'],
 			'nombre_usuario' => $datosUsuarios['nombre'],
-			'contraseña' => $datosUsuarios['password'],
-			'estatus_usuario' => $datosUsuarios['estatus'],						
+			'contraseña' => $datosUsuarios['password'],						
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
@@ -45,7 +44,7 @@ class MUsuarios extends CI_Model{
 			'id_sucursal' => $usr_data_form['id_sucursal'],
 			'nombre_usuario' => $usr_data_form['nombre'],
 			'contraseña' => $usr_data_form['password'],	
-			'estatus_usuario' => $usr_data_form['estatus'],
+			//'estatus_usuario' => $usr_data_form['estatus'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
@@ -71,7 +70,30 @@ class MUsuarios extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('usuarios',array('id_usuario'=>$usr_id));
+		//$returned=$this->db->delete('usuarios',array('id_usuario'=>$usr_id));
+		
+		$usr_data = array(
+			'estatus_usuario'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('usuarios',$usr_data,array('id_usuario'=>$usr_id));
+		
+		$dir_estatus = array('estatus_direccion'=>'I');
+		$tel_estatus = array('estatus_telefono'=>'I');
+		$correo_estatus = array('estatus_correo'=>'I');
+		
+		if($returned == 1){
+			$returned = $this->db->update('direcciones',$dir_estatus,array('id_perfil'=>$usr_id,'perfil_tipo' => 'usr'));
+			if($returned == 1){
+				$returned = $this->db->update('telefonos',$tel_estatus,array('id_perfil'=>$usr_id,'perfil_tipo' => 'usr'));
+				if($returned == 1){
+					$returned = $this->db->update('correos',$correo_estatus,array('id_perfil'=>$usr_id,'perfil_tipo' => 'usr'));
+			
+				}
+			}
+			
+		}	
 		if($returned>0){
 			return true;;
 		}
@@ -103,6 +125,7 @@ class MUsuarios extends CI_Model{
 		$this->db->select('usuarios.id_usuario,usuarios.nombre_usuario,tipousuarios.nombre_tipousuario');
 		$this->db->from('usuarios');
 		$this->db->join('tipousuarios','usuarios.id_tipousuario = tipousuarios.id_tipousuario');
+		$this->db->where('estatus_usuario','A');
 		$query = $this->db->get();
 		if($query->num_rows()>0){
 			return $query;

@@ -9,7 +9,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//usuarios
 	$usr_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 	$usr_password =array('name'=>'password','placeholder'=>'Contraseña', 'value'=>'','class'=>'form-control');
-	$usr_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
+	//$usr_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>'','class'=>'form-control');
@@ -71,15 +71,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 										<?php echo form_password($usr_password);?>
 									</div>
 								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="form-group">
-										<?php echo form_label('Estatus: ','usr_estatus',$label);?>
-										<?php echo form_dropdown('usr_estatus',$usr_estatus,'A', 'class="form-control"');?>
-									</div>
-								</td>
-							</tr>
+							</tr>							
 							<tr>
 								<td>
 									<div class="form-group">

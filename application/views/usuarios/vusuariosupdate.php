@@ -33,7 +33,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	///usuarios
 	$usr_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$usr_nombre_data, 'disabled'=>'disabled','class'=>'form-control');
 	$usr_password =array('name'=>'password','placeholder'=>'Contraseña', 'value'=>$usr_password_data, 'disabled'=>'disabled','class'=>'form-control');
-	$usr_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
+	//$usr_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>$dir_calle_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>$dir_num_ext_data, 'disabled'=>'disabled','class'=>'form-control');
@@ -88,14 +88,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<div class="form-group">
-						<?php echo form_label('Estatus: ','usr_estatus',$label);?>
-						<?php echo form_dropdown('usr_estatus',$usr_estatus,$usr_estatus_data, 'disabled="disabled" class="form-control"');?>
-					</div>
-				</td>
-			</tr>
+			
 			<tr>
 				<td>
 					<div class="form-group">

@@ -9,9 +9,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	if($catseguimiento!=false){
 		$catsegui_data=$catseguimiento->first_row();
 		$catsegui_nombre_data=$catsegui_data->nombre_categoriaSeguimiento;
+		$catsegui_estatus_data=$catsegui_data->estatus_categoriaSeguimiento;
 		$catsegui_descripcion_data=$catsegui_data->descripcion_categoriaSeguimiento;
 	}
 	
+//$catsegui_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 //Propiedades del form
 $form_catseguimiento = array('id'=>'form_catseguimiento','onSubmit'=>'getValues(this,event)');
 
@@ -38,20 +40,33 @@ $label=array('class'=>'control-label');
 					<table>
 						<tbody>
 						<tr>
-							<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
-							<td><?php echo form_input($catseguimiento_nombre);?></td>
+							<td>
+							<div class="form-group">
+								<?php echo form_label('Nombre: ','nombre',$label);?>
+								<?php echo form_input($catseguimiento_nombre);?>
+							</div>
+							</td>
 						</tr>
 						<tr>
-							<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
-							<td><?php echo form_textarea($datos);?></td>
+						<tr>
+							<td>
+							<div class="form-group">
+								<?php echo form_label('Descripcion:','descripcion',$label);?>
+								<?php echo form_textarea($datos);?>
+							</div>
+							</td>
 						</tr>
 						</tbody>
 					</table>
 					<?php echo form_close(); ?>	
 					<table>
 						<tr>
-							<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
-							<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
+							<td>
+							<div class="form-group">
+							<?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?>
+							<?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?>
+							</div>
+							</td>
 						</tr>
 					</table>
 					</div>
