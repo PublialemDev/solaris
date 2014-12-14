@@ -11,7 +11,7 @@ $(".addCorreo").click(function(){
 function validarForm(){
 	var continuar=true;
 	//valida el nombre
-	if(isTexto($("input[name='nombre']").val())){
+	if(isNombre($("input[name='nombre']").val())){
 		$("input[name='nombre']").parent().removeClass("has-error");
 	}else{
 		$("input[name='nombre']").parent().addClass("has-error");
@@ -35,7 +35,7 @@ function validarForm(){
 	}
 	
 	//valida dir_num_ext
-	if(isNumero($("input[name='dir_num_ext']").val())){
+	if(isNumeroLetraGuion($("input[name='dir_num_ext']").val())){
 		$("input[name='dir_num_ext']").parent().removeClass("has-error");
 	}else{
 		$("input[name='dir_num_ext']").parent().addClass("has-error");
@@ -45,7 +45,7 @@ function validarForm(){
 	//valida dir_num_int
 	if(isVacio($("input[name='dir_num_int']").val())){
 		$("input[name='dir_num_int']").parent().removeClass("has-error");
-	}else if(isNumero($("input[name='dir_num_int']").val())){
+	}else if(isNumeroLetraGuion($("input[name='dir_num_int']").val())){
 		$("input[name='dir_num_int']").parent().removeClass("has-error");
 	}else{
 		$("input[name='dir_num_int']").parent().addClass("has-error");

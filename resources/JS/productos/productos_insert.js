@@ -4,7 +4,7 @@
 function validarForm(){
 	var continuar=true;
 	//valida el prod_nombre
-	if(isTexto($("input[name='prod_nombre']").val())){
+	if(isNombre($("input[name='prod_nombre']").val())){
 		$("input[name='prod_nombre']").parent().removeClass("has-error");
 	}else{
 		$("input[name='prod_nombre']").parent().addClass("has-error");

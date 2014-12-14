@@ -1,3 +1,16 @@
+function validarForm(){
+	var continuar=true;
+	//valida el nombre
+	if(isNombre($("input[name='nombre_txt']").val())){
+		$("input[name='nombre_txt']").parent().removeClass("has-error");
+	}else{
+		$("input[name='nombre_txt']").parent().addClass("has-error");
+		continuar=false;
+	}				
+	
+	return continuar;
+}
+
 $(document).on("click",".enableButton",function(e){
 	$("[disabled='disabled']").removeAttr("disabled");
 	$(this).html("Guardar");
@@ -5,7 +18,7 @@ $(document).on("click",".enableButton",function(e){
 });
 
 $(document).on("click",".updateButton",function(){
-	
+	if(validarForm()){	
 	var formSer=$("#form_catseguimiento").serialize();
 	
 	$.ajax({
@@ -21,6 +34,9 @@ $(document).on("click",".updateButton",function(){
 			$("textarea").attr("disabled","disabled");
 		}
 	});
+	}else{
+		alert("Hay un error en los datos, Favor de validarlos");
+	}
 });
 
 $(".deleteButton").click(function(){
