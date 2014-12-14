@@ -69,7 +69,7 @@ class CTipoPago extends CI_Controller {
 	}
 
 	public function updateTipoPago(){
-		$tipopago_id=$this->input->post('idTipoPago');//Almacenara el ID(hidden) generado en la actualizacion
+		$tipopago_id=$this->input->post('IDTIPOPAGO');//Almacenara el ID(hidden) generado en la actualizacion
 		$tipopago_data;
 		$response;
 		

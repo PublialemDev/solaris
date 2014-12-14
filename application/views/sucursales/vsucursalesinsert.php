@@ -8,7 +8,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//sucursal
 	$sucu_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 	$sucu_paginaweb =array('name'=>'paginaweb','placeholder'=>'Pagina WEB', 'value'=>'','class'=>'form-control');
-	$sucu_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
+	//$sucu_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>'','class'=>'form-control');
@@ -62,14 +62,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 									</div>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<div class="form-group">
-										<?php echo form_label('Estatus: ','sucu_estatus',$label);?>
-										<?php echo form_dropdown('sucu_estatus',$sucu_estatus,'A', 'class="form-control"');?>
-									</div>
-								</td>
-							</tr>
+							
 							<!--fin Datos de la sucursal -->
 						
 						<?php echo form_close(); ?>

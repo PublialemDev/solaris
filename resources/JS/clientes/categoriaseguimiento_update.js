@@ -32,6 +32,7 @@ $(document).on("click",".updateButton",function(){
 			$(".updateButton").removeClass("updateButton").addClass("enableButton");
 			$("input").attr("disabled","disabled");
 			$("textarea").attr("disabled","disabled");
+			$("select").attr("disabled","disabled");
 		}
 	});
 	}else{

@@ -38,8 +38,8 @@ class CSucursales extends CI_Controller {
 		//establece los datos del cliente para la insercion
 		$sucu_data=array(
 		'nombre'=>$this->input->post('NOMBRE'),
-		'paginaweb'=>$this->input->post('PAGINAWEB'),
-		'estatus'=>$this->input->post('SUCU_ESTATUS')
+		'paginaweb'=>$this->input->post('PAGINAWEB')
+		//'estatus'=>$this->input->post('SUCU_ESTATUS')
 		);
 		//inserta y recibe el id generado en la insercion
 		$sucu_id= $this->msucursales->insertSucursales($sucu_data);
@@ -190,8 +190,7 @@ class CSucursales extends CI_Controller {
 		$sucu_data=array(
 		'sucu_id'=>$sucu_id,
 		'nombre'=>$this->input->post('NOMBRE'),
-		'paginaweb'=>$this->input->post('PAGINAWEB'),
-		'estatus'=>$this->input->post('SUCU_ESTATUS')
+		'paginaweb'=>$this->input->post('PAGINAWEB')
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->msucursales->updateSucursales($sucu_data);
@@ -279,12 +278,12 @@ class CSucursales extends CI_Controller {
 		$sucu_id=$this->input->post('SUCU_ID');
 		
 		$returned=$this->msucursales->deleteSucursales($sucu_id);
-		if($returned)
+		/*if($returned)
 		$returned=$this->mdirecciones->deleteDireccion($sucu_id,'suc');
 		if($returned)
 		$returned=$this->mtelefonos->deleteTelefonosAll($sucu_id,'suc');
 		if($returned)
-		$returned=$this->mcorreos->deleteCorreosAll($sucu_id,'suc');
+		$returned=$this->mcorreos->deleteCorreosAll($sucu_id,'suc');*/
 		
 		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_sucursal','descripcion_log'=>'se elimino la sucursal: '.$sucu_id));

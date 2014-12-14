@@ -37,12 +37,20 @@ $label=array('class'=>'control-label');
 					<table>
 						<tbody>
 							<tr>
-								<td><?php echo form_label('Nombre: ','nombre',$label);?></td>
-								<td><?php echo form_input($tipopago_nombre);?></td>
-							</tr>
+								<td>
+									<div class="form-group">
+										<?php echo form_label('Nombre: ','nombre',$label);?>
+										<?php echo form_input($tipopago_nombre);?>
+									</div>
+								</td>
+							</tr>							
 							<tr>
-								<td><?php echo form_label('Descripcion:','descripcion',$label);?></td>
-								<td><?php echo form_textarea($datos);?></td>
+								<td>
+									<div class="form-group">
+									<?php echo form_label('Descripcion:','descripcion',$label);?>
+									<?php echo form_textarea($datos);?>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>

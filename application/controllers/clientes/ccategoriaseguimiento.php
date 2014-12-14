@@ -69,7 +69,7 @@ class CCategoriaSeguimiento extends CI_Controller {
 	}
 
 	public function updateCategoriaSeguimiento(){
-		$catsegui_id=$this->input->post('idCatSeguimiento');//Almacenara el ID(hidden) generado en la actualizacion
+		$catsegui_id=$this->input->post('IDCATSEGUIMIENTO');//Almacenara el ID(hidden) generado en la actualizacion
 		$catsegui_data;
 		$response;
 		
@@ -77,7 +77,7 @@ class CCategoriaSeguimiento extends CI_Controller {
 		$catsegui_data = array(
 		'idCatSeguimiento'=>$catsegui_id,
 		'nombre'=>$this->input->post('NOMBRE_TXT'),
-		'descripcion'=>$this->input->post('DESCRIPCION_TXT')
+		'descripcion'=>$this->input->post('DESCRIPCION_TXT')		
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mcategoriaseguimiento->updateCategoriaSeguimiento($catsegui_data);

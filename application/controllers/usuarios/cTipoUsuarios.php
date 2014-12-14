@@ -69,7 +69,7 @@ class CTipoUsuarios extends CI_Controller {
 	}
 
 	public function updateTipoUsuarios(){
-		$tipousuarios_id=$this->input->post('idTipoUsuario');//Almacenara el ID(hidden) generado en la actualizacion
+		$tipousuarios_id=$this->input->post('IDTIPOUSUARIO');//Almacenara el ID(hidden) generado en la actualizacion
 		$tipousuarios_data;
 		$response;
 		

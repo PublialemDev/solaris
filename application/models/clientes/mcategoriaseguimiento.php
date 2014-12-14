@@ -35,7 +35,7 @@ class MCategoriaSeguimiento extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate = new DateTime();
 		$segui_data = array('nombre_categoriaSeguimiento'=> $segui_data_form['nombre'],
-			'descripcion_categoriaSeguimiento'=> $segui_data_form['descripcion'],
+			'descripcion_categoriaSeguimiento'=> $segui_data_form['descripcion'],			
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
@@ -45,6 +45,7 @@ class MCategoriaSeguimiento extends CI_Model{
 		if($returned == 1){
 			$this->mLogs->insertLog(array('tipo_log'=>'update_seguimiento','descripcion_log'=>'update de la categoria de seguimiento: '.$segui_data_form['idCatSeguimiento']));
 		}
+		
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();
@@ -60,7 +61,18 @@ class MCategoriaSeguimiento extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('categoriaseguimientoclientes',array('id_categoriaSeguimiento'=>$catsegui_id));
+		$segui_data = array(
+			'estatus_categoriaSeguimiento'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('categoriaseguimientoclientes',$segui_data,array('id_categoriaSeguimiento'=>$catsegui_id));
+		
+		$segui_estatus = array('estatus_seguimiento'=>'I');
+		if($returned == 1){
+			$returned = $this->db->update('seguimientoclientes',$segui_estatus,array('id_categoriaSeguimiento'=>$catsegui_id));
+		}	
+		
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();
@@ -76,11 +88,16 @@ class MCategoriaSeguimiento extends CI_Model{
 		
 		if(isset($where_clause['catseguimiento_id'])){
 			$this->db->where('id_categoriaSeguimiento',$where_clause['catseguimiento_id']);
+			
 		}
 		if(isset($where_clause['catseguimiento_nombre'])){
 			$this->db->like('nombre_categoriaSeguimiento',$where_clause['catseguimiento_nombre']);
+			
 		}
+		
+		$this->db->where('estatus_categoriaSeguimiento','A');
 		$query = $this->db->get('categoriaseguimientoclientes');
+		
 		if($query->num_rows()>0){
 			return $query;
 		}
@@ -102,5 +119,5 @@ class MCategoriaSeguimiento extends CI_Model{
 	}
 
 	
-}
+}/*	*/
 ?>

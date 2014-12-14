@@ -17,7 +17,7 @@ $(document).on("click",".enviarButton",function(){
 		var formSer=$("#form_tipousuarios").serialize();
 					
 		$.ajax({
-		data:formSer,
+		data:formSer.toUpperCase(),
 		url:SERVER_URL_BASE+"usuarios/ctipousuarios/getValues",
 		method:"POST",
 		beforesend:function(){alert(formSer);},
