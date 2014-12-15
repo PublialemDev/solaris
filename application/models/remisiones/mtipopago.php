@@ -6,6 +6,7 @@ class MTipoPago extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('logs/mLogs');
+		$this->load->model('mdeletedata');
 	}
 
 	public function insertTipoPago($datos){
@@ -73,6 +74,9 @@ class MTipoPago extends CI_Model{
 		$tipopago_estatus = array('estatus_remision'=>'I');
 		if($returned == 1){
 			$returned = $this->db->update('remisiones',$tipopago_estatus,array('id_tipoPago'=>$tipopago_id));
+			if($returned == 1){
+				$returned = $this->mdeletedata->deleteProduRemi();
+			}
 		}	
 		
 		

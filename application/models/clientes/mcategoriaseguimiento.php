@@ -68,7 +68,9 @@ class MCategoriaSeguimiento extends CI_Model{
 		);
 		$returned = $this->db->update('categoriaseguimientoclientes',$segui_data,array('id_categoriaSeguimiento'=>$catsegui_id));
 		
-		$segui_estatus = array('estatus_seguimiento'=>'I');
+		$segui_estatus = array('estatus_seguimiento'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
 		if($returned == 1){
 			$returned = $this->db->update('seguimientoclientes',$segui_estatus,array('id_categoriaSeguimiento'=>$catsegui_id));
 		}	

@@ -5,6 +5,7 @@ class MUsuarios extends CI_Model{
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
+		$this->load->model("mdeletedata");
 	}
 	function insertUsuarios($datosUsuarios){
 		$this->db->trans_begin();
@@ -77,23 +78,12 @@ class MUsuarios extends CI_Model{
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned = $this->db->update('usuarios',$usr_data,array('id_usuario'=>$usr_id));
+		$returned = $this->db->update('usuarios',$usr_data,array('id_usuario'=>$usr_id));		
+		if($returned > 0){
+			$returned = $this->mdeletedata->deletedata($usr_id, 'usr');
+		}
 		
-		$dir_estatus = array('estatus_direccion'=>'I');
-		$tel_estatus = array('estatus_telefono'=>'I');
-		$correo_estatus = array('estatus_correo'=>'I');
 		
-		if($returned == 1){
-			$returned = $this->db->update('direcciones',$dir_estatus,array('id_perfil'=>$usr_id,'perfil_tipo' => 'usr'));
-			if($returned == 1){
-				$returned = $this->db->update('telefonos',$tel_estatus,array('id_perfil'=>$usr_id,'perfil_tipo' => 'usr'));
-				if($returned == 1){
-					$returned = $this->db->update('correos',$correo_estatus,array('id_perfil'=>$usr_id,'perfil_tipo' => 'usr'));
-			
-				}
-			}
-			
-		}	
 		if($returned>0){
 			return true;;
 		}
