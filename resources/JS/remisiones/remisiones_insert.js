@@ -341,6 +341,7 @@ $(document).on("click",".enableButton",function(e){
 //actualiza el registro
 $(document).on("click",".updateButton",function(){
 	if(validarForm()){
+		$("input[type='hidden']").removeAttr("disabled");	
 		$(".form-control").removeAttr("disabled");	
 		var formSer=$("#form_remision").serialize();
 		$(".form-control").attr("disabled","disabled");

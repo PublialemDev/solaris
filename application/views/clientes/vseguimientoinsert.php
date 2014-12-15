@@ -2,6 +2,7 @@
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Alta de Seguimiento a Clientes');
+echo getMenu();
 
 //Propiedades del form
 $form_segui = array('id'=>'form_segui','onSubmit'=>'getValues(this,event)');

@@ -2,6 +2,7 @@
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Seguimiento a Clientes'); 
+	echo getMenu();
 	$segui_cli_data='';$segui_descripcion_data='';$segui_cat_data='';$segui_fecha_data='';
 	
 	//Obtiene los datos para cargar el formulario lleno 
