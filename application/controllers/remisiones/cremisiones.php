@@ -136,16 +136,17 @@ class CRemisiones extends CI_Controller {
 	}
 	
 	public function selectRemisionesForm(){
-		//$consulta['query'] = $this->mremisiones->selectremisiones();
-		$this->load->view('remisiones/vremisionesselect');
+		$datos['sucursales'] = $this->mremisiones->selectSucursales();
+		$datos['tipopagos'] = $this->mremisiones->selectTipoPagos();
+		$this->load->view('remisiones/vremisionesselect',$datos);
 	}
 
 	public function selectRemisionesJson(){
 		$cli_id=$this->input->post('cli_id');
 		$suc_id=$this->input->post('suc_id');
 		$tipopago_id=$this->input->post('tipopago_id');
-		$fecha_inicio=$this->input->post('$fecha_inicio');
-		$fecha_fin=$this->input->post('$fecha_fin');
+		$fecha_inicio=$this->input->post('fecha_inicio');
+		$fecha_fin=$this->input->post('fecha_fin');
 		
 		$where_clause=array();
 		if($cli_id!= null and $cli_id!=''){

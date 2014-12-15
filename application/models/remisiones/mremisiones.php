@@ -66,28 +66,29 @@ class MRemisiones extends CI_Model{
 	function selectRemisiones($where_clause){
 		
 		if(isset($where_clause['cli_id'])){
-			$this->db->where('id_cliente',$where_clause['cli_id']);
+			$this->db->where('clientes.id_cliente',$where_clause['cli_id']);
 		}
 		if(isset($where_clause['suc_id'])){
-			$this->db->where('id_sucursal',$where_clause['suc_id']);
+			$this->db->where('remisiones.id_sucursal',$where_clause['suc_id']);
 		}
 		if(isset($where_clause['tipopago_id'])){
-			$this->db->where('id_tipoPago',$where_clause['tipopago_id']);
+			$this->db->where('remisiones.id_tipoPago',$where_clause['tipopago_id']);
 		}
 		if(isset($where_clause['fecha_inicio'])){
-			$this->db->where('fecha>=',$where_clause['fecha_inicio']);
+			$this->db->where('fecha >=',$where_clause['fecha_inicio']);
 		}
 		if(isset($where_clause['fecha_fin'])){
-			$this->db->where('fecha<=',$where_clause['fecha_fin']);
+			$this->db->where('fecha <=',$where_clause['fecha_fin']);
 		}
 		/*if(isset($where_clause['cli_rfc'])){
 			$this->db->where('rfc',$where_clause['cli_rfc']);
 		}*/
-		
-		$this->db->select('id_remision,id_sucursal,remisiones.id_cliente,id_tipoPago,fecha,instalacion,total,iva,nombre_cliente');
+		$this->db->select('id_remision,nombre_sucursal as id_sucursal,nombre_cliente as id_cliente,nombre_tipoPago as id_tipoPago,fecha,instalacion,total,iva,nombre_cliente');
 		$this->db->from('remisiones');
 		$this->db->join('clientes','remisiones.id_cliente=clientes.id_cliente');
-		$this->db->where($where_clause);
+		$this->db->join('sucursales','remisiones.id_sucursal=sucursales.id_sucursal');
+		$this->db->join('tipopagos','remisiones.id_tipoPago=tipopagos.id_tipoPago');
+		
 		$query = $this->db->get();
 		if($query->num_rows()>0){
 			return $query;

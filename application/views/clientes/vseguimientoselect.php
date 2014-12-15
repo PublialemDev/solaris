@@ -42,7 +42,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</div>
 	</div>
 	
-	<div id='target'>
+	<div id='target' class='well'>
 		<table class='table table-hover datos'>
 			<thead>
 				<tr>

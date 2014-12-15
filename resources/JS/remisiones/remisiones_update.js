@@ -1,7 +1,12 @@
 var cantidad_productos_agregados=0;
 
 $(document).ready(function(){
-	$( "#fecha" ).datepicker({ dateFormat: "yy-mm-dd" });				
+	$( "#fecha" ).datepicker({ defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      dateFormat:'yy/mm/dd',
+      monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec" ],
+       });				
 });
 
 //prepara y muestra la ventana modal
@@ -15,6 +20,7 @@ function prepararModal(source){
 			url:SERVER_URL_BASE+"remisiones/cremisiones/modalClientes",
 			method:"POST",
 			success: function(msg){
+					$(".modal-dialog").removeClass('modal-lg');
 					$(".modal-body").html(msg);
 				}
 			});
@@ -31,6 +37,7 @@ function prepararModal(source){
 			url:SERVER_URL_BASE+"remisiones/cremisiones/modalProductos",
 			method:"POST",
 			success: function(msg){
+					$(".modal-dialog").addClass('modal-lg');
 					$(".modal-body").html(msg);
 				}
 			});

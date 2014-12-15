@@ -1,3 +1,30 @@
+//
+$(document).ready(function (){
+	$(function() {
+    $( "input[name='fecha_inicio']" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      dateFormat:'yy/mm/dd',
+      monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec" ],
+      onClose: function( selectedDate ) {
+        $( "input[name='fecha_fin']" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "input[name='fecha_fin']" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      dateFormat:'yy/mm/dd',
+      monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec" ],
+      onClose: function( selectedDate ) {
+        $( "input[name='fecha_inicio']" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+});
+
+//
 function selectRemisiones(form,evt){
 			evt.preventDefault();
 			var formSer=$(form).serialize();

@@ -10,9 +10,17 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//formularios
 	$form_remisiones=array('id'=>'form_remisiones','onSubmit'=>'selectRemisiones(this,event)');
 	
-	//dropdown
-	$tipopago_data=array('0'=>'','1'=>'tarjeta','2'=>'efectivo');
-	$sucursal_data=array('0'=>'','1'=>'Guadalajara','2'=>'DF');
+	//Dropdown sucursales
+	$sucursal_data['0']= '';
+	foreach ($sucursales->result() as $sucursal) {
+		$sucursal_data[(string)$sucursal->id_sucursal]= (string)$sucursal->nombre_sucursal;
+	}
+	
+	//Dropdown tipo de pagos
+	$tipopago_data['0']= '';
+	foreach ($tipopagos->result() as $tipopago) {
+		$tipopago_data[(string)$tipopago->id_tipoPago]= (string)$tipopago->nombre_tipoPago;
+	}
 ?>
 
 <div id="container" class='container'>

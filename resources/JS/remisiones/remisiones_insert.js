@@ -1,7 +1,12 @@
 var cantidad_productos_agregados=0;
 
 $(document).ready(function(){
-	$( "#fecha" ).datepicker({ dateFormat: "yy-mm-dd" });				
+	$( "#fecha" ).datepicker({ defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      dateFormat:'yy/mm/dd',
+      monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec" ],
+      });				
 });
 
 //prepara y muestra la ventana modal
