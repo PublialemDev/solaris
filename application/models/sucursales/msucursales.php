@@ -83,11 +83,23 @@ class MSucursales extends CI_Model{
 				'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 				'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
 				
+				$usr_estatus = array('estatus_usuario'=>'I',			
+				'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+				'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
+				
 				$returned = $this->db->update('remisiones',$remi_estatus,array('id_sucursal'=>$sucu_id));			
 				if($returned == 1){
 					$returned = $this->mdeletedata->deleteProduRemi();	
-					if($returned == 1){						
-						$returned = $this->mdeletedata->deleteUser();																		
+					if($returned == 1){
+						$returned = $this->db->update('usuarios',$usr_estatus,array('id_sucursal'=>$sucu_id));
+						if($returned == 1){
+							$query = $this->db->query("SELECT id_usuario FROM usuarios WHERE estatus_usuario = 'I'");
+							foreach ($query->result() as $value) {
+								$returned = $this->mdeletedata->deleteUser($value->id_usuario);	
+							}
+						}
+												
+																							
 					}																				
 				}			
 			}	
