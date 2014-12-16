@@ -69,8 +69,8 @@ class MTipoUsuarios extends CI_Model{
 		);
 		$returned = $this->db->update('tipousuarios',$tipousr_data,array('id_tipoUsuario'=>$tipousuarios_id));
 
-		if($returned == 1){
-			$returned = $this->mdeletedata->deleteUser();
+		if($returned > 0){
+			$returned = $this->mdeletedata->deleteUser($tipousuarios_id);
 		}	
 		
 		if ($this->db->trans_status() === FALSE)
