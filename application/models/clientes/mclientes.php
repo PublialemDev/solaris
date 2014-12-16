@@ -125,6 +125,7 @@ class Mclientes extends CI_Model{
 			$this->db->where('rfc',$where_clause['cli_rfc']);
 		}
 		
+		$this->db->where('estatus_cliente','A');
 		$query = $this->db->get('clientes');
 		if($query->num_rows()>0){
 			return $query;
