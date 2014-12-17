@@ -18,6 +18,7 @@ class Mclientes extends CI_Model{
 		array(
 			'nombre_cliente' => $datosCliente['nombre'],
 			'rfc' => $datosCliente['rfc'],
+			'nivel' => $datosCliente['cli_nivel'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
@@ -46,6 +47,7 @@ class Mclientes extends CI_Model{
 		$cli_data=array(
 			'nombre_cliente' => $cli_data_form['nombre'],
 			'rfc' => $cli_data_form['rfc'],
+			'nivel' => $cli_data_form['cli_nivel'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);

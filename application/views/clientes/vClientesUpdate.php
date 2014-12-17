@@ -3,13 +3,14 @@
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Clientes'); 
 	echo getMenu();
-	$cli_nombre_data='';$cli_rfc_data='';
-	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';
+	$cli_nombre_data='';$cli_rfc_data='';$cli_nivel_data='nor';
+	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';$dir_ref_data='';
 	$estado_id='';
 	if($cliente!=false){
 		$cli_data=$cliente->first_row();
 		$cli_nombre_data=$cli_data->nombre_cliente;
 		$cli_rfc_data=$cli_data->rfc;
+		$cli_nivel_data=$cli_data->nivel;
 	}
 	if($direccion!=false){
 		$dir_data=$direccion->first_row();
@@ -20,16 +21,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		$dir_col_data=$dir_data->colonia;
 		$dir_muni_data=$dir_data->municipio;
 		$dir_cp_data=$dir_data->cp;
-	}else if($telefono==false){
-		echo "telefono no data found;";
-	}else if($correo==false){
-		echo "correo no data found;";
+		$dir_ref_data=$dir_data->comentarios;
 	}
 	//labels
 	 $label=array('class'=>'control-label');
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$cli_nombre_data, 'disabled'=>'disabled','class'=>'form-control');
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>$cli_rfc_data, 'disabled'=>'disabled','class'=>'form-control');
+	$cli_nivel=array('nor'=>'Normal','adv'=>'Avanzado','pre'=>'Premier');
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>$dir_calle_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>$dir_num_ext_data, 'disabled'=>'disabled','class'=>'form-control');
@@ -37,6 +36,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$dir_col =array('name'=>'dir_col','placeholder'=>'Colonia','value'=>$dir_col_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>$dir_muni_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>$dir_cp_data, 'disabled'=>'disabled','class'=>'form-control');
+	$dir_ref=array('id' => 'dir_ref','name' => 'dir_ref','rows' => 5, 'cols' =>30,'class'=>'form-control','disabled'=>'disabled','value'=>$dir_ref_data);
 	//formularios
 	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'insertCliente(this,event)','role'=>'form');
 	$form_dir=array('id'=>'form_dir','onSubmit'=>'insertCliente(this,event)','role'=>'form');
@@ -72,6 +72,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					<div class="form-group">
 						<?php echo form_label('RFC: ','rfc',$label);?>
 						<?php echo form_input($cli_rfc);?>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<?php echo form_label('Nivel: ','cli_nivel',$label);?>
+						<?php echo form_dropdown('cli_nivel', $cli_nivel,$cli_nivel_data,'disabled="disabled" class="form-control"');?>
 					</div>
 				</td>
 			</tr>
@@ -137,8 +145,23 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					</div>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<?php echo form_label('Referencias: ','dir_ref',$label);?>
+						<?php echo form_textarea($dir_ref);?>
+					</div>
+				</td>
+			</tr>
 		<?php echo form_close(); ?>
 		<!--fin direccion-->
+			</tbody>
+		</table>
+			
+		</div>
+		<div class='col-md-6'>
+			<table>
+			<tbody>
 		<!--inicio telefono-->
 		<tr>
 			<td>
@@ -149,7 +172,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		</tr>
 		
 		<?php 
-			
+			if($telefono!=false){
 			foreach ($telefono->result() as $value) { 
 			$tel_num =array('name'=>'tel_num','class'=>'telefono form-control','placeholder'=>'Teléfono','value'=>$value->numero_telefono, 'disabled'=>'disabled');
 		?>
@@ -161,7 +184,20 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					</div>
 				</td>
 			</tr>
-		<?php } ?>
+		<?php } 
+			}else{
+				$tel_num =array('name'=>'tel_num','class'=>'telefono form-control','placeholder'=>'Teléfono','value'=>'', 'disabled'=>'disabled');
+				?>
+			<tr>
+				<td>
+					<div class="form-group">
+						<?php echo form_label('Teléfono: ','tel_num',$label);?>
+						<?php echo form_input($tel_num);?>
+					</div>
+				</td>
+			</tr>
+		<?php 	}
+		?>
 		<!--fin telefono-->
 		<!--inicio correo-->
 		<tr>
@@ -172,7 +208,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			</td>
 		</tr>
 		
-		<?php foreach ($correo->result() as $value) { 
+		<?php 
+		if($correo!=false){
+		foreach ($correo->result() as $value) { 
 			$corr_correo =array('name'=>'corr_correo','class'=>'correo form-control','placeholder'=>'Correo','value'=>$value->nombre_correo, 'disabled'=>'disabled');
 		?>
 		<tr>
@@ -183,7 +221,21 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 				</div>
 			</td>
 		</tr>
-		<?php } ?>
+		<?php }
+		}else{ 
+			$corr_correo =array('name'=>'corr_correo','class'=>'correo form-control','placeholder'=>'Correo','value'=>'', 'disabled'=>'disabled');
+			?>
+		<tr>
+			<td>
+				<div class="form-group">
+					<?php echo form_label('Correo: ','corr_correo',$label);?>
+					<?php echo form_input($corr_correo);?>
+				</div>
+			</td>
+		</tr>
+			
+		<?php	
+		} ?>
 		<!--fin correo-->
 		</tbody>
 		</table>

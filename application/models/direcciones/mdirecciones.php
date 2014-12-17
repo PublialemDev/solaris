@@ -20,6 +20,7 @@ class Mdirecciones extends CI_Model{
 			'colonia' => $datosDir['dir_col'],
 			'municipio' => $datosDir['dir_muni'],
 			'cp' => $datosDir['dir_cp'],
+			'comentarios' => $datosDir['dir_ref'],
 			'creado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'creado_por' => base64_decode($_SESSION['USUARIO_ID']))
 		);
@@ -58,6 +59,7 @@ class Mdirecciones extends CI_Model{
 			'colonia' => $datosDir['dir_col'],
 			'municipio' => $datosDir['dir_muni'],
 			'cp' => $datosDir['dir_cp'],
+			'comentarios' => $datosDir['dir_ref'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])),
 			array('id_perfil'=>$datosDir['cli_id'],'perfil_tipo'=>$tipo_perfil)

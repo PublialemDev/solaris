@@ -62,7 +62,8 @@ class CClientes extends CI_Controller {
 		//establece los datos del cliente para la insercion
 		$cli_data=array(
 		'nombre'=>$this->input->post('NOMBRE'),
-		'rfc'=>$this->input->post('RFC')
+		'rfc'=>$this->input->post('RFC'),
+		'cli_nivel'=>strtolower($this->input->post('CLI_NIVEL'))
 		);
 		//inserta y recibe el id generado en la insercion
 		$cli_id= $this->mclientes->insertCliente($cli_data);
@@ -78,7 +79,8 @@ class CClientes extends CI_Controller {
 			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
 			'dir_col'=>$this->input->post('DIR_COL'),
 			'dir_muni'=>$this->input->post('DIR_MUNI'),
-			'dir_cp'=>$this->input->post('DIR_CP')
+			'dir_cp'=>$this->input->post('DIR_CP'),
+			'dir_ref'=>$this->input->post('DIR_REF')
 			);
 			
 			//inserta y recibe el id generado en la insercion
@@ -189,7 +191,8 @@ class CClientes extends CI_Controller {
 				$json.='{';
 				$json.='"id":'.'"'.$cliente->id_cliente.'",';
 				$json.='"nombre":'.'"'.$cliente->nombre_cliente.'",';
-				$json.='"rfc":'.'"'.$cliente->rfc.'"';
+				$json.='"rfc":'.'"'.$cliente->rfc.'",';
+				$json.='"nivel":'.'"'.$cliente->nivel.'"';
 				$json.='}';
 				if($cliente->id_cliente!=$last->id_cliente){
 					$json.=',';
@@ -244,7 +247,8 @@ class CClientes extends CI_Controller {
 		$cli_data=array(
 		'cli_id'=>$cli_id,
 		'nombre'=>$this->input->post('NOMBRE'),
-		'rfc'=>$this->input->post('RFC')
+		'rfc'=>$this->input->post('RFC'),
+		'cli_nivel'=>strtolower($this->input->post('CLI_NIVEL'))
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mclientes->updateCliente($cli_data);
@@ -260,7 +264,8 @@ class CClientes extends CI_Controller {
 			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
 			'dir_col'=>$this->input->post('DIR_COL'),
 			'dir_muni'=>$this->input->post('DIR_MUNI'),
-			'dir_cp'=>$this->input->post('DIR_CP')
+			'dir_cp'=>$this->input->post('DIR_CP'),
+			'dir_ref'=>$this->input->post('DIR_REF')
 			);
 			
 			//inserta y recibe el id generado en la actualizacion

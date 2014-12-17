@@ -7,7 +7,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>'','class'=>'form-control');
-	//$cli_id=array('0','idCliente') ;//hidden
+	$cli_nivel=array('nor'=>'Normal','adv'=>'Avanzado','pre'=>'Premier') ;
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>'','class'=>'form-control');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>'','class'=>'form-control');
@@ -15,6 +15,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$dir_col =array('name'=>'dir_col','placeholder'=>'Colonia','value'=>'','class'=>'form-control');
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>'','class'=>'form-control');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>'','class'=>'form-control');
+	$dir_ref=array('id' => 'dir_ref','name' => 'dir_ref','rows' => 5, 'cols' =>30,'class'=>'form-control');
 	//teléfono
 	$tel_num =array('name'=>'tel_num','class'=>'telefono form-control','placeholder'=>'Teléfono','value'=>'');
 	//correos
@@ -57,6 +58,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 									<div class="form-group">
 										<?php echo form_label('RFC: ','rfc',$label);?>
 										<?php echo form_input($cli_rfc);?>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<?php echo form_label('Nivel: ','cli_nivel',$label);?>
+										<?php echo form_dropdown('cli_nivel', $cli_nivel,'','class="form-control"');?>
 									</div>
 								</td>
 							</tr>
@@ -119,6 +128,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 									<div class="form-group">
 										<?php echo form_label('Codigo Postal: ','dir_cp',$label);?>
 										<?php echo form_input($dir_cp);?>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<?php echo form_label('Referencias: ','dir_ref',$label);?>
+										<?php echo form_textarea($dir_ref);?>
 									</div>
 								</td>
 							</tr>

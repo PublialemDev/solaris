@@ -137,6 +137,7 @@ $(document).on("click",".enviarButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					alert("El cliente se creo correctamente");
 				}else{
 					alert("Ocurrio un error: "+msg);
@@ -187,6 +188,7 @@ $(document).on("click",".updateButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					alert("El cliente se actualizó correctamente");
 				}else{
 						alert("Ocurrio un error: "+msg);
