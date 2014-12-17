@@ -5,6 +5,7 @@ class MSucursales extends CI_Model{
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
+		$this->load->model("mdeletedata");
 	}
 	function insertSucursales($datosSucursales){
 		$this->db->trans_begin();
@@ -73,25 +74,37 @@ class MSucursales extends CI_Model{
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned = $this->db->update('sucursales',$suc_data,array('id_sucursal'=>$sucu_id));
-		
-		$dir_estatus = array('estatus_direccion'=>'I');
-		$tel_estatus = array('estatus_telefono'=>'I');
-		$correo_estatus = array('estatus_correo'=>'I');
-		$remi_estatus = array('estatus_remision'=>'I');
+		$returned = $this->db->update('sucursales',$suc_data,array('id_sucursal'=>$sucu_id));			
 		
 		if($returned == 1){
-			$returned = $this->db->update('remisiones',$remi_estatus,array('id_sucursal'=>$sucu_id));
+			$returned = $this->mdeletedata->deleteData($sucu_id,"suc");//actualiza el estatus a inactivo de direccion,telefono y correo 
 			if($returned == 1){
-				$returned = $this->db->update('direcciones',$dir_estatus,array('id_perfil'=>$sucu_id,'perfil_tipo' => 'suc'));
+				$remi_estatus = array('estatus_remision'=>'I',			
+				'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+				'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
+				
+				$usr_estatus = array('estatus_usuario'=>'I',			
+				'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+				'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
+				
+				$returned = $this->db->update('remisiones',$remi_estatus,array('id_sucursal'=>$sucu_id));			
 				if($returned == 1){
-					$returned = $this->db->update('telefonos',$tel_estatus,array('id_perfil'=>$sucu_id,'perfil_tipo' => 'suc'));
+					$returned = $this->mdeletedata->deleteProduRemi();	
 					if($returned == 1){
-						$returned = $this->db->update('correos',$correo_estatus,array('id_perfil'=>$sucu_id,'perfil_tipo' => 'suc'));								
-					}			
-				}
-			}			
-		}	
+						$returned = $this->db->update('usuarios',$usr_estatus,array('id_sucursal'=>$sucu_id));
+						if($returned == 1){
+							$query = $this->db->query("SELECT id_usuario FROM usuarios WHERE estatus_usuario = 'I'");
+							foreach ($query->result() as $value) {
+								$returned = $this->mdeletedata->deleteUser($value->id_usuario);	
+							}
+						}
+												
+																							
+					}																				
+				}			
+			}	
+		}
+		
 		if($returned>0){
 			return true;;
 		}

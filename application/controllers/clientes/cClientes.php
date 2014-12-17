@@ -339,12 +339,12 @@ class CClientes extends CI_Controller {
 		$cli_id=$this->input->post('CLI_ID');
 		
 		$returned=$this->mclientes->deleteCliente($cli_id);
-		if($returned)
+		/*if($returned)
 		$returned=$this->mdirecciones->deleteDireccion($cli_id,'cli');
 		if($returned)
 		$returned=$this->mtelefonos->deleteTelefonosAll($cli_id,'cli');
 		if($returned)
-		$returned=$this->mcorreos->deleteCorreosAll($cli_id,'cli');
+		$returned=$this->mcorreos->deleteCorreosAll($cli_id,'cli');*/
 		
 		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_cliente','descripcion_log'=>'se elimino el cliente: '.$cli_id));

@@ -5,10 +5,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Mclientes extends CI_Model{
 
-	function __construct(){
-	
+	function __construct(){	
 		parent::__construct();
 		$this->load->database();
+		$this->load->model("mdeletedata");
 	}
 	function insertCliente($datosCliente){
 		$this->db->trans_begin();
@@ -71,7 +71,33 @@ class Mclientes extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
+		//$returned=$this->db->delete('clientes',array('id_cliente'=>$cli_id));
+		
+		$cli_data = array(
+			'estatus_cliente'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('clientes',$cli_data,array('id_cliente'=>$cli_id));			
+		
+		if($returned == 1){
+			$returned = $this->mdeletedata->deleteData($cli_id,"cli");//actualiza el estatus a inactivo de direccion,telefono y correo 
+			if($returned == 1){
+				$remi_estatus = array('estatus_remision'=>'I',			
+					'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+					'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
+				$returned = $this->db->update('remisiones',$remi_estatus,array('id_cliente'=>$cli_id));			
+				if($returned == 1){
+					$returned = $this->mdeletedata->deleteProduRemi();	
+					if($returned == 1){
+						$segui_estatus = array('estatus_seguimiento'=>'I',			
+							'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+							'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));			
+						$returned = $this->db->update('seguimientoclientes',$segui_estatus,array('id_cliente'=>$cli_id));																			
+					}																				
+				}			
+			}	
+		}
 		if($returned>0){
 			return true;;
 		}
@@ -99,6 +125,7 @@ class Mclientes extends CI_Model{
 			$this->db->where('rfc',$where_clause['cli_rfc']);
 		}
 		
+		$this->db->where('estatus_cliente','A');
 		$query = $this->db->get('clientes');
 		if($query->num_rows()>0){
 			return $query;
