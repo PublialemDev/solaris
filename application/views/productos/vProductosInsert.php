@@ -11,14 +11,13 @@ $form_producto = array('id'=>'form_producto','onSubmit'=>'getValues(this,event)'
 
 //Propiedades de los input 
 $producto_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
-$producto_proveedor =array('name'=>'prod_proveedor','placeholder'=>'Proveedor','value'=>'','class'=>'form-control');
-$producto_precio =array('name'=>'prod_precio','placeholder'=>'Precio','value'=>'','class'=>'form-control');
+$producto_precio_nor =array('name'=>'prod_precio_nor','placeholder'=>'Precio Normal','value'=>'','class'=>'form-control');
+$producto_precio_adv =array('name'=>'prod_precio_adv','placeholder'=>'Precio Avanzado','value'=>'','class'=>'form-control');
+$producto_precio_pre =array('name'=>'prod_precio_pre','placeholder'=>'Precio Premier','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
 $datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>30,'class'=>'form-control');
 
-//Propiedades del combobox
-$producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 ?>
 
 <div id="container" class='container'>
@@ -39,7 +38,7 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 											<?php echo form_label('Nombre: ','prod_nombre',$label);?>
 											<?php echo form_input($producto_nombre);?>
 											</div>
-											</td>
+										</td>
 									</tr>
 									<tr>
 										<td>
@@ -56,24 +55,24 @@ $producto_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO')
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Precio: ','prod_precio',$label);?>
-												<?php echo form_input($producto_precio);?>
+												<?php echo form_label('Precio normal: ','prod_precio_nor',$label);?>
+												<?php echo form_input($producto_precio_nor);?>
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Proveedor: ','prod_proveedor',$label);?>
-												<?php echo form_input($producto_proveedor);?>
+												<?php echo form_label('Precio avanzado: ','prod_precio_adv',$label);?>
+												<?php echo form_input($producto_precio_adv);?>
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Estatus: ','prod_estatus',$label);?>
-												<?php echo form_dropdown('prod_estatus',$producto_estatus,'A', 'class="form-control"');?>
+												<?php echo form_label('Precio premier: ','prod_precio_pre',$label);?>
+												<?php echo form_input($producto_precio_pre);?>
 											</div>
 										</td>
 									</tr>

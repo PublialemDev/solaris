@@ -27,9 +27,9 @@ class Cproductos extends CI_Controller {
 		'prod_cat'=>$this->input->post('PROD_CATEGORIA'),
 		'prod_nombre'=>$this->input->post('PROD_NOMBRE'),
 		'prod_desc'=>$this->input->post('PROD_DESC'),
-		'prod_precio'=>$this->input->post('PROD_PRECIO'),
-		'prod_proveedor'=>$this->input->post('PROD_PROVEEDOR'),
-		'prod_estatus'=>$this->input->post('PROD_ESTATUS')
+		'prod_precio_nor'=>$this->input->post('PROD_PRECIO_NOR'),
+		'prod_precio_adv'=>$this->input->post('PROD_PRECIO_ADV'),
+		'prod_precio_pre'=>$this->input->post('PROD_PRECIO_PRE')
 		);
 		//inserta y recibe el id generado en la insercion
 		$prod_id= $this->mproductos->insertProducto($prod_data);
@@ -61,8 +61,9 @@ class Cproductos extends CI_Controller {
 		'prod_cat'=>$this->input->post('PROD_CATEGORIA'),
 		'prod_nombre'=>$this->input->post('PROD_NOMBRE'),
 		'prod_desc'=>$this->input->post('PROD_DESC'),
-		'prod_precio'=>$this->input->post('PROD_PRECIO'),
-		'prod_proveedor'=>$this->input->post('PROD_PROVEEDOR'),
+		'prod_precio_nor'=>$this->input->post('PROD_PRECIO_NOR'),
+		'prod_precio_adv'=>$this->input->post('PROD_PRECIO_ADV'),
+		'prod_precio_pre'=>$this->input->post('PROD_PRECIO_PRE'),
 		'prod_estatus'=>$this->input->post('PROD_ESTATUS')
 		);
 		//inserta y recibe el id generado en la actualizacion
@@ -125,8 +126,9 @@ class Cproductos extends CI_Controller {
 				$json.='"prod_cat":'.'"'.$producto->id_categoriaProducto.'",';
 				$json.='"prod_nombre":'.'"'.$producto->nombre_producto.'",';
 				$json.='"prod_desc":'.'"'.$producto->descripcion_producto.'",';
-				$json.='"prod_precio":'.'"'.$producto->precio.'",';
-				$json.='"prod_proveedor":'.'"'.$producto->proveedor.'",';
+				$json.='"prod_precio_nor":'.'"'.$producto->precio1.'",';
+				$json.='"prod_precio_adv":'.'"'.$producto->precio2.'",';
+				$json.='"prod_precio_pre":'.'"'.$producto->precio3.'",';
 				$json.='"prod_estatus":'.'"'.$producto->estatus_producto.'"';
 				$json.='}';
 				if($producto->id_producto!=$last->id_producto){

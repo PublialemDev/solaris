@@ -19,9 +19,10 @@ class MProductos extends CI_Model{
 			'id_categoriaProducto'=> $datos['prod_cat'],
 			'nombre_producto'=> $datos['prod_nombre'],
 			'descripcion_producto'=> $datos['prod_desc'],
-			'precio'=> $datos['prod_precio'],
-			'proveedor'=> $datos['prod_proveedor'],
-			'estatus_producto'=> $datos['prod_estatus'],
+			'precio1'=> $datos['prod_precio_nor'],
+			'precio2'=> $datos['prod_precio_adv'],
+			'precio3'=> $datos['prod_precio_pre'],
+			'estatus_producto'=> 'A',
 			'creado_en'=>$sysdate->format('Y-m-d H:i:s'),
 			'creado_por'=>base64_decode($_SESSION['USUARIO_ID'])
 		));
@@ -53,9 +54,10 @@ class MProductos extends CI_Model{
 			'id_categoriaProducto'=> $prod_data_form['prod_cat'],
 			'nombre_producto'=> $prod_data_form['prod_nombre'],
 			'descripcion_producto'=> $prod_data_form['prod_desc'],
-			'precio'=> $prod_data_form['prod_precio'],
-			'proveedor'=> $prod_data_form['prod_proveedor'],
-			'estatus_producto'=> $prod_data_form['prod_estatus'],
+			'precio1'=> $prod_data_form['prod_precio_nor'],
+			'precio2'=> $prod_data_form['prod_precio_adv'],
+			'precio3'=> $prod_data_form['prod_precio_pre'],
+			'estatus_producto'=> $prod_data_form['prod_estatus']==''?'A':$prod_data_form['prod_estatus'],
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
