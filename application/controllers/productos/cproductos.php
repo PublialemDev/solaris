@@ -8,6 +8,7 @@ class Cproductos extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('productos/mproductos');
 		$this->load->model('productos/mcategoriaproductos');
+		$this->load->model('clientes/mclientes');
 		$this->load->library('table');
 	}
 	//muestra la vista para crear un producto
@@ -105,6 +106,8 @@ class Cproductos extends CI_Controller {
 		$prod_id=$this->input->post('PROD_ID');
 		$prod_nombre=$this->input->post('PROD_NOMBRE');
 		$prod_desc=$this->input->post('PROD_DESC');
+		$cli_nivel=$this->mclientes->getClienteNivel($this->input->post('CLI_ID'));
+		
 		$where_clause=array();
 		if($prod_id!= null and $prod_id!=''){
 			$where_clause['prod_id']=$prod_id;
@@ -117,6 +120,7 @@ class Cproductos extends CI_Controller {
 		}
 		
 		$res=$this->mproductos->selectProductos($where_clause);
+		
 		if($res!=false){
 			$json='[';
 			$last=$res->last_row();
@@ -129,6 +133,21 @@ class Cproductos extends CI_Controller {
 				$json.='"prod_precio_nor":'.'"'.$producto->precio1.'",';
 				$json.='"prod_precio_adv":'.'"'.$producto->precio2.'",';
 				$json.='"prod_precio_pre":'.'"'.$producto->precio3.'",';
+				//valida el precio segun el nivel del cliente
+				switch($cli_nivel){
+					case 'nor':
+						$json.='"prod_precio_cli":'.'"'.$producto->precio1.'",';
+						break;
+					case 'adv':
+						$json.='"prod_precio_cli":'.'"'.$producto->precio2.'",';
+						break;
+					case 'pre':
+						$json.='"prod_precio_cli":'.'"'.$producto->precio3.'",';
+						break;
+					default:
+						$json.='"prod_precio_cli":'.'"0",';
+				}
+				
 				$json.='"prod_estatus":'.'"'.$producto->estatus_producto.'"';
 				$json.='}';
 				if($producto->id_producto!=$last->id_producto){

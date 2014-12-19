@@ -147,6 +147,24 @@ class Mclientes extends CI_Model{
 			return false;
 		}
 	}
+	//regresa el nivel del cliente
+	function getClienteNivel($id_cliente){
+		$nivel='';
+		$where_clause=array('id_cliente'=>$id_cliente);
+		$this->db->select('nivel');
+		$this->db->from('clientes');
+		$this->db->where($where_clause);
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			foreach ($query->result() as $cliente) {
+			$nivel=$cliente->nivel;
+			}
+			return $nivel;
+		}
+		else{
+			return false;
+		}
+	}
 	
 }
 ?>

@@ -145,8 +145,7 @@ function selectProductosModal(form,evt){
 					tableStructure+="<td>"+table[index].prod_cat+"</td>";
 					tableStructure+="<td>"+table[index].prod_nombre+"</td>";
 					tableStructure+="<td>"+table[index].prod_desc+"</td>";
-					tableStructure+="<td>"+table[index].prod_precio+"</td>";
-					tableStructure+="<td>"+table[index].prod_proveedor+"</td>";
+					tableStructure+="<td>"+table[index].prod_precio_cli+"</td>";
 					tableStructure+="<td>"+table[index].prod_estatus+"</td>";
 					tableStructure+="</tr>";
 				});
@@ -188,19 +187,20 @@ function eliminarProducto(){
 
 //calcula el total y se lo agrega a el campo total_txt
 function calcularTotal(){
-	var total=0;
+	var subtotal=0;
 	var iva=0;
 	$("input[name='prod_cant']").each(function(){
 		var precio=0, cantidad=0;
 		precio=$(this).siblings("input[name='prod_precio']").val();
 		cantidad=$(this).val();
-		total=parseInt(total)+parseInt((precio*cantidad));
+		subtotal=parseInt(subtotal)+parseInt((precio*cantidad));
 	});
 	if($("input[name='iva_check']:checked").length==1){
-		iva=total * $("input[name='iva_check']:checked").val();
+		iva=subtotal * $("input[name='iva_check']:checked").val();
 	}
-	$("input[name='total_txt']").val(total);
+	$("input[name='total_txt']").val(subtotal);
 	$("input[name='iva_txt']").val(iva);
+	$("#total_general").text(parseInt(subtotal+iva));
 }
 
 //si se habilita el iva lo aplica
@@ -212,6 +212,7 @@ $("input[name='iva_check']").change(function(){
 		iva=0;
 	}
 	$("input[name='iva_txt']").val(iva);
+	$("#total_general").text(parseInt($("input[name='total_txt']").val())+parseInt(iva));
 });
 
 //agrega el total cuando se agrega una cantidad de productos

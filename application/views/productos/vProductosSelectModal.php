@@ -17,6 +17,9 @@
 			<table >
 				<tbody>
 					<tr>
+						<td><?php echo form_hidden('cli_id',$cli_id>0?$cli_id:0);?></td>
+					</tr>
+					<tr>
 						<td><?php echo form_label('Número de Producto: ','prod_id');?></td>
 						<td><?php echo form_input($prod_id);?></td>
 					</tr>
@@ -47,7 +50,6 @@
 					<th>Nombre</th>
 					<th>Descripcion</th>
 					<th>Precio</th>
-					<th>Proveedor</th>
 					<th>Estatus</th>
 				</tr>
 			</thead>
