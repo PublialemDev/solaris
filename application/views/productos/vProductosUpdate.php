@@ -6,8 +6,9 @@ echo getMenu();
 	$prod_id_data='0';
 	$prod_nombre_data='';
 	$prod_cat_data='';
-	$prod_precio_data='';
-	$prod_proveedor_data='';
+	$prod_precio1_data='';
+	$prod_precio2_data='';
+	$prod_precio3_data='';
 	$prod_estatus_data='A';
 	$prod_desc_data='';
 	
@@ -16,8 +17,9 @@ echo getMenu();
 		$prod_id_data=$prod_data->id_producto;
 		$prod_nombre_data=$prod_data->nombre_producto;//
 		$prod_cat_data=$prod_data->id_categoriaProducto;
-		$prod_precio_data=$prod_data->precio;//
-		$prod_proveedor_data=$prod_data->proveedor;//
+		$prod_precio1_data=$prod_data->precio1;//
+		$prod_precio2_data=$prod_data->precio2;//
+		$prod_precio3_data=$prod_data->precio3;//
 		$prod_estatus_data=$prod_data->estatus_producto;
 		$prod_desc_data=$prod_data->descripcion_producto;//
 	}
@@ -31,8 +33,9 @@ $form_producto = array('id'=>'form_producto','onSubmit'=>'getValues(this,event)'
 
 //Propiedades de los input 
 $producto_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre','value'=>$prod_nombre_data,'class'=>'form-control','disabled'=>'disabled');
-$producto_proveedor =array('name'=>'prod_proveedor','placeholder'=>'Proveedor','value'=>$prod_proveedor_data,'class'=>'form-control','disabled'=>'disabled');
-$producto_precio =array('name'=>'prod_precio','placeholder'=>'Precio','value'=>$prod_precio_data,'class'=>'form-control','disabled'=>'disabled');
+$producto_precio_nor =array('name'=>'prod_precio_nor','placeholder'=>'Precio','value'=>$prod_precio1_data,'class'=>'form-control','disabled'=>'disabled');
+$producto_precio_adv =array('name'=>'prod_precio_adv','placeholder'=>'Precio','value'=>$prod_precio2_data,'class'=>'form-control','disabled'=>'disabled');
+$producto_precio_pre =array('name'=>'prod_precio_pre','placeholder'=>'Precio','value'=>$prod_precio3_data,'class'=>'form-control','disabled'=>'disabled');
 
 //Propiedades del TextArea
 $datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>30,'class'=>'form-control','value'=>$prod_desc_data,'disabled'=>'disabled');
@@ -78,16 +81,24 @@ foreach ($categorias->result() as $categoria) {
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Precio: ','prod_precio',$label);?>
-												<?php echo form_input($producto_precio);?>
+												<?php echo form_label('Precio normal: ','prod_precio_nor',$label);?>
+												<?php echo form_input($producto_precio_nor);?>
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Proveedor: ','prod_proveedor',$label);?>
-												<?php echo form_input($producto_proveedor);?>
+												<?php echo form_label('Precio avanzado: ','prod_precio_adv',$label);?>
+												<?php echo form_input($producto_precio_adv);?>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="form-group">
+												<?php echo form_label('Precio premier: ','prod_precio_pre',$label);?>
+												<?php echo form_input($producto_precio_pre);?>
 											</div>
 										</td>
 									</tr>

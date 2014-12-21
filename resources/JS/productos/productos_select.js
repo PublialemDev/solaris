@@ -18,8 +18,9 @@ function selectProductos(form,evt){
 					tableStructure+="<td>"+table[index].prod_cat+"</td>";
 					tableStructure+="<td>"+table[index].prod_nombre+"</td>";
 					tableStructure+="<td>"+table[index].prod_desc+"</td>";
-					tableStructure+="<td>"+table[index].prod_precio+"</td>";
-					tableStructure+="<td>"+table[index].prod_proveedor+"</td>";
+					tableStructure+="<td>"+table[index].prod_precio_nor+"</td>";
+					tableStructure+="<td>"+table[index].prod_precio_adv+"</td>";
+					tableStructure+="<td>"+table[index].prod_precio_pre+"</td>";
 					tableStructure+="<td>"+table[index].prod_estatus+"</td>";
 					tableStructure+="</tr>";
 				});

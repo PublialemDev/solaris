@@ -52,8 +52,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					<th>Categoria</th>
 					<th>Nombre</th>
 					<th>Descripcion</th>
-					<th>Precio</th>
-					<th>Proveedor</th>
+					<th>Precio normal</th>
+					<th>Precio avanzado</th>
+					<th>Precio premier</th>
 					<th>Estatus</th>
 				</tr>
 			</thead>

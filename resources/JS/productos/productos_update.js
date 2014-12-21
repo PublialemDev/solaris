@@ -3,6 +3,7 @@
  */
 function validarForm(){
 	var continuar=true;
+	
 	//valida el prod_nombre
 	if(isNombre($("input[name='prod_nombre']").val())){
 		$("input[name='prod_nombre']").parent().removeClass("has-error");
@@ -11,19 +12,27 @@ function validarForm(){
 		continuar=false;
 	}
 	
-	//valida el prod_precio
-	if(isNumeroFlotante($("input[name='prod_precio']").val())){
-		$("input[name='prod_precio']").parent().removeClass("has-error");
+	//valida el prod_precio_nor
+	if(isNumeroFlotante($("input[name='prod_precio_nor']").val())){
+		$("input[name='prod_precio_nor']").parent().removeClass("has-error");
 	}else{
-		$("input[name='prod_precio']").parent().addClass("has-error");
+		$("input[name='prod_precio_nor']").parent().addClass("has-error");
 		continuar=false;
 	}
 	
-	//valida prod_proveedor
-	if(isTexto($("input[name='prod_proveedor']").val())){
-		$("input[name='prod_proveedor']").parent().removeClass("has-error");
+	//valida el prod_precio_adv
+	if(isNumeroFlotante($("input[name='prod_precio_adv']").val())){
+		$("input[name='prod_precio_adv']").parent().removeClass("has-error");
 	}else{
-		$("input[name='prod_proveedor']").parent().addClass("has-error");
+		$("input[name='prod_precio_adv']").parent().addClass("has-error");
+		continuar=false;
+	}
+	
+	//valida el prod_precio_pre
+	if(isNumeroFlotante($("input[name='prod_precio_pre']").val())){
+		$("input[name='prod_precio_pre']").parent().removeClass("has-error");
+	}else{
+		$("input[name='prod_precio_pre']").parent().addClass("has-error");
 		continuar=false;
 	}
 	

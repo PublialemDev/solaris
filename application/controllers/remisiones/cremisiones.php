@@ -66,7 +66,8 @@ class CRemisiones extends CI_Controller {
 	
 	//muestra la estructura para la ventana modal de busqueda de productos
 	public function modalProductos(){
-		$this->load->view('productos/vProductosSelectModal');
+		$datos['cli_id'] = $this->input->post('cli_id');
+		$this->load->view('productos/vProductosSelectModal',$datos);
 	}
 	
 	public function formUpdateRemision(){

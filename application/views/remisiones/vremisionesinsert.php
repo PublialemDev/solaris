@@ -24,7 +24,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 			<center>
 				<div class='container-fluid'>
 					<div class="row">
-						<div class='col-md-6'>
+						<div class='col-md-5'>
 							<?php echo form_open('#',$form_remision); ?>
 						<table>
 							
@@ -90,7 +90,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 								<tr>
 									<td>
 										<div class="form-group">
-										<?php echo form_label('Total: ','total',$label);?>
+										<?php echo form_label('Subtotal: ','total',$label);?>
 										<?php echo form_input($remision_total);?>
 										</div>
 									</td>
@@ -105,7 +105,14 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										</div>
 									</td>
 								</tr>
-								
+								<tr>
+									<td>
+										<div class="form-group">
+											<?php echo form_label('Total:','total_general',$label);?>
+											<span id="total_general">0</span>
+										</div>
+									</td>
+								</tr>
 								<tr>
 									<td><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></td>
 								</tr>
@@ -114,7 +121,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 						</table>
 						<?php echo form_close(); ?>
 						</div>
-						<div id="tableTarget" class='col-md-6'>
+						<div id="tableTarget" class='col-md-7'>
 							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')"');?>
 							<?php echo form_button('eliminarProductos','Eliminar Producto','class="btn btn-danger" onclick="eliminarProducto()" disabled');?>
 							<table id="tableProductos" class='table table-striped'>
