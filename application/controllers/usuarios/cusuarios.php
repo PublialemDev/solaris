@@ -58,7 +58,8 @@ class CUsuarios extends CI_Controller {
 			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
 			'dir_col'=>$this->input->post('DIR_COL'),
 			'dir_muni'=>$this->input->post('DIR_MUNI'),
-			'dir_cp'=>$this->input->post('DIR_CP')
+			'dir_cp'=>$this->input->post('DIR_CP'),
+			'dir_ref'=>$this->input->post('DIR_REF')
 			);
 			
 			//inserta y recibe el id generado en la insercion
@@ -213,7 +214,8 @@ class CUsuarios extends CI_Controller {
 			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
 			'dir_col'=>$this->input->post('DIR_COL'),
 			'dir_muni'=>$this->input->post('DIR_MUNI'),
-			'dir_cp'=>$this->input->post('DIR_CP')
+			'dir_cp'=>$this->input->post('DIR_CP'),
+			'dir_ref'=>$this->input->post('DIR_REF')
 			);
 			
 			//inserta y recibe el id generado en la actualizacion

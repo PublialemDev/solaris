@@ -138,6 +138,7 @@ $(document).on("click",".updateButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					alert("El usuario actualizó correctamente");
 				}else{
 					alert("Ocurrio un error: "+msg);

@@ -14,6 +14,7 @@ function selectSucursales(form,evt){
 				tableStructure="";
 				$.each(table,function(index){
 					tableStructure+="<tr id=\'"+table[index].id+"\'>";
+					//tableStructure+="<td>"+table[index].id+"</td>";
 					tableStructure+="<td>"+table[index].nombre+"</td>";
 					tableStructure+="<td>"+table[index].paginaweb+"</td>";
 					tableStructure+="</tr>";

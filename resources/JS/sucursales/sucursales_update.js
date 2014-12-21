@@ -24,15 +24,7 @@ function validarForm(){
 		continuar=false;
 	}
 	
-	/*
-	if(isVacio($("input[name='rfc']").val())){
-		$("input[name='rfc']").parent().removeClass("has-error");
-	}else if(isRfc($("input[name='rfc']").val())){
-		$("input[name='rfc']").parent().removeClass("has-error");
-	}else{
-		$("input[name='rfc']").parent().addClass("has-error");
-		continuar=false;
-	}*/
+	
 	
 	//valida dir_calle
 	if(!isVacio($("input[name='dir_calle']").val())){
@@ -51,9 +43,9 @@ function validarForm(){
 	}
 	
 	//valida dir_num_int
-	if(isNumeroLetraGuion($("input[name='dir_num_int']").val())){
+	if(isVacio($("input[name='dir_num_int']").val())){
 		$("input[name='dir_num_int']").parent().removeClass("has-error");
-	}else if(isNumero($("input[name='dir_num_int']").val())){
+	}else if(isNumeroLetraGuion($("input[name='dir_num_int']").val())){
 		$("input[name='dir_num_int']").parent().removeClass("has-error");
 	}else{
 		$("input[name='dir_num_int']").parent().addClass("has-error");
@@ -141,6 +133,7 @@ $(document).on("click",".updateButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					alert("La sucursalse actializó correctamente");
 				}else{
 					alert("Ocurrio un error: "+msg);
