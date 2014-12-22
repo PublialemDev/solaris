@@ -9,13 +9,14 @@ class MSeguimiento extends CI_Model{
 	}
 
 	public function insertSeguimiento($datos){
+		$sysdate=new DateTime();
 		$this->db->trans_begin();
 		$returned = $this->db->insert('seguimientoclientes',array(
 		'id_cliente'=> $datos['id_cliente'],
 		'id_categoriaSeguimiento'=> $datos['id_catseguimiento'],
 		'comentario'=> $datos['comentario'],
 		'fecha'=> $datos['fecha'],
-		'creado_en'=> $datos['creado_en'], 
+		'creado_en'=> $sysdate->format('Y-m-d H:i:s'),//$datos['creado_en'], 
 		'creado_por'=> base64_decode($_SESSION['USUARIO_ID'])));
 		
 		if($returned==1){
@@ -79,6 +80,11 @@ class MSeguimiento extends CI_Model{
 	}
 
 	function selectSeguimiento($where_clause){
+			
+		$this->db->where('seguimientoclientes.estatus_seguimiento','A');
+		if(isset($where_clause['cli_id'])){
+			$this->db->where('seguimientoclientes.id_cliente',$where_clause['cli_id']);
+		}
 		if(isset($where_clause['segui_id'])){
 			$this->db->where('seguimientoclientes.id_seguimientoCliente',$where_clause['segui_id']);
 		}
@@ -89,9 +95,8 @@ class MSeguimiento extends CI_Model{
 			$this->db->like('categoriaseguimientoclientes.nombre_categoriaSeguimiento',$where_clause['segui_categoria']);
 		}
 		
-		$this->db->select('seguimientoclientes.id_seguimientoCliente, clientes.nombre_cliente, categoriaseguimientoclientes.nombre_categoriaSeguimiento');
+		$this->db->select('seguimientoclientes.id_seguimientoCliente, seguimientoclientes.id_categoriaSeguimiento as idCategoria ,categoriaseguimientoclientes.nombre_categoriaSeguimiento, seguimientoclientes.fecha,seguimientoclientes.comentario ');
 		$this->db->from('seguimientoclientes');
-		$this->db->join('clientes','seguimientoclientes.id_cliente= clientes.id_cliente');
 		$this->db->join('categoriaseguimientoclientes','seguimientoclientes.id_categoriaSeguimiento = categoriaseguimientoclientes.id_categoriaSeguimiento');
 		$query = $this->db->get();
 		if($query->num_rows()>0){

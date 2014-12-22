@@ -9,6 +9,7 @@ class CSeguimiento extends CI_Controller {
 		$this->load->helper('pagina');
 		$this->load->helper('form');
 		$this->load->model('clientes/mseguimiento');
+		$this->load->model('clientes/mclientes');
 		$this->load->model('logs/mLogs');
 	}
 	
@@ -39,8 +40,11 @@ class CSeguimiento extends CI_Controller {
 	}
 	
 
-	public function formSelectSeguimiento(){		
-		$this->load->view('clientes/vseguimientoselect');
+	public function formSelectSeguimiento(){
+		$cli_id=$this->input->get('idCliente');
+		$datos['clientes']=$this->mclientes->selectClienteById($cli_id);	
+		$datos['seguimientos']=$this->mseguimiento->selectSeguimiento(array('cli_id'=>$cli_id));	
+		$this->load->view('clientes/vseguimientoselect',$datos);
 	}
 	
 	public function selectSeguimiento(){		

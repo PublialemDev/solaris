@@ -19,6 +19,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	<div class="panel panel-info">
 		<div class="panel-heading">Consulta de Clientes</div>
 		<div class="panel-body">
+			<div class='container-fluid'>
+					<div class="row">
+						<div class='col-md-6'>
 			<center>
 			<?php echo form_open('#',$form_cliente); ?>
 			<table >
@@ -42,6 +45,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			</table>
 			<?php echo form_close(); ?>
 			</center>
+			</div>
+					<div class='col-md-6'>
+						<center>
+						<?php echo form_button('seguimiento','Ver seguimiento','class="seguimientoButton btn btn-primary" style="display:none" onclick="mostrarSeguimiento()"');?>
+						</center>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	

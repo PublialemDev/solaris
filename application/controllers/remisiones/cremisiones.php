@@ -8,6 +8,7 @@ class CRemisiones extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('remisiones/mremisiones');
 		$this->load->model('remisiones/mproductoremision');
+		$this->load->model('clientes/mseguimiento');
 		$this->load->library('table');
 	}
 	
@@ -29,6 +30,7 @@ class CRemisiones extends CI_Controller {
 	 * 
 	 * */
 	public function insertRemision(){
+		$sysdate=new DateTime();
 		$remi_data=array(
 		'idSucursal'=>$this->input->post('IDSUCURSAL'),
 		'idCliente'=>$this->input->post('CLIENTE_TXT'),
@@ -38,23 +40,35 @@ class CRemisiones extends CI_Controller {
 		'total'=>$this->input->post('TOTAL_TXT'),
 		'iva'=>$this->input->post('IVA_TXT'));		
 		$generated=$this->mremisiones->insertRemision($remi_data);
-		$productos=$this->input->post('PRODUCTOS');
-		$prod_data=explode('#',$productos);
-		foreach ($prod_data as $prod) {
-			if($prod!='' && $prod != null){
-			$producto=explode(';',$prod);
-			$this->mproductoremision->insertProductoRemision(
-			array( 
-			'id_remision'=>$generated,
-			'id_producto'=>$producto[0],
-			'cantidad'=>$producto[1],
-			'precio_actual'=>$producto[2],
-			'descuento'=>$producto[3]
-			));
+		if(is_numeric($generated)){
+			$productos=$this->input->post('PRODUCTOS');
+			$prod_data=explode('#',$productos);
+			foreach ($prod_data as $prod) {
+				if($prod!='' && $prod != null){
+				$producto=explode(';',$prod);
+				$this->mproductoremision->insertProductoRemision(
+				array( 
+				'id_remision'=>$generated,
+				'id_producto'=>$producto[0],
+				'cantidad'=>$producto[1],
+				'precio_actual'=>$producto[2],
+				'descuento'=>$producto[3]
+				));
+				}
 			}
+			$datos=array(
+			'id_cliente'=> $remi_data['idCliente'],
+			'id_catseguimiento'=> '0',
+			'comentario'=> 'Remision generada ('.$generated.')'.'Total:'.($remi_data['total'] + $remi_data['iva']),
+			'fecha'=> $remi_data['fecha'],
+			);
+			$this->mseguimiento->insertSeguimiento($datos);
+			echo 'SUCCESS;'.$generated;
+		}else{
+			echo 'ERROR;'.$generated;
 		}
 		
-		echo 'SUCCESS;'.$generated;
+		
 	}
 	
 	

@@ -1,3 +1,18 @@
+//agrega una marca a el cliente seleccionado y muestra el boton de seguimiento
+$(document).on("click","#target .datos tbody tr", function(){
+	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
+		$("tr[class='info']").removeClass("info");
+		$(this).addClass("info");
+		$(".seguimientoButton").removeAttr("style");
+	}
+});
+
+//redirecciona a la vista que contiene el seguimeinto del cliente
+function mostrarSeguimiento(){
+	var idCliente=$("#target .datos tbody tr[class='info']").attr("id");
+	window.location = SERVER_URL_BASE+"clientes/cseguimiento/formSelectSeguimiento?idCliente="+idCliente;
+}
+//
 function selectCliente(form,evt){
 	evt.preventDefault();
 	var formSer=$(form).serialize();

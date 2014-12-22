@@ -25,8 +25,10 @@ class MRemisiones extends CI_Model{
 		if($returned==1){
 			$returned=$this->db->insert_id();			
 			$this->mLogs->insertLog(array('tipo_log'=>'INSERT_REMISIONES','descripcion_log'=>'SE INSERTO REMISION'.$returned));
+			return $returned;
+		}else{
+		return false;
 		}
-		return $returned;
 	}
 	
 	//actualizacion de remision
