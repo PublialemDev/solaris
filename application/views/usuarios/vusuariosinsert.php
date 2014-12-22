@@ -18,6 +18,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$dir_col =array('name'=>'dir_col','placeholder'=>'Colonia','value'=>'','class'=>'form-control');
 	$dir_muni =array('name'=>'dir_muni','placeholder'=>'Municipio','value'=>'','class'=>'form-control');
 	$dir_cp =array('name'=>'dir_cp','placeholder'=>'Codigo Postal','value'=>'','class'=>'form-control');
+	$dir_ref=array('id' => 'dir_ref','name' => 'dir_ref','rows' => 5, 'cols' =>30,'class'=>'form-control');
 	//teléfono
 	$tel_num =array('name'=>'tel_num','class'=>'telefono form-control','placeholder'=>'Teléfono','value'=>'');
 	//correos
@@ -147,6 +148,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 									<div class="form-group">
 										<?php echo form_label('Codigo Postal: ','dir_cp',$label);?>
 										<?php echo form_input($dir_cp);?>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<?php echo form_label('Referencias: ','dir_ref',$label);?>
+										<?php echo form_textarea($dir_ref);?>
 									</div>
 								</td>
 							</tr>

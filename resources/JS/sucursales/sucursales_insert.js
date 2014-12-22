@@ -18,13 +18,7 @@ function validarForm(){
 		continuar=false;
 	}
 	
-	/*
-	if(!isVacio($("input[name='paginaweb']").val())){
-		$("input[name='paginaweb']").parent().removeClass("has-error");
-	}else{
-		$("input[name='paginaweb']").parent().addClass("has-error");
-		continuar=false;
-	}*/
+
 	
 	//valida dir_calle
 	if(!isVacio($("input[name='dir_calle']").val())){
@@ -135,6 +129,7 @@ $(document).on("click",".enviarButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					alert("La sucursal se creo correctamente");
 				}else{
 					alert("Ocurrio un error: "+msg);
@@ -185,6 +180,7 @@ $(document).on("click",".updateButton",function(){
 					$(".addCorreo").attr("disabled","disabled");
 					$(".addTelefono").attr("disabled","disabled");
 					$("select").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
 					alert("La sucursal se actualizó correctamente");
 				}else{
 						alert("Ocurrio un error: "+msg);
