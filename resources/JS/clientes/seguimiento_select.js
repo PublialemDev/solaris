@@ -36,3 +36,7 @@ function selectSeguimiento(form,evt){
 				}
 			}
 		});
+		
+function insertSeguimiento(){
+	window.location.href = SERVER_URL_BASE+"clientes/cseguimiento/insertSeguimiento";
+}

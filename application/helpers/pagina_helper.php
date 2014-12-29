@@ -135,19 +135,16 @@ function getMenu(){
           
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
-          		<li><a href="/solaris/index.php/main/cMain/main">Inicio </a></li>
           		<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Clientes
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta clientes</a></li>
-        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Consulta/Actualización de clientes</a></li>
-        	    		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento">Alta Categoria Seguimiento Clientes</a></li>
-	            		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento">Consulta/Actualización Categoria Seguimiento Clientes</a></li>
-	            		<li><a href="/solaris/index.php/clientes/cseguimiento/insertSeguimiento">Alta Seguimiento Clientes</a></li>
-	            		<li><a href="/solaris/index.php/clientes/cseguimiento/formSelectSeguimiento">Consulta/Actualización Seguimiento Clientes</a></li>
+      	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta</a></li>
+        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Consulta/Actualización</a></li>
+        	    		<!--li><a href="/solaris/index.php/clientes/cseguimiento/insertSeguimiento">Alta Seguimiento Clientes</a></li-->
+	            		<!--li><a href="/solaris/index.php/clientes/cseguimiento/formSelectSeguimiento">Consulta/Actualización Seguimiento Clientes</a></li-->
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -156,10 +153,8 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos">Alta Categoria Productos</a></li>
-						<li><a href="/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos">Consulta/Actualización  Categoria Productos</a></li>
-						<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta Productos</a></li>
-						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Consulta/Actualización Productos</a></li>
+      	    	    	<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta </a></li>
+						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Consulta/Actualización</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -168,18 +163,8 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta Remisiones</a></li>
-						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Consulta/Actualización Remisiones</a></li>
-	            	</ul>
-	            </li>
-	            <li class="dropdown">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                		Pagos
-                		<sapan class="caret"></sapan>
-                	</a>
-                	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/remisiones/ctipopago/insertTipoPago">Alta tipo de pago</a></li>
-						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">Consulta/Actualización tipo de pago</a></li>
+      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Consulta/Actualización</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -188,8 +173,8 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/sucursales/csucursales/forminsertSucursales">Alta de Sucursales</a></li>
-						<li><a href="/solaris/index.php/sucursales/csucursales/formSelectSucursales">Consulta/Actualización de Sucursales</a></li>
+      	    	    	<li><a href="/solaris/index.php/sucursales/csucursales/forminsertSucursales">Alta</a></li>
+						<li><a href="/solaris/index.php/sucursales/csucursales/formSelectSucursales">Consulta/Actualización</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -198,10 +183,25 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios">Alta tipo de usuario</a></li>
+      	    	    	<li><a href="/solaris/index.php/usuarios/cusuarios/forminsertUsuarios">Alta</a></li>
+						<li><a href="/solaris/index.php/usuarios/cusuarios/formselectUsuarios">Consulta/Actualización</a></li>
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Categorias
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento">Alta Categoria Seguimiento Clientes</a></li>
+	            		<li><a href="/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento">Consulta/Actualización Categoria Seguimiento Clientes</a></li>
+	            		<li><a href="/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos">Alta Categoria Productos</a></li>
+						<li><a href="/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos">Consulta/Actualización  Categoria Productos</a></li>
+						<li><a href="/solaris/index.php/remisiones/ctipopago/insertTipoPago">Alta tipo de pago</a></li>
+						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">Consulta/Actualización tipo de pago</a></li>
+	            		<li><a href="/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios">Alta tipo de usuario</a></li>
 						<li><a href="/solaris/index.php/usuarios/ctipousuarios/formselectTipoUsuarios">Consulta/Actualización tipo de usuario</a></li>
-						<li><a href="/solaris/index.php/usuarios/cusuarios/forminsertUsuarios">Alta usuario</a></li>
-						<li><a href="/solaris/index.php/usuarios/cusuarios/formselectUsuarios">Consulta/Actualización usuario</a></li>
+						
 	            	</ul>
 	            </li>
           </div>
@@ -227,19 +227,20 @@ function getMenu(){
             <span class="icon-bar"></span>
           </button>
         <div class="central_header">
-          <a class="transicion" href="index.html"><div id="logo"></div></a>
+          <a class="transicion" href="/solaris/index.php/main/cMain/main"><div id="logo"></div></a>
           
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
-          		<li><a href="/solaris/index.php/main/cMain/main">Inicio </a></li>
           		<li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Clientes
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta clientes</a></li>
-        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Select/Update de clientes</a></li>
+      	    	    	<li><a href="/solaris/index.php/clientes/cClientes/formInsertCliente">Alta</a></li>
+        	    		<li><a href="/solaris/index.php/clientes/cClientes/formSelectCliente">Consulta/Actualización</a></li>
+        	    		<!--li><a href="/solaris/index.php/clientes/cseguimiento/insertSeguimiento">Alta Seguimiento Clientes</a></li-->
+	            		<!--li><a href="/solaris/index.php/clientes/cseguimiento/formSelectSeguimiento">Consulta/Actualización Seguimiento Clientes</a></li-->
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -248,8 +249,8 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-						<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta Productos</a></li>
-						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Select Productos</a></li>
+      	    	    	<li><a href="/solaris/index.php/productos/cproductos/insertProductoForm">Alta </a></li>
+						<li><a href="/solaris/index.php/productos/cproductos/selectProductosForm">Consulta/Actualización</a></li>
 	            	</ul>
 	            </li>
 	            <li class="dropdown">
@@ -258,21 +259,10 @@ function getMenu(){
                 		<sapan class="caret"></sapan>
                 	</a>
                 	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta Remisiones</a></li>
-						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Select Remisiones</a></li>
+      	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta</a></li>
+						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Consulta/Actualización</a></li>
 	            	</ul>
 	            </li>
-	            <li class="dropdown">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                		Pagos
-                		<sapan class="caret"></sapan>
-                	</a>
-                	<ul class="dropdown-menu">
-      	    	    	<li><a href="/solaris/index.php/remisiones/ctipopago/insertTipoPago">Alta tipo de pago</a></li>
-						<li><a href="/solaris/index.php/remisiones/ctipopago/formSelectTipoPago">select tipo de pago</a></li>
-	            	</ul>
-	            </li>
-          </div>
         </div>
       </div>
     </div>

@@ -61,7 +61,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			</center>
 			</div>
 			<div class='col-md-3'>
-				<?php echo form_button('seg_insertar','Insertar seguimeinto','class="btn btn-primary"'); ?>
+				<?php echo form_button('seg_insertar','Insertar seguimeinto','class="btn btn-primary" onclick="insertSeguimiento()"'); ?>
 			</div>
 			</div>
 			</div>
