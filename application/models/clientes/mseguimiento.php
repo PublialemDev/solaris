@@ -35,11 +35,11 @@ class MSeguimiento extends CI_Model{
 	}
 	
 	
-	function updateSeguimiento($segui_data_form){		
+	function updateSeguimiento($segui_data_form){
+		$sysdate = new DateTime();	
 		$this->db->trans_begin();
-		$sysdate = new DateTime();
 		$segui_data = array(
-		'id_cliente'=> $segui_data_form['id_cliente'],
+		//'id_cliente'=> $segui_data_form['id_cliente'],
 		'id_categoriaSeguimiento'=> $segui_data_form['id_catseguimiento'],
 		'comentario'=> $segui_data_form['comentario'],
 		'fecha'=> $segui_data_form['fecha'],
@@ -49,18 +49,21 @@ class MSeguimiento extends CI_Model{
 		$returned = $this->db->update('seguimientoclientes',$segui_data,array('id_seguimientoCliente'=>$segui_data_form['idSeguimiento']));
 		
 		//insertar log para auditoria
-		if($returned == 1){
+		if($this->db->trans_status() != FALSE){
 			$this->mLogs->insertLog(array('tipo_log'=>'update_seguimiento','descripcion_log'=>'update del seguimiento: '.$segui_data_form['idSeguimiento']));
 		}
+		
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();
+			return $returned;
 		}
 		else
 		{
 		    $this->db->trans_commit();
+			return true;
 		}
-		return $returned;
+		//return $returned;
 	}
 
 	function deleteSeguimiento($segui_id){

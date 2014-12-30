@@ -38,5 +38,5 @@ function selectSeguimiento(form,evt){
 		});
 		
 function insertSeguimiento(){
-	window.location.href = SERVER_URL_BASE+"clientes/cseguimiento/insertSeguimiento";
+	window.location.href = SERVER_URL_BASE+"clientes/cseguimiento/insertSeguimiento?cli_id="+$("span[name='cli_id']").text().trim()+"&cli_name="+$("span[name='cli_name']").text().trim();
 }

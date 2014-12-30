@@ -19,7 +19,9 @@ class CSeguimiento extends CI_Controller {
 	}
 	
 	public function insertSeguimiento(){
-		$data['catseguimiento'] = $this->mseguimiento->selectCatSeguimiento();		
+		$data['catseguimiento'] = $this->mseguimiento->selectCatSeguimiento();
+		$data['cli_id']= $this->input->get('cli_id');
+		$data['cli_name']= $this->input->get('cli_name');		
 		$this->load->view('clientes/vseguimientoinsert',$data);
 	}
 	
@@ -27,9 +29,9 @@ class CSeguimiento extends CI_Controller {
 		$sysdate=new DateTime();
 		
 		$datos = array(
-		'id_cliente' => $this->input->post('CLIENTE_TXT'), 
+		'id_cliente' => $this->input->post('CLI_ID'), 
 		'fecha' => $this->input->post('FECHA_TXT'), 
-		'comentario' => $this->input->post('DESCRIPTCION_TXT'), 
+		'comentario' => $this->input->post('DESCRIPCION_TXT'), 
 		'id_catseguimiento' => $this->input->post('SEGUI_CATE'), 
 		'creado_en' => $sysdate->format('Y-m-d H:i:s'));
 		
@@ -87,22 +89,24 @@ class CSeguimiento extends CI_Controller {
 	}
 
 	public function updateSeguimiento(){
-		$segui_id=$this->input->post('idSeguimiento');//Almacenara el ID(hidden) generado en la actualizacion
+		$segui_id=$this->input->post('IDSEGUIMIENTO');//Almacenara el ID(hidden) generado en la actualizacion
 		$segui_data;
 		$response;
 		
 		//establece los datos de la categoria para la actualizacion
 		$segui_data = array(
 		'idSeguimiento'=>$segui_id,
-		'id_cliente' => $this->input->post('CLIENTE_TXT'), 
+		'id_cliente' => $this->input->post('CLI_ID'), 
 		'fecha' => $this->input->post('FECHA_TXT'), 
-		'comentario' => $this->input->post('DESCRIPTCION_TXT'), 
+		'comentario' => $this->input->post('DESCRIPCION_TXT'), 
 		'id_catseguimiento' => $this->input->post('SEGUI_CATE'),
 		);
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->mseguimiento->updateSeguimiento($segui_data);
-		if($response == 1){
-			echo "El registro se actualizo correctamente";
+		if($response===true){
+			echo "SUCCESS;".$response;
+		}else{
+			echo "ERROR;".$response;
 		}
 		
 	}

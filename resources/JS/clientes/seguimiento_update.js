@@ -1,6 +1,7 @@
 
 $(document).on("click",".enableButton",function(e){
 	$("[disabled=\'disabled\']").removeAttr("disabled");
+	$("input[name='cliente_txt']").attr("disabled","disabled");
 	$(this).html("Guardar");
 	$(this).removeClass("enableButton").addClass("updateButton");
 });
@@ -13,14 +14,18 @@ $(document).on("click",".updateButton",function(){
 		data:formSer.toUpperCase(),
 		url:SERVER_URL_BASE+"clientes/cseguimiento/updateSeguimiento",
 		method:"POST",
-		beforesend:function(){alert(formSer);},
 		success: function(msg){
-			alert(msg);
+			var resp=msg.split(";");
+			if(resp[0].trim()=="SUCCESS"){
 			$(".updateButton").html("Editar");
 			$(".updateButton").removeClass("updateButton").addClass("enableButton");
 			$("input").attr("disabled","disabled");
 			$("textarea").attr("disabled","disabled");
 			$("select").attr("disabled","disabled");
+			alert("El seguimiento se actualizó correctamente.");					
+			}else{
+				alert(msg);
+			}
 		}
 	});
 });

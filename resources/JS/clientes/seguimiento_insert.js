@@ -1,12 +1,12 @@
 function validarForm(){
 	var continuar=true;
 	
-	if(isNumero($("input[name='cliente_txt']").val())){
+	/*if(isNumero($("input[name='cliente_txt']").val())){
 		$("input[name='cliente_txt']").parent().removeClass("has-error");
 	}else{
 		$("input[name='cliente_txt']").parent().addClass("has-error");
 		continuar=false;
-	}			
+	}	*/		
 	
 	if(!isVacio($("input[name='fecha_txt']").val())){
 		$("input[name='fecha_txt']").parent().removeClass("has-error");
@@ -50,8 +50,9 @@ $(document).on("click",".enviarButton",function(){
 });
 		
 //habilitara el formulario
-$(document).on("click",".enableButton",function(e){
-	$("[disabled=\'disabled\']").removeAttr("disabled");
+$(document).on("click",".enableButton",function(){
+	$("[disabled='disabled']").removeAttr("disabled");
+	$("input[name='cliente_txt']").attr("disabled","disabled");
 	$(this).html("Guardar");
 	$(this).removeClass("enableButton");
 	$(this).addClass("updateButton");
@@ -63,17 +64,21 @@ $(document).on("click",".updateButton",function(){
 	var formSer=$("#form_segui").serialize();
 	
 		$.ajax({
-			data:formSer,
+			data:formSer.toUpperCase(),
 			url:SERVER_URL_BASE+"clientes/cseguimiento/updateSeguimiento",
 			method:"POST",
-			beforesend:function(){alert(formSer);},
 			success: function(msg){
-				alert(msg);
+				var resp=msg.split(";");
+				if(resp[0].trim()=="SUCCESS"){
 				$(".updateButton").html("Editar");
 				$(".updateButton").removeClass("updateButton").addClass("enableButton");
 				$("input").attr("disabled","disabled");
 				$("textarea").attr("disabled","disabled");
 				$("select").attr("disabled","disabled");
+				alert("El seguimiento se actualizó correctamente.");					
+				}else{
+					alert(msg);
+				}
 			}
 
 		});
@@ -82,15 +87,13 @@ $(document).on("click",".updateButton",function(){
 	}
 });
 
-function getValues(form,evt){
+/*function getValues(form,evt){
 	evt.preventDefault();
 	var formSer=$(form).serialize();
 	alert(formSer);
-}
+}*/
 
-
-
-
+//agrega la propiedad datepicker a el campo de fecha
  $.datepicker.regional['es'] = {
  closeText: 'Cerrar',
  prevText: '<Ant',

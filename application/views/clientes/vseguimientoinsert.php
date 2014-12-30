@@ -8,7 +8,7 @@ echo getMenu();
 $form_segui = array('id'=>'form_segui','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
-$segui_cli =array('name'=>'cliente_txt','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
+$segui_cli =array('name'=>'cliente_txt','placeholder'=>'Nombre','value'=>$cli_name.'('.$cli_id.')','class'=>'form-control','disabled'=>'disabled');
 $segui_fecha = array('id'=>'fecha_txt','name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
@@ -29,7 +29,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 			<center>
 				<div class='container-fluid'>
 					<div class="row">
-						<div class='col-md-3'>
+						<div class='col-md-12'>
 	
 						<table>
 							<tbody>
@@ -40,7 +40,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_input($segui_cli);?>
-										<?php echo form_button('buscar','BUSCAR','class="btn btn-primary buscarButton" onclick="prepararModal()"');?>
+										<?php echo form_hidden('cli_id',$cli_id);?>
 										</div>	
 									</td>
 								</tr>

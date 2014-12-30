@@ -52,7 +52,8 @@ foreach ($catseguimiento->result() as $catsegui) {
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_input($segui_cli);?>
-										<?php echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
+										<?php echo form_hidden('cli_id',$segui_cli_data);?>
+										<?php //echo form_button('buscar_cli','Buscar','class="buscarCliente  btn btn-xs btn-default"');?>
 										</div>	
 									</td>
 								</tr>

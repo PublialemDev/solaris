@@ -42,9 +42,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					<tr>
 						<td><h4>
 							<span><?php echo 'Id de Cliente: ';?></span>
-							<span><b><?php echo $cli_id .'&nbsp&nbsp&nbsp';?></b></span>
+							<span name="cli_id"><b><?php echo $cli_id .'&nbsp&nbsp&nbsp';?></b></span>
 							<span><?php echo 'Nombre: ';?></span>
-							<span><b><?php echo $cli_nombre .'&nbsp&nbsp&nbsp';?></b></span>
+							<span name="cli_name"><b><?php echo $cli_nombre .'&nbsp&nbsp&nbsp';?></b></span>
 							</h4>
 						</td>
 					</tr>
