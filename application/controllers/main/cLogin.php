@@ -37,7 +37,7 @@ class CLogin extends CI_Controller {
 				//temporal hasta que se encripte password en la BD
 				//$usr_passw_bd=password_hash($usr_data_db->contraseña,PASSWORD_DEFAULT);
 				$usr_passw_bd=$usr_data_db->contraseña;
-				if($usr_passw_bd==$usr_passw/*password_verify($usr_passw,$usr_passw_bd)*/){//valida que los passw coincidan
+				if($usr_passw_bd==md5($usr_passw)){//valida que los passw coincidan
 				
 					//session_start();
 					$_SESSION['USUARIO_ID']= base64_encode($usr_data_db->id_usuario);
