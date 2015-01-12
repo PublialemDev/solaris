@@ -7,20 +7,21 @@ class CMensual extends CI_Controller {
 	public function __construct(){
 	parent::__construct();
 	$this->load->helper('form');
+	$this->load->helper('pagina');
 	$this->load->model('reportes/mmensual');
 	
 	}
 	
-	public function index(){
-		
+	public function formMensual(){
+		$this->load->view('reportes/vmensual');
 	}
 	
 	
 	public function reporteMensual(){		
 		$this->load->library('pdf');
 		
-		$fecha_inicial =(String) $this->input->get('fecha_ini');
-		$fecha_final = (String)$this->input->get('fecha_fin');
+		$fecha_inicial =(String) $this->input->post('fecha_ini');
+		$fecha_final = (String)$this->input->post('fecha_fin');
 
 		
 		//obtener resultado de la query 
