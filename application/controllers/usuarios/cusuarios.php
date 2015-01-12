@@ -39,10 +39,10 @@ class CUsuarios extends CI_Controller {
 		
 		//establece los datos del cliente para la insercion
 		$usr_data=array(
-		'nombre'=>$this->input->post('NOMBRE'),
-		'password'=>$this->input->post('PASSWORD'),
-		'id_tipousuario'=>$this->input->post('USR_TIPOUSUARIO'),
-		'id_sucursal'=>$this->input->post('USR_SUCURSAL')
+		'nombre'=>strtoupper($this->input->post('nombre')),
+		'password'=>$this->md5($this->input->post('password')),
+		'id_tipousuario'=>$this->input->post('usr_tipousuario'),
+		'id_sucursal'=>$this->input->post('usr_sucursal')
 		);
 		//inserta y recibe el id generado en la insercion
 		$usr_id= $this->musuarios->insertUsuarios($usr_data);
@@ -52,14 +52,14 @@ class CUsuarios extends CI_Controller {
 			//establece los datos del cliente para la insercion
 			$dir_data=array(
 			'cli_id'=>$usr_id,
-			'dir_estado'=>$this->input->post('DIR_ESTADO'),
-			'dir_calle'=>$this->input->post('DIR_CALLE'),
-			'dir_num_ext'=>$this->input->post('DIR_NUM_EXT'),
-			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
-			'dir_col'=>$this->input->post('DIR_COL'),
-			'dir_muni'=>$this->input->post('DIR_MUNI'),
-			'dir_cp'=>$this->input->post('DIR_CP'),
-			'dir_ref'=>$this->input->post('DIR_REF')
+			'dir_estado'=>strtoupper($this->input->post('dir_estado')),
+			'dir_calle'=>strtoupper($this->input->post('dir_calle')),
+			'dir_num_ext'=>strtoupper($this->input->post('dir_num_ext')),
+			'dir_num_int'=>strtoupper($this->input->post('dir_num_int')),
+			'dir_col'=>strtoupper($this->input->post('dir_col')),
+			'dir_muni'=>strtoupper($this->input->post('dir_muni')),
+			'dir_cp'=>strtoupper($this->input->post('dir_cp')),
+			'dir_ref'=>strtoupper($this->input->post('dir_ref'))
 			);
 			
 			//inserta y recibe el id generado en la insercion
@@ -72,7 +72,7 @@ class CUsuarios extends CI_Controller {
 		//inserta los telefonos para el usuario
 		if($usr_id>0 and $usr_id!= null and $returned>0){
 			//genera el array de los numeros de telefono
-			$tel_numeros = explode('#',$this->input->post('TEL_NUM'));
+			$tel_numeros = explode('#',$this->input->post('tel_num'));
 			$tel_data;
 			$total_telefonos=0;
 			foreach ($tel_numeros as $tel_num) {
@@ -99,7 +99,7 @@ class CUsuarios extends CI_Controller {
 		//inserta los correos para el cliente
 		if($usr_id>0 and $usr_id!= null  and $returned>0){
 			//genera el array de los correos
-			$corr_correos = explode('#',$this->input->post('CORR_CORREO'));
+			$corr_correos = explode('#',$this->input->post('corr_correo'));
 			$corr_data;
 			$total_correos=0;
 			foreach ($corr_correos as $corr_correo) {
@@ -186,7 +186,7 @@ class CUsuarios extends CI_Controller {
 
 	public function updateUsuarios()
 	{
-		$usr_id=$this->input->post('USR_ID');//Almacenara el ID generado en la actualizacion
+		$usr_id=$this->input->post('usr_id');//Almacenara el ID generado en la actualizacion
 		$usr_data;//Almacenara el array de datos del cliente para la actualizacion
 		$dir_data;//Almacenara el array de datos de la direccion para la actualizacion
 		$response=0;
@@ -194,10 +194,10 @@ class CUsuarios extends CI_Controller {
 		//establece los datos de la sucursal para la actualizacion
 		$usr_data=array(
 		'usr_id'=>$usr_id,
-		'nombre'=>$this->input->post('NOMBRE'),
-		'password'=>$this->input->post('PASSWORD'),
-		'id_tipousuario'=>$this->input->post('USR_TIPOUSUARIO'),
-		'id_sucursal'=>$this->input->post('USR_SUCURSAL')
+		'nombre'=>strtoupper($this->input->post('nombre')),
+		'password'=>$this->md5($this->input->post('password')),
+		'id_tipousuario'=>$this->input->post('usr_tipousuario'),
+		'id_sucursal'=>$this->input->post('usr_sucursal')
 		//'estatus'=>$this->input->post('USR_ESTATUS')
 		);
 		//inserta y recibe el id generado en la actualizacion
@@ -208,14 +208,14 @@ class CUsuarios extends CI_Controller {
 			//establece los datos del cliente para la actualizacion
 			$dir_data=array(
 			'cli_id'=>$usr_id,
-			'dir_estado'=>$this->input->post('DIR_ESTADO'),
-			'dir_calle'=>$this->input->post('DIR_CALLE'),
-			'dir_num_ext'=>$this->input->post('DIR_NUM_EXT'),
-			'dir_num_int'=>$this->input->post('DIR_NUM_INT'),
-			'dir_col'=>$this->input->post('DIR_COL'),
-			'dir_muni'=>$this->input->post('DIR_MUNI'),
-			'dir_cp'=>$this->input->post('DIR_CP'),
-			'dir_ref'=>$this->input->post('DIR_REF')
+			'dir_estado'=>strtoupper($this->input->post('dir_estado')),
+			'dir_calle'=>strtoupper($this->input->post('dir_calle')),
+			'dir_num_ext'=>strtoupper($this->input->post('dir_num_ext')),
+			'dir_num_int'=>strtoupper($this->input->post('dir_num_int')),
+			'dir_col'=>strtoupper($this->input->post('dir_col')),
+			'dir_muni'=>strtoupper($this->input->post('dir_muni')),
+			'dir_cp'=>strtoupper($this->input->post('dir_cp')),
+			'dir_ref'=>strtoupper($this->input->post('dir_ref'))
 			);
 			
 			//inserta y recibe el id generado en la actualizacion
@@ -227,7 +227,7 @@ class CUsuarios extends CI_Controller {
 		//actualiza los telefonos para el cliente
 		if($usr_id>0 and $usr_id!= null and $response>0){
 			//genera el array de los numeros de telefono
-			$tel_numeros = explode('#',$this->input->post('TEL_NUM'));
+			$tel_numeros = explode('#',$this->input->post('tel_num'));
 			$response=$this->mtelefonos->deleteTelefonosAll($usr_id,'usr');
 			$tel_data;
 			$total_telefonos=0;
@@ -255,7 +255,7 @@ class CUsuarios extends CI_Controller {
 		//actualiza los correos para el cliente
 		if($usr_id>0 and $usr_id!= null and $response>0){
 			//genera el array de los correos
-			$corr_correos = explode('#',$this->input->post('CORR_CORREO'));
+			$corr_correos = explode('#',$this->input->post('corr_correo'));
 			$response=$this->mcorreos->deleteCorreosAll($usr_id,'usr');
 			$corr_data;
 			$total_correos=0;

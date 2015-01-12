@@ -4,7 +4,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Actualización de Usuarios'); 
 	echo getMenu();
 	$usr_nombre_data='';$usr_password_data='';
-	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';
+	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';$dir_ref_data='';
 	$estado_id='';
 	if($usuarios!=false){
 		$usr_data=$usuarios->first_row();
@@ -24,11 +24,8 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		$dir_muni_data=$dir_data->municipio;
 		$dir_cp_data=$dir_data->cp;
 		$dir_ref_data=$dir_data->comentarios;
-	}else if($telefono==false){
-		echo "telefono no data found;";
-	}else if($correo==false){
-		echo "correo no data found;";
 	}
+	
 	//labels
 	 $label=array('class'=>'control-label');
 	///usuarios

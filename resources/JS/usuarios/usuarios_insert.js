@@ -120,7 +120,7 @@ $(document).on("click",".enviarButton",function(){
 		
 		formSer+=telSer+corrSer;
 			$.ajax({
-			data:formSer.toUpperCase(),
+			data:formSer,
 			url:SERVER_URL_BASE+"usuarios/cusuarios/insertUsuarios",
 			method:"POST",
 			beforesend:function(){alert(formSer);},
@@ -173,7 +173,7 @@ $(document).on("click",".updateButton",function(){
 
 	formSer+=telSer+corrSer;
 		$.ajax({
-			data:formSer.toUpperCase(),
+			data:formSer,
 			url:SERVER_URL_BASE+"usuarios/cusuarios/updateUsuarios",
 			method:"POST",
 			beforesend:function(){alert(formSer);},

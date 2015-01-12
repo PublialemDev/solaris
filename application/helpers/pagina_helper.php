@@ -32,13 +32,12 @@
 	
 	<!-- CSS basicos-->
 	<script src="/solaris/resources/JS/validaciones_form.js"></script>
-	<link href="http://solarisdemexico.com/css/styles.css" rel="stylesheet" type="text/css">
-    <link href="http://solarisdemexico.com/css/screen.css" rel="stylesheet" type="text/css">
-    <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
-    <link href="http://solarisdemexico.com/css/stylesheet.css" rel="stylesheet" type="text/css">
-	<script src="http://solarisdemexico.com/css/adjust.js"></script>
-	<link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.woff" rel="stylesheet" type="text/css">
-	<link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.ttf" rel="stylesheet" type="text/css">
+	<link href="/solaris/resources/CSS/styles.css" rel="stylesheet" type="text/css">
+    <link href="/solaris/resources/CSS/screen.css" rel="stylesheet" type="text/css">
+    <link href="/solaris/resources/CSS/stylesheet.css" rel="stylesheet" type="text/css">
+	<script src="/solaris/resources/CSS/adjust.js"></script>
+	<!--link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.woff" rel="stylesheet" type="text/css"-->
+	<!--link href="http://solarisdemexico.com/css/Cabin-Medium-webfont.ttf" rel="stylesheet" type="text/css"-->
 	
 	<!-- Variable de accesso al server-->
 	<script>var SERVER_URL_BASE="/solaris/index.php/"</script>

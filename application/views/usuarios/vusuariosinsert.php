@@ -3,7 +3,7 @@
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Alta de Usuarios'); 
-	//echo getMenu();
+	echo getMenu();
 	//labels
 	 $label=array('class'=>'control-label');
 	//usuarios
@@ -179,7 +179,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-xs btn-default"');?></td>
+								<td><?php echo form_button('tel','Agregar Teléfono','class="btn btn-primary addTelefono"');?></td>
 							</tr>
 							<!--fin telefono-->
 							<!--inicio correo-->
@@ -193,7 +193,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-xs btn-default"');?></td>
+								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-primary"');?></td>
 							</tr>
 							<!--fin correo-->
 							</tbody>
