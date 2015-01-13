@@ -203,6 +203,11 @@ function getMenu(){
 						
 	            	</ul>
 	            </li>
+	            <li class="dropdown">
+                	<a href="/solaris/index.php/main/cLogin/logout">
+                		Cerrar sesión
+                	</a>
+	            </li>
           </div>
         </div>
       </div>
@@ -261,6 +266,11 @@ function getMenu(){
       	    	    	<li><a href="/solaris/index.php/remisiones/cremisiones/insertRemisionForm">Alta</a></li>
 						<li><a href="/solaris/index.php/remisiones/cremisiones/selectRemisionesForm">Consulta/Actualización</a></li>
 	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="/solaris/index.php/main/cLogin/logout">
+                		Cerrar sesión
+                	</a>
 	            </li>
         </div>
       </div>
