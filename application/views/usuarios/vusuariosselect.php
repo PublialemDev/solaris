@@ -37,7 +37,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<td><?php echo form_input($usr_tipo);?></td>
 					</tr>
 					<tr>
-						<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
 					</tr>
 				</tbody>
 			</table>
