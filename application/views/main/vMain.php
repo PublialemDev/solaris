@@ -9,69 +9,61 @@ echo getMenu();
 
 
      <br>   
+     <div class="row">
+     	<div class="col-md-10">
+     		<h1 class="text-right"> Sucursal: xochimilco - Fecha: 00/00/00 </h1><br>
+     	</div>
+     	
+     </div>
+     	
+     <div class="row">
+     	<div class="col-md-1"></div>
+     	<div class="col-md-10">
+     		<div class="page-header"></div>
+     	</div>
+     </div>
+     	
         <div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-4">
+        	<div class="col-md-2"></div>
+			<div class="col-md-2">
 				<div class="jumbotron">      
 						<center><h4>- Clientes -</h4></center><br>
-						<a class="btn btn-primary btn-xs btn-block" href='/solaris/index.php/clientes/cClientes/formInsertCliente'>Alta clientes</a>
-						<a class="btn btn-primary btn-xs btn-block" href='/solaris/index.php/clientes/cClientes/formSelectCliente'>Consulta/Actualización de clientes</a>
-						<a class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/clientes/ccategoriaseguimiento/insertCategoriaSeguimiento'>Alta Categoria Seguimiento Clientes</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/clientes/ccategoriaseguimiento/formSelectCategoriaSeguimiento'>Consulta/Actualización Categoria Seguimiento Clientes</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="jumbotron">      
-						<center><h4>- Productos -</h4></center><br>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/productos/ccategoriaproductos/insertCategoriaProductos'>Alta Categoria Productos</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/productos/ccategoriaproductos/formselectCategoriaProductos'>Consulta/Actualización Categoria Productos</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/productos/cproductos/insertProductoForm'>Alta Productos</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/productos/cproductos/selectProductosForm'>Consulta/Actualización Productos</a><br>
-				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-4">
-				<div class="jumbotron">      
-						<center><h4>- Sucursales -</h4></center><br>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/sucursales/csucursales/forminsertSucursales'>Alta Sucursales</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/sucursales/csucursales/formSelectSucursales'>Consulta/Actualización Sucursales</a>
+						<center><a class="btn btn-info btn-xs" href='/solaris/index.php/clientes/cClientes/formInsertCliente'><i class="glyphicon glyphicon-user"></i> Alta</a>
+						<a class="btn btn-info 	 btn-xs" href='/solaris/index.php/clientes/cClientes/formSelectCliente'><i class="glyphicon glyphicon-search"></i> Consulta</a></center>
 				</div>
 			</div>
 			
-			<div class="col-md-4">
+			<div class="col-md-2">
 				<div class="jumbotron">      
-						<center><h4>- Pagos -</h4></center><br>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/remisiones/ctipopago/insertTipoPago'>Alta tipo de pago</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/remisiones/ctipopago/formSelectTipoPago'>Consulta/Actualización tipo de pago</a>	
+						<center><h4>- Productos -</h4></center><br>
+						<center><a class="btn btn-success btn-xs" href='/solaris/index.php/clientes/cClientes/formInsertCliente'><i class="glyphicon glyphicon-search"></i> Consulta</a></center>
 				</div>
 			</div>
+			
+			<div class="col-md-2">
+				<div class="jumbotron">      
+						<center><h4>- Remisiones -</h4></center><br>
+						<center><a class="btn btn-warning btn-xs" href='/solaris/index.php/clientes/cClientes/formInsertCliente'><i class="glyphicon glyphicon-user"></i> Alta</a>
+						<a class="btn btn-warning btn-xs" href='/solaris/index.php/clientes/cClientes/formSelectCliente'><i class="glyphicon glyphicon-search"></i> Consulta</a></center>
+				</div>
+			</div>
+			
+			<div class="col-md-2">
+				<div class="jumbotron">      
+						<center><h4>- Reportes -</h4></center><br>
+						<center><a class="btn btn-danger btn-xs" href='/solaris/index.php/clientes/cClientes/formInsertCliente'><i class="glyphicon glyphicon-file"></i> Mensual </a></center>
+				</div>
+			</div>
+			
 			<div class="col-md-2"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-2"></div>
-			<!--div class="col-md-4">
-				<div class="jumbotron">      
-						<center><h4>- Usuarios -</h4></center><br>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/usuarios/ctipousuarios/insertTipoUsuarios'>Alta tipo de usuario</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/usuarios/ctipousuarios/formSelectTipoUsuarios'>Consulta/Actualización tipo de usuario</a>
-				</div>
-			</div-->
-			<!--div class="col-md-4">
-				<div class="jumbotron">      
-						<center><h4>- Remisiones -</h4></center><br>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/remisiones/cremisiones/insertRemision'>Alta Remisiones</a>
-						<a  class="btn btn-primary btn-xs btn-block"href='/solaris/index.php/remisiones/cremisiones/selectRemisiones'>Consulta/Actualización Remisiones</a>
-				</div>
-			</div-->
-			<div class="col-md-2"></div>
-		</div>
-		<div class="row"><br><br><br><br></div>
-	</div>
-</div>
-</div></div>
+			<div class="col-md-1"></div>
+     	<div class="col-md-10">
+     		<div class="page-header"></div>
+     	</div>
+     </div>
+     	
 <?php
 echo getFooter() ;
 }else{

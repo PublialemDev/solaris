@@ -188,6 +188,15 @@ function getMenu(){
 	            </li>
 	            <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                		Reportes
+                		<sapan class="caret"></sapan>
+                	</a>
+                	<ul class="dropdown-menu">
+      	    	    	<li><a href="/solaris/index.php/reportes/cmensual/formMensual">Reporte Mensual</a></li>						
+	            	</ul>
+	            </li>
+	            <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 		Categorias
                 		<sapan class="caret"></sapan>
                 	</a>

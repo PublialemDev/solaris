@@ -1,5 +1,5 @@
 <?php
-
+session_start();
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CMensual extends CI_Controller {
@@ -7,12 +7,13 @@ class CMensual extends CI_Controller {
 	public function __construct(){
 	parent::__construct();
 	$this->load->helper('form');
+	$this->load->helper('pagina');
 	$this->load->model('reportes/mmensual');
 	
 	}
 	
-	public function index(){
-		
+	public function formMensual(){
+		$this->load->view('reportes/vmensual');
 	}
 	
 	
