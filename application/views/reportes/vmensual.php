@@ -7,8 +7,8 @@ echo getMenu();
 $form_mensual = array('id'=>'form_mensual','onSubmit'=>'getValues(this,event)');
 
 //Propiedades del input 
-$fecha_ini =array('name'=>'fecha_ini','placeholder'=>'INICIO','value'=>'','class'=>'form-control');
-$fecha_fin =array('name'=>'fecha_fin','placeholder'=>'FIN','value'=>'','class'=>'form-control');
+$fecha_ini =array('id'=>'fecha_ini','name'=>'fecha_ini','placeholder'=>'INICIO','value'=>'','class'=>'form-control');
+$fecha_fin =array('id'=>'fecha_fin','name'=>'fecha_fin','placeholder'=>'FIN','value'=>'','class'=>'form-control');
 
 $label=array('class'=>'control-label');
 ?>
@@ -29,7 +29,7 @@ $label=array('class'=>'control-label');
 								<tr>
 									<td>
 										<div class="form-group">
-										<?php echo form_label('INICIO: ','ini',$label);?>
+										<?php echo form_label('FECHA DE INICIO: ','ini',$label);?>
 										<?php echo form_input($fecha_ini);?>
 										</div>	
 									</td>
@@ -37,7 +37,7 @@ $label=array('class'=>'control-label');
 								<tr>
 									<td>
 										<div class="form-group">
-										<?php echo form_label('FIN: ','fin',$label);?>
+										<?php echo form_label('FECHA DE FIN: ','fin',$label);?>
 										<?php echo form_input($fecha_fin);?>
 										</div>	
 									</td>
@@ -47,7 +47,7 @@ $label=array('class'=>'control-label');
 						</table>
 						<table>
 							<tr>
-								<td><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
+								<td><?php echo form_button('enviar','Generar Reporte','class="enviarButton  btn btn-primary"');?></td>
 							</tr>
 						</table>
 						</div>

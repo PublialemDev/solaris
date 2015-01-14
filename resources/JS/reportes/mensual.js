@@ -1,3 +1,34 @@
+function validarForm(){
+	var continuar=true;
+	
+	if(!isVacio($("input[name='fecha_ini']").val())){
+		$("input[name='fecha_ini']").parent().removeClass("has-error");
+	}else{
+		$("input[name='fecha_ini']").parent().addClass("has-error");
+		continuar=false;
+	}	
+	
+	if(!isVacio($("input[name='fecha_fin']").val())){
+		$("input[name='fecha_fin']").parent().removeClass("has-error");
+	}else{
+		$("input[name='fecha_fin']").parent().addClass("has-error");
+		continuar=false;
+	}	
+	
+	return continuar;
+}
+
+$(document).on("click",".enviarButton",function(){
+	$("#fecha_ini").datepicker("option", "dateFormat", "yy-mm-dd" );
+	$("#fecha_fin").datepicker("option", "dateFormat", "yy-mm-dd" );
+	if(validarForm()){		
+		var formSer=$("#form_mensual").serialize();
+		window.location.href = SERVER_URL_BASE+"reportes/cmensual/reporteMensual?"+formSer;
+	}else{
+		alert("Hay un error en los datos, Favor de validarlos");
+	}
+});
+
 function getValues(form,evt){
 	evt.preventDefault();
 	var formSer=$(form).serialize();
@@ -21,13 +52,21 @@ function getValues(form,evt){
  showMonthAfterYear: false,
  yearSuffix: ''
  };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-$( document ).ready(function(){
-	$("#fecha_ini").datepicker({ dateFormat: "yy-mm-dd" });
-});
 
-$.datepicker.setDefaults($.datepicker.regional['es']);
-$( document ).ready(function(){
-	$("#fecha_fin").datepicker({ dateFormat: "yy-mm-dd" });
+
+$(function () {
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$("#fecha_ini").datepicker({	
+		onClose: function (selectedDate) {
+		$("#fecha_fin").datepicker("option", "minDate", selectedDate);
+		}
+		
+	});
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$("#fecha_fin").datepicker({
+	onClose: function (selectedDate) {
+	$("#fecha_ini").datepicker("option", "maxDate", selectedDate);
+	}
+	});
 });
 		

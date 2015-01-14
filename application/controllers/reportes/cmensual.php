@@ -1,5 +1,5 @@
 <?php
-
+session_start();
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CMensual extends CI_Controller {
@@ -20,8 +20,8 @@ class CMensual extends CI_Controller {
 	public function reporteMensual(){		
 		$this->load->library('pdf');
 		
-		$fecha_inicial =(String) $this->input->post('fecha_ini');
-		$fecha_final = (String)$this->input->post('fecha_fin');
+		$fecha_inicial =(String) $this->input->get('fecha_ini');
+		$fecha_final = (String)$this->input->get('fecha_fin');
 
 		
 		//obtener resultado de la query 
