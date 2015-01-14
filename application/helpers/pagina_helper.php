@@ -281,6 +281,7 @@ function getMenu(){
                 		Cerrar sesión
                 	</a>
 	            </li>
+	            </div>
         </div>
       </div>
     </div>
