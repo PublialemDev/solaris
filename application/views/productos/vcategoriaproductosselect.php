@@ -1,6 +1,7 @@
 <?php 
 
-if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
+if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
+	if(base64_decode($_SESSION['USUARIO_TIPO'])==1){	
 	echo getHeader('Consulta de Categoria de Productos');
 	echo getMenu();
 	//categoria seguimiento
@@ -55,7 +56,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <?php
 echo getFooter('<script src="/solaris/resources/JS/productos/categoriaproductos_select.js"></script>') ;
-
+	}else{
+		header('Location:/solaris/index.php/main/cMain/main');
+	}
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

@@ -1,6 +1,7 @@
 <?php 
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
+	if(base64_decode($_SESSION['USUARIO_TIPO'])==1){
 	echo getHeader('Actualización de Usuarios'); 
 	echo getMenu();
 	$usr_nombre_data='';//$usr_password_data='';
@@ -285,6 +286,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <?php
 echo getFooter('<script src="http://localhost/solaris/resources/JS/usuarios/usuarios_update.js"></script>') ;
+	}else{
+		header('Location:/solaris/index.php/main/cMain/main');
+	}
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

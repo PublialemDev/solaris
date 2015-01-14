@@ -1,6 +1,7 @@
 <?php 
 
-if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){	
+if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
+		if(base64_decode($_SESSION['USUARIO_TIPO'])==1){	
 	echo getHeader('Consulta de Tipos de Pago');
 	echo getMenu();
 	//categoria seguimiento
@@ -55,7 +56,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <?php
 echo getFooter('<script src="http://localhost/solaris/resources/JS/remisiones/tipopago_select.js"></script>') ;
-
+	}else{
+		header('Location:/solaris/index.php/main/cMain/main');
+	}
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

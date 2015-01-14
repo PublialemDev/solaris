@@ -5,7 +5,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Consulta de Productos'); 
 	echo getMenu();
 	//cliente
-	$prod_id =array('name'=>'prod_id','placeholder'=>'Numero de Producto','value'=>'');
+	$prod_codigo =array('name'=>'prod_codigo','placeholder'=>'Numero de Producto','value'=>'');
 	$prod_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre', 'value'=>'');
 	$prod_desc =array('name'=>'prod_desc','placeholder'=>'Descripción', 'value'=>'');
 	
@@ -23,8 +23,8 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			<table >
 				<tbody>
 					<tr>
-						<td><?php echo form_label('Número de Producto: ','prod_id');?></td>
-						<td><?php echo form_input($prod_id);?></td>
+						<td><?php echo form_label('Código de Producto: ','prod_codigo');?></td>
+						<td><?php echo form_input($prod_codigo);?></td>
 					</tr>
 					<tr>
 						<td><?php echo form_label('Nombre: ','prod_nombre');?></td>
@@ -35,7 +35,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<td><?php echo form_input($prod_desc);?></td>
 					</tr>
 					<tr>
-						<td><?php echo form_submit('enviar','Enviar','class="enviarButton btn btn-primary"');?></td>
+						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -48,10 +48,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<table class='table table-hover datos'>
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Categoria</th>
+					<th>Código</th>
+					<th>Categoría</th>
 					<th>Nombre</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					<th>Precio normal</th>
 					<th>Precio avanzado</th>
 					<th>Precio premier</th>
