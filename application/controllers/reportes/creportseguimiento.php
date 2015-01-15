@@ -1,4 +1,5 @@
 <?php
+session_start();
 
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -7,19 +8,20 @@ class CReportSeguimiento extends CI_Controller {
 	public function __construct(){
 	parent::__construct();
 	$this->load->helper('form');
+	$this->load->helper('pagina');
 	$this->load->model('reportes/mreportseguimiento');
 	
 	}
 	
-	public function index(){
-		
+	public function formreportSeguimiento(){
+		$this->load->view('reportes/vreportseguimiento');
 	}
 	
 	
 	public function reporteSeguimiento(){		
 		$this->load->library('pdf');
 		
-		$id_cliente =$this->input->get('id_cliente');
+		$id_cliente =$this->input->get('cliente_txt');
 		
 		
 		//obtener resultado de la query 
