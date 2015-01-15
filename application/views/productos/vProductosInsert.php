@@ -14,6 +14,7 @@ $producto_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre','value'=>'
 $producto_precio_nor =array('name'=>'prod_precio_nor','placeholder'=>'Precio Normal','value'=>'','class'=>'form-control');
 $producto_precio_adv =array('name'=>'prod_precio_adv','placeholder'=>'Precio Avanzado','value'=>'','class'=>'form-control');
 $producto_precio_pre =array('name'=>'prod_precio_pre','placeholder'=>'Precio Premier','value'=>'','class'=>'form-control');
+$producto_codigo =array('name'=>'prod_codigo','placeholder'=>'Código','value'=>'','class'=>'form-control');
 
 //Propiedades del TextArea
 $datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>30,'class'=>'form-control');
@@ -32,6 +33,14 @@ $datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>3
 								<tbody>
 									<?php echo form_open('#',$form_producto); ?>
 									<?php echo form_hidden('prod_id','0');?>
+									<tr>
+										<td>
+											<div class="form-group">
+											<?php echo form_label('Código: ','prod_codigo',$label);?>
+											<?php echo form_input($producto_codigo);?>
+											</div>
+										</td>
+									</tr>
 									<tr>
 										<td>
 											<div class="form-group">

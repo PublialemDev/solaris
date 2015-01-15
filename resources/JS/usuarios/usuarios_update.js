@@ -24,12 +24,12 @@ function validarForm(){
 		continuar=false;
 	}
 	
-	if(!isVacio($("input[name='password']").val())){
+	/*if(!isVacio($("input[name='password']").val())){
 		$("input[name='password']").parent().removeClass("has-error");
 	}else{
 		$("input[name='password']").parent().addClass("has-error");
 		continuar=false;
-	}
+	}*/
 	
 	//valida dir_calle
 	if(!isVacio($("input[name='dir_calle']").val())){
@@ -190,9 +190,16 @@ function addCorreo(){
 	
 	$("input[name=\'corr_correo\']:last").parent().parent().before(corr_table);
 }
+//muestra el apartado de password
+$(document).on("click", ".showPasswd",function(){
+	$(".password").removeAttr("style");
+	$(this).removeClass("showPasswd").addClass("hidePasswd").text("Cancelar");
+	
+});
+//esconde el apartado de password
+$(document).on("click", ".hidePasswd",function(){
+	$(".password").attr("style","display: none");
+	$(this).removeClass("hidePasswd").addClass("showPasswd").text("Cambiar contraseña");
+	
+});
 
-function insertUsuarios(form,evt){
-	evt.preventDefault();
-	var formSer=$(form).serialize();
-	alert(formSer);
-}

@@ -40,10 +40,11 @@ class CUsuarios extends CI_Controller {
 		//establece los datos del cliente para la insercion
 		$usr_data=array(
 		'nombre'=>strtoupper($this->input->post('nombre')),
-		'password'=>$this->md5($this->input->post('password')),
+		'password'=>md5($this->$this->input->post('password')),
 		'id_tipousuario'=>$this->input->post('usr_tipousuario'),
 		'id_sucursal'=>$this->input->post('usr_sucursal')
 		);
+		
 		//inserta y recibe el id generado en la insercion
 		$usr_id= $this->musuarios->insertUsuarios($usr_data);
 		
@@ -195,11 +196,13 @@ class CUsuarios extends CI_Controller {
 		$usr_data=array(
 		'usr_id'=>$usr_id,
 		'nombre'=>strtoupper($this->input->post('nombre')),
-		'password'=>$this->md5($this->input->post('password')),
 		'id_tipousuario'=>$this->input->post('usr_tipousuario'),
 		'id_sucursal'=>$this->input->post('usr_sucursal')
 		//'estatus'=>$this->input->post('USR_ESTATUS')
 		);
+		if($this->input->post('password')!=''){
+			$usr_data['password']=md5($this->input->post('password'));
+		}
 		//inserta y recibe el id generado en la actualizacion
 		$response = $this->musuarios->updateUsuarios($usr_data);
 		

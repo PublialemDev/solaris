@@ -1,7 +1,7 @@
 <?php 
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
-	
+	if(base64_decode($_SESSION['USUARIO_TIPO'])==1){
 	echo getHeader('Consulta de Sucursales');
 	echo getMenu(); 
 	//sucursal
@@ -36,7 +36,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<td><?php echo form_input($sucu_paginaweb);?></td>
 					</tr>
 					<tr>
-						<td><?php echo form_submit('enviar','ENVIAR','class="enviarButton btn btn-primary"');?></td>
+						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -62,7 +62,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <?php
 echo getFooter('<script src="/solaris/resources/JS/sucursales/sucursales_select.js"></script>') ;
-
+	}else{
+		header('Location:/solaris/index.php/main/cMain/main');
+	}
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

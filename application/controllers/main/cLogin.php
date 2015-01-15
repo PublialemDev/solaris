@@ -15,6 +15,12 @@ class CLogin extends CI_Controller {
 		$this->load->model('usuarios/musuarios');
 		$this->load->model('logs/mlogs');
 	}
+	//destruye la sesión y muestra el log in
+	public function logout(){
+		session_destroy();
+		$this->load->helper('form');
+		$this->load->view('main/vLogin');
+	}
 	public function index(){
 		//session_start();
 		//session_destroy();

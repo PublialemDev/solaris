@@ -140,7 +140,7 @@ function selectProductosModal(form,evt){
 				tableStructure="";
 				$.each(table,function(index){
 					tableStructure+="<tr id=\'"+table[index].prod_id+"\'>";
-					tableStructure+="<td>"+table[index].prod_id+"</td>";
+					tableStructure+="<td>"+table[index].prod_codigo+"</td>";
 					tableStructure+="<td>"+table[index].prod_cat+"</td>";
 					tableStructure+="<td>"+table[index].prod_nombre+"</td>";
 					tableStructure+="<td>"+table[index].prod_desc+"</td>";

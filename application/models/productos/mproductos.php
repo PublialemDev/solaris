@@ -17,6 +17,7 @@ class MProductos extends CI_Model{
 		$returned = $this->db->insert('productos',
 		array(
 			'id_categoriaProducto'=> $datos['prod_cat'],
+			'codigo_producto'=> $datos['prod_codigo'],
 			'nombre_producto'=> $datos['prod_nombre'],
 			'descripcion_producto'=> $datos['prod_desc'],
 			'precio1'=> $datos['prod_precio_nor'],
@@ -53,6 +54,7 @@ class MProductos extends CI_Model{
 		$prod_data=array(
 			'id_categoriaProducto'=> $prod_data_form['prod_cat'],
 			'nombre_producto'=> $prod_data_form['prod_nombre'],
+			'codigo_producto'=> $prod_data_form['prod_codigo'],
 			'descripcion_producto'=> $prod_data_form['prod_desc'],
 			'precio1'=> $prod_data_form['prod_precio_nor'],
 			'precio2'=> $prod_data_form['prod_precio_adv'],
@@ -91,8 +93,8 @@ class MProductos extends CI_Model{
 	
 	public function selectProductos($where_clause){
 		
-		if(isset($where_clause['prod_id'])){
-			$this->db->where('id_producto',$where_clause['prod_id']);
+		if(isset($where_clause['prod_codigo'])){
+			$this->db->like('codigo_producto',$where_clause['prod_codigo']);
 		}
 		if(isset($where_clause['prod_nombre'])){
 			$this->db->like('nombre_producto',$where_clause['prod_nombre']);

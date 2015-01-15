@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
+	if(base64_decode($_SESSION['USUARIO_TIPO'])==1){
 echo getHeader('Alta Categoria de Productos');
 echo getMenu();
 //Propiedades del form
@@ -62,6 +63,9 @@ $label=array('class'=>'control-label');
 
 <?php 
 echo getFooter('<script src="/solaris/resources/JS/productos/categoriaproductos_insert.js"></script>');
+	}else{
+		header('Location:/solaris/index.php/main/cMain/main');
+	}
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

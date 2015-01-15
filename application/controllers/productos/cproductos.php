@@ -25,6 +25,7 @@ class Cproductos extends CI_Controller {
 		
 		//establece los datos del cliente para la insercion
 		$prod_data=array(
+		'prod_codigo'=>$this->input->post('PROD_CODIGO'),
 		'prod_cat'=>$this->input->post('PROD_CATEGORIA'),
 		'prod_nombre'=>$this->input->post('PROD_NOMBRE'),
 		'prod_desc'=>$this->input->post('PROD_DESC'),
@@ -59,6 +60,7 @@ class Cproductos extends CI_Controller {
 		//establece los datos del producto para la actualizacion
 		$prod_data=array(
 		'prod_id'=>$prod_id,
+		'prod_codigo'=>$this->input->post('PROD_CODIGO'),
 		'prod_cat'=>$this->input->post('PROD_CATEGORIA'),
 		'prod_nombre'=>$this->input->post('PROD_NOMBRE'),
 		'prod_desc'=>$this->input->post('PROD_DESC'),
@@ -103,14 +105,14 @@ class Cproductos extends CI_Controller {
 	 */
 	public function selectProductoJson()
 	{
-		$prod_id=$this->input->post('PROD_ID');
+		$prod_codigo=$this->input->post('PROD_CODIGO');
 		$prod_nombre=$this->input->post('PROD_NOMBRE');
 		$prod_desc=$this->input->post('PROD_DESC');
 		$cli_nivel=$this->mclientes->getClienteNivel($this->input->post('CLI_ID'));
 		
 		$where_clause=array();
-		if($prod_id!= null and $prod_id!=''){
-			$where_clause['prod_id']=$prod_id;
+		if($prod_codigo!= null and $prod_codigo!=''){
+			$where_clause['prod_codigo']=$prod_codigo;
 		}
 		if($prod_nombre!= null and $prod_nombre!=''){
 			$where_clause['prod_nombre']=$prod_nombre;
@@ -130,6 +132,7 @@ class Cproductos extends CI_Controller {
 				$json.='"prod_cat":'.'"'.$producto->id_categoriaProducto.'",';
 				$json.='"prod_nombre":'.'"'.$producto->nombre_producto.'",';
 				$json.='"prod_desc":'.'"'.$producto->descripcion_producto.'",';
+				$json.='"prod_codigo":'.'"'.$producto->codigo_producto.'",';
 				$json.='"prod_precio_nor":'.'"'.$producto->precio1.'",';
 				$json.='"prod_precio_adv":'.'"'.$producto->precio2.'",';
 				$json.='"prod_precio_pre":'.'"'.$producto->precio3.'",';

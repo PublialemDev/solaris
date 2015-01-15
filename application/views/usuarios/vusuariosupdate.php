@@ -1,15 +1,16 @@
 <?php 
 
 if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
+	if(base64_decode($_SESSION['USUARIO_TIPO'])==1){
 	echo getHeader('Actualización de Usuarios'); 
 	echo getMenu();
-	$usr_nombre_data='';$usr_password_data='';
+	$usr_nombre_data='';//$usr_password_data='';
 	$dir_calle_data='';$dir_num_ext_data='';$dir_num_int_data='';$dir_col_data='';$dir_muni_data='';$dir_cp_data='';$dir_ref_data='';
 	$estado_id='';
 	if($usuarios!=false){
 		$usr_data=$usuarios->first_row();
 		$usr_nombre_data=$usr_data->nombre_usuario;
-		$usr_password_data=$usr_data->contraseña;
+		//$usr_password_data=$usr_data->contraseña;
 		$usr_estatus_data = $usr_data->estatus_usuario;
 		$id_sucursal = $usr_data->id_sucursal;
 		$id_tipousuario = $usr_data->id_tipoUsuario;
@@ -30,7 +31,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	 $label=array('class'=>'control-label');
 	///usuarios
 	$usr_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$usr_nombre_data, 'disabled'=>'disabled','class'=>'form-control');
-	$usr_password =array('name'=>'password','placeholder'=>'Contraseña', 'value'=>$usr_password_data, 'disabled'=>'disabled','class'=>'form-control');
+	$usr_password =array('name'=>'password','placeholder'=>'Contraseña', 'value'=>'', 'disabled'=>'disabled','class'=>'form-control');
 	//$usr_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>$dir_calle_data, 'disabled'=>'disabled','class'=>'form-control');
@@ -81,12 +82,19 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			
 			<tr>
 				<td>
-					<div class="form-group">
+					<div class="password form-group" style="display: none">
 						<?php echo form_label('Contraseña: ','password',$label);?>
 						<?php echo form_password($usr_password);?>
 					</div>
 				</td>
 			</tr>
+			<tr>
+			<td>
+				<div class="form-group">
+					<?php echo form_button('showPassword','Cambiar contraseña','class="showPasswd   btn btn-primary" disabled="disabled"');?>
+				</div>
+			</td>
+		</tr>
 			
 			<tr>
 				<td>
@@ -166,6 +174,16 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					</div>
 				</td>
 			</tr>
+			
+			
+		<?php echo form_close(); ?>
+		<!--fin direccion-->
+		</tbody>
+		</table>
+		</div>
+		<div class='col-md-6'>
+		<table>
+			<tbody>
 			<tr>
 				<td>
 					<div class="form-group">
@@ -174,9 +192,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					</div>
 				</td>
 			</tr>
-			
-		<?php echo form_close(); ?>
-		<!--fin direccion-->
 		<!--inicio telefono-->
 		<tr>
 			<td>
@@ -271,6 +286,9 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 
 <?php
 echo getFooter('<script src="http://localhost/solaris/resources/JS/usuarios/usuarios_update.js"></script>') ;
+	}else{
+		header('Location:/solaris/index.php/main/cMain/main');
+	}
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }

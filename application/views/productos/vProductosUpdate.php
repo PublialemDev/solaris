@@ -11,6 +11,7 @@ echo getMenu();
 	$prod_precio3_data='';
 	$prod_estatus_data='A';
 	$prod_desc_data='';
+	$prod_codigo_data='';
 	
 	if($producto!=false){
 		$prod_data=$producto->first_row();
@@ -22,6 +23,7 @@ echo getMenu();
 		$prod_precio3_data=$prod_data->precio3;//
 		$prod_estatus_data=$prod_data->estatus_producto;
 		$prod_desc_data=$prod_data->descripcion_producto;//
+		$prod_codigo_data=$prod_data->codigo_producto;
 	}
 	
 
@@ -36,6 +38,7 @@ $producto_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre','value'=>$
 $producto_precio_nor =array('name'=>'prod_precio_nor','placeholder'=>'Precio','value'=>$prod_precio1_data,'class'=>'form-control','disabled'=>'disabled');
 $producto_precio_adv =array('name'=>'prod_precio_adv','placeholder'=>'Precio','value'=>$prod_precio2_data,'class'=>'form-control','disabled'=>'disabled');
 $producto_precio_pre =array('name'=>'prod_precio_pre','placeholder'=>'Precio','value'=>$prod_precio3_data,'class'=>'form-control','disabled'=>'disabled');
+$producto_codigo =array('name'=>'prod_codigo','placeholder'=>'Código','value'=>$prod_codigo_data,'class'=>'form-control','disabled'=>'disabled');
 
 //Propiedades del TextArea
 $datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>30,'class'=>'form-control','value'=>$prod_desc_data,'disabled'=>'disabled');
@@ -61,6 +64,14 @@ foreach ($categorias->result() as $categoria) {
 								<tbody>
 									<?php echo form_open('#',$form_producto); ?>
 									<?php echo form_hidden('prod_id',$prod_id_data);?>
+									<tr>
+										<td>
+											<div class="form-group">
+											<?php echo form_label('Código: ','prod_codigo',$label);?>
+											<?php echo form_input($producto_codigo);?>
+											</div>
+										</td>
+									</tr>
 									<tr>
 										<td>
 											<div class="form-group">
