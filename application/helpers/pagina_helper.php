@@ -193,7 +193,8 @@ function getMenu(){
                 	</a>
                 	<ul class="dropdown-menu">
       	    	    	<li><a href="/solaris/index.php/reportes/cmensual/formMensual">Reporte Mensual</a></li>		
-      	    	    	<li><a href="/solaris/index.php/reportes/creportseguimiento/formReportSeguimiento">Reporte Seguimiento</a></li>					
+      	    	    	<li><a href="/solaris/index.php/reportes/creportseguimiento/formReportSeguimiento">Reporte Seguimiento</a></li>	
+      	    	    	<li><a href="/solaris/index.php/reportes/cremisionnote/formGenerarPDF">Nota de Remision</a></li>					
 	            	</ul>
 	            	
 	            </li>

@@ -13,7 +13,7 @@ class MRemisionNote extends CI_Model {
 		$query = $this->db->query('select clientes.nombre_cliente,direcciones.calle,direcciones.numero_ext,direcciones.numero_int,
 									direcciones.municipio,estados.nombre_estado,sucursales.nombre_sucursal,usuarios.nombre_usuario,
 									remisiones.fecha,remisiones.iva,remisiones.total,productoremision.descuento,productoremision.cantidad,
-									productoremision.precio_actual,productos.nombre_producto,productos.precio,tipopagos.nombre_tipoPago,
+									productoremision.precio_actual,productos.nombre_producto,tipopagos.nombre_tipoPago,
 									(productoremision.cantidad * productoremision.precio_actual) as importe, 
 									sum(productoremision.cantidad*productoremision.precio_actual) as subtotal FROM remisiones
 									JOIN productoremision ON remisiones.id_remision = productoremision.id_remision

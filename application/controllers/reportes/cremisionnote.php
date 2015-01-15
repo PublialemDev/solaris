@@ -1,5 +1,5 @@
 <?php
-
+session_start();
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class CRemisionNote extends CI_Controller {
@@ -7,19 +7,20 @@ class CRemisionNote extends CI_Controller {
 	public function __construct(){
 	parent::__construct();
 	$this->load->helper('form');
+	$this->load->helper('pagina');
 	$this->load->model('reportes/mremisionnote');
 	
 	}
 	
-	public function index(){
-		$this->load->view('reportes/generarpdf');
+	public function formGenerarPDF(){
+		$this->load->view('reportes/vremisionnote');
 	}
 	
 	
 	public function generarPDF(){		
 		$this->load->library('pdf');
 		
-		$id_remision = $this->input->post('id_remision');
+		$id_remision = $this->input->get('num_remision');
 		
 		//obtener resultado de la query 
 		$resul['resultado'] = $this->mremisionnote->getValues($id_remision);
