@@ -13,11 +13,12 @@ class MReportSeguimiento extends CI_Model {
 		$query = $this->db->query('SELECT clientes.nombre_cliente, seguimientoclientes.comentario,seguimientoclientes.fecha,
 									categoriaseguimientoclientes.nombre_categoriaSeguimiento FROM clientes 
 									JOIN seguimientoclientes ON clientes.id_cliente = seguimientoclientes.id_cliente
-									JOIN categoriaseguimientoclientes ON seguimientoclientes.id_categoriaSeguimiento = seguimientoclientes.id_categoriaSeguimiento
+									JOIN categoriaseguimientoclientes ON seguimientoclientes.id_categoriaSeguimiento = categoriaseguimientoclientes.id_categoriaSeguimiento
 									WHERE clientes.id_cliente ='.$id_cliente.';');
 
 		if($query->num_rows()>0){
 			return $query;
+			
 		}
 		else{
 			return false;
