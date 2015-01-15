@@ -3,12 +3,12 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Remisiones');
 	echo getMenu();
 	//remisiones
-	$cli_id =array('name'=>'cli_id','placeholder'=>'Cliente','value'=>'');
-	$fecha_inicio =array('name'=>'fecha_inicio','placeholder'=>'Fecha de Inicio', 'value'=>'');
-	$fecha_fin =array('name'=>'fecha_fin','placeholder'=>'Fecha de fin', 'value'=>'');
+	$cli_id =array('name'=>'cli_id','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
+	$fecha_inicio =array('name'=>'fecha_inicio','placeholder'=>'Fecha de Inicio', 'value'=>'','class'=>'form-control');
+	$fecha_fin =array('name'=>'fecha_fin','placeholder'=>'Fecha de fin', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_remisiones=array('id'=>'form_remisiones','onSubmit'=>'selectRemisiones(this,event)');
+	$form_remisiones=array('id'=>'form_remisiones','role'=>'form','onSubmit'=>'selectRemisiones(this,event)');
 	
 	//Dropdown sucursales
 	$sucursal_data['0']= '';
@@ -32,24 +32,43 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 				<table >
 					<tbody>
 						<tr>
-							<td><?php echo form_label('Cliente: ','cli_id');?></td>
-							<td><?php echo form_input($cli_id);?></td>
+							<td>
+								<div class="form-group">
+								<?php echo form_label('Cliente: ','cli_id');?>
+								<?php echo form_input($cli_id);?>
+								</div>
+							</td>
 						</tr>
 						<tr>
-							<td><?php echo form_label('Sucursal: ','suc_id');?></td>
-							<td><?php echo form_dropdown('suc_id',$sucursal_data,'','class="form-control"');?></td>
+							<td>
+								<div class="form-group">
+								<?php echo form_label('Sucursal: ','suc_id');?>
+								<?php echo form_dropdown('suc_id',$sucursal_data,'','class="form-control"');?>
+								</div>
+							</td>
 						</tr>
 						<tr>
-							<td><?php echo form_label('Tipo de pago: ','tipopago_id');?></td>
-							<td><?php echo form_dropdown('tipopago_id',$tipopago_data,'','class="form-control"');?></td>
+							<td>
+								<div class="form-group">
+								<?php echo form_label('Tipo de pago: ','tipopago_id');?>
+								<?php echo form_dropdown('tipopago_id',$tipopago_data,'','class="form-control"');?>
+							</td>
 						</tr>
 						<tr>
-							<td><?php echo form_label('fecha inicio: ','fecha_inicio');?></td>
-							<td><?php echo form_input($fecha_inicio);?></td>
+							<td>
+								<div class="form-group">
+								<?php echo form_label('fecha inicio: ','fecha_inicio');?>
+								<?php echo form_input($fecha_inicio);?>
+								</div>
+							</td>
 						</tr>
 						<tr>
-							<td><?php echo form_label('fecha fin: ','fecha_fin');?></td>
-							<td><?php echo form_input($fecha_fin);?></td>
+							<td>
+								<div class="form-group">
+								<?php echo form_label('fecha fin: ','fecha_fin');?>
+								<?php echo form_input($fecha_fin);?>
+								</div>
+							</td>
 						</tr>			
 						<tr>
 							<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>

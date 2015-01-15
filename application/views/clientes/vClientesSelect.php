@@ -5,12 +5,12 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Consulta de Clientes');
 	echo getMenu(); 
 	//cliente
-	$cli_nombre =array('name'=>'cli_nombre','placeholder'=>'Nombre','value'=>'');
-	$cli_rfc =array('name'=>'cli_rfc','placeholder'=>'RFC', 'value'=>'');
-	$cli_id =array('name'=>'cli_id','placeholder'=>'Número de cliente', 'value'=>'');
+	$cli_nombre =array('name'=>'cli_nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
+	$cli_rfc =array('name'=>'cli_rfc','placeholder'=>'RFC', 'value'=>'','class'=>'form-control');
+	$cli_id =array('name'=>'cli_id','placeholder'=>'Número de cliente', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_cliente=array('id'=>'form_cliente','onSubmit'=>'selectCliente(this,event)');
+	$form_cliente=array('id'=>'form_cliente','role'=>'form','onSubmit'=>'selectCliente(this,event)');
 	
 ?>
 
@@ -21,22 +21,34 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-body">
 			<div class='container-fluid'>
 					<div class="row">
-						<div class='col-md-6'>
+						<div class='col-md-12'>
 			<center>
 			<?php echo form_open('#',$form_cliente); ?>
 			<table >
 				<tbody>
 					<tr>
-						<td><?php echo form_label('Número de Cliente: ','cli_id');?></td>
-						<td><?php echo form_input($cli_id);?></td>
+						<td>
+							<div class="form-group">
+							<?php echo form_label('Número de Cliente: ','cli_id');?>
+							<?php echo form_input($cli_id);?>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('Nombre: ','cli_nombre');?></td>
-						<td><?php echo form_input($cli_nombre);?></td>
+						<td>
+							<div class="form-group">
+							<?php echo form_label('Nombre: ','cli_nombre');?>
+							<?php echo form_input($cli_nombre);?>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('RFC: ','cli_rfc');?></td>
-						<td><?php echo form_input($cli_rfc);?></td>
+						<td>
+							<div class="form-group">
+							<?php echo form_label('RFC: ','cli_rfc');?>
+							<?php echo form_input($cli_rfc);?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>

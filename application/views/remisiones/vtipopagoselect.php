@@ -5,11 +5,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Consulta de Tipos de Pago');
 	echo getMenu();
 	//categoria seguimiento
-	$tipopago_nombre =array('name'=>'tipopago_nombre','placeholder'=>'Nombre','value'=>'');
-	$tipopago_id =array('name'=>'tipopago_id','placeholder'=>'Número de categoria', 'value'=>'');
+	$tipopago_nombre =array('name'=>'tipopago_nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
+	$tipopago_id =array('name'=>'tipopago_id','placeholder'=>'Número de categoria', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_tipopago=array('id'=>'form_tipopago','onSubmit'=>'selectTipoPago(this,event)');
+	$form_tipopago=array('id'=>'form_tipopago','role'=>'form','onSubmit'=>'selectTipoPago(this,event)');
 ?>
 
 
@@ -22,12 +22,20 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	<table >
 		<tbody>
 			<tr>
-				<td><?php echo form_label('Número de Categoria: ','tipopago_id');?></td>
-				<td><?php echo form_input($tipopago_id);?></td>
+				<td>
+					<div class="form-group">
+					<?php echo form_label('Número de Categoria: ','tipopago_id');?>
+					<?php echo form_input($tipopago_id);?>
+					</div>
+				</td>
 			</tr>
 			<tr>
-				<td><?php echo form_label('Nombre: ','tipopago_nombre');?></td>
-				<td><?php echo form_input($tipopago_nombre);?></td>
+				<td>
+					<div class="form-group">
+					<?php echo form_label('Nombre: ','tipopago_nombre');?>
+					<?php echo form_input($tipopago_nombre);?>
+					</div>
+				</td>
 			</tr>			
 			<tr>
 				<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>

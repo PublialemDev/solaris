@@ -1,11 +1,11 @@
 <?php 
 	//cliente
-	$prod_codigo =array('name'=>'prod_codigo','placeholder'=>'Numero de Producto','value'=>'');
-	$prod_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre', 'value'=>'');
-	$prod_desc =array('name'=>'prod_desc','placeholder'=>'Descripción', 'value'=>'');
+	$prod_codigo =array('name'=>'prod_codigo','placeholder'=>'Numero de Producto','value'=>'','class'=>'form-control');
+	$prod_nombre =array('name'=>'prod_nombre','placeholder'=>'Nombre', 'value'=>'','class'=>'form-control');
+	$prod_desc =array('name'=>'prod_desc','placeholder'=>'Descripción', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_producto=array('id'=>'form_producto','onSubmit'=>'selectProductosModal(this,event)');
+	$form_producto=array('id'=>'form_producto','role'=>'form','onSubmit'=>'selectProductosModal(this,event)');
 ?>
 
 <div id="container" class='container'>
@@ -20,16 +20,28 @@
 						<td><?php echo form_hidden('cli_id',$cli_id>0?$cli_id:0);?></td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('Código de Producto: ','prod_codigo');?></td>
-						<td><?php echo form_input($prod_codigo);?></td>
+						<td>
+							<div class="form-group">
+							<?php echo form_label('Código de Producto: ','prod_codigo');?>
+							<?php echo form_input($prod_codigo);?>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('Nombre: ','prod_nombre');?></td>
-						<td><?php echo form_input($prod_nombre);?></td>
+						<td>
+							<div class="form-group">
+							<?php echo form_label('Nombre: ','prod_nombre');?>
+							<?php echo form_input($prod_nombre);?>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td><?php echo form_label('Descripción: ','prod_desc');?></td>
-						<td><?php echo form_input($prod_desc);?></td>
+						<td>
+							<div class="form-group">
+							<?php echo form_label('Descripción: ','prod_desc');?>
+							<?php echo form_input($prod_desc);?>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>

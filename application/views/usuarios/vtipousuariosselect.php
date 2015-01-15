@@ -5,11 +5,11 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	echo getHeader('Consulta de Tipos de Usuario');
 	echo getMenu();
 	//categoria seguimiento
-	$tipousuarios_nombre =array('name'=>'tipousuarios_nombre','placeholder'=>'Nombre','value'=>'');
-	$tipousuarios_id =array('name'=>'tipousuarios_id','placeholder'=>'Número de categoria', 'value'=>'');
+	$tipousuarios_nombre =array('name'=>'tipousuarios_nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
+	$tipousuarios_id =array('name'=>'tipousuarios_id','placeholder'=>'Número de categoria', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_tipousuarios=array('id'=>'form_tipousuarios','onSubmit'=>'selectTipoUsuarios(this,event)');
+	$form_tipousuarios=array('id'=>'form_tipousuarios','role'=>'form','onSubmit'=>'selectTipoUsuarios(this,event)');
 ?>
 
 
@@ -22,12 +22,20 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	<table >
 		<tbody>
 			<tr>
-				<td><?php echo form_label('Número de Categoria: ','tipousuarios_id');?></td>
-				<td><?php echo form_input($tipousuarios_id);?></td>
+				<td>
+					<div class="form-group">
+					<?php echo form_label('Número de Categoria: ','tipousuarios_id');?>
+					<?php echo form_input($tipousuarios_id);?>
+					</div>
+				</td>
 			</tr>
 			<tr>
-				<td><?php echo form_label('Nombre: ','tipousuarios_nombre');?></td>
-				<td><?php echo form_input($tipousuarios_nombre);?></td>
+				<td>
+					<div class="form-group">
+					<?php echo form_label('Nombre: ','tipousuarios_nombre');?>
+					<?php echo form_input($tipousuarios_nombre);?>
+					</div>
+				</td>
 			</tr>			
 			<tr>
 				<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
