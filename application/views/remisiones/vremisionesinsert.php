@@ -4,9 +4,10 @@ echo getHeader('Remisiones');
 echo getMenu();
 //Propiedades del form
 $form_remision = array('id'=>'form_remision','role'=>'form');
+$form_remision_reporte = array('id'=>'form_remision_reporte');
 
 //Propiedades de los input 
-$remision_cliente =array('name'=>'cliente_name','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
+$remision_cliente =array('name'=>'cliente_name','placeholder'=>'Cliente','value'=>'','class'=>'form-control','disabled'=>'disabled');
 $remision_fecha =array('id' => 'fecha', 'name'=>'fecha_txt','placeholder'=>'Fecha','value'=>'','class'=>'form-control');
 $remision_total =array('name'=>'total_txt','placeholder'=>'Total','value'=>'','class'=>'form-control','disabled'=>'disabled');
 $remision_iva =array('name'=>'iva_txt','placeholder'=>'IVA','value'=>'','class'=>'form-control','disabled'=>'disabled');
@@ -114,12 +115,24 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									</td>
 								</tr>
 								<tr>
-									<td><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></td>
+									<td><center><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></center></td>
 								</tr>
 								
 							</tbody>
 						</table>
 						<?php echo form_close(); ?>
+						<div id='reporte' style="display:none">
+						<table>
+							<tr>
+								<td>
+									<?php echo form_open('reportes/cremisionnote/generarPDF',$form_remision_reporte); ?>
+									<?php echo form_hidden('idRemision','0');?>	
+									<?php echo form_submit('printButton','Imprimir','class="btn btn-primary"');?>
+									<?php echo form_close(); ?>
+								</td>
+							</tr>
+						</table>
+						</div>
 						</div>
 						<div id="tableTarget" class='col-md-7'>
 							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')"');?>
