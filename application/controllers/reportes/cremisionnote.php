@@ -21,9 +21,10 @@ class CRemisionNote extends CI_Controller {
 		$this->load->library('pdf');
 		
 		$id_remision = $this->input->post('idRemision');
+		$idUsuario = base64_decode($_SESSION['USUARIO_ID']);
 		
 		//obtener resultado de la query 
-		$resul['resultado'] = $this->mremisionnote->getValues($id_remision,$_SESSION['USUARIO_ID']);
+		$resul['resultado'] = $this->mremisionnote->getValues($id_remision,$idUsuario);
 		
 		if($resul['resultado'] != null){
 			$remi_data=$resul['resultado']->first_row();
