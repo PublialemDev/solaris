@@ -20,10 +20,10 @@ class CRemisionNote extends CI_Controller {
 	public function generarPDF(){		
 		$this->load->library('pdf');
 		
-		$id_remision = $this->input->get('num_remision');
+		$id_remision = $this->input->post('idRemision');
 		
 		//obtener resultado de la query 
-		$resul['resultado'] = $this->mremisionnote->getValues($id_remision);
+		$resul['resultado'] = $this->mremisionnote->getValues($id_remision,$_SESSION['USUARIO_ID']);
 		
 		if($resul['resultado'] != null){
 			$remi_data=$resul['resultado']->first_row();
