@@ -32,6 +32,7 @@ foreach ($tipopagos->result() as $tipopago) {
 
 //Propiedades del form
 $form_remision = array('id'=>'form_remision','role'=>'form');
+$form_remision_reporte = array('id'=>'form_remision_reporte');
 
 //Propiedades de los input 
 //$remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>$rem_cli,'class'=>'form-control','disabled'=>'disabled');
@@ -140,12 +141,22 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									</td>
 								</tr>
 								<tr>
-									<td><?php echo form_button('saveButton','Editar','class="btn btn-primary enableButton"');?></td>
+									<td><center><?php echo form_button('saveButton','Editar','class="btn btn-primary enableButton"');?></center></td>
 								</tr>
 								
 							</tbody>
 						</table>
 						<?php echo form_close(); ?>
+						<table>
+							<tr>
+							<td>
+						<?php echo form_open('reportes/cremisionnote/generarPDF',$form_remision); ?>
+						<?php echo form_hidden('idRemision',$rem_id);?>	
+						<?php echo form_submit('printButton','Imprimir','class="btn btn-primary"');?>
+						<?php echo form_close(); ?>
+						</td>
+						</tr>
+						</table>
 						</div>
 						<div id="tableTarget" class='col-md-7'>
 							<?php echo form_button('agregarProductos','Agregar Productos','class="btn btn-primary" onclick="prepararModal(\'PRODUCTOS\')" disabled');?>

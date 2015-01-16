@@ -4,10 +4,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Nota de Remision');
 echo getMenu();
 //Propiedades del form
-$form_reminote = array('id'=>'form_reminote','onSubmit'=>'getValues(this,event)');
+$form_reminote = array('id'=>'form_reminote');
 
 //Propiedades del input 
-$num_remision =array('name'=>'num_remision','placeholder'=>'NUMERO','value'=>'','class'=>'form-control');
+$num_remision =array('name'=>'idRemision','placeholder'=>'NUMERO','value'=>'','class'=>'form-control');
 
 $label=array('class'=>'control-label');
 ?>
@@ -23,7 +23,7 @@ $label=array('class'=>'control-label');
 	
 						<table>
 							<tbody>
-								<?php echo form_open('#',$form_reminote); ?>
+								<?php echo form_open('reportes/cremisionnote/generarPDF',$form_reminote); ?>
 								<!--<?php echo form_hidden('idCatProducto','0');?>-->
 								<tr>
 									<td>
