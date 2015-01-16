@@ -150,7 +150,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 						<table>
 							<tr>
 							<td>
-						<?php echo form_open('reportes/cremisionnote/generarPDF',$form_remision); ?>
+						<?php echo form_open('reportes/cremisionnote/generarPDF',$form_remision_reporte); ?>
 						<?php echo form_hidden('idRemision',$rem_id);?>	
 						<?php echo form_submit('printButton','Imprimir','class="btn btn-primary"');?>
 						<?php echo form_close(); ?>

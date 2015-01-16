@@ -308,6 +308,7 @@ function guardarProductos(){
 				$("button[name='saveButton']").html("Editar");
 				$("button[name='saveButton']").removeAttr("onclick");
 				$("button[name='saveButton']").removeClass("enviarButton").addClass("enableButton");
+				$("#reporte").removeAttr("style");
 				
 				$(".form-control").attr("disabled","disabled");
 				$("input").attr("disabled","disabled");
