@@ -177,7 +177,7 @@ function eliminarProducto(){
 		
 		cantidad_productos_agregados--;
 		if(cantidad_productos_agregados==0){
-			$(".form-control:not(input[name='total_txt'])").removeAttr("disabled");
+			$(".form-control:not(input[name='total_txt'],input[name='iva_txt'])").removeAttr("disabled");
 			$("button[class='buscarButton']").removeAttr("disabled");
 			$("button[name='eliminarProductos']").attr("disabled","disabled");
 		}
@@ -316,6 +316,7 @@ function guardarProductos(){
 				$("button[name='eliminarProductos']").attr("disabled","disabled");
 				$(".buscarButton").attr("disabled","disabled");
 				$("input[name='iva_check']").attr("disabled","disabled");
+				$(".printButton").removeAttr("disabled");
 				
 				alert("La remision se creo correctamente.");					
 			}else{

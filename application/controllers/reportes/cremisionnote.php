@@ -35,9 +35,9 @@ class CRemisionNote extends CI_Controller {
 			$remi_usr_data = $remi_data->nombre_usuario;
 			$remi_suc_data = $remi_data->nombre_sucursal;
 			$remi_fecha_data = $remi_data->fecha;
-			$subtotal= $remi_data->subtotal;
+			$subtotal= $remi_data->total;
 			$iva= $remi_data->iva;
-			$total= $remi_data->total;
+			$total= $remi_data->total+$remi_data->iva;
 		}
 		
 		list($año, $mes, $dia) = preg_split('/[: -]/', $remi_fecha_data);

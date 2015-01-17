@@ -16,7 +16,7 @@ class MRemisionNote extends CI_Model {
 									productoremision.precio_actual,productos.nombre_producto,tipopagos.nombre_tipoPago,
 									(productoremision.cantidad * productoremision.precio_actual) as importe, 
 									SUM(productoremision.cantidad*productoremision.precio_actual) as subtotal,
-									ROUND(SUM(productoremision.cantidad*productoremision.precio_actual)*(remisiones.iva/100)+sum(productoremision.cantidad*productoremision.precio_actual),2) as total 
+									ROUND(SUM(productoremision.cantidad*productoremision.precio_actual)*(remisiones.iva/100)+sum(productoremision.cantidad*productoremision.precio_actual),2) as totalf 
 									FROM remisiones
 									JOIN productoremision ON remisiones.id_remision = productoremision.id_remision
 									JOIN productos ON productoremision.id_producto = productos.id_producto

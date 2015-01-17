@@ -33,7 +33,7 @@ function prepararModal(source){
 		$(".modal-title").html("Búsqueda de Productos");
 		//-----------
 		$.ajax({
-			data:'',
+			data:'cli_id='+$("input[name='cliente_txt']").val(),
 			url:SERVER_URL_BASE+"remisiones/cremisiones/modalProductos",
 			method:"POST",
 			success: function(msg){
