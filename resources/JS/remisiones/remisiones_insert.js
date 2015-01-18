@@ -316,7 +316,8 @@ function guardarProductos(){
 				$("button[name='eliminarProductos']").attr("disabled","disabled");
 				$(".buscarButton").attr("disabled","disabled");
 				$("input[name='iva_check']").attr("disabled","disabled");
-				$(".printButton").removeAttr("disabled");
+				$("input[name='printButton']").removeAttr("disabled");
+				$("input[name='idRemision']").removeAttr("disabled");
 				
 				alert("La remision se creo correctamente.");					
 			}else{
