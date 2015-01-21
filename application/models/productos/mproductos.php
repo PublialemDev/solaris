@@ -134,7 +134,7 @@ class MProductos extends CI_Model{
 		$sysdate=new DateTime();
 		
 		$produ_data = array(
-			'estatus_productos'=>'I',			
+			'estatus_producto'=>'I',			
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);

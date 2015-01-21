@@ -30,7 +30,7 @@ function selectSeguimiento(form,evt){
 		}
 		
 		$("#target").on("dblclick",".datos tbody tr", function(){
-			if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
+			if( ($(this).attr("id")!=null) && ($(this).attr("id")!="") && ($(this).children("td:eq(1)").text()!="VENTA")){
 				if (confirm("¿Seguro que desea editar el Seguimiento?")){
 					window.location.href = SERVER_URL_BASE+"clientes/cseguimiento/formUpdateSeguimiento?id_seguimiento="+$(this).attr("id");
 				}

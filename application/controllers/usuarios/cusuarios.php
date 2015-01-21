@@ -40,7 +40,7 @@ class CUsuarios extends CI_Controller {
 		//establece los datos del cliente para la insercion
 		$usr_data=array(
 		'nombre'=>strtoupper($this->input->post('nombre')),
-		'password'=>md5($this->$this->input->post('password')),
+		'password'=>md5($this->input->post('password')),
 		'id_tipousuario'=>$this->input->post('usr_tipousuario'),
 		'id_sucursal'=>$this->input->post('usr_sucursal')
 		);
@@ -299,8 +299,11 @@ class CUsuarios extends CI_Controller {
 		
 		if($returned){
 			$this->mlogs->insertLog(array('tipo_log'=>'delete_usuario','descripcion_log'=>'se elimino el usuario: '.$usr_id));
+			echo 'SUCCESS;'.$returned;
+		}else{
+			echo 'ERROR;'.$returned;
 		}
-		echo 'Mensage: '.$returned;
+		
 	}
 
 }

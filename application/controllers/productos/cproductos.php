@@ -109,9 +109,7 @@ class Cproductos extends CI_Controller {
 		$prod_nombre=$this->input->post('PROD_NOMBRE');
 		$prod_desc=$this->input->post('PROD_DESC');
 		$cli_nivel=$this->mclientes->getClienteNivel($this->input->post('CLI_ID'));
-		if(!$cli_nivel){
-		echo '--'.$cli_nivel.'--';
-		}
+		
 		$where_clause=array();
 		if($prod_codigo!= null and $prod_codigo!=''){
 			$where_clause['prod_codigo']=$prod_codigo;

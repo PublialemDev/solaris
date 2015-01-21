@@ -174,7 +174,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					</div>
 				</td>
 			</tr>
-			
+			<tr>
+				<td>
+					<div class="form-group">
+						<?php echo form_label('Referencias: ','dir_ref',$label);?>
+						<?php echo form_textarea($dir_ref);?>
+					</div>
+				</td>
+			</tr>
 			
 		<?php echo form_close(); ?>
 		<!--fin direccion-->
@@ -184,14 +191,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class='col-md-6'>
 		<table>
 			<tbody>
-			<tr>
-				<td>
-					<div class="form-group">
-						<?php echo form_label('Referencias: ','dir_ref',$label);?>
-						<?php echo form_textarea($dir_ref);?>
-					</div>
-				</td>
-			</tr>
+			
 		<!--inicio telefono-->
 		<tr>
 			<td>

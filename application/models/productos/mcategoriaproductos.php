@@ -70,7 +70,7 @@ class MCategoriaProductos extends CI_Model{
 		);
 		$returned = $this->db->update('categoriaproductos',$produ_data,array('id_categoriaProducto'=>$catprodu_id));
 		
-		$produ_estatus = array('estatus_productos'=>'I',			
+		$produ_estatus = array('estatus_producto'=>'I',			
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
 		$proremi_estatus = array('estatus_productoRemision'=>'I',			

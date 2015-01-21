@@ -140,7 +140,7 @@ class MUsuarios extends CI_Model{
 	}
 
 	public function selectSucursales(){
-		$query = $this->db->get('sucursales');
+		$query = $this->db->get('sucursales',array('estatus_sucursal'=>'A'));
 		
 		if($query->num_rows >0) 
 			return $query;
