@@ -83,22 +83,17 @@ class Mclientes extends CI_Model{
 		$returned = $this->db->update('clientes',$cli_data,array('id_cliente'=>$cli_id));			
 		
 		if($returned == 1){
-			$returned = $this->mdeletedata->deleteData($cli_id,"cli");//actualiza el estatus a inactivo de direccion,telefono y correo 
+			$returned = $this->mdeletedata->deleteData($cli_id,"cli");//actualiza el estatus a inactivo de direccion,telefono y correo 									
 			if($returned == 1){
-				$remi_estatus = array('estatus_remision'=>'I',			
-					'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-					'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
-				$returned = $this->db->update('remisiones',$remi_estatus,array('id_cliente'=>$cli_id));			
+				$returned = $this->mdeletedata->deleteProduRemi();	
 				if($returned == 1){
-					$returned = $this->mdeletedata->deleteProduRemi();	
-					if($returned == 1){
-						$segui_estatus = array('estatus_seguimiento'=>'I',			
-							'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-							'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));			
-						$returned = $this->db->update('seguimientoclientes',$segui_estatus,array('id_cliente'=>$cli_id));																			
-					}																				
-				}			
-			}	
+					$segui_estatus = array('estatus_seguimiento'=>'I',			
+						'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+						'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));			
+					$returned = $this->db->update('seguimientoclientes',$segui_estatus,array('id_cliente'=>$cli_id));																			
+				}																				
+			}			
+				
 		}
 		if($returned>0){
 			return true;;

@@ -33,7 +33,7 @@ class MDeleteData extends CI_Model{
 		return $returned;
 	}
 	
-	//Esta funcion cambia el estatus a inactivo del productoremision que tengan el id de la remision indicada 
+	/*Esta funcion cambia el estatus a inactivo del productoremision que tengan el id de la remision indicada 
 	function deleteProduRemi(){
 		$returned = 0;
 		$sysdate=new DateTime();
@@ -48,7 +48,7 @@ class MDeleteData extends CI_Model{
 		
 		return $returned;
 	}
-	
+	*/
 	//Esta funcion cambia el estatus a inactivo de los usuarios, donde se indique el  id de tipo de usuario, y a vez inhabilita sus datos: direccion, telefonos y correos
 	function deleteUser($tipousuarios_id){
 		$sysdate=new DateTime();

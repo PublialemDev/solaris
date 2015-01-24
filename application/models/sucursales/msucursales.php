@@ -78,30 +78,20 @@ class MSucursales extends CI_Model{
 		
 		if($returned == 1){
 			$returned = $this->mdeletedata->deleteData($sucu_id,"suc");//actualiza el estatus a inactivo de direccion,telefono y correo 
-			if($returned == 1){
-				$remi_estatus = array('estatus_remision'=>'I',			
-				'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-				'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
-				
+			if($returned == 1){								
 				$usr_estatus = array('estatus_usuario'=>'I',			
 				'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 				'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
-				
-				$returned = $this->db->update('remisiones',$remi_estatus,array('id_sucursal'=>$sucu_id));			
+									
 				if($returned == 1){
-					$returned = $this->mdeletedata->deleteProduRemi();	
+					$returned = $this->db->update('usuarios',$usr_estatus,array('id_sucursal'=>$sucu_id));
 					if($returned == 1){
-						$returned = $this->db->update('usuarios',$usr_estatus,array('id_sucursal'=>$sucu_id));
-						if($returned == 1){
-							$query = $this->db->query("SELECT id_usuario FROM usuarios WHERE estatus_usuario = 'I'");
-							foreach ($query->result() as $value) {
-								$returned = $this->mdeletedata->deleteUser($value->id_usuario);	
-							}
+						$query = $this->db->query("SELECT id_usuario FROM usuarios WHERE estatus_usuario = 'I'");
+						foreach ($query->result() as $value) {
+							$returned = $this->mdeletedata->deleteUser($value->id_usuario);	
 						}
-												
-																							
-					}																				
-				}			
+					}																																			
+				}																											
 			}	
 		}
 		

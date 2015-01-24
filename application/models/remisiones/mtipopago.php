@@ -69,15 +69,7 @@ class MTipoPago extends CI_Model{
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
-		$returned = $this->db->update('tipopagos',$tipopago_data,array('id_tipoPago'=>$tipopago_id));
-		
-		$tipopago_estatus = array('estatus_remision'=>'I');
-		if($returned == 1){
-			$returned = $this->db->update('remisiones',$tipopago_estatus,array('id_tipoPago'=>$tipopago_id));
-			if($returned == 1){
-				$returned = $this->mdeletedata->deleteProduRemi();
-			}
-		}	
+		$returned = $this->db->update('tipopagos',$tipopago_data,array('id_tipoPago'=>$tipopago_id));			
 		
 		
 		if ($this->db->trans_status() === FALSE)
