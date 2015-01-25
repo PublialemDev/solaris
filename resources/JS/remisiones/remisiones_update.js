@@ -389,3 +389,17 @@ $(document).on("click",".updateButton",function(){
 	}
 });
 
+$(".deleteButton").click(function(){
+	if(confirm("seguro que deseas eliminar esta remision ?")){
+		$.ajax({
+			data:"idRemision="+$("input[name='idRemision']").val(),
+			url:SERVER_URL_BASE+"remisiones/cremisiones/deleteRemision",
+			method:"POST",
+			success: function(msg){
+				alert("Remision eliminada correctamente: "+msg);
+				//window.location=SERVER_URL_BASE+"remisiones/cremisiones/selectRemisionesForm";
+			}
+		});
+	}
+});
+

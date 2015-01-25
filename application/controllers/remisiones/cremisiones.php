@@ -90,6 +90,7 @@ class CRemisiones extends CI_Controller {
 		$datos['tipopagos'] = $this->mremisiones->selectTipoPagos();
 		$datos['remision'] = $this->mremisiones->selectRemisionById($id_remision);
 		$datos['remisionproducto'] = $this->mproductoremision->selectProductoRemisionById($id_remision);
+		$datos['tipoUsuario'] = $this->mremisiones->tipoUsuario(base64_decode($_SESSION['USUARIO_ID']));
 		$this->load->view('remisiones/vremisionesupdate',$datos);
 	}
 	
@@ -206,6 +207,16 @@ class CRemisiones extends CI_Controller {
 			echo "NO_DATA_FOUND";
 		}
 	}
+
+function deleteRemision(){
+	$id_remision=$this->input->post('idRemision');	
+	$returned = $this->mremisiones->deleteRemision($id_remision);
+	
+	if($returned>0){
+		$this->mLogs->insertLog(array('tipo_log'=>'delete_remision','descripcion_log'=>'se elimino la remision: '.$id_remision));
+	}
+	return 'Mensage: '.$returned;
+}
 			
 } 
 ?>

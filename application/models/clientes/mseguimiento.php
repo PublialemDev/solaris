@@ -70,7 +70,14 @@ class MSeguimiento extends CI_Model{
 		$this->db->trans_begin();
 		$sysdate=new DateTime();
 		
-		$returned=$this->db->delete('seguimientoclientes',array('id_seguimientoCliente'=>$segui_id));
+		$segui_data = array(
+			'estatus_seguimiento'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		
+		$returned = $this->db->update('seguimientoclientes',$segui_data,array('id_seguimientoCliente'=>$segui_id));
+				
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();

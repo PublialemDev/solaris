@@ -73,22 +73,10 @@ class MCategoriaProductos extends CI_Model{
 		$produ_estatus = array('estatus_producto'=>'I',			
 			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
-		$proremi_estatus = array('estatus_productoRemision'=>'I',			
-			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
 		
-		if($returned == 1){
-			
-			$returned = $this->db->update('productos',$produ_estatus,array('id_categoriaProducto'=>$catprodu_id));
-			
-			if($returned == 1){
-				$query = $this->db->query("SELECT id_producto FROM productos WHERE estatus_producto = 'I' ");
-				
-				foreach ($query->result() as $value) {
-					$returned = $this->db->update('productoremision',$proremi_estatus,array('id_producto'=>$value->id_producto));
-				}
-												
-			}	
+		
+		if($returned == 1){			
+			$returned = $this->db->update('productos',$produ_estatus,array('id_categoriaProducto'=>$catprodu_id));						
 		}	
 
 		if ($this->db->trans_status() === FALSE)

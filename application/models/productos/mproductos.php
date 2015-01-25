@@ -139,13 +139,7 @@ class MProductos extends CI_Model{
 			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
 		);
 		$returned = $this->db->update('productos',$produ_data,array('id_producto'=>$prod_id));
-			
-		if($returned == 1){
-			$proremi_estatus = array('estatus_productoRemision'=>'I',			
-			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
-			'modificado_por' => base64_decode($_SESSION['USUARIO_ID']));
-			$returned = $this->db->update('productoremision',$proremi_estatus,array('id_producto'=>$prod_id));													
-		}	
+					
 		if($returned>0){
 			return true;
 		}
