@@ -124,7 +124,44 @@ class MRemisiones extends CI_Model{
 			return false;
 		}
 	}
+
+
+ function tipoUsuario($id_usuario){
+		$query = $this->db->query('SELECT nombre_tipoUsuario FROM tipoUsuarios 
+		JOIN usuarios ON usuarios.id_tipousuario = tipousuarios.id_tipousuario 
+		WHERE usuarios.id_usuario = '.$id_usuario);
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+}
 	
+	
+function deleteRemision($id_Remision){
+		$this->db->trans_begin();
+		$sysdate=new DateTime();
+						
+		$remi_data = array(
+			'estatus_remision'=>'I',			
+			'modificado_en' => $sysdate->format('Y-m-d H:i:s'),
+			'modificado_por' => base64_decode($_SESSION['USUARIO_ID'])
+		);
+		$returned = $this->db->update('remisiones',$remi_data,array('id_remision'=>$id_Remision));			
+		
+		
+		if ($this->db->trans_status() === FALSE)
+		{
+		    $this->db->trans_rollback();
+		}
+		else
+		{
+		    $this->db->trans_commit();
+		}
+		return $returned;
+		
+	}
 	/*public function selectRemisiones(){			
 		$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
 		remisiones.fecha, remisiones.instalacion, remisiones.total, remisiones.iva, remisiones.creado_en, remisiones.creado_por, remisiones.modificado_en,
