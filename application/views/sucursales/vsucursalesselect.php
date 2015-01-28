@@ -10,7 +10,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$sucu_id =array('name'=>'sucu_id','placeholder'=>'Número de sucursal', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_sucu=array('id'=>'form_sucu','role'=>'form','onSubmit'=>'selectSucursales(this,event)');
+	$form_sucu=array('id'=>'form_sucu','role'=>'form','class'=>'form-inline','onSubmit'=>'selectSucursales(this,event)');
 	
 ?>
 
@@ -21,37 +21,23 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-body">
 			<center>
 			<?php echo form_open('#',$form_sucu); ?>
-			<table >
-				<tbody>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Número de Sucursal: ','sucu_id');?>
-							<?php echo form_input($sucu_id);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Nombre: ','sucu_nombre');?>
-							<?php echo form_input($sucu_nombre);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Pagina WEB: ','sucu_pagianweb');?>
-							<?php echo form_input($sucu_paginaweb);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
-					</tr>
-				</tbody>
-			</table>
+			
+				<div class="form-group">
+					<?php echo form_label('Número de Sucursal: ','sucu_id');?>
+					<?php echo form_input($sucu_id);?>
+				</div>
+			
+				<div class="form-group">
+					<?php echo form_label('Nombre: ','sucu_nombre');?>
+					<?php echo form_input($sucu_nombre);?>
+				</div>
+			
+				<div class="form-group">
+					<?php echo form_label('Pagina WEB: ','sucu_pagianweb');?>
+					<?php echo form_input($sucu_paginaweb);?>
+				</div>
+				<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
+
 			<?php echo form_close(); ?>
 			</center>
 		</div>

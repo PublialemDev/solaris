@@ -10,7 +10,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$cli_id =array('name'=>'cli_id','placeholder'=>'Número de cliente', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_cliente=array('id'=>'form_cliente','role'=>'form','onSubmit'=>'selectCliente(this,event)');
+	$form_cliente=array('id'=>'form_cliente','role'=>'form','class'=>'form-inline','onSubmit'=>'selectCliente(this,event)');
 	
 ?>
 
@@ -24,37 +24,21 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<div class='col-md-12'>
 			<center>
 			<?php echo form_open('#',$form_cliente); ?>
-			<table >
-				<tbody>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Número de Cliente: ','cli_id');?>
-							<?php echo form_input($cli_id);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Nombre: ','cli_nombre');?>
-							<?php echo form_input($cli_nombre);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('RFC: ','cli_rfc');?>
-							<?php echo form_input($cli_rfc);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
-					</tr>
-				</tbody>
-			</table>
+				<div class="form-group">
+					<?php echo form_label('Número de Cliente: ','cli_id');?>
+					<?php echo form_input($cli_id);?>
+				</div>
+				
+				<div class="form-group">
+					<?php echo form_label('Nombre: ','cli_nombre');?>
+					<?php echo form_input($cli_nombre);?>
+				</div>
+				
+				<div class="form-group">
+					<?php echo form_label('RFC: ','cli_rfc');?>
+					<?php echo form_input($cli_rfc);?>
+				</div>
+				<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
 			<?php echo form_close(); ?>
 			</center>
 			</div>
