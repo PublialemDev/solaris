@@ -85,7 +85,7 @@ class CMensual extends CI_Controller {
 		//table
 		foreach($resul['resultado']->result() as $value){
 			$pdf->MultiCell(15, 10, $value->id_remision, 1, 'L',0,0);
-			$pdf->MultiCell(20, 10, $value->total, 1, 'L',0,0);
+			$pdf->MultiCell(20, 10, $value->importe, 1, 'L',0,0);
 			$pdf->MultiCell(40, 10, $value->nombre_cliente, 1, 'L',0,0);
 			$pdf->MultiCell(35, 10, $value->nombre_sucursal, 1, 'L',0,0);
 			$pdf->MultiCell(35, 10, $value->nombre_usuario, 1, 'L',0,0);
