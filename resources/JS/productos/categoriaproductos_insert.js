@@ -60,11 +60,16 @@ $(document).on("click",".updateButton",function(){
 			method:"POST",
 			beforesend:function(){alert(formSer);},
 			success: function(msg){
-				alert(msg);
-				$(".updateButton").html("Editar");
-				$(".updateButton").removeClass("updateButton").addClass("enableButton");
-				$("input").attr("disabled","disabled");
-				$("textarea").attr("disabled","disabled");
+				var resp=msg.split(";");
+				if(resp[0].trim()=="SUCCESS"){
+					$(".updateButton").html("Editar");
+					$(".updateButton").removeClass("updateButton").addClass("enableButton");
+					$("input").attr("disabled","disabled");
+					$("textarea").attr("disabled","disabled");
+					alert("La categoria se creo correctamente.");					
+				}else{
+					alert(msg);
+				}
 			}
 
 		});

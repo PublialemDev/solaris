@@ -379,6 +379,8 @@ $(document).on("click",".updateButton",function(){
 				$("button[name='agregarProductos']").attr("disabled","disabled");
 				$("button[name='eliminarProductos']").attr("disabled","disabled");
 				$(".buscarButton").attr("disabled","disabled");
+				$("input[name='printButton']").removeAttr("disabled");
+				$("input[name='idRemision']").removeAttr("disabled");
 				
 				alert("La remision se actualizó correctamente.");					
 			}else{

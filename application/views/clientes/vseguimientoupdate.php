@@ -28,7 +28,9 @@ $label=array('class'=>'control-label');
 
 //Categoria se seguimiento
 foreach ($catseguimiento->result() as $catsegui) {
+	if($catsegui->id_categoriaSeguimiento!=0){
 		$segui_cate[(string)$catsegui->id_categoriaSeguimiento]= (string)$catsegui->nombre_categoriaSeguimiento;
+	}
 }
 
 ?>

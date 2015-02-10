@@ -19,6 +19,12 @@ if(isset($remision)){
 	$rem_iva=$rem_data->iva;
 	$rem_cli_nom=$rem_data->nombre_cliente;
 }
+if(isset($tipoUsuario)){
+	//
+	$tipouser_data = $tipoUsuario->first_row();
+	//
+	$nombre_tipoUsuario=(string)$tipouser_data->nombre_tipoUsuario;
+}
 
 //
 foreach ($sucursales->result() as $sucursal) {
@@ -141,9 +147,11 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									</td>
 								</tr>
 								<tr>
-									<td><center><?php echo form_button('saveButton','Editar','class="btn btn-primary enableButton"');?></center></td>
+									<td><?php echo form_button('saveButton','Editar','class="btn btn-primary enableButton"');?></td>
+									<td><?php if($nombre_tipoUsuario == 'ADMINISTRADOR'){
+										echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');
+									}?></td>
 								</tr>
-								
 							</tbody>
 						</table>
 						<?php echo form_close(); ?>

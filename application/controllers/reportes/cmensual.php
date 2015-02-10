@@ -26,11 +26,13 @@ class CMensual extends CI_Controller {
 		
 		//obtener resultado de la query 
 		$resul['resultado'] = $this->mmensual->getValues($fecha_inicial,$fecha_final);
-		
+		$cantidad_data=0;
+		$total_data=0;
 		if($resul['resultado'] != null){
-			$mes_data=$resul['resultado']->first_row();
-			$cantidad_data = $mes_data->cantidad;
-			$total_data = $mes_data->total;
+			foreach($resul['resultado']->result() as $value){
+				$total_data+=$value->total;
+				$cantidad_data++;
+			}
 		}
 		
 

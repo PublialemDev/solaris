@@ -9,7 +9,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$tipousuarios_id =array('name'=>'tipousuarios_id','placeholder'=>'Número de categoria', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_tipousuarios=array('id'=>'form_tipousuarios','role'=>'form','onSubmit'=>'selectTipoUsuarios(this,event)');
+	$form_tipousuarios=array('id'=>'form_tipousuarios','role'=>'form','class'=>'form-inline','onSubmit'=>'selectTipoUsuarios(this,event)');
 ?>
 
 
@@ -19,29 +19,18 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-body">
 			<center>
 	<?php echo form_open('#',$form_tipousuarios); ?>
-	<table >
-		<tbody>
-			<tr>
-				<td>
-					<div class="form-group">
-					<?php echo form_label('Número de Categoria: ','tipousuarios_id');?>
-					<?php echo form_input($tipousuarios_id);?>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="form-group">
-					<?php echo form_label('Nombre: ','tipousuarios_nombre');?>
-					<?php echo form_input($tipousuarios_nombre);?>
-					</div>
-				</td>
-			</tr>			
-			<tr>
-				<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
-			</tr>
-		</tbody>
-	</table>
+	
+		<div class="form-group">
+			<?php echo form_label('Número de Categoria: ','tipousuarios_id');?>
+			<?php echo form_input($tipousuarios_id);?>
+		</div>
+	
+		<div class="form-group">
+			<?php echo form_label('Nombre: ','tipousuarios_nombre');?>
+			<?php echo form_input($tipousuarios_nombre);?>
+		</div>
+		<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
+				
 	<?php echo form_close(); ?>
 	</center>
 		</div>

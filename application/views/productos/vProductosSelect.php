@@ -10,7 +10,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$prod_desc =array('name'=>'prod_desc','placeholder'=>'Descripción', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_producto=array('id'=>'form_producto','role'=>'form','onSubmit'=>'selectProductos(this,event)');
+	$form_producto=array('id'=>'form_producto','role'=>'form','class'=>'form-inline','onSubmit'=>'selectProductos(this,event)');
 
 ?>
 
@@ -20,36 +20,22 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-body">
 			<center>
 			<?php echo form_open('#',$form_producto); ?>
-			<table >
-				<tbody>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Código de Producto: ','prod_codigo');?>
-							<?php echo form_input($prod_codigo);?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Nombre: ','prod_nombre');?>
-							<?php echo form_input($prod_nombre);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-group">
-							<?php echo form_label('Descripción: ','prod_desc');?>
-							<?php echo form_input($prod_desc);?>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
-					</tr>
-				</tbody>
-			</table>
+			
+				<div class="form-group">
+					<?php echo form_label('Código de Producto: ','prod_codigo');?>
+					<?php echo form_input($prod_codigo);?>
+				</div>
+			
+				<div class="form-group">
+					<?php echo form_label('Nombre: ','prod_nombre');?>
+					<?php echo form_input($prod_nombre);?>
+				</div>
+			
+				<div class="form-group">
+					<?php echo form_label('Descripción: ','prod_desc');?>
+					<?php echo form_input($prod_desc);?>
+				</div>
+				<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
 			<?php echo form_close(); ?>
 			</center>
 		</div>

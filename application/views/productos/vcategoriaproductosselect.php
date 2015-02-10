@@ -9,7 +9,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	$catprodu_id =array('name'=>'catprodu_id','placeholder'=>'Número de categoria', 'value'=>'','class'=>'form-control');
 	
 	//formularios
-	$form_catprodu=array('id'=>'form_catprodu','role'=>'form','onSubmit'=>'selectCategoriaProductos(this,event)');
+	$form_catprodu=array('id'=>'form_catprodu','role'=>'form','class'=>'form-inline','onSubmit'=>'selectCategoriaProductos(this,event)');
 ?>
 
 
@@ -19,29 +19,17 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-body">
 			<center>
 				<?php echo form_open('#',$form_catprodu); ?>
-				<table >
-					<tbody>
-						<tr>
-							<td>
-								<div class="form-group">
-								<?php echo form_label('Número de Categoria: ','catprodu_id');?>
-								<?php echo form_input($catprodu_id);?>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="form-group">
-								<?php echo form_label('Nombre: ','catprodu_nombre');?>
-								<?php echo form_input($catprodu_nombre);?>
-								</div>
-							</td>
-						</tr>			
-						<tr>
-							<td><?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?></td>
-						</tr>
-					</tbody>
-				</table>
+				
+					<div class="form-group">
+						<?php echo form_label('Número de Categoria: ','catprodu_id');?>
+						<?php echo form_input($catprodu_id);?>
+					</div>
+				
+					<div class="form-group">
+						<?php echo form_label('Nombre: ','catprodu_nombre');?>
+						<?php echo form_input($catprodu_nombre);?>
+					</div>
+					<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
 				<?php echo form_close(); ?>
 			</center>
 		</div>
