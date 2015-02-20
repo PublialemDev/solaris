@@ -4,7 +4,7 @@ echo getHeader('Remisiones');
 echo getMenu();
 //
 $rem_id='';$rem_suc='';$rem_cli='';$rem_tipopago='';$rem_fecha='';$rem_inst='N';$rem_total=0;$rem_iva=0;$rem_cli_nom='';
-
+$rem_cli_nivel='nor';
 if(isset($remision)){
 	//
 	$rem_data = $remision->first_row();
@@ -18,6 +18,7 @@ if(isset($remision)){
 	$rem_total=$rem_data->total;
 	$rem_iva=$rem_data->iva;
 	$rem_cli_nom=$rem_data->nombre_cliente;
+	$rem_cli_nivel=$rem_data->nivel;
 }
 if(isset($tipoUsuario)){
 	//
@@ -84,6 +85,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_hidden('cliente_txt',$rem_cli);?>
+										<?php echo form_hidden('cliente_nivel',$rem_cli_nivel);?>
 										<?php echo form_input($remision_cliente_name);?>
 										</div>
 									</td>

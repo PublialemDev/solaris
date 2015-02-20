@@ -363,7 +363,8 @@ $(document).on("click",".updateButton",function(){
 			$cant=$(this).children("td:nth-child(3)").children("input[name='prod_cant']").val();
 			$precio=$(this).children("td:nth-child(3)").children("input[name='prod_precio']").val();
 			$desc=0;
-			formSer+=$id+";"+$cant+";"+$precio+";"+$desc+"#";
+			$nivel=$("input[name='cliente_nivel']").val();
+			formSer+=$id+";"+$cant+";"+$precio+";"+$desc+";"+$nivel+"#";
 		});
 		$.ajax({
 		data:formSer.toUpperCase(),

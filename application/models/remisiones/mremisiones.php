@@ -102,7 +102,7 @@ class MRemisiones extends CI_Model{
 	
 	function selectRemisionById($id_remision){
 		$where_clause=array('id_remision'=>$id_remision);
-		$this->db->select('id_remision,id_sucursal,remisiones.id_cliente,id_tipoPago,fecha,instalacion,total,iva,nombre_cliente');
+		$this->db->select('id_remision,id_sucursal,remisiones.id_cliente,id_tipoPago,fecha,instalacion,total,iva,nombre_cliente,clientes.nivel');
 		$this->db->from('remisiones');
 		$this->db->join('clientes','remisiones.id_cliente=clientes.id_cliente');
 		$this->db->where($where_clause);
@@ -127,7 +127,7 @@ class MRemisiones extends CI_Model{
 
 
  function tipoUsuario($id_usuario){
-		$query = $this->db->query('SELECT nombre_tipoUsuario FROM tipoUsuarios 
+		$query = $this->db->query('SELECT nombre_tipoUsuario FROM tipousuarios 
 		JOIN usuarios ON usuarios.id_tipousuario = tipousuarios.id_tipousuario 
 		WHERE usuarios.id_usuario = '.$id_usuario);
 		if($query->num_rows()>0){
