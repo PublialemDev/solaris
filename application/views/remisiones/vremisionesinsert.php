@@ -51,6 +51,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										<div class="form-group">
 										<?php echo form_label('Cliente: ','cliente',$label);?>
 										<?php echo form_hidden('cliente_txt','0');?>
+										<?php echo form_hidden('cliente_nivel','nor');?>
 										<?php echo form_input($remision_cliente);?>
 										</div>
 									</td>

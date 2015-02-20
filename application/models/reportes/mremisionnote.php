@@ -22,12 +22,13 @@ class MRemisionNote extends CI_Model {
 									JOIN productos ON productoremision.id_producto = productos.id_producto
 									JOIN tipopagos ON remisiones.id_tipoPago = tipopagos.id_tipoPago
 									JOIN sucursales ON remisiones.id_sucursal = sucursales.id_sucursal
-									JOIN usuarios ON sucursales.id_sucursal = usuarios.id_sucursal
+									JOIN usuarios ON remisiones.creado_por = usuarios.id_usuario
 									JOIN clientes ON remisiones.id_cliente = clientes.id_cliente
 									JOIN direcciones ON clientes.id_cliente = direcciones.id_perfil
 									JOIN estados ON direcciones.id_estado = estados.id_estado
-									WHERE remisiones.id_remision ='.$id_remision.' AND direcciones.perfil_tipo = \'cli\' 
-									AND usuarios.id_usuario = '.$idUsuario);
+									WHERE remisiones.id_remision ='.$id_remision.' AND direcciones.perfil_tipo = \'cli\' '
+									//AND usuarios.id_usuario = '.$idUsuario
+									);
 
 		if($query->num_rows()>0){
 			return $query;

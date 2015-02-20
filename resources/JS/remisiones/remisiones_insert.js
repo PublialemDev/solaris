@@ -67,7 +67,8 @@ function selectClienteModal(form,evt){
 				tableStructure="";
 				$.each(table,function(index){
 					tableStructure+="<tr id=\'"+table[index].id+"\'>";
-					tableStructure+="<td>"+table[index].id+"</td>";
+					tableStructure+="<td>"+table[index].id;
+					tableStructure+="<input type='hidden' name='cli_nivel' value='"+table[index].nivel+"'></td>";
 					tableStructure+="<td>"+table[index].nombre+"</td>";
 					tableStructure+="<td>"+table[index].rfc+"</td>";
 					tableStructure+="</tr>";
@@ -97,6 +98,7 @@ $(document).on("click",".modalSave", function(){
 		var seleccionado=$("tr[class='info']").attr("id");
 		$("input[name='cliente_txt']").val(seleccionado);
 		$("input[name='cliente_name']").val($("tr[class='info']").children("td:nth-child(2)").text());
+		$("input[name='cliente_nivel']").val($("tr[class='info']").children("td:nth-child(1)").children("input[name='cli_nivel']").val());
 		$('#myModal').modal('hide');
 		
 	}else if($(this).hasClass("addProductos")){
@@ -294,7 +296,8 @@ function guardarProductos(){
 			$cant=$(this).children("td:nth-child(3)").children("input[name='prod_cant']").val();
 			$precio=$(this).children("td:nth-child(3)").children("input[name='prod_precio']").val();
 			$desc=0;
-			formSer+=$id+";"+$cant+";"+$precio+";"+$desc+"#";
+			$nivel=$("input[name='cliente_nivel']").val();
+			formSer+=$id+";"+$cant+";"+$precio+";"+$desc+";"+$nivel+"#";
 		});
 		$.ajax({
 		data:formSer.toUpperCase(),

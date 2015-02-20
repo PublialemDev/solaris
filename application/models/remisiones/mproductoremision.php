@@ -16,6 +16,7 @@ class Mproductoremision extends CI_Model{
 		'cantidad'=> $datos['cantidad'],
 		'precio_actual'=> $datos['precio_actual'],
 		'descuento'=> $datos['descuento'],
+		'nivel_cliente'=> $datos['nivel_cliente'],
 		'estatus_productoRemision'=> 'A',
 		'creado_en'=> $sysdate->format('Y-m-d H:i:s'), 
 		'creado_por'=>base64_decode($_SESSION['USUARIO_ID']))
@@ -41,7 +42,7 @@ class Mproductoremision extends CI_Model{
 	public function selectProductoRemisionById($id_remision){
 		$where_clause=array('id_remision'=>$id_remision,'estatus_productoRemision'=>'A');
 		$this->db->where($where_clause);
-		$this->db->select('id_remision,productoremision.id_producto,cantidad,precio_actual,descuento,nombre_producto,descripcion_producto');
+		$this->db->select('id_remision,productoremision.id_producto,cantidad,precio_actual,descuento,nombre_producto,descripcion_producto, nivel_cliente');
 		$this->db->from('productoremision');
 		$this->db->join('productos','productoremision.id_producto = productos.id_producto ');
 		$query = $this->db->get();

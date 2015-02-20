@@ -52,7 +52,8 @@ class CRemisiones extends CI_Controller {
 				'id_producto'=>$producto[0],
 				'cantidad'=>$producto[1],
 				'precio_actual'=>$producto[2],
-				'descuento'=>$producto[3]
+				'descuento'=>$producto[3],
+				'nivel_cliente'=>$producto[4]
 				));
 				}
 			}
