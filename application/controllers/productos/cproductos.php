@@ -131,7 +131,7 @@ class Cproductos extends CI_Controller {
 				$json.='"prod_id":'.'"'.$producto->id_producto.'",';
 				$json.='"prod_cat":'.'"'.$producto->id_categoriaProducto.'",';
 				$json.='"prod_nombre":'.'"'.$producto->nombre_producto.'",';
-				$json.='"prod_desc":'.'"'.$producto->descripcion_producto.'",';
+				$json.='"prod_desc":'.'"'.preg_replace('/\n/','&enter',$producto->descripcion_producto).'",';
 				$json.='"prod_codigo":'.'"'.$producto->codigo_producto.'",';
 				$json.='"prod_precio_nor":'.'"'.$producto->precio1.'",';
 				$json.='"prod_precio_adv":'.'"'.$producto->precio2.'",';
