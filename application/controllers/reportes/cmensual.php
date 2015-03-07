@@ -16,19 +16,33 @@ class CMensual extends CI_Controller {
 		$this->load->view('reportes/vmensual');
 	}
 	
+	public function reporteVacio(){
+		$fecha_inicial =(String) $this->input->post('fecha_ini');
+		$fecha_final = (String)$this->input->post('fecha_fin');
+		
+		//obtener resultado de la query 
+		$resul['resultado'] = $this->mmensual->getValues($fecha_inicial,$fecha_final);
+		
+		if($resul['resultado']!=false){
+			echo 'FALSE';
+		}else{
+			echo 'TRUE';
+		}
+		
+	}
 	
 	public function reporteMensual(){		
 		$this->load->library('pdf');
 		
-		$fecha_inicial =(String) $this->input->get('fecha_ini');
-		$fecha_final = (String)$this->input->get('fecha_fin');
+		$fecha_inicial =(String) $this->input->post('fecha_ini');
+		$fecha_final = (String)$this->input->post('fecha_fin');
 
 		
 		//obtener resultado de la query 
 		$resul['resultado'] = $this->mmensual->getValues($fecha_inicial,$fecha_final);
 		$cantidad_data=0;
 		$total_data=0;
-		if($resul['resultado'] != null){
+		if($resul['resultado']!=false){
 			foreach($resul['resultado']->result() as $value){
 				$total_data+=$value->total;
 				$cantidad_data++;
@@ -87,7 +101,7 @@ class CMensual extends CI_Controller {
 		//table
 		foreach($resul['resultado']->result() as $value){
 			$pdf->MultiCell(15, 10, $value->id_remision, 1, 'L',0,0);
-			$pdf->MultiCell(20, 10, $value->importe, 1, 'L',0,0);
+			$pdf->MultiCell(20, 10, $value->total, 1, 'L',0,0);
 			$pdf->MultiCell(40, 10, $value->nombre_cliente, 1, 'L',0,0);
 			$pdf->MultiCell(35, 10, $value->nombre_sucursal, 1, 'L',0,0);
 			$pdf->MultiCell(35, 10, $value->nombre_usuario, 1, 'L',0,0);

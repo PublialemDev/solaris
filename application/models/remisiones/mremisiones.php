@@ -162,6 +162,27 @@ function deleteRemision($id_Remision){
 		return $returned;
 		
 	}
+
+/*
+ *  valida que exista la remision 
+ * 
+ *  @author Luis Briseño
+ *  @param int
+ * 	@return boolean
+ *  
+ * */
+function exists($id_remision){
+	$where_clause=array('id_remision'=>$id_remision);
+	$this->db->where($where_clause);
+	$query = $this->db->get('remisiones');
+	if($query->num_rows()>0){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 	/*public function selectRemisiones(){			
 		$consulta = $this->db->query("SELECT clientes.nombre_cliente, sucursales.nombre_sucursal, tipopagos.nombre_tipopago, 
 		remisiones.fecha, remisiones.instalacion, remisiones.total, remisiones.iva, remisiones.creado_en, remisiones.creado_por, remisiones.modificado_en,

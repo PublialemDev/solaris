@@ -4,7 +4,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Nota de Remision');
 echo getMenu();
 //Propiedades del form
-$form_reminote = array('id'=>'form_reminote');
+$form_reminote = array('id'=>'form_reminote','target'=>'_blank');
 
 //Propiedades del input 
 $num_remision =array('name'=>'idRemision','placeholder'=>'NUMERO','value'=>'','class'=>'form-control');
@@ -41,6 +41,13 @@ $label=array('class'=>'control-label');
 								<td><?php echo form_button('enviar','Generar Reporte','class="enviarButton  btn btn-primary"');?></td>
 							</tr>
 						</table>
+						</div>
+					</div>
+					<br>
+					<!--div para mostrar la alerta si no existe la remision-->
+					<div class='container-fluid'>
+						<div id='alert'>
+							<span></span>
 						</div>
 					</div>
 				</div>

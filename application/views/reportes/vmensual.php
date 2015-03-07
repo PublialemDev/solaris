@@ -4,7 +4,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Reporte mensual');
 echo getMenu();
 //Propiedades del form
-$form_mensual = array('id'=>'form_mensual','onSubmit'=>'getValues(this,event)');
+$form_mensual = array('id'=>'form_mensual','target'=>'_blank');
 
 //Propiedades del input 
 $fecha_ini =array('id'=>'fecha_ini','name'=>'fecha_ini','placeholder'=>'INICIO','value'=>'','class'=>'form-control');
@@ -24,7 +24,7 @@ $label=array('class'=>'control-label');
 	
 						<table>
 							<tbody>
-								<?php echo form_open('#',$form_mensual); ?>
+								<?php echo form_open('reportes/cmensual/reporteMensual',$form_mensual); ?>
 								<!--<?php echo form_hidden('idCatProducto','0');?>-->
 								<tr>
 									<td>
@@ -50,6 +50,13 @@ $label=array('class'=>'control-label');
 								<td><?php echo form_button('enviar','Generar Reporte','class="enviarButton  btn btn-primary"');?></td>
 							</tr>
 						</table>
+						</div>
+					</div>
+					<br>
+					<!--div para mostrar la alerta si no existe la remision-->
+					<div class='container-fluid'>
+						<div id='alert'>
+							<span></span>
 						</div>
 					</div>
 				</div>

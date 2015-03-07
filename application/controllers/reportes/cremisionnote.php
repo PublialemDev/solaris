@@ -9,6 +9,7 @@ class CRemisionNote extends CI_Controller {
 	$this->load->helper('form');
 	$this->load->helper('pagina');
 	$this->load->model('reportes/mremisionnote');
+	$this->load->model('remisiones/mremisiones');
 	
 	}
 	
@@ -141,6 +142,16 @@ class CRemisionNote extends CI_Controller {
 		//============================================================+
 		// END OF FILE
 		//============================================================+
+	}
+	
+	public function remisionExists(){
+		$rem_id=$this->input->post('rem_id');
+		
+		if($this->mremisiones->exists($rem_id)){
+			echo 'EXISTS';
+		}else{
+			echo 'NOT_EXISTS';
+		}
 	}
 
 } ?>
