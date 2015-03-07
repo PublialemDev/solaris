@@ -53,7 +53,7 @@ $label=array('class'=>'control-label');
 						</div>
 					</div>
 					<br>
-					<!--div para mostrar la alerta si no existe la remision-->
+					<!--div para mostrar las alertas-->
 					<div class='container-fluid'>
 						<div id='alert'>
 							<span></span>

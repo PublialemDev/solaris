@@ -17,11 +17,24 @@ class CReportSeguimiento extends CI_Controller {
 		$this->load->view('reportes/vreportseguimiento');
 	}
 	
+	public function reporteVacio(){
+		$id_cliente =$this->input->post('cliente_txt');
+		
+		//obtener resultado de la query 
+		$resul['resultado'] = $this->mreportseguimiento->getValues($id_cliente);
+		
+		if($resul['resultado']!=false){
+			echo 'FALSE';
+		}else{
+			echo 'TRUE';
+		}
+		
+	}
 	
 	public function reporteSeguimiento(){		
 		$this->load->library('pdf');
 		
-		$id_cliente =$this->input->get('cliente_txt');
+		$id_cliente =$this->input->post('cliente_txt');
 		
 		
 		//obtener resultado de la query 

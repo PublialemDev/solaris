@@ -4,7 +4,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 echo getHeader('Reporte Seguimiento');
 echo getMenu();
 //Propiedades del form
-$form_segui = array('id'=>'form_segui','role'=>'form');
+$form_segui = array('id'=>'form_segui','role'=>'form','target'=>'_blank');
 
 //Propiedades del input 
 $cliente =array('name'=>'cliente_name','placeholder'=>'Cliente','value'=>'','class'=>'form-control');
@@ -24,7 +24,7 @@ $label=array('class'=>'control-label');
 	
 						<table>
 							<tbody>
-								<?php echo form_open('#',$form_segui); ?>
+								<?php echo form_open('reportes/creportseguimiento/reporteSeguimiento',$form_segui); ?>
 								<!--<?php echo form_hidden('idCatProducto','0');?>-->
 								<tr>
 									<td>
@@ -46,6 +46,13 @@ $label=array('class'=>'control-label');
 								<td><?php echo form_button('enviar','Generar Reporte','class="enviarButton  btn btn-primary"');?></td>
 							</tr>
 						</table>
+						</div>
+					</div>
+					<br>
+					<!--div para mostrar las alertas-->
+					<div class='container-fluid'>
+						<div id='alert'>
+							<span></span>
 						</div>
 					</div>
 				</div>

@@ -45,7 +45,7 @@ $(document).on("click",".enviarButton",function(){
 			$("#form_mensual").submit();
 			$('#alert').removeClass("alert alert-danger").addClass("alert alert-success").attr("role","alert").children("span").html('<strong>Reporte creado correctamente</strong>');
 		}else{
-			$('#alert').removeClass("alert alert-success").addClass("alert alert-danger").attr("role","alert").children("span").html('<strong>La remision no existe</strong>');
+			$('#alert').removeClass("alert alert-success").addClass("alert alert-danger").attr("role","alert").children("span").html('<strong>El reporte no contiene información</strong>');
 		}
 		
 	}else{
