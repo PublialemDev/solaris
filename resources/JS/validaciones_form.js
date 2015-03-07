@@ -12,7 +12,7 @@ function isTexto(string){
 	if(isVacio(string)){
 		return false;
 	}
-	var patt=new RegExp('[^A-Za-z ]');
+	var patt=new RegExp('[^ÁÉÍÓÚáéíóúA-Za-z ]');
 	return !patt.test(string.trim());
 }
 
@@ -25,7 +25,7 @@ function isNombre(string){
 	if(isVacio(string)){
 		return false;
 	}
-	var patt=new RegExp('[^A-Za-z 0-9.]');
+	var patt=new RegExp('[^ÁÉÍÓÚáéíóúA-Za-z 0-9.,]');
 	return !patt.test(string.trim());
 }
 

@@ -17,7 +17,7 @@ function selectProductos(form,evt){
 					tableStructure+="<td>"+table[index].prod_codigo+"</td>";
 					tableStructure+="<td>"+table[index].prod_cat+"</td>";
 					tableStructure+="<td>"+table[index].prod_nombre+"</td>";
-					tableStructure+="<td>"+table[index].prod_desc+"</td>";
+					tableStructure+="<td>"+(table[index].prod_desc).replace(/&enter/g,"<br/>")+"</td>";
 					tableStructure+="<td>"+table[index].prod_precio_nor+"</td>";
 					tableStructure+="<td>"+table[index].prod_precio_adv+"</td>";
 					tableStructure+="<td>"+table[index].prod_precio_pre+"</td>";
