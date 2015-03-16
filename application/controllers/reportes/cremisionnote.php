@@ -39,6 +39,7 @@ class CRemisionNote extends CI_Controller {
 			$subtotal= $remi_data->total;
 			$iva= $remi_data->iva;
 			$total= $remi_data->total+$remi_data->iva;
+			$telefono = $remi_data->numero_telefono;
 		}
 		
 		list($año, $mes, $dia) = preg_split('/[: -]/', $remi_fecha_data);
@@ -83,36 +84,38 @@ class CRemisionNote extends CI_Controller {
 		// add a page
 		$pdf->AddPage();
 		
-		//fecha cabecera
-		$pdf->MultiCell(110, 0, '', 0, 'C',0,0);
-		$pdf->MultiCell(20, 0, 'Dia', 1, 'C',0,0);
-		$pdf->MultiCell(30, 0, 'Mes', 1, 'C',0,0);
-		$pdf->MultiCell(20, 0, 'Año', 1, 'C',0,1);
-		//fecha cuerpo
-		$pdf->MultiCell(110, 0, '', 0, 'C',0,0);
-		$pdf->MultiCell(20, 10, $dia, 1, 'C',0,0);
-		$pdf->MultiCell(30, 10, $mes, 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, $año, 1, 'C',0,1);
 		//numero de nota
 		$pdf->MultiCell(110, 10, '', 0, 'C',0,0);
-		$pdf->MultiCell(70, 10, 'No. '.$id_remision, 1, 'L',0,1);
-		$pdf->Ln(5);
+		$pdf->MultiCell(30, 10, '', 0, 'C',0,0);
+		$pdf->MultiCell(40, 10, 'FOLIO ', 1, 'C',0,1);
 		
-		// test Cell stretching
-		$pdf->Cell(0, 10, 'Sr.(es): '.$remi_nombre_data, 1, 1, 'L', 0, '', 0);
-		$pdf->Cell(0, 10, 'Dirección: '.$remi_dir_data, 1, 1, 'L', 0, '', 0);
-		$pdf->Cell(0, 10, 'Ciudad: '.$remi_mun_data, 1, 1, 'L', 0, '', 0);	
-		$pdf->Cell(0, 10, 'Tipo de Pago: '.$remi_tp_data, 1, 1, 'L', 0, '', 0);	
-		$pdf->Ln(5);
+		$pdf->MultiCell(73, 10, 'NOMBRE: '.$remi_nombre_data, 1, 'L',0,0);
+		$pdf->MultiCell(62, 10, 'TELEFONO: '.$telefono, 1, 'L',0,0);
+		$pdf->MultiCell(5, 10, '', 0, 'C',0,0);
+		$pdf->MultiCell(40, 10, $id_remision, 1, 'C',0,1);	
 		
-		$pdf->MultiCell(90, 10, 'Sucursal: '.$remi_suc_data, 0, 'L',0,0);
-		$pdf->MultiCell(90, 10, 'Usuario: '.$remi_usr_data, 0, 'L',0,1);
+		//fecha cabecera
+		$pdf->MultiCell(135, 10, 'DOMICILIO: '.$remi_dir_data.' '.$remi_mun_data, 1, 'L',0,0);
+		$pdf->MultiCell(5, 10, '', 0, 'C',0,0);
+		$pdf->MultiCell(40, 10, 'FECHA ', 1, 'C',0,1);	
+
+		//fecha cuerpo
+		$pdf->MultiCell(135, 10, 'REFERENCIAS: ', 1, 'L',0,0);
+		$pdf->MultiCell(5, 10, '', 0, 'C',0,0);
+		$pdf->MultiCell(13, 10, $dia, 1, 'C',0,0);
+		$pdf->MultiCell(13, 10, $mes, 1, 'C',0,0);
+		$pdf->MultiCell(14, 10, $año, 1, 'C',0,1);
+		$pdf->Ln(5);
+				
+		
+		$pdf->MultiCell(90, 10, 'SUCURSAL: '.$remi_suc_data, 0, 'L',0,0);
+		$pdf->MultiCell(90, 10, 'ATENDIDO POR: '.$remi_usr_data, 0, 'L',0,1);
 		$pdf->Ln(5);
 		
 		//headers
 		$pdf->MultiCell(30, 10, 'CANTIDAD: ', 1, 'C',0,0);
-		$pdf->MultiCell(90, 10, 'ARTICULO: ', 1, 'C',0,0);
-		$pdf->MultiCell(30, 10, 'PRECIO: ', 1, 'C',0,0);
+		$pdf->MultiCell(90, 10, 'CONCEPTO: ', 1, 'C',0,0);
+		$pdf->MultiCell(30, 10, 'PRECIO UNITARIO: ', 1, 'C',0,0);
 		$pdf->MultiCell(30, 10, 'IMPORTE: ', 1, 'C',0,1);
 		
 		//table
@@ -123,10 +126,9 @@ class CRemisionNote extends CI_Controller {
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,0);
 			$pdf->MultiCell(20, 7, $value->importe, 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
-		}
-		
-		$datos = array('SUBTOTAL $','I.V.A. %','TOTAL $');
-		$values = array($subtotal,$iva,$total);
+		}		
+		$datos = array('TOTAL','ACUENTA','RESTA');
+		$values = array($total,$subtotal,$iva);
 		$i = 0;
 		foreach($datos as $dato){
 			$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
@@ -134,8 +136,31 @@ class CRemisionNote extends CI_Controller {
 			$pdf->MultiCell(20, 7, $values[$i++], 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		}
+		
+		$pdf->Ln(3);
+		$pdf->MultiCell(80, 20, 'CANTIDAD CON LETRA', 1, 'L',0,0);			
+		$pdf->SetFont('times', 'B', 8);
+		$pdf->MultiCell(78, 5, '*ACEPTO TERMINOS Y CONDICIONES', 0, 'L',0,0);
+		$pdf->MultiCell(17, 5, 'EFECTIVO', 0, 'R',0,0);
+		$pdf->MultiCell(5, 5, '', 1, 'C',0,1);
 
+		
+		$pdf->MultiCell(80, 20, '', 0, 'L',0,0);	
+		$pdf->MultiCell(78, 5, '*EN CANCELACIONES NO HAY DEVOLUCIONES', 0, 'L',0,0);
+		$pdf->MultiCell(17, 5, 'DEPOSITO', 0, 'R',0,0);
+		$pdf->MultiCell(5, 5, '', 1, 'C',0,1);
 
+		
+		$pdf->MultiCell(80, 20, '', 0, 'L',0,0);	
+		$pdf->MultiCell(78, 5, '*EN UNA MALA INSTALACION NO APLICA GARANTIA', 0, 'L',0,0);
+		$pdf->MultiCell(17, 5, 'TARJETA', 0, 'R',0,0);
+		$pdf->MultiCell(5, 5, '', 1, 'C',0,1);
+		
+		$pdf->SetFont('times', '', 11);
+		$pdf->Ln(25);
+		$pdf->MultiCell(180, 10, '______________________________', 0, 'C',0,1);	
+		$pdf->MultiCell(180, 10, 'FIRMA DEL CLIENTE', 0, 'C',0,1);
+		
 		//Close and output PDF document
 		$pdf->Output('nota_remision.pdf', 'I');
 		

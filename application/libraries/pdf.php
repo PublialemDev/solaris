@@ -14,12 +14,18 @@ class Pdf extends TCPDF{
     public function Header() {
         // Logo
         $image_file = K_PATH_IMAGES.'logo.png';
-        $this->Image($image_file, 10, 5, 50, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $this->Image($image_file, 10, 5, 50, '', 'PNG', '', 'L', false, 300, '', false, false, 0, false, false, false);
+		$image_file2 = K_PATH_IMAGES.'fb.png';
+        $this->Image($image_file2, 160, 6, 40, '', 'PNG', '', 'R', false, 300, '', false, false, 0, false, false, false);
+		
         // Set font
-        $this->SetFont('helvetica', 'B', 10);
+        $this->SetFont('helvetica', 'B', 20);
         // Title
-        $this->MultiCell(0, 0, 'Tel:(55)21571957 / (55)56412732',0,'L', 0, 1);
-		$this->MultiCell(0, 0, 'email: ventas@solarisdemexico.com',0,'L', 0,1,60,10);
+        $this->MultiCell(0,0, 'SOLARIS DE MÉXICO',0,'C', 0, 1);	
+		 $this->SetFont('helvetica', 'B', 13);	
+		$this->MultiCell(0,0, 'CALENTADORES SOLARES',0,'C', 0, 1);	
+		 $this->SetFont('helvetica', 'B', 10);	
+        $this->MultiCell(0,0, 'Tel. (55) 21571957 / (55) 56412732',0,'C', 0, 1);		
 		
 				
     }
