@@ -113,10 +113,10 @@ class CRemisionNote extends CI_Controller {
 		$pdf->Ln(5);
 		
 		//headers
-		$pdf->MultiCell(30, 10, 'CANTIDAD: ', 1, 'C',0,0);
-		$pdf->MultiCell(90, 10, 'CONCEPTO: ', 1, 'C',0,0);
-		$pdf->MultiCell(30, 10, 'PRECIO UNITARIO: ', 1, 'C',0,0);
-		$pdf->MultiCell(30, 10, 'IMPORTE: ', 1, 'C',0,1);
+		$pdf->MultiCell(30, 10, 'CANTIDAD ', 1, 'C',0,0);
+		$pdf->MultiCell(90, 10, 'CONCEPTO ', 1, 'C',0,0);
+		$pdf->MultiCell(30, 10, 'PRECIO UNITARIO ', 1, 'C',0,0);
+		$pdf->MultiCell(30, 10, 'IMPORTE ', 1, 'C',0,1);
 		
 		//table
 		foreach($resul['resultado']->result() as $value){
