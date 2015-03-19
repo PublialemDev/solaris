@@ -81,6 +81,28 @@ class CRemisionNote extends CI_Controller {
 		// set font
 		$pdf->SetFont('times', '', 11);
 		
+		$pdf->SetPrintHeader(false);     
+		$pdf->AddPage();
+		$texto = "FELICIDADES usted ahora es dueño del mejor calentador solar del mercado. La calidad de material en este calentador se rige bajo las mas estrictas normas internacionales ISO-9001. 
+
+			SOLARIS ECO-SYSTEMS Responderá por defectos de fabrica en el equipo durante 3 años y reparará o cambiará componentes defectuosos. En ningún momento Solaris Eco-Systems estará obligado a instalar un equipo nuevo o devolver el costo del equipo. Para hacer una reclamación el cliente debe de presentar la factura o nota original.
+
+			Excluidos de la garantía quedarán:
+			*Daños ocasionados por el uso en climas corrosivos, como  en la costa o por agua clorada de piscinas.
+			*Daños por instalaciones o usos que no cumplan con el manual.
+			*Daños por alteraciones o reparaciones efectuadas por personas no autorizadas por la empresa.
+			*Daño por mal uso o negligencia del cliente.
+			*Daños por fenómenos por la naturaleza (Granizos, tormentas, huracanes, etc.).
+			*Daños por actos de vandalismo, objetos y artefactos que pudieran dañar los componentes del sistema.
+			*Cambiar la barra de magnesio mínimo cada 6 meses dependiendo de la condición del agua de la zona.
+			
+			SOLARIS ECO-SYSTEMS No acepta ninguna responsabilidad por daños ocurridos a personas o bienes durante la instalación o el uso del equipo.
+			
+			El sistema depende totalmente de una adecuada instalación, de no ser así se anulara la garantía.";
+			
+		$pdf->MultiCell(180, 10, $texto, 0, 'L',0,0);
+		
+		$pdf->SetPrintHeader(true);  
 		// add a page
 		$pdf->AddPage();
 		
@@ -161,13 +183,17 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(180, 10, '______________________________', 0, 'C',0,1);	
 		$pdf->MultiCell(180, 10, 'FIRMA DEL CLIENTE', 0, 'C',0,1);
 		
+		
+		
+				
 		//Close and output PDF document
 		$pdf->Output('nota_remision.pdf', 'I');
-		
 		//============================================================+
 		// END OF FILE
 		//============================================================+
 	}
+
+	
 	
 	public function remisionExists(){
 		$rem_id=$this->input->post('rem_id');
