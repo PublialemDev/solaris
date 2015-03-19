@@ -149,8 +149,8 @@ class CRemisionNote extends CI_Controller {
 			$pdf->MultiCell(20, 7, $value->importe, 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		}		
-		$datos = array('TOTAL','ACUENTA','RESTA');
-		$values = array($total,$subtotal,$iva);
+		$datos = array('SUBTOTAL','IVA','TOTAL');
+		$values = array($subtotal,$iva,$total);
 		$i = 0;
 		foreach($datos as $dato){
 			$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
@@ -160,23 +160,23 @@ class CRemisionNote extends CI_Controller {
 		}
 		
 		$pdf->Ln(3);
-		$pdf->MultiCell(80, 20, 'CANTIDAD CON LETRA', 1, 'L',0,0);			
+		$pdf->MultiCell(70, 20, 'CANTIDAD CON LETRA', 1, 'L',0,0);			
 		$pdf->SetFont('times', 'B', 8);
 		$pdf->MultiCell(78, 5, '*ACEPTO TERMINOS Y CONDICIONES', 0, 'L',0,0);
-		$pdf->MultiCell(17, 5, 'EFECTIVO', 0, 'R',0,0);
-		$pdf->MultiCell(5, 5, '', 1, 'C',0,1);
+		$pdf->MultiCell(32, 5, 'TIPO DE PAGO', 0, 'C',0,1);
+
 
 		
-		$pdf->MultiCell(80, 20, '', 0, 'L',0,0);	
+		$pdf->MultiCell(70, 20, '', 0, 'L',0,0);	
 		$pdf->MultiCell(78, 5, '*EN CANCELACIONES NO HAY DEVOLUCIONES', 0, 'L',0,0);
-		$pdf->MultiCell(17, 5, 'DEPOSITO', 0, 'R',0,0);
-		$pdf->MultiCell(5, 5, '', 1, 'C',0,1);
+		$pdf->MultiCell(32, 5, $remi_tp_data, 0, 'C',0,1);
+
 
 		
-		$pdf->MultiCell(80, 20, '', 0, 'L',0,0);	
+		$pdf->MultiCell(70, 20, '', 0, 'L',0,0);	
 		$pdf->MultiCell(78, 5, '*EN UNA MALA INSTALACION NO APLICA GARANTIA', 0, 'L',0,0);
-		$pdf->MultiCell(17, 5, 'TARJETA', 0, 'R',0,0);
-		$pdf->MultiCell(5, 5, '', 1, 'C',0,1);
+		$pdf->MultiCell(32, 5, '', 0, 'C',0,0);
+
 		
 		$pdf->SetFont('times', '', 11);
 		$pdf->Ln(25);
