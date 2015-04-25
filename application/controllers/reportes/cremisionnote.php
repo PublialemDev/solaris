@@ -141,8 +141,10 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(30, 10, 'PRECIO UNITARIO ', 1, 'C',0,0);
 		$pdf->MultiCell(30, 10, 'IMPORTE ', 1, 'C',0,1);
 		
+		//obtener los productos
+		$resul['productos'] = $this->mremisionnote->getProductoRemision($id_remision);
 		//table
-		foreach($resul['resultado']->result() as $value){
+		foreach($resul['productos']->result() as $value){
 			$pdf->MultiCell(30, 7, $value->cantidad, 1, 'C',0,0);
 			$pdf->MultiCell(90, 7, $value->nombre_producto, 1, 'C',0,0);
 			$pdf->MultiCell(20, 7, $value->precio_actual, 1, 'C',0,0);
