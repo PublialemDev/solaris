@@ -106,7 +106,7 @@ class CRemisionNote extends CI_Controller {
 		
 		// add a page
 		$pdf->AddPage();
-		$pdf->setHeaderData('',0,'','ola ke ase');
+
 		//numero de nota
 		$pdf->MultiCell(110, 10, '', 0, 'C',0,0);
 		$pdf->MultiCell(30, 10, '', 0, 'C',0,0);
