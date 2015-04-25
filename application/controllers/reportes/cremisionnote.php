@@ -103,9 +103,10 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(180, 10, $texto, 0, 'L',0,0);
 		
 		$pdf->SetPrintHeader(true);  
+		
 		// add a page
 		$pdf->AddPage();
-		
+		$pdf->setHeaderData('',0,'','ola ke ase');
 		//numero de nota
 		$pdf->MultiCell(110, 10, '', 0, 'C',0,0);
 		$pdf->MultiCell(30, 10, '', 0, 'C',0,0);
@@ -149,32 +150,32 @@ class CRemisionNote extends CI_Controller {
 			$pdf->MultiCell(20, 7, $value->importe, 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
 		}		
-		$datos = array('SUBTOTAL','IVA','TOTAL');
-		$values = array($subtotal,$iva,$total);
-		$i = 0;
-		foreach($datos as $dato){
+		//$datos = array('SUBTOTAL','IVA','TOTAL');
+		//$values = array($subtotal,$iva,$total);
+		//$i = 0;
+		//foreach($datos as $dato){
 			$pdf->MultiCell(120, 7, '', 0, 'C',0,0);
-			$pdf->MultiCell(30, 7, $dato, 1, 'C',0,0);
-			$pdf->MultiCell(20, 7, $values[$i++], 1, 'C',0,0);
+			$pdf->MultiCell(30, 7, 'TOTAL', 1, 'C',0,0);
+			$pdf->MultiCell(20, 7, $total, 1, 'C',0,0);
 			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
-		}
+		//}
 		
 		$pdf->Ln(3);
-		$pdf->MultiCell(70, 20, 'CANTIDAD CON LETRA', 1, 'L',0,0);			
+		//$pdf->MultiCell(70, 20, 'CANTIDAD CON LETRA', 1, 'L',0,0);			
 		$pdf->SetFont('times', 'B', 8);
-		$pdf->MultiCell(78, 5, '*ACEPTO TERMINOS Y CONDICIONES', 0, 'L',0,0);
+		$pdf->MultiCell(148, 5, '*ACEPTO TERMINOS Y CONDICIONES', 0, 'L',0,0);
 		$pdf->MultiCell(32, 5, 'TIPO DE PAGO', 0, 'C',0,1);
 
 
 		
-		$pdf->MultiCell(70, 20, '', 0, 'L',0,0);	
-		$pdf->MultiCell(78, 5, '*EN CANCELACIONES NO HAY DEVOLUCIONES', 0, 'L',0,0);
+		//$pdf->MultiCell(70, 20, '', 0, 'L',0,0);	
+		$pdf->MultiCell(148, 5, '*EN CANCELACIONES NO HAY DEVOLUCIONES', 0, 'L',0,0);
 		$pdf->MultiCell(32, 5, $remi_tp_data, 0, 'C',0,1);
 
 
 		
-		$pdf->MultiCell(70, 20, '', 0, 'L',0,0);	
-		$pdf->MultiCell(78, 5, '*EN UNA MALA INSTALACION NO APLICA GARANTIA', 0, 'L',0,0);
+		//$pdf->MultiCell(70, 20, '', 0, 'L',0,0);	
+		$pdf->MultiCell(148, 5, '*EN UNA MALA INSTALACION NO APLICA GARANTIA', 0, 'L',0,0);
 		$pdf->MultiCell(32, 5, '', 0, 'C',0,0);
 
 		
