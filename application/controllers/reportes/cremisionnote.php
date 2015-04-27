@@ -24,8 +24,16 @@ class CRemisionNote extends CI_Controller {
 		$id_remision = $this->input->post('idRemision');
 		$idUsuario = base64_decode($_SESSION['USUARIO_ID']);
 		
+		$resul['sucursal'] = $this->mremisionnote->getSucursalData($id_remision);
+		if($resul['sucursal'] != null){
+			$sucu_data = $resul['sucursal']->first_row();
+			$sucu_dir_data = $sucu_data->calle.' ext. #'.$sucu_data->numero_ext.' int. #'.$sucu_data->numero_int;
+			$sucu_mun_data = $sucu_data->municipio.', '.$sucu_data->nombre_estado;
+		}else{
+			show_error('ERROR CONSULTA VACIA' );
+		}
 		//obtener resultado de la query 
-		$resul['resultado'] = $this->mremisionnote->getValues($id_remision,$idUsuario);
+		$resul['resultado'] = $this->mremisionnote->getValues($id_remision);
 		
 		if($resul['resultado'] != null){
 			$remi_data=$resul['resultado']->first_row();
@@ -36,8 +44,6 @@ class CRemisionNote extends CI_Controller {
 			$remi_usr_data = $remi_data->nombre_usuario;
 			$remi_suc_data = $remi_data->nombre_sucursal;
 			$remi_fecha_data = $remi_data->fecha;
-			$subtotal= $remi_data->total;
-			$iva= $remi_data->iva;
 			$total= $remi_data->total+$remi_data->iva;
 			$telefono = $remi_data->numero_telefono;
 		}
@@ -103,13 +109,14 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(180, 10, $texto, 0, 'L',0,0);
 		
 		$pdf->SetPrintHeader(true);  
-		
 		// add a page
 		$pdf->AddPage();
-
+		
 		//numero de nota
-		$pdf->MultiCell(110, 10, '', 0, 'C',0,0);
-		$pdf->MultiCell(30, 10, '', 0, 'C',0,0);
+		$pdf->SetFont('helvetica', 'B', 10);
+		$pdf->MultiCell(40, 10, '', 0, 'C',0,0);
+		$pdf->MultiCell(100, 10, $sucu_dir_data.', '.$sucu_mun_data, 0, 'C',0,0);
+		$pdf->SetFont('times', 'B', '10');
 		$pdf->MultiCell(40, 10, 'FOLIO ', 1, 'C',0,1);
 		
 		$pdf->MultiCell(73, 10, 'NOMBRE: '.$remi_nombre_data, 1, 'L',0,0);
@@ -141,17 +148,31 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(30, 10, 'PRECIO UNITARIO ', 1, 'C',0,0);
 		$pdf->MultiCell(30, 10, 'IMPORTE ', 1, 'C',0,1);
 		
-		//obtener los productos
 		$resul['productos'] = $this->mremisionnote->getProductoRemision($id_remision);
+		$cont= 0;
 		//table
-		foreach($resul['productos']->result() as $value){
-			$pdf->MultiCell(30, 7, $value->cantidad, 1, 'C',0,0);
-			$pdf->MultiCell(90, 7, $value->nombre_producto, 1, 'C',0,0);
-			$pdf->MultiCell(20, 7, $value->precio_actual, 1, 'C',0,0);
-			$pdf->MultiCell(10, 7, '', 1, 'C',0,0);
-			$pdf->MultiCell(20, 7, $value->importe, 1, 'C',0,0);
-			$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
-		}		
+		if($resul['productos'] != null){
+			foreach($resul['productos']->result() as $value){
+				$pdf->MultiCell(30, 7, $value->cantidad, 1, 'C',0,0);
+				$pdf->MultiCell(90, 7, $value->nombre_producto, 1, 'C',0,0);
+				$pdf->MultiCell(20, 7, $value->precio_actual, 1, 'C',0,0);
+				$pdf->MultiCell(10, 7, '', 1, 'C',0,0);
+				$pdf->MultiCell(20, 7, $value->importe, 1, 'C',0,0);
+				$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
+				$cont++;
+			}	
+						
+		}
+		if($cont < 10){
+			for($i = 0; $i<10; $i++){
+				$pdf->MultiCell(30, 7, '', 1, 'C',0,0);
+				$pdf->MultiCell(90, 7, '', 1, 'C',0,0);
+				$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
+				$pdf->MultiCell(10, 7, '', 1, 'C',0,0);
+				$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
+				$pdf->MultiCell(10, 7, '', 1, 'C',0,1);
+			}
+		}	
 		//$datos = array('SUBTOTAL','IVA','TOTAL');
 		//$values = array($subtotal,$iva,$total);
 		//$i = 0;
