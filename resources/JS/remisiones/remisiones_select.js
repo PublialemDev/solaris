@@ -61,7 +61,7 @@ function selectRemisiones(form,evt){
 		
 		$("#target").on("dblclick",".datos tbody tr", function(){
 			if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
-				if (confirm("¿Seguro que desea editar el tipo de pago?")){
+				if (confirm("¿Seguro que desea editar la remisión?")){
 					window.location.href = SERVER_URL_BASE+"remisiones/cremisiones/formUpdateRemision?id_Remision="+$(this).attr("id");
 				}
 			}

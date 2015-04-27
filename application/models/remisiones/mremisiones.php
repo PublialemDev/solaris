@@ -66,7 +66,16 @@ class MRemisiones extends CI_Model{
 	}
 	
 	function selectRemisiones($where_clause){
-		
+		if(isset($where_clause['estatus_remision'])){
+			
+			if($where_clause['estatus_remision']=='A'){
+				$this->db->where('remisiones.estatus_remision',$where_clause['estatus_remision']);
+			}else if($where_clause['estatus_remision']=='I'){
+				$this->db->where('remisiones.estatus_remision',$where_clause['estatus_remision']);
+			}else{
+				
+			}
+		}
 		if(isset($where_clause['cli_id'])){
 			$this->db->where('clientes.id_cliente',$where_clause['cli_id']);
 		}

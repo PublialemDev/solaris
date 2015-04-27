@@ -7,7 +7,8 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>'','class'=>'form-control');
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>'','class'=>'form-control');
-	$cli_nivel=array('nor'=>'Normal','adv'=>'Avanzado','pre'=>'Premier') ;
+	$cli_nivel=array('nor'=>'Publico','adv'=>'Precio 1','pre'=>'Precio 2') ;
+	//$cli_nivel=array('nor'=>'Normal','adv'=>'Avanzado','pre'=>'Premier') ;
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>'','class'=>'form-control');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>'','class'=>'form-control');

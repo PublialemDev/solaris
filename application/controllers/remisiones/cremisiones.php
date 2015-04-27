@@ -60,7 +60,7 @@ class CRemisiones extends CI_Controller {
 			$datos=array(
 			'id_cliente'=> $remi_data['idCliente'],
 			'id_catseguimiento'=> '0',
-			'comentario'=> 'Remision generada ('.$generated.')'.'Total:'.($remi_data['total'] + $remi_data['iva']),
+			'comentario'=> 'Remision generada ('.$generated.')'.'Total:'.($remi_data['total'] /*+ $remi_data['iva']*/),
 			'fecha'=> $remi_data['fecha'],
 			);
 			$this->mseguimiento->insertSeguimiento($datos);
@@ -165,6 +165,8 @@ class CRemisiones extends CI_Controller {
 		$tipopago_id=$this->input->post('tipopago_id');
 		$fecha_inicio=$this->input->post('fecha_inicio');
 		$fecha_fin=$this->input->post('fecha_fin');
+		$fecha_fin=$this->input->post('fecha_fin');
+		$estatus_remision=$this->input->post('estatus_remision');
 		
 		$where_clause=array();
 		if($cli_id!= null and $cli_id!=''){
@@ -181,6 +183,9 @@ class CRemisiones extends CI_Controller {
 		}
 		if($fecha_fin!= null and $fecha_fin!=''){
 			$where_clause['fecha_fin']=$fecha_fin;
+		}
+		if($estatus_remision!= null and $estatus_remision!=''){
+			$where_clause['estatus_remision']=$estatus_remision;
 		}
 
 		$res=$this->mremisiones->selectRemisiones($where_clause);

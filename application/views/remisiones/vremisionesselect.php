@@ -21,6 +21,8 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	foreach ($tipopagos->result() as $tipopago) {
 		$tipopago_data[(string)$tipopago->id_tipoPago]= (string)$tipopago->nombre_tipoPago;
 	}
+	//Dropdown estatus remisiones
+	$estatus_remisiones=array('-'=>'Todas','A'=>'Activo','I'=>'Inactivo');
 ?>
 
 <div id="container" class='container'>
@@ -53,6 +55,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 					<div class="form-group">
 						<?php echo form_label('fecha fin: ','fecha_fin');?>
 						<?php echo form_input($fecha_fin);?>
+					</div>
+					<div class="form-group">
+						<?php echo form_label('Estatus: ','estatus_remision');?>
+						<?php echo form_dropdown('estatus_remision',$estatus_remisiones,'','class="form-control"');;?>
 					</div>
 					<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
 				<?php echo form_close(); ?>
