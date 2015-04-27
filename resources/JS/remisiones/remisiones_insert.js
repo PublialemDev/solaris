@@ -196,16 +196,17 @@ function calcularTotal(){
 		cantidad=$(this).val();
 		subtotal=parseInt(subtotal)+parseInt((precio*cantidad));
 	});
-	if($("input[name='iva_check']:checked").length==1){
+	/*if($("input[name='iva_check']:checked").length==1){
 		iva=subtotal * $("input[name='iva_check']:checked").val();
 	}
 	$("input[name='total_txt']").val(subtotal);
 	$("input[name='iva_txt']").val(iva);
-	$("#total_general").text(parseInt(subtotal+iva));
+	$("#total_general").text(parseInt(subtotal+iva));*/
+	$("input[name='total_txt']").val(subtotal);
 }
 
 //si se habilita el iva lo aplica
-$("input[name='iva_check']").change(function(){
+/*$("input[name='iva_check']").change(function(){
 	var iva=0;
 	if($("input[name='iva_check']:checked").length==1){
 		iva=$("input[name='total_txt']").val() * $("input[name='iva_check']:checked").val();
@@ -214,7 +215,7 @@ $("input[name='iva_check']").change(function(){
 	}
 	$("input[name='iva_txt']").val(iva);
 	$("#total_general").text(parseInt($("input[name='total_txt']").val())+parseInt(iva));
-});
+});*/
 
 //agrega el total cuando se agrega una cantidad de productos
 $(document).on("blur","input[name='prod_cant']",function(){
@@ -261,22 +262,22 @@ function validarForm(){
 	}				
 	
 	//valida el total
-	/*if(!isVacio($("input[name='total_txt']").val())){
+	if(!isVacio($("input[name='total_txt']").val())){
 		$("input[name='total_txt']").parent().removeClass("has-error");
 	}else{
 		$("input[name='total_txt']").parent().addClass("has-error");
 		continuar=false;
-	}*/
+	}
 	
 	//valida el iva
-	if(isVacio($("input[name='iva_txt']").val())){
+	/*if(isVacio($("input[name='iva_txt']").val())){
 		$("input[name='iva_txt']").parent().removeClass("has-error");
 	}else if(isNumeroFlotante($("input[name='iva_txt']").val())){
 		$("input[name='iva_txt']").parent().removeClass("has-error");
 	}else{
 		$("input[name='iva_txt']").parent().addClass("has-error");
 		continuar=false;
-	}
+	}*/
 	
 	return continuar;
 }

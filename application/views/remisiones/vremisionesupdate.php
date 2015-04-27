@@ -127,11 +127,11 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									</td>
 								</tr>
 								
-								<tr>
+								<!--<tr>
 									<td>
 										<div class="form-group">
 										<?php echo form_label('IVA:','iva',$label);?>
-										<!--Para pruebas-->
+										<!--Para pruebas- ->
 										<?php 
 										$checked=false;
 										if($rem_iva>0){$checked=true;}
@@ -147,7 +147,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 											<span id="total_general"><?php echo $rem_total+$rem_iva;  ?></span>
 										</div>
 									</td>
-								</tr>
+								</tr>-->
 								<tr>
 									<td><?php echo form_button('saveButton','Editar','class="btn btn-primary enableButton"');?></td>
 									<td><?php if($nombre_tipoUsuario == 'ADMINISTRADOR'){
@@ -180,6 +180,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 								<tbody>
 									<?php 
 									$table='';
+									if ($remisionproducto!=null){
 									foreach ($remisionproducto->result() as $producto) {
 										$table.='<tr id="'.$producto->id_producto.'">';
 										$table.='<td>'.$producto->nombre_producto.'</td>';
@@ -189,6 +190,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										$table.='</tr>';
 										
 										$tipopago_data[(string)$tipopago->id_tipoPago]= (string)$tipopago->nombre_tipoPago;
+									}
 									}
 									echo $table;
 									?>

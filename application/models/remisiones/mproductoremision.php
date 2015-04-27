@@ -40,7 +40,7 @@ class Mproductoremision extends CI_Model{
 	}
 	
 	public function selectProductoRemisionById($id_remision){
-		$where_clause=array('id_remision'=>$id_remision,'estatus_productoRemision'=>'A');
+		$where_clause=array('id_remision'=>$id_remision/*,'estatus_productoRemision'=>'A'*/);
 		$this->db->where($where_clause);
 		$this->db->select('id_remision,productoremision.id_producto,cantidad,precio_actual,descuento,nombre_producto,descripcion_producto, nivel_cliente');
 		$this->db->from('productoremision');

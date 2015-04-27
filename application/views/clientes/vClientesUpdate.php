@@ -28,7 +28,8 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//cliente
 	$cli_nombre =array('name'=>'nombre','placeholder'=>'Nombre','value'=>$cli_nombre_data, 'disabled'=>'disabled','class'=>'form-control');
 	$cli_rfc =array('name'=>'rfc','placeholder'=>'RFC', 'value'=>$cli_rfc_data, 'disabled'=>'disabled','class'=>'form-control');
-	$cli_nivel=array('nor'=>'Normal','adv'=>'Avanzado','pre'=>'Premier');
+	$cli_nivel=array('nor'=>'Publico','adv'=>'Precio 1','pre'=>'Precio 2') ;
+	//$cli_nivel=array('nor'=>'Normal','adv'=>'Avanzado','pre'=>'Premier') ;
 	//direccion
 	$dir_calle =array('name'=>'dir_calle','placeholder'=>'Calle','value'=>$dir_calle_data, 'disabled'=>'disabled','class'=>'form-control');
 	$dir_num_ext =array('name'=>'dir_num_ext','placeholder'=>'Num. Exterior','value'=>$dir_num_ext_data, 'disabled'=>'disabled','class'=>'form-control');

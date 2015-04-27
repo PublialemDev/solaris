@@ -20,11 +20,10 @@ function validarForm(){
 	return continuar;
 }
 
-
 /*
- *Guarda los datos al hacer clic en el boton
+ * Envia los datos para validar el login
  * */
-$(document).on("click",".enviarButton",function(){
+function enviarDatos(){
 	if(validarForm()){
 		
 		var formSer=$("#form_login").serialize();
@@ -45,4 +44,18 @@ $(document).on("click",".enviarButton",function(){
 	}else{
 		alert("Todos los campos son obligatorios.");
 	}
+}
+
+/*
+ *Guarda los datos al hacer clic en el boton
+ * */
+$(document).on("click",".enviarButton",function(){
+	enviarDatos();
 });
+
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        enviarDatos();
+    }
+});
+

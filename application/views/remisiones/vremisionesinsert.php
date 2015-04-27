@@ -89,16 +89,17 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										</div>
 									</td>
 								</tr>
+								<!-- Eliminado por requerimeinto del cliente 25/04/2015 -->
 								<tr>
 									<td>
 										<div class="form-group">
-										<?php echo form_label('Subtotal: ','total',$label);?>
+										<?php echo form_label('Total: ','total',$label);?>
 										<?php echo form_input($remision_total);?>
 										</div>
 									</td>
 								</tr>
 								
-								<tr>
+								<!--<tr>
 									<td>
 										<div class="form-group">
 										<?php echo form_label('IVA:','iva',$label);?>
@@ -107,14 +108,14 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										</div>
 									</td>
 								</tr>
-								<tr>
+								<!--<tr>
 									<td>
 										<div class="form-group">
 											<?php echo form_label('Total:','total_general',$label);?>
 											<span id="total_general">0</span>
 										</div>
 									</td>
-								</tr>
+								</tr>-->
 								<tr>
 									<td><center><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></center></td>
 								</tr>
