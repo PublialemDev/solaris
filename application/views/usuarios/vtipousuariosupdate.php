@@ -74,7 +74,7 @@ $label=array('class'=>'control-label');
 	</div>		
 </div>
 <?php
-echo getFooter('<script src="http://localhost/solaris/resources/JS/usuarios/tipousuarios_update.js"></script>') ;
+echo getFooter('<script src="/solaris/resources/JS/usuarios/tipousuarios_update.js"></script>') ;
 	}else{
 		header('Location:/solaris/index.php/main/cMain/main');
 	}

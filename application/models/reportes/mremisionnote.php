@@ -10,7 +10,7 @@ class MRemisionNote extends CI_Model {
 	}
 	
 	public function getValues($id_remision){
-		$query = $this->db->query('SELECT clientes.nombre_cliente,direcciones.calle,direcciones.numero_ext,direcciones.numero_int,telefonos.numero_telefono,
+		$query = $this->db->query('SELECT clientes.nombre_cliente,direcciones.calle,direcciones.numero_ext,direcciones.numero_int,telefonos.numero_telefono,direcciones.comentarios,
 									direcciones.municipio,estados.nombre_estado,sucursales.nombre_sucursal,sucursales.nombre_sucursal,sucursales.nombre_sucursal,sucursales.nombre_sucursal,sucursales.nombre_sucursal,usuarios.nombre_usuario,
 									remisiones.fecha,remisiones.iva,remisiones.total,productoremision.descuento,productoremision.cantidad,
 									productoremision.precio_actual,tipopagos.nombre_tipoPago,
@@ -57,7 +57,7 @@ class MRemisionNote extends CI_Model {
 	}
 	
 	public function getSucursalData($id_remision){
-		$query = $this->db->query('SELECT calle,numero_ext,numero_int,colonia,municipio,nombre_estado FROM remisiones
+		$query = $this->db->query('SELECT calle,numero_ext,numero_int,colonia,municipio,nombre_estado,comentarios FROM remisiones
 		JOIN sucursales on sucursales.id_sucursal = remisiones.id_sucursal
 		JOIN direcciones on sucursales.id_sucursal = direcciones.id_perfil
 		JOIN estados on direcciones.id_estado = estados.id_estado 

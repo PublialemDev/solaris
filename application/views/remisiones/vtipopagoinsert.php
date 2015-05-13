@@ -62,7 +62,7 @@ $label=array('class'=>'control-label');
 </div>
 
 <?php 
-echo getFooter('<script src="http://localhost/solaris/resources/JS/remisiones/tipopago_insert.js"></script>');
+echo getFooter('<script src="/solaris/resources/JS/remisiones/tipopago_insert.js"></script>');
 	}else{
 		header('Location:/solaris/index.php/main/cMain/main');
 	}

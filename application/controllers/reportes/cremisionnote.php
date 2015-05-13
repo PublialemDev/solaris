@@ -28,7 +28,7 @@ class CRemisionNote extends CI_Controller {
 		if($resul['sucursal'] != null){
 			$sucu_data = $resul['sucursal']->first_row();
 			$sucu_dir_data = $sucu_data->calle.' ext. #'.$sucu_data->numero_ext.' int. #'.$sucu_data->numero_int;
-			$sucu_mun_data = $sucu_data->municipio.', '.$sucu_data->nombre_estado;
+			$sucu_mun_data = $sucu_data->municipio.', '.$sucu_data->nombre_estado.', '.$sucu_data->comentarios;
 		}else{
 			show_error('ERROR CONSULTA VACIA' );
 		}
@@ -39,7 +39,7 @@ class CRemisionNote extends CI_Controller {
 			$remi_data=$resul['resultado']->first_row();
 			$remi_nombre_data = $remi_data->nombre_cliente;
 			$remi_dir_data = $remi_data->calle.' ext. #'.$remi_data->numero_ext.' int. #'.$remi_data->numero_int;
-			$remi_mun_data = $remi_data->municipio.', '.$remi_data->nombre_estado;
+			$remi_mun_data = $remi_data->municipio.', '.$remi_data->nombre_estado. ', '. $remi_data->comentarios ;
 			$remi_tp_data = $remi_data->nombre_tipoPago;
 			$remi_usr_data = $remi_data->nombre_usuario;
 			$remi_suc_data = $remi_data->nombre_sucursal;
@@ -164,7 +164,7 @@ class CRemisionNote extends CI_Controller {
 						
 		}
 		if($cont < 10){
-			for($i = 0; $i<10; $i++){
+			for($i = $cont; $i<10; $i++){
 				$pdf->MultiCell(30, 7, '', 1, 'C',0,0);
 				$pdf->MultiCell(90, 7, '', 1, 'C',0,0);
 				$pdf->MultiCell(20, 7, '', 1, 'C',0,0);
