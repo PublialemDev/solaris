@@ -85,27 +85,32 @@ class CMensual extends CI_Controller {
 		// ---------------------------------------------------------
 		
 		// set font
-		$pdf->SetFont('times', '', 11);
+		$pdf->SetFont('times', '', 10);
 		
 		// add a page
 		$pdf->AddPage();
 		
+		//separador
+		$pdf->MultiCell(10, 10, '', 0, 'C',0,1);
+		
 		//headers
-		$pdf->MultiCell(15, 10, '#', 1, 'C',0,0);
-		$pdf->MultiCell(20, 10, 'IMPORTE', 1, 'C',0,0);
-		$pdf->MultiCell(40, 10, 'CLIENTE', 1, 'C',0,0);
-		$pdf->MultiCell(35, 10, 'SUCURSAL', 1, 'C',0,0);
-		$pdf->MultiCell(35, 10, 'USUARIO', 1, 'C',0,0);
-		$pdf->MultiCell(35, 10, 'FECHA', 1, 'C',0,1);
+		$pdf->MultiCell(10, 7, '#', 1, 'C',0,0);
+		$pdf->MultiCell(20, 7, 'IMPORTE', 1, 'C',0,0);
+		$pdf->MultiCell(50, 7, 'CLIENTE', 1, 'C',0,0);
+		$pdf->MultiCell(35, 7, 'SUCURSAL', 1, 'C',0,0);
+		$pdf->MultiCell(30, 7, 'USUARIO', 1, 'C',0,0);
+		$pdf->MultiCell(20, 7, 'FECHA', 1, 'C',0,0);
+		$pdf->MultiCell(10, 7, 'INS', 1, 'C',0,1);
 		
 		//table
 		foreach($resul['resultado']->result() as $value){
-			$pdf->MultiCell(15, 10, $value->id_remision, 1, 'L',0,0);
+			$pdf->MultiCell(10,10, $value->id_remision, 1, 'L',0,0);
 			$pdf->MultiCell(20, 10, $value->total, 1, 'L',0,0);
-			$pdf->MultiCell(40, 10, $value->nombre_cliente, 1, 'L',0,0);
+			$pdf->MultiCell(50, 10, $value->nombre_cliente, 1, 'L',0,0);
 			$pdf->MultiCell(35, 10, $value->nombre_sucursal, 1, 'L',0,0);
-			$pdf->MultiCell(35, 10, $value->nombre_usuario, 1, 'L',0,0);
-			$pdf->MultiCell(35, 10, $value->fecha, 1, 'L',0,1);
+			$pdf->MultiCell(30, 10, $value->nombre_usuario, 1, 'L',0,0);
+			$pdf->MultiCell(20, 10, $value->fecha, 1, 'L',0,0);
+			$pdf->MultiCell(10, 10, $value->instalacion, 1, 'L',0,1);
 			
 		}
 		

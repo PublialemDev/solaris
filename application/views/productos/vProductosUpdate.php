@@ -92,7 +92,7 @@ foreach ($categorias->result() as $categoria) {
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Precio normal: ','prod_precio_nor',$label);?>
+												<?php echo form_label('Precio publico: ','prod_precio_nor',$label);?>
 												<?php echo form_input($producto_precio_nor);?>
 											</div>
 										</td>
@@ -100,7 +100,7 @@ foreach ($categorias->result() as $categoria) {
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Precio avanzado: ','prod_precio_adv',$label);?>
+												<?php echo form_label('Precio 1: ','prod_precio_adv',$label);?>
 												<?php echo form_input($producto_precio_adv);?>
 											</div>
 										</td>
@@ -108,7 +108,7 @@ foreach ($categorias->result() as $categoria) {
 									<tr>
 										<td>
 											<div class="form-group">
-												<?php echo form_label('Precio premier: ','prod_precio_pre',$label);?>
+												<?php echo form_label('Precio 2: ','prod_precio_pre',$label);?>
 												<?php echo form_input($producto_precio_pre);?>
 											</div>
 										</td>

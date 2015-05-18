@@ -11,7 +11,7 @@ class MMensual extends CI_Model {
 	
 	public function getValues($mes_ini, $mes_fin){
 		$query = $this->db->query('select clientes.nombre_cliente,sucursales.nombre_sucursal,usuarios.nombre_usuario,
-									remisiones.fecha,remisiones.total, remisiones.id_remision
+									remisiones.fecha,remisiones.total, remisiones.id_remision, remisiones.instalacion
 									FROM remisiones																											
 									JOIN sucursales ON remisiones.id_sucursal = sucursales.id_sucursal
 									JOIN usuarios ON remisiones.creado_por = usuarios.id_usuario

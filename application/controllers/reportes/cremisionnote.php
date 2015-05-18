@@ -10,6 +10,7 @@ class CRemisionNote extends CI_Controller {
 	$this->load->helper('pagina');
 	$this->load->model('reportes/mremisionnote');
 	$this->load->model('remisiones/mremisiones');
+	$this->load->model('telefonos/mtelefonos');
 	
 	}
 	
@@ -39,14 +40,25 @@ class CRemisionNote extends CI_Controller {
 			$remi_data=$resul['resultado']->first_row();
 			$remi_nombre_data = $remi_data->nombre_cliente;
 			$remi_dir_data = $remi_data->calle.' ext. #'.$remi_data->numero_ext.' int. #'.$remi_data->numero_int;
-			$remi_mun_data = $remi_data->municipio.', '.$remi_data->nombre_estado. ', '. $remi_data->comentarios ;
+			$remi_mun_data = $remi_data->municipio.', '.$remi_data->nombre_estado;
+			$remi_dir_comen = $remi_data->comentarios ;
 			$remi_tp_data = $remi_data->nombre_tipoPago;
 			$remi_usr_data = $remi_data->nombre_usuario;
 			$remi_suc_data = $remi_data->nombre_sucursal;
 			$remi_fecha_data = $remi_data->fecha;
 			$total= $remi_data->total+$remi_data->iva;
-			$telefono = $remi_data->numero_telefono;
+			$remi_cli_id=$remi_data->id_cliente;
+			//$telefono = $remi_data->numero_telefono;
 		}
+		
+		$resul['telefono'] = $this->mtelefonos->selectTelefonosByCliId($remi_cli_id,'cli');
+		$telefono='';
+		if($resul['telefono'] != null){
+			foreach($resul['telefono']->result() as $value){
+				$telefono.= $value->numero_telefono . ' ';
+			}
+		}
+		
 		
 		list($año, $mes, $dia) = preg_split('/[: -]/', $remi_fecha_data);
 		
@@ -130,7 +142,7 @@ class CRemisionNote extends CI_Controller {
 		$pdf->MultiCell(40, 10, 'FECHA ', 1, 'C',0,1);	
 
 		//fecha cuerpo
-		$pdf->MultiCell(135, 10, 'REFERENCIAS: ', 1, 'L',0,0);
+		$pdf->MultiCell(135, 10, 'REFERENCIAS: '.$remi_dir_comen, 1, 'L',0,0);
 		$pdf->MultiCell(5, 10, '', 0, 'C',0,0);
 		$pdf->MultiCell(13, 10, $dia, 1, 'C',0,0);
 		$pdf->MultiCell(13, 10, $mes, 1, 'C',0,0);
