@@ -39,7 +39,7 @@ foreach ($tipopagos->result() as $tipopago) {
 
 //Propiedades del form
 $form_remision = array('id'=>'form_remision','role'=>'form');
-$form_remision_reporte = array('id'=>'form_remision_reporte');
+$form_remision_reporte = array('id'=>'form_remision_reporte','style'=>'margin-right: 100px;');
 
 //Propiedades de los input 
 //$remision_cliente =array('name'=>'cliente_txt','placeholder'=>'Cliente','value'=>$rem_cli,'class'=>'form-control','disabled'=>'disabled');
@@ -159,13 +159,13 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 						<?php echo form_close(); ?>
 						<table>
 							<tr>
-							<td>
-						<?php echo form_open('reportes/cremisionnote/generarPDF',$form_remision_reporte); ?>
-						<?php echo form_hidden('idRemision',$rem_id);?>	
-						<?php echo form_submit('printButton','Imprimir','class="btn btn-primary"');?>
-						<?php echo form_close(); ?>
-						</td>
-						</tr>
+								<td>
+									<?php echo form_open('reportes/cremisionnote/generarPDF',$form_remision_reporte); ?>
+									<?php echo form_hidden('idRemision',$rem_id);?>	
+									<?php echo form_submit('printButton','Imprimir','class="btn btn-primary"');?>
+									<?php echo form_close(); ?>
+								</td>
+							</tr>
 						</table>
 						</div>
 						<div id="tableTarget" class='col-md-7'>

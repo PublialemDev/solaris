@@ -24,7 +24,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			<?php echo form_open('#',$form_usr); ?>
 			
 				<div class="form-group">
-					<?php echo form_label('Número de Usuario: ','usr_id');?>
+					<?php echo form_label('Número: ','usr_id');?>
 					<?php echo form_input($usr_id);?>
 				</div>
 			
@@ -34,7 +34,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 				</div>
 			
 				<div class="form-group">
-					<?php echo form_label('Tipo de Usuario: ','usr_tipo');?>
+					<?php echo form_label('Tipo: ','usr_tipo');?>
 					<?php echo form_input($usr_tipo);?>
 				</div>
 				<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>

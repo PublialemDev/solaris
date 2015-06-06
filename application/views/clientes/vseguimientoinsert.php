@@ -70,14 +70,12 @@ foreach ($catseguimiento->result() as $catsegui) {
 										</div>										
 									</td>
 								</tr>
+								<tr>
+									<td><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
+								</tr>
 								<?php echo form_close();?>																
 							</tbody>
-						</table>
-						<table>
-							<tr>
-								<td><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
-							</tr>
-						</table>
+						</table>						
 						</div>
 					</div>
 				</div>

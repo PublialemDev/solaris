@@ -31,7 +31,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		<div class="panel-body">
 			<center>
 				<?php echo form_open('#',$form_remisiones); ?>
-				
 					<div class="form-group">
 						<?php echo form_label('Cliente: ','cli_id');?>
 						<?php echo form_input($cli_id);?>
@@ -46,21 +45,24 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 						<?php echo form_label('Tipo de pago: ','tipopago_id');?>
 						<?php echo form_dropdown('tipopago_id',$tipopago_data,'','class="form-control"');?>
 					</div>
-					
-					<div class="form-group">
-						<?php echo form_label('fecha inicio: ','fecha_inicio');?>
-						<?php echo form_input($fecha_inicio);?>
-					</div>
-				
-					<div class="form-group">
-						<?php echo form_label('fecha fin: ','fecha_fin');?>
-						<?php echo form_input($fecha_fin);?>
-					</div>
 					<div class="form-group">
 						<?php echo form_label('Estatus: ','estatus_remision');?>
 						<?php echo form_dropdown('estatus_remision',$estatus_remisiones,'','class="form-control"');;?>
 					</div>
+	
+				
+					<div class="form-group">
+						<?php echo form_label('Fecha inicio: ','fecha_inicio');?>
+						<?php echo form_input($fecha_inicio);?>
+					</div>
+				
+					<div class="form-group">
+						<?php echo form_label('Fecha fin: ','fecha_fin');?>
+						<?php echo form_input($fecha_fin);?>
+					</div>
+					
 					<?php echo form_submit('enviar','Buscar','class="enviarButton btn btn-primary"');?>
+	
 				<?php echo form_close(); ?>
 			</center>
 		</div>

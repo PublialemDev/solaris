@@ -43,7 +43,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 		<center>
 				<div class='container-fluid'>
 					<div class="row">
-						<div class='col-md-6'>		
+						<div class='col-md-12'>		
 						<?php echo form_open('#',$form_segui); ?>
 						<?php echo form_hidden('idSeguimiento',$segui_data->id_seguimientoCliente);?>
 

@@ -272,8 +272,8 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 		
 		<table>
 			<tr>
-				<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?></td>
-				<td><?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
+				<td><?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?>
+				<?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?></td>
 			</tr>
 		</table>
 	</div>

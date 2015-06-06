@@ -117,7 +117,7 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 									</td>
 								</tr>-->
 								<tr>
-									<td><center><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></center></td>
+									<td><?php echo form_button('saveButton','Guardar','class="btn btn-primary" onclick="guardarProductos()"');?></td>
 								</tr>
 								
 							</tbody>

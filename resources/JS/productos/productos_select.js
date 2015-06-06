@@ -35,7 +35,7 @@ function selectProductos(form,evt){
 		
 $("#target").on("dblclick",".datos tbody tr", function(){
 	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
-		if (confirm("¿seguro que desea editar el Cliente?")){
+		if (confirm("¿Seguro que desea editar este producto?")){
 			window.location = SERVER_URL_BASE+"productos/cproductos/formUpdateProducto?prod_id="+$(this).attr("id");
 		}
 	}

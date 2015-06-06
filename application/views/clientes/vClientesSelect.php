@@ -44,7 +44,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			</div>
 					<div class='col-md-6'>
 						<center>
-						<?php echo form_button('seguimiento','Ver seguimiento','class="seguimientoButton btn btn-primary" style="display:none" onclick="mostrarSeguimiento()"');?>
+						<?php echo form_button('seguimiento','Ver seguimiento','class="seguimientoButton btn btn-primary" style="display:none;margin-left: 15px;margin-top: 10px;" onclick="mostrarSeguimiento()"');?>
 						</center>
 					</div>
 				</div>

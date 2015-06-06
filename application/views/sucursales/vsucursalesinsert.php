@@ -155,7 +155,7 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono  btn btn-xs btn-default"');?></td>
+								<td><?php echo form_button('tel','Agregar Teléfono','class="addTelefono   btn btn-primary"');?></td>
 							</tr>
 							<!--fin telefono-->
 							<!--inicio correo-->
@@ -169,18 +169,14 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-xs btn-default"');?></td>
+								<td><?php echo form_button('corr','Agregar correo','class="addCorreo  btn btn-primary"');?></td>
+							</tr>
+							<tr>
+								<td style="padding-top: 15px;"><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
 							</tr>
 							<!--fin correo-->
 							</tbody>
-							</table>
-							
-							<table>
-								<tr>
-									<td><?php echo form_button('enviar','Guardar','class="enviarButton  btn btn-primary"');?></td>
-								</tr>
-								
-							</table>
+							</table>													
 						</div>
 					</div>
 				</div>

@@ -3,7 +3,7 @@ $(document).on("click","#target .datos tbody tr", function(){
 	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="")){
 		$("tr[class='info']").removeClass("info");
 		$(this).addClass("info");
-		$(".seguimientoButton").removeAttr("style");
+		$(".seguimientoButton").css("display","block");
 	}
 });
 

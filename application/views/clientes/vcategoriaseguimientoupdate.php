@@ -16,13 +16,13 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
 //$catsegui_estatus = array('A' => 'ACTIVO', 'I' => 'INACTIVO');
 //Propiedades del form
-$form_catseguimiento = array('id'=>'form_catseguimiento','onSubmit'=>'getValues(this,event)');
+$form_catseguimiento = array('id'=>'form_catseguimiento','onSubmit'=>'getValues(this,event)','class'=>'form-inline');
 
 //Propiedades del input 
 $catseguimiento_nombre =array('name'=>'nombre_txt','placeholder'=>'Nombre','value'=>$catsegui_nombre_data,'class'=>'form-control', 'disabled'=>'disabled');
 
 //Propiedades del TextArea
-$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','value' =>$catsegui_descripcion_data,'rows' => 5, 'cols' =>30,'class'=>'form-control', 'disabled'=>'disabled');
+$datos = array('id' => 'descripcion_txt','name' => 'descripcion_txt','value' =>$catsegui_descripcion_data,'rows' => 1, 'cols' =>30,'class'=>'form-control', 'disabled'=>'disabled');
 
 $label=array('class'=>'control-label');
 ?>
@@ -32,47 +32,23 @@ $label=array('class'=>'control-label');
 	<div class="panel panel-info">
 	<div class="panel-heading">Actualización de Seguimiento a Clientes</div>
 	<div class="panel-body">
-		<center>
-			<div class='container-fluid'>
-				<div class="row">
-					<div class='col-md-6'>
-					<?php echo form_open('#',$form_catseguimiento); ?>
-					<?php echo form_hidden('idCatSeguimiento',$catsegui_data->id_categoriaSeguimiento);?>
-					<table>
-						<tbody>
-						<tr>
-							<td>
-							<div class="form-group">
-								<?php echo form_label('Nombre: ','nombre',$label);?>
-								<?php echo form_input($catseguimiento_nombre);?>
-							</div>
-							</td>
-						</tr>
-						<tr>
-						<tr>
-							<td>
-							<div class="form-group">
-								<?php echo form_label('Descripcion:','descripcion',$label);?>
-								<?php echo form_textarea($datos);?>
-							</div>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-					<?php echo form_close(); ?>	
-					<table>
-						<tr>
-							<td>
-							<div class="form-group">
-							<?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?>
-							<?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?>
-							</div>
-							</td>
-						</tr>
-					</table>
+		<center>			
+			<?php echo form_open('#',$form_catseguimiento); ?>
+			<?php echo form_hidden('idCatSeguimiento',$catsegui_data->id_categoriaSeguimiento);?>			
+					<div class="form-group">
+						<?php echo form_label('Nombre: ','nombre',$label);?>
+						<?php echo form_input($catseguimiento_nombre);?>
 					</div>
-				</div>
-			</div>
+					
+					<div class="form-group">
+						<?php echo form_label('Descripcion:','descripcion',$label);?>
+						<?php echo form_textarea($datos);?>
+					</div>
+					<div class="form-group">
+						<?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?>
+						<?php echo form_button('eliminar','Eliminar','class="deleteButton btn btn-primary"');?>
+					</div>						
+			<?php echo form_close(); ?>																			
 		</center>
 	</div>
 	</div>		
