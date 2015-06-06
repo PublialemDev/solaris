@@ -2,15 +2,18 @@ $(".addTelefono").click(function(){
 	addTelefono();
 });
 
+function removeTelefono(btn){
+	$(btn).parent().parent().parent().remove();
+}
+
 $(".addCorreo").click(function(){
 	addCorreo();
 });
 
-$(document).on("click",".enableButton",function(e){
-	$("[disabled='disabled']").removeAttr("disabled");
-	$(this).html("Guardar");
-	$(this).removeClass("enableButton").addClass("updateButton");
-});
+function removeCorreo(btn){
+	$(btn).parent().parent().parent().remove();
+}
+/*
 /*
  * valida el formulario
  */
@@ -176,6 +179,7 @@ $(".deleteButton").click(function(){
 function addTelefono(){
 	var tel_table="";
 	tel_table="<tr><td><div class='form-group'>";
+	tel_table=tel_table+"<button class='btn btn-default btn-xs' onClick='removeTelefono(this)' style='float:right'>X</button>";
 	tel_table=tel_table+"<label for='tel_num' class='control-label'>Teléfono: </label>";
 	tel_table=tel_table+"<input type='text' name='tel_num' value='' class='telefono form-control' placeholder='Teléfono'  />";
 	tel_table=tel_table+"</div></tr>";
@@ -187,6 +191,7 @@ function addCorreo(){
 	var corr_table="";
 	corr_table+="<tr><td><div class='form-group'>";
 	corr_table+="<label for='corr_correo' class='control-label'>Correo: </label>";
+	corr_table+="<button class='btn btn-default btn-xs' onClick='removeCorreo(this)'  style='float:right'>X</button>";
 	corr_table+="<input type='text' name='corr_correo' value='' class='correo form-control' placeholder='Correo'  />";
 	corr_table+="</div></tr>";
 	
