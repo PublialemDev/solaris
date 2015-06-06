@@ -39,8 +39,12 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										<?php echo form_label('Sucursal: ','sucursal');?>
 										<select name="sucursal" class="form-control"> 
 										<?php 
+										if($sucursales!=false){
 										foreach ($sucursales->result() as $sucursal) {
 											echo '<option value="'.$sucursal->id_sucursal.'">'.$sucursal->nombre_sucursal.'</option>';
+										}
+										}else{
+											echo '<option value=""></option>';
 										}?> 
 										</select>
 										</div>
@@ -66,9 +70,15 @@ $remision_instalacion = array('N' => 'No', 'S' => 'Si');
 										<?php echo form_label('Tipo de Pago: ','tipopago',$label);?>
 										<select name="tipopago" class="form-control"> 
 										<?php 
-										foreach ($tipopagos->result() as $tipopago) {
-											echo '<option value="'.$tipopago->id_tipoPago.'">'.$tipopago->nombre_tipoPago.'</option>';
-										}?> 
+										if($tipopagos!=false){
+											foreach ($tipopagos->result() as $tipopago) {
+												echo '<option value="'.$tipopago->id_tipoPago.'">'.$tipopago->nombre_tipoPago.'</option>';
+											}
+										}else{
+											echo '<option value=""></option>';
+											
+										}
+										?> 
 										</select>
 										</div>
 									</td>

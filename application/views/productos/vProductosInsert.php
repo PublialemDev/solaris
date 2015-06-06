@@ -54,9 +54,15 @@ $datos = array('id' => 'prod_desc','name' => 'prod_desc','rows' => 5, 'cols' =>3
 											<div class="form-group">
 												<?php echo form_label('Categoria: ','prod_categoria',$label);?>
 												<select name="prod_categoria" class="form-control"> 
-												<?php foreach ($categorias->result() as $categoria) {
+												<?php 
+												if($categorias!=false){
+												foreach ($categorias->result() as $categoria) {
 						echo '<option value="'.$categoria->id_categoriaProducto.'">'.$categoria->nombre_categoriaProducto.'</option>';
-												}?> 
+												}
+												}else{
+													echo '<option value=""> </option>';
+												}
+												?> 
 												</select>
 											</div>
 										</td>

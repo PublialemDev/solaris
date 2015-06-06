@@ -2,9 +2,17 @@ $(".addTelefono").click(function(){
 	addTelefono();
 });
 
+function removeTelefono(btn){
+	$(btn).parent().parent().parent().remove();
+}
+
 $(".addCorreo").click(function(){
 	addCorreo();
 });
+
+function removeCorreo(btn){
+	$(btn).parent().parent().parent().remove();
+}
 
 $(document).on("click",".enableButton",function(e){
 	$("[disabled='disabled']").removeAttr("disabled");
@@ -173,22 +181,24 @@ $(".deleteButton").click(function(){
 
 function addTelefono(){
 	var tel_table="";
-	tel_table="<tr><td>";
-	tel_table=tel_table+"<label for=\'tel_num\'>Teléfono: </label>";
-	tel_table=tel_table+"</td><td><input type=\'text\' name=\'tel_num\' value=\'\' class=\'telefono\' placeholder=\'Teléfono\'  />";
-	tel_table=tel_table+"</td></tr>";
+	tel_table="<tr><td><div class='form-group'>";
+	tel_table=tel_table+"<label for='tel_num' class='control-label'>Teléfono: </label>";
+	tel_table=tel_table+"<button class='btn btn-default btn-xs' onClick='removeTelefono(this)' style='float:right'>X</button>";
+	tel_table=tel_table+"<input type='text' name='tel_num' value='' class='telefono form-control' placeholder='Teléfono'  />";
+	tel_table=tel_table+"</div></tr>";
 	
-	$("input[name=\'tel_num\']:last").parent().parent().before(tel_table);
+	$("input[name='tel_num']:first").parent().parent().parent().before(tel_table);
 }
 
 function addCorreo(){
 	var corr_table="";
-	corr_table+="<tr><td>";
-	corr_table+="<label for=\'corr_correo\'>Correo: </label>";
-	corr_table+="</td><td><input type=\'text\' name=\'corr_correo\' value=\'\' class=\'correo\' placeholder=\'Correo\'  />";
-	corr_table+="</td></tr>";
+	corr_table+="<tr><td><div class='form-group'>";
+	corr_table+="<button class='btn btn-default btn-xs' onClick='removeCorreo(this)'  style='float:right'>X</button>";
+	corr_table+="<label for='corr_correo' class='control-label'>Correo: </label>";
+	corr_table+="<input type='text' name='corr_correo' value='' class='correo form-control' placeholder='Correo'  />";
+	corr_table+="</div></tr>";
 	
-	$("input[name=\'corr_correo\']:last").parent().parent().before(corr_table);
+	$("input[name='corr_correo']:first").parent().parent().parent().before(corr_table);
 }
 //muestra el apartado de password
 $(document).on("click", ".showPasswd",function(){

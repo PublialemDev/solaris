@@ -44,16 +44,28 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	//formularios
 	$form_usr=array('id'=>'form_usr','onSubmit'=>'insertUsuarios(this,event)','role'=>'form');
 	$form_dir=array('id'=>'form_dir','onSubmit'=>'insertUsuarios(this,event)','role'=>'form');
-	foreach ($estados->result() as $estado) {
-		$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
+	if($estados!=false){
+		foreach ($estados->result() as $estado) {
+			$dir_estado[(string)$estado->id_estado]= (string)$estado->nombre_estado;
+		}
+	}else{
+			$dir_estado[' ']= '';
 	}
 	//Tipo usuarios
-	foreach ($tipousuarios->result() as $tipousuario) {
-		$usr_tipousuario[(string)$tipousuario->id_tipoUsuario] = (string)$tipousuario->nombre_tipoUsuario;
+	if($tipousuarios!=false){
+		foreach ($tipousuarios->result() as $tipousuario) {
+			$usr_tipousuario[(string)$tipousuario->id_tipoUsuario] = (string)$tipousuario->nombre_tipoUsuario;
+		}
+	}else{
+			$usr_tipousuario[' ']= '';
 	}
 	//Sucursales
-	foreach ($sucursales->result() as $sucursal) {
-		$usr_sucursal[(string)$sucursal->id_sucursal]= (string)$sucursal->nombre_sucursal;
+	if($tipousuarios!=false){
+		foreach ($sucursales->result() as $sucursal) {
+			$usr_sucursal[(string)$sucursal->id_sucursal]= (string)$sucursal->nombre_sucursal;
+		}
+	}else{
+			$usr_sucursal[' ']= '';
 	}
 ?>
 
