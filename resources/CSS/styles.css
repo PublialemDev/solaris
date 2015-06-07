@@ -301,7 +301,7 @@ header {
 	height:98px;
 	background:url(../images/logo.png) no-repeat;
 	float:left;
-	position:relative;
+	/*position:relative;*/
 	top:20px;
 }
 .certificados {

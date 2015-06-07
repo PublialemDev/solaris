@@ -130,7 +130,7 @@ function getMenu(){
             <span class="icon-bar"></span>
           </button>
         <div class="central_header">
-          <a class="transicion" href="/solaris/index.php/main/cMain/main"><div id="logo"></div></a>
+          <a class="transicion" href="/solaris/index.php/main/cMain/main"><div id="logo" style="margin-left: -25px;"></div></a>
           
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
