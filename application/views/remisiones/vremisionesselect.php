@@ -18,8 +18,12 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 	
 	//Dropdown tipo de pagos
 	$tipopago_data['0']= '';
-	foreach ($tipopagos->result() as $tipopago) {
-		$tipopago_data[(string)$tipopago->id_tipoPago]= (string)$tipopago->nombre_tipoPago;
+	if($tipopagos!=false){
+		foreach ($tipopagos->result() as $tipopago) {
+			$tipopago_data[(string)$tipopago->id_tipoPago]= (string)$tipopago->nombre_tipoPago;
+		}
+	}else{
+		$tipopago_data[' ']= ' ';
 	}
 	//Dropdown estatus remisiones
 	$estatus_remisiones=array('-'=>'Todas','A'=>'Activo','I'=>'Inactivo');
