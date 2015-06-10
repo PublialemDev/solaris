@@ -85,7 +85,7 @@ foreach ($catseguimiento->result() as $catsegui) {
 </div>
 
 <?php 
-echo getFooter('<script src="http://localhost/solaris/resources/JS/clientes/seguimiento_insert.js"></script>');
+echo getFooter('<script src="/solaris/resources/JS/clientes/seguimiento_insert.js"></script>');
 }else{
 	header('Location: /solaris/index.php/main/cLogin/');
 }
