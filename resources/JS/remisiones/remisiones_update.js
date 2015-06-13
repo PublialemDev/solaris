@@ -262,13 +262,13 @@ function validarForm(){
 	}				
 	
 	//valida el total
-	if(!isVacio($("input[name='total_txt']").val())){
+	/*if(!isVacio($("input[name='total_txt']").val())){
 		$("input[name='total_txt']").parent().removeClass("has-error");
 	}else{
 		$("input[name='total_txt']").parent().addClass("has-error");
 		continuar=false;
 	}
-	
+	*/
 	//valida el iva
 	/*if(isVacio($("input[name='iva_txt']").val())){
 		$("input[name='iva_txt']").parent().removeClass("has-error");

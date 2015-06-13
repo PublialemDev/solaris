@@ -32,7 +32,7 @@ function selectUsuarios(form,evt){
 }
 		
 $("#target").on("dblclick",".datos tbody tr", function(){
-	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="") && ($(this).attr("id")>1)){
+	if( ($(this).attr("id")!=null) && ($(this).attr("id")!="") && ($(this).attr("id")>=1)){
 		if (confirm("¿seguro que desea editar el usuario?")){
 			window.location.href = SERVER_URL_BASE+"usuarios/cusuarios/formUpdateUsuarios?id_usuario="+$(this).attr("id");
 		}

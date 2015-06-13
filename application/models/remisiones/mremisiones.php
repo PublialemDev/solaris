@@ -56,11 +56,12 @@ class MRemisiones extends CI_Model{
 	}
 	
 	public function selectSucursales(){
+		$this->db->where('estatus_sucursal','A');
 		$query = $this->db->get('sucursales');
-		
-		if($query->num_rows >0) 
+		if($query->num_rows()>0){
 			return $query;
-		else {
+		}
+		else{
 			return false;
 		}
 	}
