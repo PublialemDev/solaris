@@ -80,7 +80,7 @@ function validarForm(){
 	
 	$(".telefono").each(function (index){
 		//valida .telefono
-		if(isNumero($(this).val())){
+		if(isTelefono($(this).val())){
 			$(this).parent().removeClass("has-error");
 		}else{
 			$(this).parent().addClass("has-error");

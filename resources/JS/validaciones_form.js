@@ -81,6 +81,14 @@ function isCodigoPostal(string){
 	return patt.test(string);
 }
 
+function isTelefono(string){
+	if(isVacio(string)||!isNumero(string)||string.length>10){
+		return false;
+	}
+	var patt=new RegExp('[0-9]{10,10}');
+	return patt.test(string);
+}
+
 /*
  valida que tenga la estructura de un email,regresa true si es numero y false si no
  @param string
