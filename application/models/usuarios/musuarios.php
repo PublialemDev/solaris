@@ -140,21 +140,31 @@ class MUsuarios extends CI_Model{
 	}
 
 	public function selectSucursales(){
-		$query = $this->db->get('sucursales',array('estatus_sucursal'=>'A'));
+		$this->db->where('estatus_sucursal','A');
+		$query = $this->db->get('sucursales');
+		if($query->num_rows()>0){
+			return $query;
+		}
+		else{
+			return false;
+		}
+		/*$query = $this->db->get('sucursales',array('estatus_sucursal'=>'A'));
 		
 		if($query->num_rows >0) 
 			return $query;
 		else {
 			return false;
-		}
+		}*/
 	}
 	
 	public function selectTipoUsuarios(){
-		$query = $this->db->get('tipousuarios');
 		
-		if($query->num_rows >0) 
+		$this->db->where('estatus_tipoUsuario','A');
+		$query = $this->db->get('tipousuarios');
+		if($query->num_rows()>0){
 			return $query;
-		else {
+		}
+		else{
 			return false;
 		}
 	}
