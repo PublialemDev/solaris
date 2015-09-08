@@ -10,7 +10,7 @@ class MRemisionNote extends CI_Model {
 	}
 	
 	public function getValues($id_remision){
-		$query = $this->db->query('SELECT clientes.id_cliente, clientes.nombre_cliente,direcciones.calle,direcciones.numero_ext,direcciones.numero_int,telefonos.numero_telefono,direcciones.comentarios,
+		$query = $this->db->query('SELECT clientes.id_cliente, clientes.nombre_cliente,direcciones.calle,direcciones.numero_ext,direcciones.numero_int,telefonos.numero_telefono,direcciones.comentarios,direcciones.colonia,
 									direcciones.municipio,estados.nombre_estado,sucursales.nombre_sucursal,sucursales.nombre_sucursal,sucursales.nombre_sucursal,sucursales.nombre_sucursal,sucursales.nombre_sucursal,usuarios.nombre_usuario,
 									remisiones.fecha,remisiones.iva,remisiones.total,productoremision.descuento,productoremision.cantidad,
 									productoremision.precio_actual,tipopagos.nombre_tipoPago,

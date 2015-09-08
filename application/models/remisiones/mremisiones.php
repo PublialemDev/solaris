@@ -78,7 +78,7 @@ class MRemisiones extends CI_Model{
 			}
 		}
 		if(isset($where_clause['cli_id'])){
-			$this->db->where('clientes.id_cliente',$where_clause['cli_id']);
+			$this->db->like('clientes.nombre_cliente',$where_clause['cli_id']);
 		}
 		if(isset($where_clause['suc_id'])){
 			$this->db->where('remisiones.id_sucursal',$where_clause['suc_id']);

@@ -13,6 +13,13 @@ $(".addCorreo").click(function(){
 function removeCorreo(btn){
 	$(btn).parent().parent().parent().remove();
 }
+
+$(document).on("click",".enableButton",function(e){
+	$("[disabled='disabled']").removeAttr("disabled");
+	$(this).html("Guardar");
+	$(this).removeClass("enableButton").addClass("updateButton");
+});
+
 /*
 /*
  * valida el formulario

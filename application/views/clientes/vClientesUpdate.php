@@ -234,6 +234,10 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 				</div>
 			</td>
 		</tr>
+		<?php	
+		} ?>
+		
+		<!--fin correo-->
 		<tr>
 			<td>
 				<?php echo form_button('editar','Editar','class="enableButton btn btn-primary"');?>
@@ -241,9 +245,6 @@ if (isset($_SESSION['USUARIO_ID']) and $_SESSION['USUARIO_ID']!=null ){
 			</td>
 		</tr>
 			
-		<?php	
-		} ?>
-		<!--fin correo-->
 		</tbody>
 		</table>
 	</div>

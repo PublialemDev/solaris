@@ -85,7 +85,7 @@ function isTelefono(string){
 	if(isVacio(string)||!isNumero(string)||string.length>10){
 		return false;
 	}
-	var patt=new RegExp('[0-9]{10,10}');
+	var patt=new RegExp('[0-9]{7,10}');
 	return patt.test(string);
 }
 

@@ -39,7 +39,7 @@ class CRemisionNote extends CI_Controller {
 		if($resul['resultado'] != null){
 			$remi_data=$resul['resultado']->first_row();
 			$remi_nombre_data = $remi_data->nombre_cliente;
-			$remi_dir_data = $remi_data->calle.' ext. #'.$remi_data->numero_ext.' int. #'.$remi_data->numero_int;
+			$remi_dir_data = $remi_data->calle.' ext. #'.$remi_data->numero_ext.' int. #'.$remi_data->numero_int.', '.$remi_data->colonia;
 			$remi_mun_data = $remi_data->municipio.', '.$remi_data->nombre_estado;
 			$remi_dir_comen = $remi_data->comentarios ;
 			$remi_tp_data = $remi_data->nombre_tipoPago;
